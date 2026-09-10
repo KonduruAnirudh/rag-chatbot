@@ -5,4 +5,4 @@ __pycache__/
 data/uploads/*
 data/index/*
 .DS_Store
-.vscode/
+.vscode/data/test_documents/
