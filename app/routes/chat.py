@@ -1,0 +1,66 @@
+# app/routes/chat.py
+from fastapi import APIRouter, HTTPException
+
+from app.schemas import ChatRequest, ChatResponse, Source
+from app.rag.retrieve import retrieve
+from app.rag.generate import generate_answer, GenerationError
+from app.rag.store import store
+
+router = APIRouter(prefix="/api", tags=["chat"])
+
+SESSIONS: dict[str, list[dict]] = {}
+MAX_HISTORY = 6      # last 3 exchanges
+SNIPPET_LENGTH = 200
+
+
+@router.post("/chat", response_model=ChatResponse)
+async def chat(payload: ChatRequest):
+    if store.is_empty():
+        raise HTTPException(
+            status_code=400,
+            detail="No documents have been uploaded yet.",
+        )
+
+    # 1. Retrieve
+    try:
+        chunks = await retrieve(payload.question)
+    except Exception as e:
+        print(f"[RETRIEVAL ERROR] {type(e).__name__}: {e}")
+        raise HTTPException(status_code=502, detail="Could not search the documents.")
+
+    # 2. Generate
+    history = SESSIONS.get(payload.session_id, [])
+    try:
+        answer = await generate_answer(payload.question, chunks, history)
+    except GenerationError as e:
+        raise HTTPException(status_code=502, detail=str(e))
+
+    # 3. Update history (store the plain question, not the context-stuffed prompt)
+    SESSIONS[payload.session_id] = (history + [
+        {"role": "user", "content": payload.question},
+        {"role": "assistant", "content": answer},
+    ])[-MAX_HISTORY:]
+
+    # 4. Shape the sources
+    sources = [
+        Source(
+            doc_id=c["doc_id"],
+            filename=c["filename"],
+            chunk_index=c["chunk_index"],
+            score=round(c["score"], 3),
+            snippet=c["text"][:SNIPPET_LENGTH].strip(),
+        )
+        for c in chunks
+    ]
+
+    return ChatResponse(
+        answer=answer,
+        sources=sources,
+        session_id=payload.session_id,
+    )
+
+
+@router.post("/chat/reset")
+async def reset_chat(session_id: str = "default"):
+    SESSIONS.pop(session_id, None)
+    return {"status": "cleared", "session_id": session_id}
