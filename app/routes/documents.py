@@ -8,6 +8,7 @@ from app.rag.extract import extract_text, ExtractionError
 from app.rag.chunk import chunk_text
 from app.rag.embed import embed_texts, EmbeddingError
 from app.rag.store import store
+from app.rag.registry import registry
 
 router = APIRouter(prefix="/api", tags=["documents"])
 
@@ -16,11 +17,6 @@ UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
 ALLOWED_EXTENSIONS = {".pdf", ".txt"}
 MAX_FILE_SIZE = 10 * 1024 * 1024  # 10 MB
-
-# In-memory registry of uploaded documents.
-# Note: this resets on restart while the vector store persists —
-# a known limitation, see README.
-DOCUMENTS: dict[str, dict] = {}
 
 
 @router.post("/documents")
@@ -76,14 +72,15 @@ async def upload_document(file: UploadFile = File(...)):
     store.add(vectors, chunks)
 
     # 8. Register the document (metadata only; the store owns the content)
-    DOCUMENTS[doc_id] = {
-        "doc_id": doc_id,
-        "filename": file.filename,
-        "path": str(stored_path),
-        "size_bytes": len(contents),
-        "char_count": len(text),
-        "chunk_count": len(chunks),
-    }
+            # 8. Register the document (metadata only; the store owns the content)
+    registry.add(
+        doc_id=doc_id,
+        filename=file.filename,
+        path=str(stored_path),
+        size_bytes=len(contents),
+        char_count=len(text),
+        chunk_count=len(chunks),
+    )
 
     return {
         "doc_id": doc_id,
@@ -99,7 +96,7 @@ async def upload_document(file: UploadFile = File(...)):
 @router.get("/documents")
 async def list_documents():
     return {
-        "count": len(DOCUMENTS),
+        "count": registry.count(),
         "total_chunks_indexed": store.count(),
         "documents": [
             {
@@ -107,19 +104,21 @@ async def list_documents():
                 "filename": d["filename"],
                 "size_bytes": d["size_bytes"],
                 "chunk_count": d["chunk_count"],
+                "uploaded_at": d["uploaded_at"],
             }
-            for d in DOCUMENTS.values()
+            for d in registry.list_all()
         ],
     }
 
 
 @router.delete("/documents/{doc_id}")
 async def delete_document(doc_id: str):
-    if doc_id not in DOCUMENTS:
+    record = registry.get(doc_id)
+    if record is None:
         raise HTTPException(status_code=404, detail="Document not found.")
 
-    removed = store.delete_document(doc_id)
-    Path(DOCUMENTS[doc_id]["path"]).unlink(missing_ok=True)
-    del DOCUMENTS[doc_id]
+    removed = store.delete_document(doc_id)       # 1. vectors out of the index
+    Path(record["path"]).unlink(missing_ok=True)  # 2. file off disk
+    registry.remove(doc_id)                       # 3. registry last
 
     return {"doc_id": doc_id, "chunks_removed": removed}
