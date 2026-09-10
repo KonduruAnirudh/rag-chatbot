@@ -2,6 +2,7 @@
 import json
 from datetime import datetime, timezone
 from pathlib import Path
+import hashlib   # at the top
 
 INDEX_DIR = Path("data/index")
 REGISTRY_PATH = INDEX_DIR / "documents.json"
@@ -17,8 +18,8 @@ class DocumentRegistry:
         self.documents: dict[str, dict] = {}
         self._load()
 
-    def add(self, doc_id: str, filename: str, path: str,
-            size_bytes: int, char_count: int, chunk_count: int) -> dict:
+    def add(self, doc_id: str, filename: str, path: str, size_bytes: int,
+            char_count: int, chunk_count: int, content_hash: str) -> dict:
         record = {
             "doc_id": doc_id,
             "filename": filename,
@@ -26,6 +27,7 @@ class DocumentRegistry:
             "size_bytes": size_bytes,
             "char_count": char_count,
             "chunk_count": chunk_count,
+            "content_hash": content_hash,
             "uploaded_at": datetime.now(timezone.utc).isoformat(),
         }
         self.documents[doc_id] = record
@@ -56,6 +58,13 @@ class DocumentRegistry:
     def _load(self) -> None:
         if REGISTRY_PATH.exists():
             self.documents = json.loads(REGISTRY_PATH.read_text())
+
+    def find_by_hash(self, content_hash: str) -> dict | None:
+        """Return an existing document with this exact content, if any."""
+        for record in self.documents.values():
+            if record.get("content_hash") == content_hash:
+                return record
+        return None
 
 
 registry = DocumentRegistry()
