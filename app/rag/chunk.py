@@ -4,6 +4,11 @@ from app.config import CHUNK_SIZE, CHUNK_OVERLAP
 # Separators tried in order of preference when looking for a clean break.
 SEPARATORS = ["\n\n", "\n", ". ", " "]
 
+def _is_noise(text: str) -> bool:
+    """Table-of-contents pages extract as dot leaders and page numbers."""
+    stripped = text.replace(".", "").replace(" ", "").replace("\n", "")
+    return len(stripped) < len(text) * 0.4
+
 
 def chunk_text(
     text: str,
@@ -28,7 +33,7 @@ def chunk_text(
             end = _find_break(text, start, end)
 
         chunk = text[start:end].strip()
-        if chunk:
+        if chunk and not _is_noise(chunk):
             chunks.append({
                 "text": chunk,
                 "doc_id": doc_id,
