@@ -68,3 +68,46 @@ async def generate_answer(
         raise GenerationError("The AI service is temporarily unavailable.")
 
     return response.output_text
+
+REWRITE_PROMPT = """Rewrite the user's latest question so it can be understood on its own, without the conversation history.
+
+Rules:
+- Replace pronouns and references ("it", "that", "the first one") with what they refer to.
+- Keep the user's original wording wherever possible. Do not add information.
+- If the question already stands alone, return it unchanged.
+- Return ONLY the rewritten question. No preamble, no quotes, no explanation."""
+
+
+async def rewrite_question(question: str, history: list[dict]) -> str:
+    """
+    Turn a follow-up into a standalone question for retrieval.
+    Returns the original question if there's no history or the rewrite fails.
+    """
+    if not history:
+        return question
+
+    conversation = "\n".join(
+        f"{m['role']}: {m['content']}" for m in history
+    )
+    user_message = (
+        f"Conversation so far:\n{conversation}\n\n"
+        f"Latest question: {question}\n\n"
+        f"Standalone version:"
+    )
+
+    try:
+        response = await client.responses.create(
+            model=CHAT_MODEL,
+            instructions=REWRITE_PROMPT,
+            input=user_message,
+        )
+        rewritten = response.output_text.strip()
+    except Exception as e:
+        print(f"[REWRITE ERROR] {type(e).__name__}: {e}")
+        return question
+
+    # Guard against a degenerate rewrite (empty, or the model rambling).
+    if not rewritten or len(rewritten) > 300:
+        return question
+
+    return rewritten

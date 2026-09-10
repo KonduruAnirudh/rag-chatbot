@@ -3,13 +3,13 @@ from fastapi import APIRouter, HTTPException
 
 from app.schemas import ChatRequest, ChatResponse, Source
 from app.rag.retrieve import retrieve
-from app.rag.generate import generate_answer, GenerationError
+from app.rag.generate import generate_answer, rewrite_question, GenerationError
 from app.rag.store import store
 
 router = APIRouter(prefix="/api", tags=["chat"])
 
 SESSIONS: dict[str, list[dict]] = {}
-MAX_HISTORY = 6      # last 3 exchanges
+MAX_HISTORY = 6          # last 3 exchanges
 SNIPPET_LENGTH = 200
 
 
@@ -21,15 +21,20 @@ async def chat(payload: ChatRequest):
             detail="No documents have been uploaded yet.",
         )
 
+    history = SESSIONS.get(payload.session_id, [])
+
+    # Resolve references before retrieval — "tell me more about that"
+    # has no topic to match on until it's rewritten.
+    search_query = await rewrite_question(payload.question, history)
+
     # 1. Retrieve
     try:
-        chunks = await retrieve(payload.question)
+        chunks = await retrieve(search_query)
     except Exception as e:
         print(f"[RETRIEVAL ERROR] {type(e).__name__}: {e}")
         raise HTTPException(status_code=502, detail="Could not search the documents.")
 
     # 2. Generate
-    history = SESSIONS.get(payload.session_id, [])
     try:
         answer = await generate_answer(payload.question, chunks, history)
     except GenerationError as e:
@@ -57,6 +62,7 @@ async def chat(payload: ChatRequest):
         answer=answer,
         sources=sources,
         session_id=payload.session_id,
+        search_query=search_query,
     )
 
 
