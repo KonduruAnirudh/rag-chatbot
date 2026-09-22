@@ -12,7 +12,7 @@ EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "text-embedding-3-small")
 # --- RAG pipeline settings ---
 CHUNK_SIZE = 1000      # characters per chunk
 CHUNK_OVERLAP = 150    # characters shared between adjacent chunks
-TOP_K = 4              # chunks retrieved per question
+TOP_K = 5          # chunks retrieved per question
 SIMILARITY_THRESHOLD = 0.20  # calibrated against the corpus, see README
 
 def require_api_key() -> str:
