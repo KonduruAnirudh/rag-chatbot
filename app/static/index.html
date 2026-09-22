@@ -3,412 +3,101 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <title>Document Assistant</title>
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap"
-    rel="stylesheet"
-  >
-
-  <!-- Application styles -->
   <link rel="stylesheet" href="/style.css">
 </head>
-
 <body>
-
   <div class="app">
 
-    <!-- =========================================================
-         SIDEBAR
-         ========================================================= -->
-
+    <!-- ============ SIDEBAR: the document library ============ -->
     <aside class="sidebar" id="sidebar">
-
-      <!-- Sidebar Header -->
       <div class="sidebar-head">
         <h1 class="brand">Document Assistant</h1>
-
-        <p class="brand-sub">
-          Answers from your files, with sources
-        </p>
+        <p class="brand-sub">Answers from your files, with sources</p>
       </div>
-
-
-      <!-- =======================================================
-           DOCUMENT UPLOAD
-           ======================================================= -->
 
       <div class="upload">
-
-        <button
-          class="btn-upload"
-          id="upload-btn"
-          type="button"
-        >
-          Add document
-        </button>
-
-        <!--
-          Single file input.
-
-          `multiple` allows the user to select more than
-          one PDF/TXT file at once.
-        -->
-        <input
-          type="file"
-          id="file-input"
-          accept=".pdf,.txt"
-          multiple
-          hidden
-        >
-
-        <!--
-          Upload progress.
-
-          Hidden by default.
-          JavaScript will display this while a document
-          is being uploaded and processed.
-        -->
-        <div
-          class="upload-progress"
-          id="upload-progress"
-          hidden
-        >
-
-          <p
-            class="upload-name"
-            id="upload-name"
-          >
-            Uploading...
-          </p>
-
-          <div class="progress-track">
-            <div class="progress-bar"></div>
-          </div>
-
-          <p
-            class="upload-status"
-            id="upload-status"
-          >
-            Processing document...
-          </p>
-
-        </div>
-
-        <p class="upload-hint">
-          PDF or TXT, up to 10 MB.
-          You can also drop a file here.
-        </p>
-
+        <button class="btn-upload" id="upload-btn" type="button">Add document</button>
+        <input type="file" id="file-input" accept=".pdf,.txt" multiple hidden>
+        <p class="upload-hint">PDF or TXT, up to 10 MB. You can also drop files here.</p>
       </div>
 
-
-      <!-- =======================================================
-           UPLOAD ERROR
-           ======================================================= -->
-
-      <div
-        class="banner banner-error"
-        id="upload-error"
-        role="alert"
-        hidden
-      >
-
-        <p id="upload-error-text">
-          This file has already been uploaded.
-        </p>
-
-        <button
-          class="banner-close"
-          id="upload-error-close"
-          type="button"
-          aria-label="Dismiss"
-        >
-          &times;
-        </button>
-
+      <div class="banner banner-error" id="upload-error" role="alert" hidden>
+        <p id="upload-error-text"></p>
+        <button class="banner-close" id="upload-error-close" type="button" aria-label="Dismiss">&times;</button>
       </div>
 
-
-      <!-- =======================================================
-           DOCUMENT LIBRARY
-           ======================================================= -->
+      <div class="upload-progress" id="upload-progress" hidden>
+        <p class="upload-name" id="upload-name"></p>
+        <div class="progress-track"><div class="progress-bar"></div></div>
+        <p class="upload-status" id="upload-status"></p>
+      </div>
 
       <div class="library">
-
-        <h2 class="library-title">
-          Library
-        </h2>
-
-        <!--
-          IMPORTANT:
-
-          Do NOT put sample documents here.
-
-          app.js will fetch the real documents from:
-
-              GET /api/documents
-
-          and create the list dynamically.
-        -->
-        <ul
-          class="doc-list"
-          id="doc-list"
-        ></ul>
-
-
-        <!--
-          Shown when the backend reports that there are
-          no documents.
-        -->
-        <p
-          class="doc-empty"
-          id="doc-empty"
-          hidden
-        >
-          No documents yet.
-          Add one to start asking questions.
-        </p>
-
+        <h2 class="library-title">Library</h2>
+        <ul class="doc-list" id="doc-list"></ul>
+        <p class="doc-empty" id="doc-empty" hidden>No documents yet. Add one to start asking questions.</p>
       </div>
 
-
-      <!--
-        JavaScript will replace this with the actual
-        number of documents and indexed passages.
-      -->
-      <footer
-        class="sidebar-foot"
-        id="library-stats"
-      >
-        Loading library...
-      </footer>
-
+      <footer class="sidebar-foot" id="library-stats">Loading library…</footer>
     </aside>
 
-
-    <!-- =========================================================
-         MAIN APPLICATION
-         ========================================================= -->
-
+    <!-- ============ MAIN: the conversation ============ -->
     <main class="main">
-
-      <!-- =======================================================
-           MAIN HEADER
-           ======================================================= -->
-
       <header class="main-head">
-
-        <!-- Mobile/sidebar menu -->
-        <button
-          class="menu-btn"
-          id="menu-btn"
-          type="button"
-          aria-label="Open library"
-        >
-
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 18 18"
-            aria-hidden="true"
-          >
-            <path
-              d="M3 5h12M3 9h12M3 13h12"
-              stroke="currentColor"
-              stroke-width="1.6"
-              stroke-linecap="round"
-            />
+        <button class="menu-btn" id="menu-btn" type="button" aria-label="Open library">
+          <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
+            <path d="M3 5h12M3 9h12M3 13h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
           </svg>
-
         </button>
-
-
-        <!-- Clear conversation -->
-        <button
-          class="btn-ghost"
-          id="clear-btn"
-          type="button"
-        >
-          Clear chat
-        </button>
-
+        <button class="btn-ghost" id="clear-btn" type="button">Clear chat</button>
       </header>
 
+      <section class="thread" id="thread" aria-live="polite">
+        <div class="thread-inner" id="thread-inner">
 
-      <!-- =======================================================
-           CHAT THREAD
-           ======================================================= -->
-
-      <section
-        class="thread"
-        id="thread"
-        aria-live="polite"
-      >
-
-        <div
-          class="thread-inner"
-          id="thread-inner"
-        >
-
-          <!-- ===================================================
-               EMPTY STATE
-
-               This is visible when the application starts.
-
-               JavaScript can hide it once the first question
-               is submitted.
-               =================================================== -->
-
-          <div
-            class="empty"
-            id="empty-state"
-          >
-
-            <h2 class="empty-title">
-              Ask your documents
-            </h2>
-
+          <div class="empty" id="empty-state">
+            <h2 class="empty-title">Ask your documents</h2>
             <p class="empty-text">
-              Answers come only from the files in your library,
-              and every answer shows the passages it was based on.
+              Answers come only from the files in your library, and every answer
+              shows the passages it was based on.
             </p>
-
-
-            <!-- Example Questions -->
-
             <div class="examples">
-
-              <button
-                class="example"
-                type="button"
-              >
-                What does the whitepaper recommend for DDoS incident response?
-              </button>
-
-
-              <button
-                class="example"
-                type="button"
-              >
-                How should IAM permissions be managed?
-              </button>
-
-
-              <button
-                class="example"
-                type="button"
-              >
-                How does a SET Recipient acknowledge a valid SET?
-              </button>
-
+              <button class="example" type="button">What does the whitepaper recommend for DDoS incident response?</button>
+              <button class="example" type="button">How should IAM permissions be managed?</button>
+              <button class="example" type="button">How does a SET Recipient acknowledge a valid SET?</button>
             </div>
-
           </div>
 
-          <!--
-            No hard-coded conversation messages here.
-
-            app.js will dynamically create:
-
-              - user messages
-              - assistant answers
-              - source passages
-              - citations
-              - loading indicators
-        -->
+          <!-- Messages are added here by app.js -->
 
         </div>
-
       </section>
 
-
-      <!-- =======================================================
-           QUESTION COMPOSER
-           ======================================================= -->
-
-      <form
-        class="composer"
-        id="composer"
-      >
-
+      <form class="composer" id="composer">
         <div class="composer-box">
-
-          <!-- Question input -->
-          <textarea
-            id="question"
-            rows="1"
-            maxlength="2000"
-            placeholder="Ask a question about your documents"
-          ></textarea>
-
-
-          <!-- Send button -->
-          <button
-            class="btn-send"
-            id="send-btn"
-            type="submit"
-            aria-label="Send"
-            disabled
-          >
-
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              aria-hidden="true"
-            >
-
-              <path
-                d="M8 13V3M3.5 7.5 8 3l4.5 4.5"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-
+          <textarea id="question" rows="1" maxlength="2000"
+                    placeholder="Ask a question about your documents"></textarea>
+          <button class="btn-send" id="send-btn" type="submit" aria-label="Send" disabled>
+            <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M8 13V3M3.5 7.5 8 3l4.5 4.5" fill="none" stroke="currentColor"
+                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-
           </button>
-
         </div>
-
-
-        <!-- Composer hint -->
         <p class="composer-hint">
-
-          <span>
-            Enter to send, Shift + Enter for a new line
-          </span>
-
-          <span
-            class="char-count"
-            id="char-count"
-            hidden
-          >
-            0 / 2000
-          </span>
-
+          <span>Enter to send, Shift + Enter for a new line</span>
+          <span class="char-count" id="char-count" hidden>0 / 2000</span>
         </p>
-
       </form>
-
     </main>
 
   </div>
-
-
-  <!-- =========================================================
-       APPLICATION JAVASCRIPT
-       ========================================================= -->
-
   <script src="/app.js"></script>
-
 </body>
 </html>
