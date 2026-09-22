@@ -2,7 +2,6 @@ venv/
 __pycache__/
 *.pyc
 .env
-data/uploads/*
-data/index/*
+data/
 .DS_Store
-.vscode/data/test_documents/
+.vscode/
