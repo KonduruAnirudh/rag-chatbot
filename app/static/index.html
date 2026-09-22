@@ -6,6 +6,7 @@
 
   <title>Document Assistant</title>
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -14,6 +15,7 @@
     rel="stylesheet"
   >
 
+  <!-- Application styles -->
   <link rel="stylesheet" href="/style.css">
 </head>
 
@@ -30,11 +32,17 @@
       <!-- Sidebar Header -->
       <div class="sidebar-head">
         <h1 class="brand">Document Assistant</h1>
-        <p class="brand-sub">Answers from your files, with sources</p>
+
+        <p class="brand-sub">
+          Answers from your files, with sources
+        </p>
       </div>
 
 
-      <!-- Upload Section -->
+      <!-- =======================================================
+           DOCUMENT UPLOAD
+           ======================================================= -->
+
       <div class="upload">
 
         <button
@@ -46,8 +54,10 @@
         </button>
 
         <!--
-          One file input only.
-          `multiple` allows the user to select multiple files.
+          Single file input.
+
+          `multiple` allows the user to select more than
+          one PDF/TXT file at once.
         -->
         <input
           type="file"
@@ -58,14 +68,18 @@
         >
 
         <!--
-          Upload progress is hidden initially.
-          JavaScript will show it while files are being uploaded.
+          Upload progress.
+
+          Hidden by default.
+          JavaScript will display this while a document
+          is being uploaded and processed.
         -->
         <div
           class="upload-progress"
           id="upload-progress"
           hidden
         >
+
           <p
             class="upload-name"
             id="upload-name"
@@ -83,22 +97,28 @@
           >
             Processing document...
           </p>
+
         </div>
 
         <p class="upload-hint">
-          PDF or TXT, up to 10 MB. You can also drop a file here.
+          PDF or TXT, up to 10 MB.
+          You can also drop a file here.
         </p>
 
       </div>
 
 
-      <!-- Upload Error -->
+      <!-- =======================================================
+           UPLOAD ERROR
+           ======================================================= -->
+
       <div
         class="banner banner-error"
         id="upload-error"
         role="alert"
         hidden
       >
+
         <p id="upload-error-text">
           This file has already been uploaded.
         </p>
@@ -111,6 +131,7 @@
         >
           &times;
         </button>
+
       </div>
 
 
@@ -120,35 +141,46 @@
 
       <div class="library">
 
-        <h2 class="library-title">Library</h2>
+        <h2 class="library-title">
+          Library
+        </h2>
 
         <!--
           IMPORTANT:
-          Keep this list empty.
 
-          JavaScript will fetch the actual documents from:
-          GET /api/documents
+          Do NOT put sample documents here.
+
+          app.js will fetch the real documents from:
+
+              GET /api/documents
+
+          and create the list dynamically.
         -->
         <ul
           class="doc-list"
           id="doc-list"
         ></ul>
 
-        <!-- Empty library message -->
+
+        <!--
+          Shown when the backend reports that there are
+          no documents.
+        -->
         <p
           class="doc-empty"
           id="doc-empty"
           hidden
         >
-          No documents yet. Add one to start asking questions.
+          No documents yet.
+          Add one to start asking questions.
         </p>
 
       </div>
 
 
       <!--
-        JavaScript will update this with the actual number
-        of documents and indexed passages.
+        JavaScript will replace this with the actual
+        number of documents and indexed passages.
       -->
       <footer
         class="sidebar-foot"
@@ -161,20 +193,25 @@
 
 
     <!-- =========================================================
-         MAIN CHAT AREA
+         MAIN APPLICATION
          ========================================================= -->
 
     <main class="main">
 
-      <!-- Main Header -->
+      <!-- =======================================================
+           MAIN HEADER
+           ======================================================= -->
+
       <header class="main-head">
 
+        <!-- Mobile/sidebar menu -->
         <button
           class="menu-btn"
           id="menu-btn"
           type="button"
           aria-label="Open library"
         >
+
           <svg
             width="18"
             height="18"
@@ -188,8 +225,11 @@
               stroke-linecap="round"
             />
           </svg>
+
         </button>
 
+
+        <!-- Clear conversation -->
         <button
           class="btn-ghost"
           id="clear-btn"
@@ -216,11 +256,18 @@
           id="thread-inner"
         >
 
-          <!-- Empty State -->
+          <!-- ===================================================
+               EMPTY STATE
+
+               This is visible when the application starts.
+
+               JavaScript can hide it once the first question
+               is submitted.
+               =================================================== -->
+
           <div
             class="empty"
             id="empty-state"
-            hidden
           >
 
             <h2 class="empty-title">
@@ -232,6 +279,9 @@
               and every answer shows the passages it was based on.
             </p>
 
+
+            <!-- Example Questions -->
+
             <div class="examples">
 
               <button
@@ -241,6 +291,7 @@
                 What does the whitepaper recommend for DDoS incident response?
               </button>
 
+
               <button
                 class="example"
                 type="button"
@@ -248,22 +299,29 @@
                 How should IAM permissions be managed?
               </button>
 
+
               <button
                 class="example"
                 type="button"
               >
-                What is a Security Event Token?
+                How does a SET Recipient acknowledge a valid SET?
               </button>
 
             </div>
 
           </div>
 
-
           <!--
-            The chat messages will be created dynamically
-            by app.js after the user asks questions.
-          -->
+            No hard-coded conversation messages here.
+
+            app.js will dynamically create:
+
+              - user messages
+              - assistant answers
+              - source passages
+              - citations
+              - loading indicators
+        -->
 
         </div>
 
@@ -271,7 +329,7 @@
 
 
       <!-- =======================================================
-           CHAT COMPOSER
+           QUESTION COMPOSER
            ======================================================= -->
 
       <form
@@ -281,6 +339,7 @@
 
         <div class="composer-box">
 
+          <!-- Question input -->
           <textarea
             id="question"
             rows="1"
@@ -288,6 +347,8 @@
             placeholder="Ask a question about your documents"
           ></textarea>
 
+
+          <!-- Send button -->
           <button
             class="btn-send"
             id="send-btn"
@@ -302,6 +363,7 @@
               viewBox="0 0 16 16"
               aria-hidden="true"
             >
+
               <path
                 d="M8 13V3M3.5 7.5 8 3l4.5 4.5"
                 fill="none"
@@ -310,12 +372,15 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
               />
+
             </svg>
 
           </button>
 
         </div>
 
+
+        <!-- Composer hint -->
         <p class="composer-hint">
 
           <span>
@@ -339,7 +404,10 @@
   </div>
 
 
-  <!-- JavaScript -->
+  <!-- =========================================================
+       APPLICATION JAVASCRIPT
+       ========================================================= -->
+
   <script src="/app.js"></script>
 
 </body>
