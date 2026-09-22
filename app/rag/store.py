@@ -3,6 +3,9 @@ import json
 from pathlib import Path
 
 import numpy as np
+from rank_bm25 import BM25Okapi
+
+from app.rag.sparse import tokenize
 
 INDEX_DIR = Path("data/index")
 VECTORS_PATH = INDEX_DIR / "vectors.npy"
@@ -11,13 +14,17 @@ METADATA_PATH = INDEX_DIR / "metadata.json"
 
 class VectorStore:
     """
-    Holds all chunk vectors in one matrix, with metadata aligned by row.
-    Row i of `self.vectors` describes chunk `self.metadata[i]`.
+    Holds every chunk three ways, aligned by position:
+      self.metadata[i]  the chunk's text and provenance
+      self.vectors[i]   its embedding             (dense search)
+      BM25 document i   its keyword statistics    (sparse search)
+    Only this class changes them, so they can never fall out of step.
     """
 
     def __init__(self):
         self.vectors: np.ndarray | None = None
         self.metadata: list[dict] = []
+        self.bm25: BM25Okapi | None = None
         self._load()
 
     # --- public API -------------------------------------------------
@@ -32,24 +39,26 @@ class VectorStore:
             self.vectors = np.vstack([self.vectors, vectors])
 
         self.metadata.extend(metadata)
+        self._rebuild_sparse()
         self._save()
 
+    def dense_scores(self, query_vector: np.ndarray) -> np.ndarray:
+        """Cosine similarity of every chunk to the query (vectors are unit length)."""
+        return self.vectors @ query_vector
+
+    def sparse_scores(self, query: str) -> np.ndarray:
+        """BM25 keyword score of every chunk for the query."""
+        if self.bm25 is None:
+            return np.zeros(len(self.metadata))
+        return np.asarray(self.bm25.get_scores(tokenize(query)))
+
     def search(self, query_vector: np.ndarray, top_k: int) -> list[dict]:
-        """
-        Return the top_k most similar chunks, each with a similarity score.
-        Vectors are unit-length, so the dot product IS cosine similarity.
-        """
+        """Dense-only search, kept for diagnostics."""
         if self.is_empty():
             return []
-
-        scores = self.vectors @ query_vector          # (n,) similarity scores
-        k = min(top_k, len(scores))
-        top_indices = np.argsort(scores)[::-1][:k]    # highest first
-
-        return [
-            {**self.metadata[i], "score": float(scores[i])}
-            for i in top_indices
-        ]
+        scores = self.dense_scores(query_vector)
+        top = np.argsort(scores)[::-1][:min(top_k, len(scores))]
+        return [{**self.metadata[i], "score": float(scores[i])} for i in top]
 
     def delete_document(self, doc_id: str) -> int:
         """Remove all chunks belonging to one document. Returns count removed."""
@@ -63,6 +72,7 @@ class VectorStore:
 
         self.vectors = self.vectors[keep] if keep else None
         self.metadata = [self.metadata[i] for i in keep]
+        self._rebuild_sparse()
         self._save()
         return removed
 
@@ -72,7 +82,18 @@ class VectorStore:
     def count(self) -> int:
         return len(self.metadata)
 
-    # --- persistence ------------------------------------------------
+    # --- internals --------------------------------------------------
+
+    def _rebuild_sparse(self) -> None:
+        """
+        BM25 statistics are derived entirely from chunk text, so they are
+        rebuilt rather than saved. That takes milliseconds at this scale, and
+        a derived index that is never stored can never disagree with its source.
+        """
+        if self.metadata:
+            self.bm25 = BM25Okapi([tokenize(m["text"]) for m in self.metadata])
+        else:
+            self.bm25 = None
 
     def _save(self) -> None:
         INDEX_DIR.mkdir(parents=True, exist_ok=True)
@@ -87,6 +108,7 @@ class VectorStore:
         if VECTORS_PATH.exists() and METADATA_PATH.exists():
             self.vectors = np.load(VECTORS_PATH)
             self.metadata = json.loads(METADATA_PATH.read_text())
+            self._rebuild_sparse()
 
 
 # Single shared instance, created once at import.

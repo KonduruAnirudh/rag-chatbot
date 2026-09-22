@@ -16,6 +16,10 @@ TOP_K = 5                     # chunks retrieved per question
 SIMILARITY_THRESHOLD = 0.20   # calibrated: off-topic questions top out around 0.14
 MAX_CONTEXT_CHARS = 8000      # hard ceiling on context sent to the LLM
 
+# --- Retrieval mode ---
+RETRIEVAL_MODE = "hybrid"   # "dense" (embeddings only) or "hybrid" (embeddings + BM25)
+RRF_K = 60                  # Reciprocal Rank Fusion constant; 60 is the standard default
+
 # --- Generation settings ---
 TEMPERATURE = 0.2             # answers: faithful and consistent, not robotically rigid
 REWRITE_TEMPERATURE = 0.0     # query rewriting: a mechanical transformation, so deterministic
