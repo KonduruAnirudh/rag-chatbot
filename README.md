@@ -49,6 +49,9 @@ Three mechanisms keep answers grounded, applied in layers:
 - Document deletion that removes vectors from retrieval immediately
 - Full persistence — documents, metadata, and vectors survive a server restart
 - Automatic interactive API documentation via Swagger UI
+- Reads scanned PDFs and image files (PNG, JPG) using vision-model OCR
+- Handles mixed documents: pages with a text layer are extracted, image-only pages are OCR'd
+- Answers cite page numbers, and passages read by OCR are marked as such
 
 ---
 
@@ -57,56 +60,117 @@ Three mechanisms keep answers grounded, applied in layers:
 ```
                           ┌──────────────────────────┐
                           │   Browser (HTML/CSS/JS)  │
-                          │  upload panel + chat UI  │
+                          │  library + chat, served  │
+                          │      by FastAPI          │
                           └────────────┬─────────────┘
                                        │  REST / JSON + multipart
                                        ▼
                           ┌──────────────────────────┐
-                          │        FastAPI           │
-                          │  routes/documents.py     │
-                          │  routes/chat.py          │
+                          │         FastAPI          │
+                          │   routes/documents.py    │
+                          │   routes/chat.py         │
                           └──────┬────────────┬──────┘
                                  │            │
-                INGEST PATH      │            │      QUERY PATH
+              INGEST PATH        │            │        QUERY PATH
                                  ▼            ▼
-                     ┌────────────────┐   ┌──────────────────┐
-                     │ extract.py     │   │ generate.py      │
-                     │ PDF/TXT → text │   │ rewrite_question │
-                     └───────┬────────┘   └────────┬─────────┘
-                             ▼                     ▼
-                     ┌────────────────┐   ┌──────────────────┐
-                     │ chunk.py       │   │ embed.py (query) │
-                     │ text → chunks  │   └────────┬─────────┘
-                     └───────┬────────┘            │
-                             ▼                     ▼
-                     ┌────────────────┐   ┌──────────────────┐
-                     │ embed.py       │   │ retrieve.py      │
-                     │ chunks→vectors │   │ top-k + threshold│
-                     └───────┬────────┘   └────────┬─────────┘
-                             ▼                     │
-              ┌──────────────────────────────┐     │
-              │           store.py           │     │
-              │  vectors.npy + metadata.json │◄────┘
-              │        registry.py           │
-              │       documents.json         │
-              └──────────────┬───────────────┘
-                             │  top-k chunks
-                             ▼
-                  ┌──────────────────────┐
-                  │ generate.py          │
-                  │ rules + context +    │
-                  │ history + question   │
-                  └──────────┬───────────┘
-                             ▼
-                  ┌──────────────────────┐
-                  │ OpenAI Responses API │
-                  └──────────┬───────────┘
-                             ▼
-                  ┌──────────────────────┐
-                  │ JSON: answer +       │
-                  │ sources + scores     │
-                  └──────────────────────┘
+                  ┌────────────────────┐   ┌──────────────────────┐
+                  │ validate + SHA-256 │   │ generate.py          │
+                  │ duplicate check    │   │ rewrite_question     │
+                  └─────────┬──────────┘   │ (only with history)  │
+                            ▼              └──────────┬───────────┘
+              ┌──────────── per page ───────────┐     │
+              │  extract.py                     │     │
+              │    text layer (pypdf)           │     │
+              │            │                    │     │
+              │    under OCR_MIN_CHARS?         │     │
+              │            │ yes                │     │
+              │            ▼                    │     │
+              │    render page (pypdfium2)      │     │
+              │            ▼                    │     │
+              │    ocr.py  ─ vision model       │     │
+              │            ─ or Tesseract       │     │
+              └────────────┬────────────────────┘     │
+                           ▼                          │
+              joined text + page character spans      │
+                           │                          │
+                           ▼                          ▼
+              ┌────────────────────────┐   ┌──────────────────────┐
+              │ chunk.py               │   │ embed.py (query)     │
+              │ LangChain recursive    │   │ text-embedding-      │
+              │ splitter, sentence-    │   │   3-small            │
+              │ first separators       │   └──────────┬───────────┘
+              │ → page_start/page_end  │              │
+              │ → ocr flag             │              │
+              └────────────┬───────────┘              │
+                           ▼                          │
+              ┌────────────────────────┐              │
+              │ embed.py (documents)   │              │
+              │ batched, normalised    │              │
+              └────────────┬───────────┘              │
+                           ▼                          │
+        ┌──────────────────────────────────┐          │
+        │            store.py              │          │
+        │  vectors.npy      dense index    │◄─────────┤
+        │  metadata.json    chunk records  │          │
+        │  BM25             rebuilt in RAM │◄─────────┤
+        │            registry.py           │          │
+        │  documents.json   what exists    │          │
+        └──────────────────────────────────┘          │
+                           │                          │
+                  ┌────────┴────────┐                 │
+                  ▼                 ▼                 │
+          dense ranking       sparse ranking          │
+          (cosine, NumPy)     (BM25 keywords)         │
+                  └────────┬────────┘                 │
+                           ▼                          │
+              Reciprocal Rank Fusion (k=60)  ◄────────┘
+                           │
+                           ▼
+              cosine ≥ SIMILARITY_THRESHOLD, top K
+                           │
+              ┌────────────┴────────────┐
+              ▼                         ▼
+      nothing passes              chunks retrieved
+              │                         │
+              ▼                         ▼
+      fixed refusal            generate.py builds prompt
+      (no LLM call)            rules + <context> + history
+              │                         │
+              │                         ▼
+              │              gpt-5.6-luna, temperature 0.2
+              │                  reasoning disabled
+              └────────────┬────────────┘
+                           ▼
+              answer + sources (filename, page range,
+              similarity score, OCR flag) + search_query
 ```
+
+### Reading the diagram
+
+**`embed.py` appears on both paths.** Documents and questions must be turned
+into vectors by the identical model for their coordinates to be comparable, so
+both call the same function. A mismatch is structurally impossible rather than
+a rule someone has to remember.
+
+**OCR is a page-level branch, not a separate pipeline.** A page with a usable
+text layer is extracted; a page without one is rendered to an image and
+transcribed. A 68-page report containing three scans pays for three pages of
+OCR. Both outputs join the same string and are chunked identically.
+
+**Page character spans are what survive the flattening.** Chunking sees one
+long string with no notion of pages, so extraction records where each page
+begins and ends. Chunks are then mapped back to the pages they overlap, which
+is how a source can cite "Pages 12–13".
+
+**Retrieval ranks two ways and gates one way.** Dense search ranks by meaning,
+BM25 by keywords, and Reciprocal Rank Fusion combines their positions — not
+their scores, which are on different scales. The relevance gate stays on cosine
+similarity, because fused ranks say which chunk is *better*, never whether any
+chunk is *good enough*. That is what makes refusal possible.
+
+**Refusal skips the model entirely.** When nothing clears the threshold, a fixed
+reply is returned with no LLM call: zero tokens, zero latency, and hallucination
+is impossible on that path rather than merely discouraged.
 
 `embed.py` appears on both paths deliberately. Documents and questions must be embedded by the identical model for their vectors to be comparable, so both call the same function — making a mismatch structurally impossible rather than a rule someone has to remember.
 
@@ -126,6 +190,9 @@ Three mechanisms keep answers grounded, applied in layers:
 | Chunking | Custom (~40 lines) | Recursive boundary-seeking splitter written in-project so every decision is explainable |
 | Persistence | JSON + `.npy` files | No service to run; matches the scale of the data |
 | Config | python-dotenv | Standard, minimal |
+| PDF rendering | pypdfium2 | Page → image for OCR. Chosen over PyMuPDF, which is AGPL-licensed |
+| OCR (default) | OpenAI vision via the Responses API | Layout-aware: preserves tables and describes diagram relationships |
+| OCR (alternative) | Tesseract + pytesseract | Local and free, behind an `OCR_ENGINE` switch |
 
 ---
 
@@ -345,9 +412,22 @@ upload → validate → hash → store → extract → chunk → embed → index
 
 **Storage** uses a generated UUID as the filename rather than the client-supplied one. A filename like `../../etc/passwd` would escape the upload directory if joined to a path directly; the original name is kept as display metadata only.
 
-**Extraction** converts PDF pages to text via pypdf, or decodes TXT with `errors="replace"` so one malformed byte doesn't fail an entire file. Empty output raises immediately — a scanned PDF has no text layer and would otherwise index silently as nothing.
+**Extraction** reads each page's text layer with pypdf. A page yielding fewer
+than 100 characters has no usable text layer — it is a scan or a photograph —
+so that page is rendered to an image and transcribed by the OCR engine. Only
+pages that need it are OCR'd, capped at 20 per document. Standalone image files
+go straight to OCR. If nothing can be read even with OCR, the upload is
+rejected and the stored file deleted.
 
-**Chunking** targets 1000 characters, then walks backwards up to 20% looking for a paragraph break, line break, sentence end, or space — in that order of preference — so chunks end at natural boundaries. Adjacent chunks share 150 characters, which prevents a fact that straddles a boundary from being lost. Chunks that are more than 60% dot leaders are discarded as table-of-contents noise.
+While the pages are joined into one string, each page's character range is
+recorded. That is what allows a chunk to be mapped back to the page or pages it
+covers, since chunking itself is page-blind.
+
+**Chunking** splits at paragraphs, then sentences, then lines, targeting 1000
+characters with 150 of overlap. Each chunk carries `page_start`, `page_end`,
+and an `ocr` flag. Chunks may span a page boundary — deliberately, so a
+sentence split across pages stays intact — which is why a chunk records a page
+range rather than a single page.
 
 **Embedding** batches up to 64 chunks per API call and normalizes each vector to unit length, so cosine similarity later reduces to a plain dot product.
 
@@ -382,6 +462,12 @@ Set in `app/config.py`:
 | `TOP_K` | 5 | Raised from 4 after a real question's answer ranked exactly 5th — see findings |
 | `SIMILARITY_THRESHOLD` | 0.20 | Calibrated — see findings below |
 | `MAX_CONTEXT_CHARS` | 8000 | Backstop against `TOP_K` being raised without bound |
+| `OCR_ENGINE` | vision | Layout-aware. `tesseract` is available for offline use |
+| `OCR_MIN_CHARS` | 100 | Below this, a page has no usable text layer |
+| `OCR_MAX_PAGES` | 20 | Bounds a worst-case upload to ~40s and about 2 cents |
+| `OCR_CONCURRENCY` | 4 | Pages OCR'd in parallel |
+| `VISION_DPI` / `VISION_MAX_PIXELS` | 150 / 1600 | See findings — image size dominated latency |
+| `TESSERACT_DPI` | 300 | Classic OCR needs the detail |
 
 These interact. Smaller chunks carry less context each, so they need a higher `TOP_K` to cover the same ground. They are not independent knobs, which is why tuning them means measuring rather than reasoning.
 
@@ -409,6 +495,49 @@ disconnected labels. The vision model returns the same page as
 "[Diagram: A user connects to an Application Load Balancer (ALB), which
 supports HTTP and HTTPS...]" — relationships, not just words. Both engines
 remain available behind an OCR_ENGINE switch.
+
+### OCR: classic versus vision, and why image size mattered
+
+Tesseract was implemented and measured first. Rendering pages that already had
+a text layer and comparing its output against pypdf's gave a ground truth:
+**88–96% of words recovered** at 300 DPI, about 1 second per page.
+
+That accuracy is adequate for prose but insufficient for this project's goal.
+Classic OCR reads characters, not layout: a flowchart becomes a list of
+disconnected labels, and the relationships drawn as arrows are lost entirely —
+not degraded, absent. The same page read by a vision model returned:
+
+> [Diagram: A user connects to an Application Load Balancer (ALB), which
+> supports HTTP and HTTPS. The ALB connects to application targets represented
+> by AWS service icons.]
+
+Relationships, not just words. Both engines remain available behind an
+`OCR_ENGINE` switch.
+
+**Image size, not page complexity, dominated latency.** A full page rendered at
+150 DPI (1240×1753) caused the transcription call to hang past 60 seconds.
+Capping the longest side at 1600 pixels brought the same page to **3.7 seconds**
+with no loss of legibility. Vision models are billed by image dimensions, so
+the cap reduces cost as well as time. The cause was isolated by calling the OCR
+function directly, which returned normally while HTTP requests stalled — ruling
+out the route and pointing at the payload.
+
+Five image-only pages OCR in **9.8 seconds** with four running in parallel,
+against roughly 20 sequentially. Measured cost is about **$0.001 per page**.
+
+### Page numbers survive chunking, but chunks rarely span pages
+
+Extraction records each page's character range while joining pages into one
+string; chunking then maps every chunk back to the pages it overlaps.
+Verified across 214 chunks: page numbers rise monotonically with chunk index in
+both documents, no chunk lacks a page number, and a chunk claiming page 47 was
+confirmed by hand against the PDF.
+
+Only **4 of 214 chunks span a page boundary**, far fewer than expected. The
+reason is separator priority: pages are joined with `\n\n`, which is also the
+splitter's first separator, so it almost always cuts at a page break before it
+needs to merge across one. The cross-page merge only happens when a page's
+trailing fragment is small enough to combine with the next page's opening.
 
 
 ### Threshold calibration
@@ -537,16 +666,31 @@ Set `CHAT_MODEL` to an invalid value and restart: chat requests should return `5
 
 ## Known limitations
 
-1. **Summarization is poor.** "What is this document about?" retrieves nothing, because the question contains no topic to match against. Retrieval returns fragments; summarization needs the whole document.
-2. **Conversation history is in-memory.** Documents and vectors persist across restarts; chat sessions do not.
-3. **Single-process only.** JSON persistence has no write locking, so multiple uvicorn workers would corrupt the index files.
-4. **No startup reconciliation.** A crash in the window between indexing and registration would leave orphaned vectors with no document record.
-5. **No authentication or rate limiting.** Anyone who can reach the API can upload and query.
-6. **Unbounded storage growth.** Uploaded files accumulate with a per-file cap but no total limit.
-7. **Injection mitigation is partial.** Effective against naive attacks; obfuscated attempts are a different problem.
-8. **Retrieval uses only the current question's embedding.** Query rewriting mitigates this for follow-ups but does not eliminate it.
-9. **Sensitive to vocabulary.** A question that uses different terms from the document — a spelled-out name where the document uses an acronym — can miss the passage that answers it.
----
+1. **OCR text is a transcription, not the source.** Text read from an image is
+   a model's interpretation of pixels. It can paraphrase, and on unclear input
+   it may produce a plausible word rather than an error. Affected passages are
+   marked `OCR` in the sources panel so the weaker guarantee is visible.
+2. **Image-based prompt injection.** Instructions hidden inside an image now
+   enter the context, and unlike text-layer injection they cannot be found by
+   searching the file. The `<context>` delimiters and data-not-instructions
+   prompt rule mitigate but do not eliminate this.
+3. **Near-duplicate content is not detected.** Duplicate detection compares
+   file bytes, so the same page uploaded as a PDF and again as an image is
+   indexed twice and competes with itself for retrieval slots.
+4. **OCR is capped at 20 pages per document.** Beyond that, remaining pages are
+   skipped and the count reported in `ocr_skipped`.
+5. **Summarisation is poor.** "What is this document about?" retrieves nothing,
+   because the question contains no topic to match against.
+6. **BM25 does not stem.** "signature" and "sign" are different tokens, so
+   keyword search can miss a morphological variant.
+7. **Conversation history is in memory.** Documents and vectors persist across
+   restarts; chat sessions do not.
+8. **Single-process only.** JSON persistence has no write locking.
+9. **No startup reconciliation.** A crash between indexing and registration
+   would leave orphaned vectors.
+10. **No authentication or rate limiting.**
+11. **Evaluation sets are small** — 9 retrieval questions, 3 OCR pages sampled.
+    Results are indicative rather than conclusive.
 
 ## Future improvements
 
@@ -570,6 +714,13 @@ Set `CHAT_MODEL` to an invalid value and restart: chat requests should return `5
 **Evaluation**
 - A labelled set of question–expected-source pairs, measuring retrieval precision and recall to replace manual threshold calibration with a reproducible metric
 
+- **Structured diagram extraction.** Vision OCR describes diagram relationships
+  in prose. Returning them as structured entity–relation pairs would let them
+  populate a knowledge graph directly rather than passing through text.
+- **Hybrid retrieval over a knowledge graph**, so questions about connections
+  and multi-hop relationships can traverse entities rather than matching
+  passages.
+  
 ---
 
 ## Security notes
