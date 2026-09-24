@@ -389,6 +389,28 @@ These interact. Smaller chunks carry less context each, so they need a higher `T
 
 ## Measurements and findings
 
+### Vision OCR: image size dominated latency
+
+A full page rendered at 150 DPI (1240x1753) caused the transcription call to
+hang past 60 seconds. Capping the longest side at 1600 pixels before sending
+brought the same page to 3.7 seconds with no loss of legibility — vision models
+are billed by image dimensions, so the cap reduces cost as well as latency.
+
+The hang was isolated by calling the OCR function directly, which returned
+normally while HTTP requests stalled: that ruled out the route and pointed at
+the payload.
+
+Five image-only pages OCR at 9.8 seconds with four running in parallel, against
+roughly 20 seconds sequentially.
+
+Classic OCR (Tesseract) was implemented first and measured at 88-96% word
+recovery, but it reads characters only: a flowchart becomes a list of
+disconnected labels. The vision model returns the same page as
+"[Diagram: A user connects to an Application Load Balancer (ALB), which
+supports HTTP and HTTPS...]" — relationships, not just words. Both engines
+remain available behind an OCR_ENGINE switch.
+
+
 ### Threshold calibration
 
 Rather than guessing, similarity scores were recorded for questions known to be answerable and questions known to be outside the corpus (186 chunks across three documents):
