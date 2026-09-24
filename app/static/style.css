@@ -1,5 +1,5 @@
 /* ================================================================
-   Tokens â€” change the look from here
+   Tokens — change the look from here
    ================================================================ */
 :root {
   --paper:        #f5f7f9;   /* page background */
@@ -226,7 +226,7 @@ p { margin: 0; }
 }
 .doc-delete:disabled { cursor: progress; }
 
-/* Touch screens have no hover â€” always show delete */
+/* Touch screens have no hover — always show delete */
 @media (hover: none) { .doc-delete { opacity: 1; } }
 
 .doc-empty { padding: 4px 10px; font-size: 13.5px; color: var(--ink-soft); }
@@ -481,6 +481,18 @@ p { margin: 0; }
 .score-moderate { background: var(--shelf); color: var(--ink-soft); }
 .score-weak     { border: 1px solid var(--rule); color: var(--ink-faint); }
 
+/* Marks a passage that was read from an image by OCR */
+.ocr-badge {
+  padding: 1px 7px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--ink-faint);
+  white-space: nowrap;
+}
+
 .source-text {
   margin: 8px 0 0;
   font-family: var(--font-read);
@@ -579,7 +591,7 @@ p { margin: 0; }
 .char-count.is-over { color: var(--danger); }
 
 /* ================================================================
-   Small screens â€” the library slides in over the conversation
+   Small screens — the library slides in over the conversation
    ================================================================ */
 @media (max-width: 768px) {
   .app { grid-template-columns: 1fr; }

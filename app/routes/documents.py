@@ -97,6 +97,7 @@ async def upload_document(file: UploadFile = File(...)):
         text,
         doc_id=doc_id,
         filename=file.filename,
+        page_spans=extract_report["page_spans"],
     )
 
     # 6. Generate embeddings for every chunk

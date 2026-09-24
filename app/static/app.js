@@ -45,7 +45,7 @@ const state = {
   asking: false,
 };
 
-const ALLOWED_EXTENSIONS = [".pdf", ".txt"];
+const ALLOWED_EXTENSIONS = [".pdf", ".txt", ".png", ".jpg", ".jpeg", ".webp", ".tiff", ".bmp"];
 const MAX_FILE_BYTES = 10 * 1024 * 1024;
 const MAX_QUESTION_CHARS = 2000;
 const COUNTER_THRESHOLD = 1800;
@@ -170,7 +170,9 @@ function validateFile(file) {
   const dot = file.name.lastIndexOf(".");
   const ext = dot === -1 ? "" : file.name.slice(dot).toLowerCase();
 
-  if (!ALLOWED_EXTENSIONS.includes(ext)) return `"${file.name}" isn't a PDF or TXT file.`;
+  if (!ALLOWED_EXTENSIONS.includes(ext)) {
+    return `"${file.name}" isn't a PDF, TXT or image file.`;
+  }
   if (file.size === 0) return `"${file.name}" is empty.`;
   if (file.size > MAX_FILE_BYTES) return `"${file.name}" is larger than 10 MB.`;
   return null;
@@ -353,6 +355,15 @@ function scoreClass(score) {
   return "score-weak";
 }
 
+// Where a passage came from. Chunks can span a page boundary, so the
+// backend gives a range. Documents indexed before page tracking have none.
+function locationLabel(source) {
+  const start = source.page_start;
+  const end = source.page_end;
+  if (!start) return `Section ${source.chunk_index}`;
+  return start === end ? `Page ${start}` : `Pages ${start}\u2013${end}`;
+}
+
 function renderSources(sources) {
   const details = el("details", "sources");
   details.append(el("summary", null, `Based on ${plural(sources.length, "passage")}`));
@@ -367,7 +378,15 @@ function renderSources(sources) {
     file.title = source.filename;
     const score = el("span", `score ${scoreClass(source.score)}`, Number(source.score).toFixed(2));
     score.title = "Similarity to your question";
-    head.append(file, el("span", "source-meta", `Section ${source.chunk_index}`), score);
+    head.append(file, el("span", "source-meta", locationLabel(source)), score);
+
+    // OCR text is a machine transcription of an image, not text read from the
+    // file, so the weaker guarantee is shown rather than hidden.
+    if (source.ocr) {
+      const badge = el("span", "ocr-badge", "OCR");
+      badge.title = "Read from an image by OCR";
+      head.append(badge);
+    }
 
     const snippet = (source.snippet || "").replace(/\s+/g, " ").trim();
     item.append(head, el("blockquote", "source-text", `…${snippet}…`));

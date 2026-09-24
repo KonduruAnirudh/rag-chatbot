@@ -54,6 +54,9 @@ async def chat(payload: ChatRequest):
             chunk_index=c["chunk_index"],
             score=round(c["score"], 3),
             snippet=c["text"][:SNIPPET_LENGTH].strip(),
+            page_start=c.get("page_start"),
+            page_end=c.get("page_end"),
+            ocr=c.get("ocr", False),
         )
         for c in chunks
     ]

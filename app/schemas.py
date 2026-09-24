@@ -13,6 +13,9 @@ class Source(BaseModel):
     chunk_index: int
     score: float
     snippet: str
+    page_start: int | None = None
+    page_end: int | None = None
+    ocr: bool = False
 
 
 class ChatResponse(BaseModel):
