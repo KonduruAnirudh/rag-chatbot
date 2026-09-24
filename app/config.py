@@ -25,6 +25,15 @@ TEMPERATURE = 0.2             # answers: faithful and consistent, not roboticall
 REWRITE_TEMPERATURE = 0.0     # query rewriting: a mechanical transformation, so deterministic
 REASONING_EFFORT = "none"     # GPT-5.x rejects `temperature` unless reasoning is off
 
+# --- OCR settings ---
+OCR_ENABLED = True
+OCR_ENGINE = "vision"    # "vision" (layout-aware, costs tokens) or "tesseract" (local, free)
+OCR_MIN_CHARS = 100      # a page with less text than this has no usable text layer
+OCR_MAX_PAGES = 20       # bound the worst case on a large scanned document
+OCR_CONCURRENCY = 4      # pages OCR'd in parallel; keep low to respect rate limits
+VISION_DPI = 150         # vision models read this fine; higher just costs more tokens
+TESSERACT_DPI = 300      # classic OCR needs the detail — measured at 88-96% recovery
+
 # --- CORS ---
 # Comma-separated origins allowed to call the API from another site.
 # Empty (the default) means same-origin only — correct when FastAPI serves the frontend.

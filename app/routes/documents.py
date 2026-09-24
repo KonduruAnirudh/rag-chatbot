@@ -1,6 +1,7 @@
 # app/routes/documents.py
 
 import hashlib
+import asyncio
 import uuid
 from pathlib import Path
 
@@ -18,7 +19,7 @@ router = APIRouter(prefix="/api", tags=["documents"])
 UPLOAD_DIR = Path("data/uploads")
 UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
-ALLOWED_EXTENSIONS = {".pdf", ".txt"}
+ALLOWED_EXTENSIONS = {".pdf", ".txt", ".png", ".jpg", ".jpeg", ".webp", ".tiff", ".bmp"}
 MAX_FILE_SIZE = 10 * 1024 * 1024  # 10 MB
 
 
@@ -83,7 +84,7 @@ async def upload_document(file: UploadFile = File(...)):
     # 4. Extract text
     #    If extraction fails, remove the saved file.
     try:
-        text = extract_text(stored_path)
+        text, extract_report = await asyncio.to_thread(extract_text, stored_path)
     except ExtractionError as e:
         stored_path.unlink(missing_ok=True)
         raise HTTPException(
@@ -131,6 +132,9 @@ async def upload_document(file: UploadFile = File(...)):
         "size_bytes": len(contents),
         "char_count": len(text),
         "chunk_count": len(chunks),
+        "ocr_pages": extract_report["ocr_pages"],
+        "total_pages": extract_report["total_pages"],
+        "ocr_skipped": extract_report["ocr_skipped"],
         "total_chunks_indexed": store.count(),
         "message": "Uploaded and processed.",
     }
