@@ -1,0 +1,594 @@
+==============================================================================
+[1] AWS-WhitePaper-Sample.pdf  chunk 39  pages 21-21  ocr=False
+    tests: Shield Standard vs Shield Advanced vs AWS WAF; 'mitigate'; running header
+------------------------------------------------------------------------------
+    | AWS Best Practices for DDoS Resiliency AWS Whitepaper
+    | for both static and dynamic web applications using AWS services and architectural patterns. The 
+    | sections are organized to guide you through implementing layers of defense, from edge protection 
+    | to application-level security, to help ensure a robust DDoS-resilient architecture.
+    | Infrastructure layer defense (BP1, BP3, BP6, BP7)
+    | In a traditional datacenter environment, you can mitigate infrastructure layer DDoS attacks by 
+    | using techniques like overprovisioning capacity, deploying DDoS mitigation systems, or scrubbing 
+    | traffic with the help of DDoS mitigation services. On AWS, baseline DDoS mitigation capabilities 
+    | are automatically provided by AWS Shield Standard at no additional cost; however, additional 
+    | protections-such as AWS Shield Advanced, AWS WAF, and application-layer mitigations-require 
+    | configuration and can incur additional charges.
+------------------------------------------------------------------------------
+ENTITIES (6 kept)
+    service    AWS Shield Standard
+    service    AWS Shield Advanced
+    service    AWS WAF
+    service    DDoS mitigation services
+    threat     infrastructure layer DDoS attacks
+    process    application-layer mitigations
+
+EDGES (1 kept)
+    E1   DDoS mitigation services  --mitigates-->  infrastructure layer DDoS attacks
+           "In a traditional datacenter environment, you can mitigate
+           infrastructure layer DDoS attacks by using techniques like
+           overprovisioning capacity, deploying DDoS mitigation systems, or
+           scrubbing traffic with the help of DDoS mitigation services."
+
+DROPPED (across all 3 runs)
+    relation  endpoint_not_in_quote  AWS Shield Standard --mitigates--> infrastructure layer DDoS attacks
+              evidence: "On AWS, baseline DDoS mitigation capabilities are
+              automatically provided by AWS Shield Standard at no additional
+              cost; however, additional protections-such as AWS Shield
+              Advanced, AWS WAF, and application-layer mitigations-require
+              configuration and can incur additional charges."
+    relation  endpoint_not_in_quote  AWS Shield Advanced --mitigates--> infrastructure layer DDoS attacks
+              evidence: "On AWS, baseline DDoS mitigation capabilities are
+              automatically provided by AWS Shield Standard at no additional
+              cost; however, additional protections-such as AWS Shield
+              Advanced, AWS WAF, and application-layer mitigations-require
+              configuration and can incur additional charges."
+    relation  endpoint_not_in_quote  AWS WAF --mitigates--> infrastructure layer DDoS attacks
+              evidence: "On AWS, baseline DDoS mitigation capabilities are
+              automatically provided by AWS Shield Standard at no additional
+              cost; however, additional protections-such as AWS Shield
+              Advanced, AWS WAF, and application-layer mitigations-require
+              configuration and can incur additional charges."
+    relation  endpoint_not_in_quote  application-layer mitigations --mitigates--> infrastructure layer DDoS attacks
+              evidence: "On AWS, baseline DDoS mitigation capabilities are
+              automatically provided by AWS Shield Standard at no additional
+              cost; however, additional protections-such as AWS Shield
+              Advanced, AWS WAF, and application-layer mitigations-require
+              configuration and can incur additional charges."
+    relation  endpoint_not_in_quote  AWS Shield Standard --mitigates--> infrastructure layer DDoS attacks
+              evidence: "On AWS, baseline DDoS mitigation capabilities are
+              automatically provided by AWS Shield Standard at no additional
+              cost; however, additional protections-such as AWS Shield
+              Advanced, AWS WAF, and application-layer mitigations-require
+              configuration and can incur additional charges."
+    relation  endpoint_not_in_quote  AWS Shield Advanced --mitigates--> infrastructure layer DDoS attacks
+              evidence: "On AWS, baseline DDoS mitigation capabilities are
+              automatically provided by AWS Shield Standard at no additional
+              cost; however, additional protections-such as AWS Shield
+              Advanced, AWS WAF, and application-layer mitigations-require
+              configuration and can incur additional charges."
+    relation  endpoint_not_in_quote  AWS WAF --mitigates--> infrastructure layer DDoS attacks
+              evidence: "On AWS, baseline DDoS mitigation capabilities are
+              automatically provided by AWS Shield Standard at no additional
+              cost; however, additional protections-such as AWS Shield
+              Advanced, AWS WAF, and application-layer mitigations-require
+              configuration and can incur additional charges."
+    relation  unstable               DDoS mitigation systems --mitigates--> infrastructure layer DDoS attacks
+    relation  unstable               AWS Shield Standard --contains--> baseline DDoS mitigation capabilities
+
+==============================================================================
+[2] AWS-WhitePaper-Sample.pdf  chunk 153  pages 59-59  ocr=False
+    tests: Security Hub CSPM / Firewall Manager; a negation that must not become an edge
+------------------------------------------------------------------------------
+    | Security Hub 
+    | CSPM automatically integrates with Firewall Manager, allowing Shield Advanced customers to view 
+    | security findings in a single dashboard, alongside other high priority security alerts and compliance 
+    | statuses.
+    | As of writing, the Shield Advanced event doesn't appear in the Firewall Manager central account 
+    | in real-time-there can be a delay of up to 15 minutes, so it's not recommended to rely on this 
+    | feature for real-time notifications.
+    | For example, when Firewall Manager evaluates accounts within the scope of a Shield Advanced 
+    | policy and finds a resource that isn't yet protected by Shield Advanced, it generates a non-compliance. If the policy is configured for automatic remediation, Firewall Manager brings the 
+    | resource into compliance by associating Shield Advanced protection with it.
+------------------------------------------------------------------------------
+ENTITIES (14 kept)
+    service    Security Hub CSPM
+    service    Firewall Manager
+    service    Shield Advanced
+    data       security findings
+    data       security alerts
+    data       compliance statuses
+    data       Shield Advanced event
+    component  Firewall Manager central account
+    data       real-time notifications
+    component  Shield Advanced policy
+    component  resource
+    data       non-compliance
+    component  Shield Advanced protection
+    process    automatic remediation
+
+EDGES (7 kept)
+    E2   Firewall Manager  --uses-->  Shield Advanced policy
+           "For example, when Firewall Manager evaluates accounts within the
+           scope of a Shield Advanced policy and finds a resource that isn't
+           yet protected by Shield Advanced, it generates a non-compliance."
+    E3   Firewall Manager  --uses-->  Shield Advanced protection
+           "If the policy is configured for automatic remediation, Firewall
+           Manager brings the resource into compliance by associating Shield
+           Advanced protection with it."
+    E4   Security Hub CSPM  --connects_to-->  Firewall Manager
+           "Security Hub CSPM automatically integrates with Firewall Manager,
+           allowing Shield Advanced customers to view security findings in a
+           single dashboard, alongside other high priority security alerts and
+           compliance statuses."
+    E5   Shield Advanced  --receives-->  security findings
+           "Security Hub CSPM automatically integrates with Firewall Manager,
+           allowing Shield Advanced customers to view security findings in a
+           single dashboard, alongside other high priority security alerts and
+           compliance statuses."
+    E6   Shield Advanced  --receives-->  security alerts
+           "Security Hub CSPM automatically integrates with Firewall Manager,
+           allowing Shield Advanced customers to view security findings in a
+           single dashboard, alongside other high priority security alerts and
+           compliance statuses."
+    E7   Shield Advanced  --receives-->  compliance statuses
+           "Security Hub CSPM automatically integrates with Firewall Manager,
+           allowing Shield Advanced customers to view security findings in a
+           single dashboard, alongside other high priority security alerts and
+           compliance statuses."
+    E8   automatic remediation  --contains-->  Shield Advanced protection
+           "If the policy is configured for automatic remediation, Firewall
+           Manager brings the resource into compliance by associating Shield
+           Advanced protection with it."
+
+DROPPED (across all 3 runs)
+    relation  unknown_entity         Shield Advanced customers --receives--> security findings
+              evidence: "Security Hub CSPM automatically integrates with
+              Firewall Manager, allowing Shield Advanced customers to view
+              security findings in a single dashboard, alongside other high
+              priority security alerts and compliance statuses."
+    relation  unknown_entity         Shield Advanced customers --receives--> security alerts
+              evidence: "Security Hub CSPM automatically integrates with
+              Firewall Manager, allowing Shield Advanced customers to view
+              security findings in a single dashboard, alongside other high
+              priority security alerts and compliance statuses."
+    relation  unknown_entity         Shield Advanced customers --receives--> compliance statuses
+              evidence: "Security Hub CSPM automatically integrates with
+              Firewall Manager, allowing Shield Advanced customers to view
+              security findings in a single dashboard, alongside other high
+              priority security alerts and compliance statuses."
+    relation  negated                Shield Advanced event --connects_to--> Firewall Manager central account
+              evidence: "As of writing, the Shield Advanced event doesn't
+              appear in the Firewall Manager central account in real-time-
+              there can be a delay of up to 15 minutes, so it's not
+              recommended to rely on this feature for real-time
+              notifications."
+    relation  negated                Firewall Manager --produces--> non-compliance
+              evidence: "For example, when Firewall Manager evaluates accounts
+              within the scope of a Shield Advanced policy and finds a
+              resource that isn't yet protected by Shield Advanced, it
+              generates a non-compliance."
+    relation  negated                Firewall Manager central account --receives--> Shield Advanced event
+              evidence: "As of writing, the Shield Advanced event doesn't
+              appear in the Firewall Manager central account in real-time-
+              there can be a delay of up to 15 minutes, so it's not
+              recommended to rely on this feature for real-time
+              notifications."
+    relation  negated                Firewall Manager --produces--> non-compliance
+              evidence: "For example, when Firewall Manager evaluates accounts
+              within the scope of a Shield Advanced policy and finds a
+              resource that isn't yet protected by Shield Advanced, it
+              generates a non-compliance."
+    relation  negated                Firewall Manager --produces--> non-compliance
+              evidence: "For example, when Firewall Manager evaluates accounts
+              within the scope of a Shield Advanced policy and finds a
+              resource that isn't yet protected by Shield Advanced, it
+              generates a non-compliance."
+    relation  unstable               Security Hub CSPM --uses--> Firewall Manager
+    relation  unstable               Firewall Manager --uses--> automatic remediation
+    relation  unstable               Firewall Manager --protects--> resource
+
+==============================================================================
+[3] AWS-WhitePaper-Sample.pdf  chunk 154  pages 59-59  ocr=False
+    tests: finding -> Security Hub CSPM; an explicit 'after' sequence; footer; pronoun
+------------------------------------------------------------------------------
+    | After the resource 
+    | is protected, Shield Advanced begins establishing a traffic baseline for it, and any subsequently 
+    | detected anomalous traffic is surfaced as a Shield Advanced finding in Security Hub CSPM, 
+    | alongside CloudWatch metrics and events.
+    | Visibility and protection management across multiple accounts 55
+------------------------------------------------------------------------------
+ENTITIES (6 kept)
+    service    Shield Advanced
+    data       traffic baseline
+    data       anomalous traffic
+    data       Shield Advanced finding
+    service    Security Hub CSPM
+    data       CloudWatch metrics
+
+EDGES (3 kept)
+    E9   Shield Advanced  --produces-->  traffic baseline
+           "After the resource is protected, Shield Advanced begins
+           establishing a traffic baseline for it, and any subsequently
+           detected anomalous traffic is surfaced as a Shield Advanced finding
+           in Security Hub CSPM, alongside CloudWatch metrics and events."
+    E10  Shield Advanced  --produces-->  Shield Advanced finding
+           "After the resource is protected, Shield Advanced begins
+           establishing a traffic baseline for it, and any subsequently
+           detected anomalous traffic is surfaced as a Shield Advanced finding
+           in Security Hub CSPM, alongside CloudWatch metrics and events."
+    E11  Security Hub CSPM  --receives-->  Shield Advanced finding
+           "After the resource is protected, Shield Advanced begins
+           establishing a traffic baseline for it, and any subsequently
+           detected anomalous traffic is surfaced as a Shield Advanced finding
+           in Security Hub CSPM, alongside CloudWatch metrics and events."
+
+DROPPED (across all 3 runs)
+    entity    name_not_in_text       data: CloudWatch events
+    entity    name_not_in_text       data: CloudWatch events
+    entity    name_not_in_text       data: CloudWatch events
+    relation  unstable               Shield Advanced finding --connects_to--> Security Hub CSPM
+    relation  unstable               Shield Advanced --receives--> anomalous traffic
+
+==============================================================================
+[4] AWS-WhitePaper-Sample.pdf  chunk 158  pages 61-61  ocr=False
+    tests: SRT escalation (conditional); support-plan noise; footer
+------------------------------------------------------------------------------
+    | For mission-critical workloads, consider Enterprise Support 
+    | for a designated Technical Account Manager and less than 15-minute response times, or Unified 
+    | Operations for designated Domain Specialist Engineers, Incident Management Engineers, and 
+    | always available workload monitoring with less than 5-minute response times for critical issues.
+    | For more information, refer to Compare Support Plans.
+    | If you're subscribed to AWS Shield Advanced and are also subscribed to either Business Support
+    | +, Enterprise Support, or Unified Operations, you can also escalate to AWS Shield Response Team 
+    | (SRT) by creating an Support case under AWS Shield using the Support console (sign-in required), 
+    | or the support API when a DDoS-related event affects your application's availability.
+    | Incident response strategy and runbooks 57
+------------------------------------------------------------------------------
+ENTITIES (15 kept)
+    service    Enterprise Support
+    actor      Technical Account Manager
+    service    Unified Operations
+    actor      Domain Specialist Engineers
+    actor      Incident Management Engineers
+    component  workload monitoring
+    service    AWS Shield Advanced
+    service    Business Support +
+    actor      AWS Shield Response Team (SRT)
+    data       Support case
+    service    AWS Shield
+    service    Support console
+    service    support API
+    threat     DDoS-related event
+    data       application's availability
+
+EDGES (9 kept)
+    E12  Enterprise Support  --contains-->  Technical Account Manager
+           "For mission-critical workloads, consider Enterprise Support for a
+           designated Technical Account Manager and less than 15-minute
+           response times, or Unified Operations for designated Domain
+           Specialist Engineers, Incident Management Engineers, and always
+           available workload monitoring with less than 5-minute response
+           times for critical issues."
+    E13  Unified Operations  --contains-->  Domain Specialist Engineers
+           "For mission-critical workloads, consider Enterprise Support for a
+           designated Technical Account Manager and less than 15-minute
+           response times, or Unified Operations for designated Domain
+           Specialist Engineers, Incident Management Engineers, and always
+           available workload monitoring with less than 5-minute response
+           times for critical issues."
+    E14  Unified Operations  --contains-->  Incident Management Engineers
+           "For mission-critical workloads, consider Enterprise Support for a
+           designated Technical Account Manager and less than 15-minute
+           response times, or Unified Operations for designated Domain
+           Specialist Engineers, Incident Management Engineers, and always
+           available workload monitoring with less than 5-minute response
+           times for critical issues."
+    E15  Unified Operations  --contains-->  workload monitoring
+           "For mission-critical workloads, consider Enterprise Support for a
+           designated Technical Account Manager and less than 15-minute
+           response times, or Unified Operations for designated Domain
+           Specialist Engineers, Incident Management Engineers, and always
+           available workload monitoring with less than 5-minute response
+           times for critical issues."
+    E16  AWS Shield Response Team (SRT)  --receives-->  Support case
+           "If you're subscribed to AWS Shield Advanced and are also
+           subscribed to either Business Support +, Enterprise Support, or
+           Unified Operations, you can also escalate to AWS Shield Response
+           Team (SRT) by creating an Support case under AWS Shield using the
+           Support console (sign-in required), or the support API when a DDoS-
+           related event affects your application's availability."
+    E17  Support case  --related_to-->  AWS Shield
+           "If you're subscribed to AWS Shield Advanced and are also
+           subscribed to either Business Support +, Enterprise Support, or
+           Unified Operations, you can also escalate to AWS Shield Response
+           Team (SRT) by creating an Support case under AWS Shield using the
+           Support console (sign-in required), or the support API when a DDoS-
+           related event affects your application's availability."
+    E18  AWS Shield Advanced  --related_to-->  AWS Shield Response Team (SRT)
+           "If you're subscribed to AWS Shield Advanced and are also
+           subscribed to either Business Support +, Enterprise Support, or
+           Unified Operations, you can also escalate to AWS Shield Response
+           Team (SRT) by creating an Support case under AWS Shield using the
+           Support console (sign-in required), or the support API when a DDoS-
+           related event affects your application's availability."
+    E19  Support console  --related_to-->  Support case
+           "If you're subscribed to AWS Shield Advanced and are also
+           subscribed to either Business Support +, Enterprise Support, or
+           Unified Operations, you can also escalate to AWS Shield Response
+           Team (SRT) by creating an Support case under AWS Shield using the
+           Support console (sign-in required), or the support API when a DDoS-
+           related event affects your application's availability."
+    E20  support API  --related_to-->  Support case
+           "If you're subscribed to AWS Shield Advanced and are also
+           subscribed to either Business Support +, Enterprise Support, or
+           Unified Operations, you can also escalate to AWS Shield Response
+           Team (SRT) by creating an Support case under AWS Shield using the
+           Support console (sign-in required), or the support API when a DDoS-
+           related event affects your application's availability."
+
+DROPPED (across all 3 runs)
+    relation  unstable               AWS Shield Advanced --related_to--> Business Support +
+    relation  unstable               AWS Shield Advanced --related_to--> Enterprise Support
+    relation  unstable               AWS Shield Advanced --related_to--> Unified Operations
+    relation  unstable               Support case --uses--> Support console
+    relation  unstable               Support case --uses--> support API
+    relation  unstable               AWS Shield Response Team (SRT) --mitigates--> DDoS-related event
+    relation  unstable               DDoS-related event --related_to--> application's availability
+
+==============================================================================
+[5] rfc8935.pdf  chunk 15  pages 6-6  ocr=False
+    tests: different domain: SET Recipient, 400 Bad Request
+------------------------------------------------------------------------------
+    | The following is a non-normative example of a successful receipt of a SET.
+    | Figure 2: Example Successful Delivery Response 
+    |   HTTP/1.1 202 Accepted
+    | err:
+    | description:
+    | 2.3. Failure Response 
+    | In the event of a general HTTP error condition, the SET Recipient responds with the applicable
+    | HTTP Status Code, as defined in .
+    | When the SET Recipient detects an error parsing, validating, or authenticating a SET transmitted
+    | in a SET Transmission Request, the SET Recipient  respond with an HTTP Response Status
+    | Code of 400 (Bad Request). The Content-Type header field of this response  be 
+    | application/json, and the body  be a UTF-8 encoded  object containing the
+    | following name/value pairs:
+    | A Security Event Token Error Code (see Section 2.4). 
+    | A UTF-8 string containing a human-readable description of the error that may
+    | provide additional diagnostic information. The exact content of this field is implementation
+    | specific.
+------------------------------------------------------------------------------
+ENTITIES (11 kept)
+    data       SET
+    actor      SET Recipient
+    protocol   HTTP Status Code
+    data       SET Transmission Request
+    protocol   HTTP Response Status Code
+    protocol   400 (Bad Request)
+    protocol   Content-Type
+    protocol   application/json
+    protocol   UTF-8
+    data       Security Event Token Error Code
+    data       human-readable description
+
+EDGES (3 kept)
+    E21  SET Recipient  --receives-->  SET Transmission Request
+           "When the SET Recipient detects an error parsing, validating, or
+           authenticating a SET transmitted in a SET Transmission Request, the
+           SET Recipient respond with an HTTP Response Status Code of 400 (Bad
+           Request)."
+    E22  SET Recipient  --uses-->  400 (Bad Request)
+           "When the SET Recipient detects an error parsing, validating, or
+           authenticating a SET transmitted in a SET Transmission Request, the
+           SET Recipient respond with an HTTP Response Status Code of 400 (Bad
+           Request)."
+    E23  UTF-8  --contains-->  human-readable description
+           "A UTF-8 string containing a human-readable description of the
+           error that may provide additional diagnostic information."
+
+DROPPED (across all 3 runs)
+    relation  endpoint_not_in_quote  HTTP Response Status Code --conforms_to--> application/json
+              evidence: "The Content-Type header field of this response  be
+              application/json, and the body  be a UTF-8 encoded  object
+              containing the following name/value pairs:"
+    relation  endpoint_not_in_quote  HTTP Response Status Code --conforms_to--> UTF-8
+              evidence: "The Content-Type header field of this response  be
+              application/json, and the body  be a UTF-8 encoded  object
+              containing the following name/value pairs:"
+    relation  endpoint_not_in_quote  HTTP Response Status Code --contains--> Security Event Token Error Code
+              evidence: "A Security Event Token Error Code (see Section 2.4)."
+    relation  endpoint_not_in_quote  HTTP Response Status Code --contains--> human-readable description of the error
+              evidence: "A UTF-8 string containing a human-readable
+              description of the error that may provide additional diagnostic
+              information."
+    relation  endpoint_not_in_quote  HTTP Response Status Code --contains--> Security Event Token Error Code
+              evidence: "A Security Event Token Error Code (see Section 2.4)."
+    relation  unknown_entity         body --conforms_to--> UTF-8
+              evidence: "The Content-Type header field of this response  be
+              application/json, and the body  be a UTF-8 encoded  object
+              containing the following name/value pairs:"
+    relation  endpoint_not_in_quote  HTTP Response Status Code --contains--> Security Event Token Error Code
+              evidence: "A Security Event Token Error Code (see Section 2.4)."
+    relation  unstable               SET Recipient --produces--> HTTP Status Code
+    relation  unstable               SET Recipient --produces--> HTTP Response Status Code
+    relation  unstable               SET Recipient --uses--> HTTP Status Code
+    relation  unstable               Content-Type --related_to--> application/json
+    relation  unstable               application/json --conforms_to--> UTF-8
+    relation  unstable               SET Recipient --receives--> SET
+    relation  unstable               Content-Type --conforms_to--> application/json
+
+==============================================================================
+[6] AWS-WhitePaper-Sample.pdf  chunk 156  pages 61-61  ocr=False
+    tests: conforms_to NIST; a list of steps that must NOT become precedes
+------------------------------------------------------------------------------
+    | AWS Best Practices for DDoS Resiliency AWS Whitepaper
+    | Incident response strategy and runbooks
+    | Developing a DDoS attack incident response strategy and building a security incident response 
+    | process around it is crucial for all organizations. A recommended approach is to model your 
+    | response playbook based on NIST's suggested steps such as gathering evidence, mitigating, 
+    | recovering, and conducting post-incident analysis. For example, a response playbook for web 
+    | application DoS or DDoS attacks is provided as an example. Additional resources are available in 
+    | the AWS Security Incident Response Guide.
+    | Support
+    | If you experience an attack, you can also benefit from support from AWS in assessing the threat 
+    | and reviewing the architecture of your application, or you might want to request other assistance. 
+    | It is important to create a response plan for DDoS attacks before an actual event.
+------------------------------------------------------------------------------
+ENTITIES (15 kept)
+    process    DDoS attack incident response strategy
+    process    security incident response process
+    process    response playbook
+    actor      NIST
+    process    gathering evidence
+    process    mitigating
+    process    recovering
+    process    conducting post-incident analysis
+    threat     web application DoS
+    threat     DDoS attacks
+    process    AWS Security Incident Response Guide
+    actor      AWS
+    threat     threat
+    process    response plan for DDoS attacks
+    component  architecture of your application
+
+EDGES (9 kept)
+    E24  DDoS attack incident response strategy  --related_to-->  security incident response process
+           "Developing a DDoS attack incident response strategy and building a
+           security incident response process around it is crucial for all
+           organizations."
+    E25  response playbook  --conforms_to-->  NIST
+           "A recommended approach is to model your response playbook based on
+           NIST's suggested steps such as gathering evidence, mitigating,
+           recovering, and conducting post-incident analysis."
+    E26  response playbook  --contains-->  gathering evidence
+           "A recommended approach is to model your response playbook based on
+           NIST's suggested steps such as gathering evidence, mitigating,
+           recovering, and conducting post-incident analysis."
+    E27  response playbook  --contains-->  mitigating
+           "A recommended approach is to model your response playbook based on
+           NIST's suggested steps such as gathering evidence, mitigating,
+           recovering, and conducting post-incident analysis."
+    E28  response playbook  --contains-->  recovering
+           "A recommended approach is to model your response playbook based on
+           NIST's suggested steps such as gathering evidence, mitigating,
+           recovering, and conducting post-incident analysis."
+    E29  response playbook  --contains-->  conducting post-incident analysis
+           "A recommended approach is to model your response playbook based on
+           NIST's suggested steps such as gathering evidence, mitigating,
+           recovering, and conducting post-incident analysis."
+    E30  response playbook  --mitigates-->  web application DoS
+           "For example, a response playbook for web application DoS or DDoS
+           attacks is provided as an example."
+    E31  response playbook  --mitigates-->  DDoS attacks
+           "For example, a response playbook for web application DoS or DDoS
+           attacks is provided as an example."
+    E32  AWS  --related_to-->  threat
+           "If you experience an attack, you can also benefit from support
+           from AWS in assessing the threat and reviewing the architecture of
+           your application, or you might want to request other assistance."
+
+DROPPED (across all 3 runs)
+    relation  endpoint_not_in_quote  AWS Security Incident Response Guide --related_to--> security incident response process
+              evidence: "Additional resources are available in the AWS
+              Security Incident Response Guide."
+    relation  nested_name            response plan for DDoS attacks --mitigates--> DDoS attacks
+              evidence: "It is important to create a response plan for DDoS
+              attacks before an actual event."
+    relation  endpoint_not_in_quote  AWS Security Incident Response Guide --related_to--> security incident response process
+              evidence: "Additional resources are available in the AWS
+              Security Incident Response Guide."
+    relation  endpoint_not_in_quote  AWS Security Incident Response Guide --related_to--> security incident response process
+              evidence: "Additional resources are available in the AWS
+              Security Incident Response Guide."
+    relation  unstable               AWS --protects--> architecture of your application
+    relation  unstable               AWS --related_to--> architecture of your application
+    relation  unstable               response plan for DDoS attacks --precedes--> actual event
+
+==============================================================================
+[7] AWS-WhitePaper-Sample.pdf  chunk 157  pages 61-61  ocr=False
+    tests: an explicit 'before': a candidate for precedes
+------------------------------------------------------------------------------
+    | It is important to create a response plan for DDoS attacks before an actual event. The best 
+    | practices outlined in this paper are intended to be proactive measures that you implement before 
+    | you launch an application, but DDoS attacks against your application might still occur. Review the 
+    | options in this section to determine the support resources that are best suited for your scenario.
+    | Your account team can evaluate your use case and application and assist with specific questions or 
+    | challenges that you have.
+    | If you're running production workloads on AWS, consider subscribing to Business Support+, which 
+    | provides 24/7 access to Cloud Support Engineers and a response time of less than 30 minutes 
+    | for business-critical system outages.
+------------------------------------------------------------------------------
+ENTITIES (8 kept)
+    threat     DDoS attacks
+    process    response plan
+    service    AWS
+    service    Business Support+
+    actor      Cloud Support Engineers
+    threat     business-critical system outages
+    component  application
+    actor      account team
+
+EDGES (3 kept)
+    E33  response plan  --mitigates-->  DDoS attacks
+           "It is important to create a response plan for DDoS attacks before
+           an actual event."
+    E34  Business Support+  --contains-->  Cloud Support Engineers
+           "If you're running production workloads on AWS, consider
+           subscribing to Business Support+, which provides 24/7 access to
+           Cloud Support Engineers and a response time of less than 30 minutes
+           for business-critical system outages."
+    E35  account team  --related_to-->  application
+           "Your account team can evaluate your use case and application and
+           assist with specific questions or challenges that you have."
+
+DROPPED (across all 3 runs)
+    relation  unstable               DDoS attacks --related_to--> application
+    relation  unstable               Business Support+ --related_to--> business-critical system outages
+
+==============================================================================
+SUMMARY  (7 chunks, prompt v4, edge kept if 2 of 3 runs find it)
+------------------------------------------------------------------------------
+  entities kept                 75
+  edges kept                    35   from 142 proposals across all runs
+    found by all 3 runs          20
+    found by 2 of 3 only          15   E1 E4 E5 E6 E7 E8 E10 E11 E18 E19 E20 E21 E22 E23 E35
+  relation drops by reason      {'unstable': 26, 'endpoint_not_in_quote': 16, 'negated': 5, 'unknown_entity': 4, 'nested_name': 1}
+  verbs, kept edges             {'contains': 11, 'related_to': 7, 'receives': 6, 'mitigates': 4, 'uses': 3, 'produces': 2, 'connects_to': 1, 'conforms_to': 1}
+
+  quote found in the chunk      142/142 = 100%    target >= 95%   PASS
+  rejected: quote not found     0
+  rejected: quote doesn't name  16
+            both ends
+  rejected: nested name         1
+  rejected: negated             5
+  related_to, kept edges        7/35 = 20%        target <= 15%   FAIL
+  related_to, every single run  25/116 = 22%
+  protects -> a threat          0   (should be 0: use mitigates)
+
+  single-run agreement          0.48              (v3, 2 of 3: 0.42)
+  voted agreement (A vs B)      0.72              (v3, 2 of 3: 0.37)   target >= 80%   FAIL
+      only in A: chunk 15  set recipient --uses--> 400 (bad request)
+      only in A: chunk 15  utf-8 --contains--> human-readable description
+      only in A: chunk 153  automatic remediation --contains--> shield advanced protection
+      only in A: chunk 153  shield advanced --receives--> compliance statuses
+      only in A: chunk 153  shield advanced --receives--> security alerts
+      only in A: chunk 153  shield advanced --receives--> security findings
+      only in A: chunk 156  aws --related_to--> threat
+      only in B: chunk 15  content-type --conforms_to--> application/json
+      only in B: chunk 15  set recipient --uses--> http status code
+      only in B: chunk 156  aws --related_to--> architecture of your application
+      only in B: chunk 156  response plan for ddos attacks --precedes--> actual event
+
+  VERB SPLITS in A: 3 entity pairs that 2+ runs connected, but under no verb with 2 votes
+      chunk 15  set recipient --produces--> http status code (x1) | set recipient --uses--> http status code (x1)
+      chunk 15  content-type --related_to--> application/json (x1) | content-type --conforms_to--> application/json (x1)
+      chunk 156  aws --protects--> architecture of your application (x1) | aws --related_to--> architecture of your application (x1)
+
+==============================================================================
+TOKENS  (extraction A: 7 chunks x 3 runs = 21 calls)
+------------------------------------------------------------------------------
+  input 25,329  (cached 25,266)   output 11,357
+  per call: input 1,206   output 541
+  cost of extraction A:              $0.0141
+  projected for all 214 chunks:    $0.43
+
+Label every edge above: correct (verb, direction, supported by its quote) or not.

@@ -1,0 +1,798 @@
+{
+  "prompt_version": "v6",
+  "saved_at": "2026-09-25T07:13:12.687915+00:00",
+  "verbs": [
+    "uses",
+    "depends_on",
+    "connects_to",
+    "produces",
+    "creates",
+    "receives",
+    "evaluates",
+    "protects",
+    "mitigates",
+    "contains",
+    "communicates_with",
+    "conforms_to",
+    "precedes",
+    "related_to"
+  ],
+  "chunks": [
+    {
+      "source": "AWS-WhitePaper-Sample.pdf",
+      "chunk_index": 39,
+      "group": "known"
+    },
+    {
+      "source": "AWS-WhitePaper-Sample.pdf",
+      "chunk_index": 153,
+      "group": "known"
+    },
+    {
+      "source": "AWS-WhitePaper-Sample.pdf",
+      "chunk_index": 154,
+      "group": "known"
+    },
+    {
+      "source": "AWS-WhitePaper-Sample.pdf",
+      "chunk_index": 158,
+      "group": "known"
+    },
+    {
+      "source": "rfc8935.pdf",
+      "chunk_index": 15,
+      "group": "known"
+    },
+    {
+      "source": "AWS-WhitePaper-Sample.pdf",
+      "chunk_index": 156,
+      "group": "known"
+    },
+    {
+      "source": "AWS-WhitePaper-Sample.pdf",
+      "chunk_index": 157,
+      "group": "known"
+    },
+    {
+      "source": "AWS-WhitePaper-Sample.pdf",
+      "chunk_index": 23,
+      "group": "holdout"
+    },
+    {
+      "source": "rfc8935.pdf",
+      "chunk_index": 20,
+      "group": "holdout"
+    },
+    {
+      "source": "fixture:scanned5",
+      "chunk_index": 11,
+      "group": "holdout"
+    }
+  ],
+  "a": [
+    {
+      "group": "known",
+      "id": "E1",
+      "chunk_index": 39,
+      "subject": "DDoS mitigation systems",
+      "relation": "mitigates",
+      "object": "infrastructure layer DDoS attacks",
+      "votes": 2
+    },
+    {
+      "group": "known",
+      "id": "E2",
+      "chunk_index": 39,
+      "subject": "DDoS mitigation services",
+      "relation": "mitigates",
+      "object": "infrastructure layer DDoS attacks",
+      "votes": 3
+    },
+    {
+      "group": "known",
+      "id": "E3",
+      "chunk_index": 153,
+      "subject": "Security Hub CSPM",
+      "relation": "connects_to",
+      "object": "Firewall Manager",
+      "votes": 2
+    },
+    {
+      "group": "known",
+      "id": "E4",
+      "chunk_index": 153,
+      "subject": "Firewall Manager",
+      "relation": "evaluates",
+      "object": "Shield Advanced policy",
+      "votes": 2
+    },
+    {
+      "group": "known",
+      "id": "E5",
+      "chunk_index": 154,
+      "subject": "Shield Advanced",
+      "relation": "creates",
+      "object": "traffic baseline",
+      "votes": 3
+    },
+    {
+      "group": "known",
+      "id": "E6",
+      "chunk_index": 154,
+      "subject": "Shield Advanced",
+      "relation": "produces",
+      "object": "Shield Advanced finding",
+      "votes": 3
+    },
+    {
+      "group": "known",
+      "id": "E7",
+      "chunk_index": 154,
+      "subject": "Security Hub CSPM",
+      "relation": "receives",
+      "object": "Shield Advanced finding",
+      "votes": 3
+    },
+    {
+      "group": "known",
+      "id": "E8",
+      "chunk_index": 158,
+      "subject": "Enterprise Support",
+      "relation": "related_to",
+      "object": "Technical Account Manager",
+      "votes": 3
+    },
+    {
+      "group": "known",
+      "id": "E9",
+      "chunk_index": 158,
+      "subject": "Unified Operations",
+      "relation": "related_to",
+      "object": "Domain Specialist Engineers",
+      "votes": 3
+    },
+    {
+      "group": "known",
+      "id": "E10",
+      "chunk_index": 158,
+      "subject": "Unified Operations",
+      "relation": "related_to",
+      "object": "Incident Management Engineers",
+      "votes": 3
+    },
+    {
+      "group": "known",
+      "id": "E11",
+      "chunk_index": 158,
+      "subject": "Unified Operations",
+      "relation": "uses",
+      "object": "workload monitoring",
+      "votes": 3
+    },
+    {
+      "group": "known",
+      "id": "E12",
+      "chunk_index": 158,
+      "subject": "AWS Shield Advanced",
+      "relation": "related_to",
+      "object": "AWS Shield Response Team (SRT)",
+      "votes": 3
+    },
+    {
+      "group": "known",
+      "id": "E13",
+      "chunk_index": 158,
+      "subject": "AWS Shield Response Team (SRT)",
+      "relation": "creates",
+      "object": "Support case",
+      "votes": 3
+    },
+    {
+      "group": "known",
+      "id": "E14",
+      "chunk_index": 158,
+      "subject": "Support console",
+      "relation": "creates",
+      "object": "Support case",
+      "votes": 3
+    },
+    {
+      "group": "known",
+      "id": "E15",
+      "chunk_index": 158,
+      "subject": "support API",
+      "relation": "creates",
+      "object": "Support case",
+      "votes": 3
+    },
+    {
+      "group": "known",
+      "id": "E16",
+      "chunk_index": 158,
+      "subject": "Support case",
+      "relation": "related_to",
+      "object": "AWS Shield",
+      "votes": 2
+    },
+    {
+      "group": "known",
+      "id": "E17",
+      "chunk_index": 15,
+      "subject": "SET Recipient",
+      "relation": "produces",
+      "object": "HTTP Status Code",
+      "votes": 3
+    },
+    {
+      "group": "known",
+      "id": "E18",
+      "chunk_index": 15,
+      "subject": "SET Recipient",
+      "relation": "receives",
+      "object": "SET Transmission Request",
+      "votes": 3
+    },
+    {
+      "group": "known",
+      "id": "E19",
+      "chunk_index": 15,
+      "subject": "SET Recipient",
+      "relation": "produces",
+      "object": "HTTP Response Status Code",
+      "votes": 3
+    },
+    {
+      "group": "known",
+      "id": "E20",
+      "chunk_index": 156,
+      "subject": "response playbook",
+      "relation": "conforms_to",
+      "object": "NIST",
+      "votes": 3
+    },
+    {
+      "group": "known",
+      "id": "E21",
+      "chunk_index": 156,
+      "subject": "AWS",
+      "relation": "evaluates",
+      "object": "architecture of your application",
+      "votes": 3
+    },
+    {
+      "group": "known",
+      "id": "E22",
+      "chunk_index": 157,
+      "subject": "account team",
+      "relation": "evaluates",
+      "object": "use case",
+      "votes": 3
+    },
+    {
+      "group": "known",
+      "id": "E23",
+      "chunk_index": 157,
+      "subject": "account team",
+      "relation": "evaluates",
+      "object": "application",
+      "votes": 3
+    },
+    {
+      "group": "holdout",
+      "id": "E24",
+      "chunk_index": 23,
+      "subject": "web application",
+      "relation": "conforms_to",
+      "object": "Transport Layer Security (TLS)",
+      "votes": 3
+    },
+    {
+      "group": "holdout",
+      "id": "E25",
+      "chunk_index": 23,
+      "subject": "server",
+      "relation": "receives",
+      "object": "unreadable data",
+      "votes": 3
+    },
+    {
+      "group": "holdout",
+      "id": "E26",
+      "chunk_index": 23,
+      "subject": "server",
+      "relation": "receives",
+      "object": "legitimate handshake",
+      "votes": 2
+    },
+    {
+      "group": "holdout",
+      "id": "E27",
+      "chunk_index": 23,
+      "subject": "Application layer (L7) attacks",
+      "relation": "related_to",
+      "object": "traditional network layer attacks",
+      "votes": 2
+    },
+    {
+      "group": "holdout",
+      "id": "E28",
+      "chunk_index": 20,
+      "subject": "SET",
+      "relation": "conforms_to",
+      "object": "HTTP",
+      "votes": 3
+    },
+    {
+      "group": "holdout",
+      "id": "E29",
+      "chunk_index": 20,
+      "subject": "SET",
+      "relation": "conforms_to",
+      "object": "TLS",
+      "votes": 3
+    },
+    {
+      "group": "holdout",
+      "id": "E30",
+      "chunk_index": 20,
+      "subject": "SET",
+      "relation": "conforms_to",
+      "object": "standard HTTP authentication and authorization schemes",
+      "votes": 3
+    },
+    {
+      "group": "holdout",
+      "id": "E31",
+      "chunk_index": 20,
+      "subject": "TLS server certificate",
+      "relation": "conforms_to",
+      "object": "DNS-ID",
+      "votes": 3
+    },
+    {
+      "group": "holdout",
+      "id": "E32",
+      "chunk_index": 20,
+      "subject": "TLS server certificate",
+      "relation": "conforms_to",
+      "object": "DNS-Based Authentication of Named Entities (DANE)",
+      "votes": 3
+    },
+    {
+      "group": "holdout",
+      "id": "E33",
+      "chunk_index": 20,
+      "subject": "Error Codes",
+      "relation": "related_to",
+      "object": "IANA",
+      "votes": 2
+    },
+    {
+      "group": "holdout",
+      "id": "E34",
+      "chunk_index": 20,
+      "subject": "Error Codes",
+      "relation": "related_to",
+      "object": "\"Security Event Token Error Codes\" registry",
+      "votes": 2
+    },
+    {
+      "group": "holdout",
+      "id": "E35",
+      "chunk_index": 20,
+      "subject": "SET Issuer",
+      "relation": "related_to",
+      "object": "SET Transmitter",
+      "votes": 2
+    },
+    {
+      "group": "holdout",
+      "id": "E36",
+      "chunk_index": 20,
+      "subject": "SET Transmitter",
+      "relation": "uses",
+      "object": "mutual TLS",
+      "votes": 2
+    },
+    {
+      "group": "holdout",
+      "id": "E37",
+      "chunk_index": 11,
+      "subject": "AWS Global Accelerator",
+      "relation": "mitigates",
+      "object": "SYN floods",
+      "votes": 3
+    },
+    {
+      "group": "holdout",
+      "id": "E38",
+      "chunk_index": 11,
+      "subject": "NLB",
+      "relation": "uses",
+      "object": "TCP",
+      "votes": 3
+    },
+    {
+      "group": "holdout",
+      "id": "E39",
+      "chunk_index": 11,
+      "subject": "NLB",
+      "relation": "uses",
+      "object": "UDP",
+      "votes": 3
+    },
+    {
+      "group": "holdout",
+      "id": "E40",
+      "chunk_index": 11,
+      "subject": "NLB",
+      "relation": "uses",
+      "object": "TLS",
+      "votes": 3
+    },
+    {
+      "group": "holdout",
+      "id": "E41",
+      "chunk_index": 11,
+      "subject": "user",
+      "relation": "connects_to",
+      "object": "VPC endpoint (VPCE)",
+      "votes": 2
+    },
+    {
+      "group": "holdout",
+      "id": "E42",
+      "chunk_index": 11,
+      "subject": "user",
+      "relation": "connects_to",
+      "object": "NLB",
+      "votes": 2
+    }
+  ],
+  "b": [
+    {
+      "group": "known",
+      "chunk_index": 39,
+      "subject": "DDoS mitigation systems",
+      "relation": "mitigates",
+      "object": "infrastructure layer DDoS attacks",
+      "votes": 3
+    },
+    {
+      "group": "known",
+      "chunk_index": 39,
+      "subject": "DDoS mitigation services",
+      "relation": "mitigates",
+      "object": "infrastructure layer DDoS attacks",
+      "votes": 3
+    },
+    {
+      "group": "known",
+      "chunk_index": 153,
+      "subject": "Security Hub CSPM",
+      "relation": "uses",
+      "object": "Firewall Manager",
+      "votes": 3
+    },
+    {
+      "group": "known",
+      "chunk_index": 153,
+      "subject": "Firewall Manager",
+      "relation": "evaluates",
+      "object": "accounts",
+      "votes": 3
+    },
+    {
+      "group": "known",
+      "chunk_index": 153,
+      "subject": "Firewall Manager",
+      "relation": "uses",
+      "object": "automatic remediation",
+      "votes": 3
+    },
+    {
+      "group": "known",
+      "chunk_index": 154,
+      "subject": "Shield Advanced",
+      "relation": "creates",
+      "object": "traffic baseline",
+      "votes": 3
+    },
+    {
+      "group": "known",
+      "chunk_index": 154,
+      "subject": "Shield Advanced",
+      "relation": "produces",
+      "object": "Shield Advanced finding",
+      "votes": 3
+    },
+    {
+      "group": "known",
+      "chunk_index": 154,
+      "subject": "Security Hub CSPM",
+      "relation": "receives",
+      "object": "Shield Advanced finding",
+      "votes": 3
+    },
+    {
+      "group": "known",
+      "chunk_index": 158,
+      "subject": "Enterprise Support",
+      "relation": "related_to",
+      "object": "Technical Account Manager",
+      "votes": 3
+    },
+    {
+      "group": "known",
+      "chunk_index": 158,
+      "subject": "Unified Operations",
+      "relation": "related_to",
+      "object": "Domain Specialist Engineers",
+      "votes": 3
+    },
+    {
+      "group": "known",
+      "chunk_index": 158,
+      "subject": "Unified Operations",
+      "relation": "related_to",
+      "object": "Incident Management Engineers",
+      "votes": 3
+    },
+    {
+      "group": "known",
+      "chunk_index": 158,
+      "subject": "Unified Operations",
+      "relation": "uses",
+      "object": "workload monitoring",
+      "votes": 3
+    },
+    {
+      "group": "known",
+      "chunk_index": 158,
+      "subject": "AWS Shield Advanced",
+      "relation": "related_to",
+      "object": "AWS Shield Response Team (SRT)",
+      "votes": 3
+    },
+    {
+      "group": "known",
+      "chunk_index": 158,
+      "subject": "AWS Shield Response Team (SRT)",
+      "relation": "creates",
+      "object": "Support case",
+      "votes": 3
+    },
+    {
+      "group": "known",
+      "chunk_index": 158,
+      "subject": "Support case",
+      "relation": "related_to",
+      "object": "AWS Shield",
+      "votes": 3
+    },
+    {
+      "group": "known",
+      "chunk_index": 158,
+      "subject": "Support console",
+      "relation": "creates",
+      "object": "Support case",
+      "votes": 3
+    },
+    {
+      "group": "known",
+      "chunk_index": 158,
+      "subject": "support API",
+      "relation": "creates",
+      "object": "Support case",
+      "votes": 3
+    },
+    {
+      "group": "known",
+      "chunk_index": 15,
+      "subject": "SET Recipient",
+      "relation": "produces",
+      "object": "HTTP Status Code",
+      "votes": 2
+    },
+    {
+      "group": "known",
+      "chunk_index": 15,
+      "subject": "SET Recipient",
+      "relation": "receives",
+      "object": "SET Transmission Request",
+      "votes": 2
+    },
+    {
+      "group": "known",
+      "chunk_index": 15,
+      "subject": "SET Recipient",
+      "relation": "produces",
+      "object": "HTTP Response Status Code",
+      "votes": 2
+    },
+    {
+      "group": "known",
+      "chunk_index": 156,
+      "subject": "response playbook",
+      "relation": "conforms_to",
+      "object": "NIST",
+      "votes": 3
+    },
+    {
+      "group": "known",
+      "chunk_index": 156,
+      "subject": "AWS",
+      "relation": "evaluates",
+      "object": "architecture of your application",
+      "votes": 3
+    },
+    {
+      "group": "known",
+      "chunk_index": 157,
+      "subject": "account team",
+      "relation": "evaluates",
+      "object": "use case",
+      "votes": 3
+    },
+    {
+      "group": "known",
+      "chunk_index": 157,
+      "subject": "account team",
+      "relation": "evaluates",
+      "object": "application",
+      "votes": 3
+    },
+    {
+      "group": "holdout",
+      "chunk_index": 23,
+      "subject": "web application",
+      "relation": "conforms_to",
+      "object": "Transport Layer Security (TLS)",
+      "votes": 3
+    },
+    {
+      "group": "holdout",
+      "chunk_index": 23,
+      "subject": "server",
+      "relation": "receives",
+      "object": "unreadable data",
+      "votes": 3
+    },
+    {
+      "group": "holdout",
+      "chunk_index": 23,
+      "subject": "server",
+      "relation": "receives",
+      "object": "legitimate handshake",
+      "votes": 3
+    },
+    {
+      "group": "holdout",
+      "chunk_index": 23,
+      "subject": "Application layer (L7) attacks",
+      "relation": "related_to",
+      "object": "traditional network layer attacks",
+      "votes": 3
+    },
+    {
+      "group": "holdout",
+      "chunk_index": 20,
+      "subject": "Error Codes",
+      "relation": "related_to",
+      "object": "IANA",
+      "votes": 3
+    },
+    {
+      "group": "holdout",
+      "chunk_index": 20,
+      "subject": "Error Codes",
+      "relation": "related_to",
+      "object": "\"Security Event Token Error Codes\" registry",
+      "votes": 3
+    },
+    {
+      "group": "holdout",
+      "chunk_index": 20,
+      "subject": "SET",
+      "relation": "conforms_to",
+      "object": "HTTP",
+      "votes": 3
+    },
+    {
+      "group": "holdout",
+      "chunk_index": 20,
+      "subject": "SET",
+      "relation": "conforms_to",
+      "object": "TLS",
+      "votes": 3
+    },
+    {
+      "group": "holdout",
+      "chunk_index": 20,
+      "subject": "SET",
+      "relation": "conforms_to",
+      "object": "standard HTTP authentication and authorization schemes",
+      "votes": 3
+    },
+    {
+      "group": "holdout",
+      "chunk_index": 20,
+      "subject": "TLS server certificate",
+      "relation": "conforms_to",
+      "object": "DNS-ID",
+      "votes": 3
+    },
+    {
+      "group": "holdout",
+      "chunk_index": 20,
+      "subject": "TLS server certificate",
+      "relation": "conforms_to",
+      "object": "DNS-Based Authentication of Named Entities (DANE)",
+      "votes": 3
+    },
+    {
+      "group": "holdout",
+      "chunk_index": 20,
+      "subject": "SET Issuer",
+      "relation": "related_to",
+      "object": "SET Transmitter",
+      "votes": 3
+    },
+    {
+      "group": "holdout",
+      "chunk_index": 20,
+      "subject": "SET Transmitter",
+      "relation": "uses",
+      "object": "mutual TLS",
+      "votes": 2
+    },
+    {
+      "group": "holdout",
+      "chunk_index": 11,
+      "subject": "AWS Global Accelerator",
+      "relation": "mitigates",
+      "object": "SYN floods",
+      "votes": 3
+    },
+    {
+      "group": "holdout",
+      "chunk_index": 11,
+      "subject": "user",
+      "relation": "connects_to",
+      "object": "VPC endpoint (VPCE)",
+      "votes": 3
+    },
+    {
+      "group": "holdout",
+      "chunk_index": 11,
+      "subject": "user",
+      "relation": "connects_to",
+      "object": "NLB",
+      "votes": 3
+    },
+    {
+      "group": "holdout",
+      "chunk_index": 11,
+      "subject": "NLB",
+      "relation": "uses",
+      "object": "TCP",
+      "votes": 3
+    },
+    {
+      "group": "holdout",
+      "chunk_index": 11,
+      "subject": "NLB",
+      "relation": "uses",
+      "object": "UDP",
+      "votes": 3
+    },
+    {
+      "group": "holdout",
+      "chunk_index": 11,
+      "subject": "NLB",
+      "relation": "uses",
+      "object": "TLS",
+      "votes": 3
+    }
+  ]
+}

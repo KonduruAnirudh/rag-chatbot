@@ -1,0 +1,20 @@
+{
+  "run": "v5-20260925T063024Z.json",
+  "standard": "v5",
+  "labelled_by": "project owner",
+  "labelled_on": "2026-09-25",
+  "wrong": {
+    "E4": "",
+    "E6": "",
+    "E10": "",
+    "E11": "",
+    "E12": "",
+    "E13": "",
+    "E19": "",
+    "E29": "",
+    "E30": ""
+  },
+  "notes": [
+    "E22 (response playbook conforms_to NIST) was first labelled wrong, then relabelled correct: conforms_to means 'based on or complies with'."
+  ]
+}

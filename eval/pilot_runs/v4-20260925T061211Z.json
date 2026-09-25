@@ -1,0 +1,493 @@
+{
+  "prompt_version": "v4",
+  "saved_at": "2026-09-25T06:12:11.224830+00:00",
+  "verbs": [
+    "uses",
+    "depends_on",
+    "connects_to",
+    "produces",
+    "receives",
+    "protects",
+    "mitigates",
+    "contains",
+    "communicates_with",
+    "conforms_to",
+    "precedes",
+    "related_to"
+  ],
+  "note": "rebuilt from a saved printout (Claude's run); B lists kept edges only",
+  "a": [
+    {
+      "id": "E1",
+      "chunk_index": 39,
+      "subject": "DDoS mitigation services",
+      "relation": "mitigates",
+      "object": "infrastructure layer DDoS attacks",
+      "votes": 3
+    },
+    {
+      "id": "E2",
+      "chunk_index": 39,
+      "subject": "DDoS mitigation systems",
+      "relation": "mitigates",
+      "object": "infrastructure layer DDoS attacks",
+      "votes": 2
+    },
+    {
+      "id": "E3",
+      "chunk_index": 153,
+      "subject": "Firewall Manager",
+      "relation": "uses",
+      "object": "Shield Advanced policy",
+      "votes": 3
+    },
+    {
+      "id": "E4",
+      "chunk_index": 153,
+      "subject": "automatic remediation",
+      "relation": "contains",
+      "object": "Shield Advanced protection",
+      "votes": 2
+    },
+    {
+      "id": "E5",
+      "chunk_index": 153,
+      "subject": "Firewall Manager",
+      "relation": "uses",
+      "object": "Shield Advanced protection",
+      "votes": 3
+    },
+    {
+      "id": "E6",
+      "chunk_index": 153,
+      "subject": "Security Hub CSPM",
+      "relation": "connects_to",
+      "object": "Firewall Manager",
+      "votes": 2
+    },
+    {
+      "id": "E7",
+      "chunk_index": 153,
+      "subject": "Shield Advanced",
+      "relation": "receives",
+      "object": "security findings",
+      "votes": 2
+    },
+    {
+      "id": "E8",
+      "chunk_index": 153,
+      "subject": "Shield Advanced",
+      "relation": "receives",
+      "object": "security alerts",
+      "votes": 2
+    },
+    {
+      "id": "E9",
+      "chunk_index": 153,
+      "subject": "Shield Advanced",
+      "relation": "receives",
+      "object": "compliance statuses",
+      "votes": 2
+    },
+    {
+      "id": "E10",
+      "chunk_index": 154,
+      "subject": "Shield Advanced",
+      "relation": "produces",
+      "object": "traffic baseline",
+      "votes": 3
+    },
+    {
+      "id": "E11",
+      "chunk_index": 154,
+      "subject": "Shield Advanced",
+      "relation": "produces",
+      "object": "Shield Advanced finding",
+      "votes": 3
+    },
+    {
+      "id": "E12",
+      "chunk_index": 154,
+      "subject": "Security Hub CSPM",
+      "relation": "receives",
+      "object": "Shield Advanced finding",
+      "votes": 2
+    },
+    {
+      "id": "E13",
+      "chunk_index": 158,
+      "subject": "Enterprise Support",
+      "relation": "contains",
+      "object": "Technical Account Manager",
+      "votes": 3
+    },
+    {
+      "id": "E14",
+      "chunk_index": 158,
+      "subject": "Unified Operations",
+      "relation": "contains",
+      "object": "Domain Specialist Engineers",
+      "votes": 3
+    },
+    {
+      "id": "E15",
+      "chunk_index": 158,
+      "subject": "Unified Operations",
+      "relation": "contains",
+      "object": "Incident Management Engineers",
+      "votes": 3
+    },
+    {
+      "id": "E16",
+      "chunk_index": 158,
+      "subject": "Unified Operations",
+      "relation": "contains",
+      "object": "workload monitoring",
+      "votes": 3
+    },
+    {
+      "id": "E17",
+      "chunk_index": 158,
+      "subject": "AWS Shield Advanced",
+      "relation": "related_to",
+      "object": "AWS Shield Response Team (SRT)",
+      "votes": 3
+    },
+    {
+      "id": "E18",
+      "chunk_index": 158,
+      "subject": "AWS Shield Response Team (SRT)",
+      "relation": "receives",
+      "object": "Support case",
+      "votes": 3
+    },
+    {
+      "id": "E19",
+      "chunk_index": 158,
+      "subject": "Support case",
+      "relation": "related_to",
+      "object": "AWS Shield",
+      "votes": 3
+    },
+    {
+      "id": "E20",
+      "chunk_index": 158,
+      "subject": "AWS Shield Response Team (SRT)",
+      "relation": "mitigates",
+      "object": "DDoS-related event",
+      "votes": 2
+    },
+    {
+      "id": "E21",
+      "chunk_index": 15,
+      "subject": "SET Recipient",
+      "relation": "produces",
+      "object": "HTTP Status Code",
+      "votes": 2
+    },
+    {
+      "id": "E22",
+      "chunk_index": 15,
+      "subject": "SET Recipient",
+      "relation": "produces",
+      "object": "HTTP Response Status Code",
+      "votes": 2
+    },
+    {
+      "id": "E23",
+      "chunk_index": 15,
+      "subject": "Content-Type",
+      "relation": "conforms_to",
+      "object": "application/json",
+      "votes": 2
+    },
+    {
+      "id": "E24",
+      "chunk_index": 156,
+      "subject": "security incident response process",
+      "relation": "related_to",
+      "object": "DDoS attack incident response strategy",
+      "votes": 2
+    },
+    {
+      "id": "E25",
+      "chunk_index": 156,
+      "subject": "response playbook",
+      "relation": "conforms_to",
+      "object": "NIST",
+      "votes": 3
+    },
+    {
+      "id": "E26",
+      "chunk_index": 156,
+      "subject": "response playbook",
+      "relation": "contains",
+      "object": "gathering evidence",
+      "votes": 3
+    },
+    {
+      "id": "E27",
+      "chunk_index": 156,
+      "subject": "response playbook",
+      "relation": "contains",
+      "object": "mitigating",
+      "votes": 3
+    },
+    {
+      "id": "E28",
+      "chunk_index": 156,
+      "subject": "response playbook",
+      "relation": "contains",
+      "object": "recovering",
+      "votes": 3
+    },
+    {
+      "id": "E29",
+      "chunk_index": 156,
+      "subject": "response playbook",
+      "relation": "contains",
+      "object": "conducting post-incident analysis",
+      "votes": 3
+    },
+    {
+      "id": "E30",
+      "chunk_index": 156,
+      "subject": "response playbook",
+      "relation": "mitigates",
+      "object": "web application DoS",
+      "votes": 3
+    },
+    {
+      "id": "E31",
+      "chunk_index": 156,
+      "subject": "response playbook",
+      "relation": "mitigates",
+      "object": "DDoS attacks",
+      "votes": 3
+    },
+    {
+      "id": "E32",
+      "chunk_index": 157,
+      "subject": "response plan",
+      "relation": "mitigates",
+      "object": "DDoS attacks",
+      "votes": 3
+    },
+    {
+      "id": "E33",
+      "chunk_index": 157,
+      "subject": "account team",
+      "relation": "related_to",
+      "object": "application",
+      "votes": 3
+    },
+    {
+      "id": "E34",
+      "chunk_index": 157,
+      "subject": "Business Support+",
+      "relation": "contains",
+      "object": "Cloud Support Engineers",
+      "votes": 3
+    }
+  ],
+  "b": [
+    {
+      "chunk_index": 39,
+      "subject": "DDoS mitigation services",
+      "relation": "mitigates",
+      "object": "infrastructure layer DDoS attacks"
+    },
+    {
+      "chunk_index": 153,
+      "subject": "Firewall Manager",
+      "relation": "uses",
+      "object": "Shield Advanced policy"
+    },
+    {
+      "chunk_index": 153,
+      "subject": "Firewall Manager",
+      "relation": "uses",
+      "object": "Shield Advanced protection"
+    },
+    {
+      "chunk_index": 153,
+      "subject": "Security Hub CSPM",
+      "relation": "connects_to",
+      "object": "Firewall Manager"
+    },
+    {
+      "chunk_index": 154,
+      "subject": "Shield Advanced",
+      "relation": "produces",
+      "object": "traffic baseline"
+    },
+    {
+      "chunk_index": 154,
+      "subject": "Shield Advanced",
+      "relation": "produces",
+      "object": "Shield Advanced finding"
+    },
+    {
+      "chunk_index": 154,
+      "subject": "Security Hub CSPM",
+      "relation": "receives",
+      "object": "Shield Advanced finding"
+    },
+    {
+      "chunk_index": 158,
+      "subject": "Enterprise Support",
+      "relation": "contains",
+      "object": "Technical Account Manager"
+    },
+    {
+      "chunk_index": 158,
+      "subject": "Unified Operations",
+      "relation": "contains",
+      "object": "Domain Specialist Engineers"
+    },
+    {
+      "chunk_index": 158,
+      "subject": "Unified Operations",
+      "relation": "contains",
+      "object": "Incident Management Engineers"
+    },
+    {
+      "chunk_index": 158,
+      "subject": "Unified Operations",
+      "relation": "contains",
+      "object": "workload monitoring"
+    },
+    {
+      "chunk_index": 158,
+      "subject": "AWS Shield Response Team (SRT)",
+      "relation": "receives",
+      "object": "Support case"
+    },
+    {
+      "chunk_index": 158,
+      "subject": "Support case",
+      "relation": "related_to",
+      "object": "AWS Shield"
+    },
+    {
+      "chunk_index": 158,
+      "subject": "AWS Shield Response Team (SRT)",
+      "relation": "mitigates",
+      "object": "DDoS-related event"
+    },
+    {
+      "chunk_index": 15,
+      "subject": "Content-Type",
+      "relation": "conforms_to",
+      "object": "application/json"
+    },
+    {
+      "chunk_index": 156,
+      "subject": "response playbook",
+      "relation": "conforms_to",
+      "object": "NIST"
+    },
+    {
+      "chunk_index": 156,
+      "subject": "response playbook",
+      "relation": "contains",
+      "object": "gathering evidence"
+    },
+    {
+      "chunk_index": 156,
+      "subject": "response playbook",
+      "relation": "contains",
+      "object": "mitigating"
+    },
+    {
+      "chunk_index": 156,
+      "subject": "response playbook",
+      "relation": "contains",
+      "object": "recovering"
+    },
+    {
+      "chunk_index": 156,
+      "subject": "response playbook",
+      "relation": "contains",
+      "object": "conducting post-incident analysis"
+    },
+    {
+      "chunk_index": 156,
+      "subject": "response playbook",
+      "relation": "mitigates",
+      "object": "web application DoS"
+    },
+    {
+      "chunk_index": 156,
+      "subject": "response playbook",
+      "relation": "mitigates",
+      "object": "DDoS attacks"
+    },
+    {
+      "chunk_index": 157,
+      "subject": "response plan",
+      "relation": "mitigates",
+      "object": "DDoS attacks"
+    },
+    {
+      "chunk_index": 157,
+      "subject": "account team",
+      "relation": "related_to",
+      "object": "application"
+    },
+    {
+      "chunk_index": 157,
+      "subject": "Business Support+",
+      "relation": "contains",
+      "object": "Cloud Support Engineers"
+    },
+    {
+      "chunk_index": 15,
+      "subject": "set recipient",
+      "relation": "receives",
+      "object": "set"
+    },
+    {
+      "chunk_index": 15,
+      "subject": "set recipient",
+      "relation": "uses",
+      "object": "400 (bad request)"
+    },
+    {
+      "chunk_index": 154,
+      "subject": "shield advanced",
+      "relation": "receives",
+      "object": "anomalous traffic"
+    },
+    {
+      "chunk_index": 158,
+      "subject": "aws shield advanced",
+      "relation": "related_to",
+      "object": "business support +"
+    },
+    {
+      "chunk_index": 158,
+      "subject": "aws shield advanced",
+      "relation": "related_to",
+      "object": "enterprise support"
+    },
+    {
+      "chunk_index": 158,
+      "subject": "aws shield advanced",
+      "relation": "related_to",
+      "object": "unified operations"
+    },
+    {
+      "chunk_index": 158,
+      "subject": "support case",
+      "relation": "uses",
+      "object": "support api"
+    },
+    {
+      "chunk_index": 158,
+      "subject": "support case",
+      "relation": "uses",
+      "object": "support console"
+    }
+  ]
+}

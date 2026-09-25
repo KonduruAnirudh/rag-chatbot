@@ -1,0 +1,4374 @@
+{
+ "split": "dev",
+ "chosen": "G1",
+ "scores": {
+  "A0": {
+   "multi_full": 2,
+   "multi_n": 5,
+   "graph_full": 1,
+   "graph_n": 4,
+   "gold_found": 17,
+   "gold_n": 24,
+   "noise": 0.7875,
+   "added": 0,
+   "added_gold": 0,
+   "top5_same": true,
+   "refused": true,
+   "entity_added": {},
+   "p50": null,
+   "p95": null,
+   "candidates": null
+  },
+  "A0@7": {
+   "multi_full": 2,
+   "multi_n": 5,
+   "graph_full": 1,
+   "graph_n": 4,
+   "gold_found": 19,
+   "gold_n": 24,
+   "noise": 0.8303571428571428,
+   "added": 0,
+   "added_gold": 0,
+   "top5_same": true,
+   "refused": true,
+   "entity_added": {},
+   "p50": null,
+   "p95": null,
+   "candidates": null
+  },
+  "G1": {
+   "multi_full": 2,
+   "multi_n": 5,
+   "graph_full": 1,
+   "graph_n": 4,
+   "gold_found": 19,
+   "gold_n": 24,
+   "noise": 0.8173076923076923,
+   "added": 24,
+   "added_gold": 2,
+   "top5_same": true,
+   "refused": true,
+   "entity_added": {
+    "Q54": 2,
+    "Q59": 2
+   },
+   "p50": 1.7841454973677173,
+   "p95": 2.6186249997408595,
+   "candidates": 6.5
+  },
+  "G2-U": {
+   "multi_full": 2,
+   "multi_n": 5,
+   "graph_full": 1,
+   "graph_n": 4,
+   "gold_found": 18,
+   "gold_n": 24,
+   "noise": 0.8378378378378378,
+   "added": 31,
+   "added_gold": 1,
+   "top5_same": true,
+   "refused": true,
+   "entity_added": {
+    "Q54": 2,
+    "Q59": 2
+   },
+   "p50": 1.7401249988324707,
+   "p95": 2.488999998604413,
+   "candidates": 27.0
+  },
+  "G2-H": {
+   "multi_full": 2,
+   "multi_n": 5,
+   "graph_full": 1,
+   "graph_n": 4,
+   "gold_found": 19,
+   "gold_n": 24,
+   "noise": 0.8240740740740741,
+   "added": 28,
+   "added_gold": 2,
+   "top5_same": true,
+   "refused": true,
+   "entity_added": {
+    "Q54": 2,
+    "Q59": 2
+   },
+   "p50": 1.580353999088402,
+   "p95": 2.643458999955328,
+   "candidates": 14.0
+  },
+  "G2-W": {
+   "multi_full": 2,
+   "multi_n": 5,
+   "graph_full": 1,
+   "graph_n": 4,
+   "gold_found": 18,
+   "gold_n": 24,
+   "noise": 0.8378378378378378,
+   "added": 31,
+   "added_gold": 1,
+   "top5_same": true,
+   "refused": true,
+   "entity_added": {
+    "Q54": 2,
+    "Q59": 2
+   },
+   "p50": 1.6544794998480938,
+   "p95": 2.268000000185566,
+   "candidates": 27.0
+  },
+  "G1*": {
+   "multi_full": 2,
+   "multi_n": 5,
+   "graph_full": 1,
+   "graph_n": 4,
+   "gold_found": 19,
+   "gold_n": 24,
+   "noise": 0.7816091954022988,
+   "added": 7,
+   "added_gold": 2,
+   "top5_same": true,
+   "refused": true,
+   "entity_added": {},
+   "p50": 1.7841454973677173,
+   "p95": 2.6186249997408595,
+   "candidates": 6.5
+  },
+  "G2-U*": {
+   "multi_full": 2,
+   "multi_n": 5,
+   "graph_full": 1,
+   "graph_n": 4,
+   "gold_found": 18,
+   "gold_n": 24,
+   "noise": 0.7954545454545454,
+   "added": 8,
+   "added_gold": 1,
+   "top5_same": true,
+   "refused": true,
+   "entity_added": {},
+   "p50": 1.7401249988324707,
+   "p95": 2.488999998604413,
+   "candidates": 27.0
+  },
+  "G2-H*": {
+   "multi_full": 2,
+   "multi_n": 5,
+   "graph_full": 1,
+   "graph_n": 4,
+   "gold_found": 19,
+   "gold_n": 24,
+   "noise": 0.7840909090909091,
+   "added": 8,
+   "added_gold": 2,
+   "top5_same": true,
+   "refused": true,
+   "entity_added": {},
+   "p50": 1.580353999088402,
+   "p95": 2.643458999955328,
+   "candidates": 14.0
+  },
+  "G2-W*": {
+   "multi_full": 2,
+   "multi_n": 5,
+   "graph_full": 1,
+   "graph_n": 4,
+   "gold_found": 18,
+   "gold_n": 24,
+   "noise": 0.7954545454545454,
+   "added": 8,
+   "added_gold": 1,
+   "top5_same": true,
+   "refused": true,
+   "entity_added": {},
+   "p50": 1.6544794998480938,
+   "p95": 2.268000000185566,
+   "candidates": 27.0
+  }
+ },
+ "questions": [
+  {
+   "id": "Q02",
+   "category": "plain",
+   "kind": null,
+   "needs_graph": false,
+   "gold": [
+    11
+   ],
+   "gold_labels": [
+    "RFC:11 (A0 rank 1)"
+   ],
+   "linking": [
+    [
+     "Security Event Token",
+     "linked",
+     "security event token"
+    ]
+   ],
+   "seeds": [
+    "security event token"
+   ],
+   "contexts": {
+    "A0": [
+     11,
+     12,
+     3,
+     6,
+     15
+    ],
+    "A0@7": [
+     11,
+     12,
+     3,
+     6,
+     15,
+     4,
+     17
+    ],
+    "G1": [
+     11,
+     12,
+     3,
+     6,
+     15,
+     8,
+     10
+    ],
+    "G1*": [
+     11,
+     12,
+     3,
+     6,
+     15
+    ],
+    "G2-U": [
+     11,
+     12,
+     3,
+     6,
+     15,
+     8,
+     10
+    ],
+    "G2-U*": [
+     11,
+     12,
+     3,
+     6,
+     15
+    ],
+    "G2-H": [
+     11,
+     12,
+     3,
+     6,
+     15,
+     8,
+     10
+    ],
+    "G2-H*": [
+     11,
+     12,
+     3,
+     6,
+     15
+    ],
+    "G2-W": [
+     11,
+     12,
+     3,
+     6,
+     15,
+     20,
+     9
+    ],
+    "G2-W*": [
+     11,
+     12,
+     3,
+     6,
+     15
+    ]
+   },
+   "added": {
+    "G1": [
+     {
+      "chunk": "RFC:8",
+      "gold": false,
+      "cosine": 0.609,
+      "from": [
+       "security event token"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set recipient --receives--> security event token | The SET Recipient may accept or reject (i.e., return an error response such as access_denied) a SET at its own discretion.",
+       "set transmitter --produces--> security event token | SET Transmitters transmit SETs issued by another entity."
+      ]
+     },
+     {
+      "chunk": "RFC:10",
+      "gold": false,
+      "cosine": 0.602,
+      "from": [
+       "security event token"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set transmitter --produces--> security event token | In all other cases, the SET Transmitter retransmit a SET."
+      ]
+     }
+    ],
+    "G2-U": [
+     {
+      "chunk": "RFC:8",
+      "gold": false,
+      "cosine": 0.609,
+      "from": [
+       "security event token"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set recipient --receives--> security event token | The SET Recipient may accept or reject (i.e., return an error response such as access_denied) a SET at its own discretion.",
+       "set transmitter --produces--> security event token | SET Transmitters transmit SETs issued by another entity.",
+       "set recipient --produces--> error response | The SET Recipient may accept or reject (i.e., return an error response such as access_denied) a SET at its own discretion."
+      ]
+     },
+     {
+      "chunk": "RFC:10",
+      "gold": false,
+      "cosine": 0.602,
+      "from": [
+       "security event token"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set transmitter --produces--> security event token | In all other cases, the SET Transmitter retransmit a SET."
+      ]
+     }
+    ],
+    "G2-H": [
+     {
+      "chunk": "RFC:8",
+      "gold": false,
+      "cosine": 0.609,
+      "from": [
+       "security event token"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set recipient --receives--> security event token | The SET Recipient may accept or reject (i.e., return an error response such as access_denied) a SET at its own discretion.",
+       "set transmitter --produces--> security event token | SET Transmitters transmit SETs issued by another entity."
+      ]
+     },
+     {
+      "chunk": "RFC:10",
+      "gold": false,
+      "cosine": 0.602,
+      "from": [
+       "security event token"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set transmitter --produces--> security event token | In all other cases, the SET Transmitter retransmit a SET."
+      ]
+     }
+    ],
+    "G2-W": [
+     {
+      "chunk": "RFC:20",
+      "gold": false,
+      "cosine": 0.535,
+      "from": [
+       "security event token"
+      ],
+      "hops": 1,
+      "quotes": [
+       "security event token --conforms_to--> http | The SET delivery method described in this specification is based upon HTTP over TLS and standard HTTP authentication and authorization schemes, as per .",
+       "security event token --conforms_to--> transport layer security | The SET delivery method described in this specification is based upon HTTP over TLS and standard HTTP authentication and authorization schemes, as per .",
+       "transport layer security --conforms_to--> dns-id | The TLS server certificate be validated using DNS-ID and/or DNS-Based Authentication of Named Entities (DANE) .",
+       "transport layer security --conforms_to--> dns-based authentication of named entities | The TLS server certificate be validated using DNS-ID and/or DNS-Based Authentication of Named Entities (DANE) .",
+       "set transmitter --uses--> mutual tls | Authorization for the eligibility to provide actionable SETs can be determined by using the identity of the SET Issuer, the identity of the SET Transmitter, perhaps using mutual TLS, or via other employed authentication methods."
+      ]
+     },
+     {
+      "chunk": "RFC:9",
+      "gold": false,
+      "cosine": 0.602,
+      "from": [
+       "security event token"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set transmitter --produces--> security event token | The SET Transmitter transmit the same SET to the SET Recipient multiple times, regardless of the response from the SET Recipient.",
+       "set recipient --evaluates--> security event token | The SET Recipient perform further processing of the SET beyond the required validation steps prior to sending this response.",
+       "set transmitter --connects_to--> set recipient | The SET Transmitter transmit the same SET to the SET Recipient multiple times, regardless of the response from the SET Recipient."
+      ]
+     }
+    ]
+   },
+   "latency_ms": {
+    "G1": 1.1945419973926619,
+    "G2-U": 1.0728750021371525,
+    "G2-H": 0.9110840001085307,
+    "G2-W": 0.9188750009343494
+   },
+   "candidates": {
+    "G1": 13,
+    "G2-U": 27,
+    "G2-H": 23,
+    "G2-W": 27
+   }
+  },
+  {
+   "id": "Q03",
+   "category": "plain",
+   "kind": null,
+   "needs_graph": false,
+   "gold": [
+    19
+   ],
+   "gold_labels": [
+    "RFC:19 (A0 rank 1)"
+   ],
+   "linking": [
+    [
+     "SET Issuer",
+     "linked",
+     "set issuer"
+    ]
+   ],
+   "seeds": [
+    "set issuer"
+   ],
+   "contexts": {
+    "A0": [
+     19,
+     20,
+     18,
+     7,
+     33
+    ],
+    "A0@7": [
+     19,
+     20,
+     18,
+     7,
+     33,
+     34,
+     15
+    ],
+    "G1": [
+     19,
+     20,
+     18,
+     7,
+     33,
+     29
+    ],
+    "G1*": [
+     19,
+     20,
+     18,
+     7,
+     33
+    ],
+    "G2-U": [
+     19,
+     20,
+     18,
+     7,
+     33,
+     29,
+     8
+    ],
+    "G2-U*": [
+     19,
+     20,
+     18,
+     7,
+     33
+    ],
+    "G2-H": [
+     19,
+     20,
+     18,
+     7,
+     33,
+     29
+    ],
+    "G2-H*": [
+     19,
+     20,
+     18,
+     7,
+     33
+    ],
+    "G2-W": [
+     19,
+     20,
+     18,
+     7,
+     33,
+     29,
+     26
+    ],
+    "G2-W*": [
+     19,
+     20,
+     18,
+     7,
+     33
+    ]
+   },
+   "added": {
+    "G1": [
+     {
+      "chunk": "RFC:29",
+      "gold": false,
+      "cosine": 0.541,
+      "from": [
+       "set issuer"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set issuer --communicates_with--> set recipient | SET Issuers and SET Transmitters should consider the ramifications of sharing a particular subject identifier with a SET Recipient (e.g., whether doing so could enable correlation and/or de-anonymization of data) and choose appropriate subject identifiers for their use cases."
+      ]
+     }
+    ],
+    "G2-U": [
+     {
+      "chunk": "RFC:29",
+      "gold": false,
+      "cosine": 0.541,
+      "from": [
+       "set issuer"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set issuer --communicates_with--> set recipient | SET Issuers and SET Transmitters should consider the ramifications of sharing a particular subject identifier with a SET Recipient (e.g., whether doing so could enable correlation and/or de-anonymization of data) and choose appropriate subject identifiers for their use cases.",
+       "set transmitter --communicates_with--> set recipient | SET Issuers and SET Transmitters should consider the ramifications of sharing a particular subject identifier with a SET Recipient (e.g., whether doing so could enable correlation and/or de-anonymization of data) and choose appropriate subject identifiers for their use cases."
+      ]
+     },
+     {
+      "chunk": "RFC:8",
+      "gold": false,
+      "cosine": 0.48,
+      "from": [
+       "set issuer"
+      ],
+      "hops": 2,
+      "quotes": [
+       "set recipient --receives--> security event token | The SET Recipient may accept or reject (i.e., return an error response such as access_denied) a SET at its own discretion.",
+       "set recipient --produces--> error response | The SET Recipient may accept or reject (i.e., return an error response such as access_denied) a SET at its own discretion."
+      ]
+     }
+    ],
+    "G2-H": [
+     {
+      "chunk": "RFC:29",
+      "gold": false,
+      "cosine": 0.541,
+      "from": [
+       "set issuer"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set issuer --communicates_with--> set recipient | SET Issuers and SET Transmitters should consider the ramifications of sharing a particular subject identifier with a SET Recipient (e.g., whether doing so could enable correlation and/or de-anonymization of data) and choose appropriate subject identifiers for their use cases."
+      ]
+     }
+    ],
+    "G2-W": [
+     {
+      "chunk": "RFC:29",
+      "gold": false,
+      "cosine": 0.541,
+      "from": [
+       "set issuer"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set issuer --communicates_with--> set recipient | SET Issuers and SET Transmitters should consider the ramifications of sharing a particular subject identifier with a SET Recipient (e.g., whether doing so could enable correlation and/or de-anonymization of data) and choose appropriate subject identifiers for their use cases.",
+       "set transmitter --communicates_with--> set recipient | SET Issuers and SET Transmitters should consider the ramifications of sharing a particular subject identifier with a SET Recipient (e.g., whether doing so could enable correlation and/or de-anonymization of data) and choose appropriate subject identifiers for their use cases."
+      ]
+     },
+     {
+      "chunk": "RFC:26",
+      "gold": false,
+      "cosine": 0.431,
+      "from": [
+       "set issuer"
+      ],
+      "hops": 2,
+      "quotes": [
+       "set recipient --evaluates--> security event token | At the time of receipt, the SET Recipient can rely upon TLS mechanisms, HTTP authentication methods, and/or other context from the transmission request to authenticate the SET Transmitter and validate the authenticity of the SET.",
+       "set recipient --uses--> tls mechanisms | At the time of receipt, the SET Recipient can rely upon TLS mechanisms, HTTP authentication methods, and/or other context from the transmission request to authenticate the SET Transmitter and validate the authenticity of the SET.",
+       "set recipient --uses--> http authentication methods | At the time of receipt, the SET Recipient can rely upon TLS mechanisms, HTTP authentication methods, and/or other context from the transmission request to authenticate the SET Transmitter and validate the authenticity of the SET.",
+       "set recipient --evaluates--> transmission request | At the time of receipt, the SET Recipient can rely upon TLS mechanisms, HTTP authentication methods, and/or other context from the transmission request to authenticate the SET Transmitter and validate the authenticity of the SET."
+      ]
+     }
+    ]
+   },
+   "latency_ms": {
+    "G1": 1.4855830013402738,
+    "G2-U": 1.4705000030517112,
+    "G2-H": 1.4217919997463468,
+    "G2-W": 1.2643330010178033
+   },
+   "candidates": {
+    "G1": 3,
+    "G2-U": 15,
+    "G2-H": 3,
+    "G2-W": 15
+   }
+  },
+  {
+   "id": "Q05",
+   "category": "plain",
+   "kind": null,
+   "needs_graph": false,
+   "gold": [
+    112,
+    113
+   ],
+   "gold_labels": [
+    "AWS:67 (A0 rank 3)",
+    "AWS:68 (A0 rank 2)"
+   ],
+   "linking": [
+    [
+     "application layer attacks",
+     "missed",
+     "application layer attack"
+    ]
+   ],
+   "seeds": [
+    "application layer",
+    "best practices"
+   ],
+   "contexts": {
+    "A0": [
+     84,
+     113,
+     112,
+     75,
+     144
+    ],
+    "A0@7": [
+     84,
+     113,
+     112,
+     75,
+     144,
+     79,
+     87
+    ],
+    "G1": [
+     84,
+     113,
+     112,
+     75,
+     144,
+     204
+    ],
+    "G1*": [
+     84,
+     113,
+     112,
+     75,
+     144
+    ],
+    "G2-U": [
+     84,
+     113,
+     112,
+     75,
+     144,
+     177,
+     204
+    ],
+    "G2-U*": [
+     84,
+     113,
+     112,
+     75,
+     144
+    ],
+    "G2-H": [
+     84,
+     113,
+     112,
+     75,
+     144,
+     204,
+     177
+    ],
+    "G2-H*": [
+     84,
+     113,
+     112,
+     75,
+     144
+    ],
+    "G2-W": [
+     84,
+     113,
+     112,
+     75,
+     144,
+     177,
+     204
+    ],
+    "G2-W*": [
+     84,
+     113,
+     112,
+     75,
+     144
+    ]
+   },
+   "added": {
+    "G1": [
+     {
+      "chunk": "AWS:159",
+      "gold": false,
+      "cosine": 0.572,
+      "from": [
+       "best practices"
+      ],
+      "hops": 1,
+      "quotes": [
+       "best practices --mitigates--> application layer attack | Throughout this whitepaper, AWS outlined a DDoS-resilient reference architecture, explained how infrastructure layer and application layer attacks differ, and mapped the AWS services and best practices that mitigate each."
+      ]
+     }
+    ],
+    "G2-U": [
+     {
+      "chunk": "AWS:132",
+      "gold": false,
+      "cosine": 0.425,
+      "from": [
+       "application layer",
+       "best practices"
+      ],
+      "hops": 2,
+      "quotes": [
+       "application layer attack --produces--> cloudwatch metrics | An application layer attack can elevate many Amazon CloudWatch metrics.",
+       "cloudwatch --uses--> waf | If you're using AWS WAF, you can use CloudWatch to monitor and activate alarms on increases in requests that you've set in AWS WAF to be allowed, counted, or blocked."
+      ]
+     },
+     {
+      "chunk": "AWS:159",
+      "gold": false,
+      "cosine": 0.572,
+      "from": [
+       "best practices"
+      ],
+      "hops": 1,
+      "quotes": [
+       "aws services --mitigates--> application layer attack | Throughout this whitepaper, AWS outlined a DDoS-resilient reference architecture, explained how infrastructure layer and application layer attacks differ, and mapped the AWS services and best practices that mitigate each.",
+       "best practices --mitigates--> application layer attack | Throughout this whitepaper, AWS outlined a DDoS-resilient reference architecture, explained how infrastructure layer and application layer attacks differ, and mapped the AWS services and best practices that mitigate each."
+      ]
+     }
+    ],
+    "G2-H": [
+     {
+      "chunk": "AWS:159",
+      "gold": false,
+      "cosine": 0.572,
+      "from": [
+       "best practices"
+      ],
+      "hops": 1,
+      "quotes": [
+       "aws services --mitigates--> application layer attack | Throughout this whitepaper, AWS outlined a DDoS-resilient reference architecture, explained how infrastructure layer and application layer attacks differ, and mapped the AWS services and best practices that mitigate each.",
+       "best practices --mitigates--> application layer attack | Throughout this whitepaper, AWS outlined a DDoS-resilient reference architecture, explained how infrastructure layer and application layer attacks differ, and mapped the AWS services and best practices that mitigate each."
+      ]
+     },
+     {
+      "chunk": "AWS:132",
+      "gold": false,
+      "cosine": 0.425,
+      "from": [
+       "best practices"
+      ],
+      "hops": 2,
+      "quotes": [
+       "application layer attack --produces--> cloudwatch metrics | An application layer attack can elevate many Amazon CloudWatch metrics."
+      ]
+     }
+    ],
+    "G2-W": [
+     {
+      "chunk": "AWS:132",
+      "gold": false,
+      "cosine": 0.425,
+      "from": [
+       "application layer",
+       "best practices"
+      ],
+      "hops": 2,
+      "quotes": [
+       "application layer attack --produces--> cloudwatch metrics | An application layer attack can elevate many Amazon CloudWatch metrics.",
+       "cloudwatch --uses--> waf | If you're using AWS WAF, you can use CloudWatch to monitor and activate alarms on increases in requests that you've set in AWS WAF to be allowed, counted, or blocked."
+      ]
+     },
+     {
+      "chunk": "AWS:159",
+      "gold": false,
+      "cosine": 0.572,
+      "from": [
+       "best practices"
+      ],
+      "hops": 1,
+      "quotes": [
+       "aws services --mitigates--> application layer attack | Throughout this whitepaper, AWS outlined a DDoS-resilient reference architecture, explained how infrastructure layer and application layer attacks differ, and mapped the AWS services and best practices that mitigate each.",
+       "best practices --mitigates--> application layer attack | Throughout this whitepaper, AWS outlined a DDoS-resilient reference architecture, explained how infrastructure layer and application layer attacks differ, and mapped the AWS services and best practices that mitigate each."
+      ]
+     }
+    ]
+   },
+   "latency_ms": {
+    "G1": 0.8825410004646983,
+    "G2-U": 0.9607919964764733,
+    "G2-H": 0.8768750012677629,
+    "G2-W": 0.9197079998557456
+   },
+   "candidates": {
+    "G1": 2,
+    "G2-U": 42,
+    "G2-H": 4,
+    "G2-W": 42
+   }
+  },
+  {
+   "id": "Q06",
+   "category": "plain",
+   "kind": null,
+   "needs_graph": false,
+   "gold": [
+    137
+   ],
+   "gold_labels": [
+    "AWS:92 (A0 rank 1)"
+   ],
+   "linking": [
+    [
+     "AWS WAF",
+     "linked",
+     "waf"
+    ],
+    [
+     "rate-based rules",
+     "linked",
+     "rate-based rule"
+    ]
+   ],
+   "seeds": [
+    "rate-based rule",
+    "waf"
+   ],
+   "contexts": {
+    "A0": [
+     137,
+     140,
+     133,
+     131,
+     158
+    ],
+    "A0@7": [
+     137,
+     140,
+     133,
+     131,
+     158,
+     142,
+     146
+    ],
+    "G1": [
+     137,
+     140,
+     133,
+     131,
+     158,
+     125,
+     148
+    ],
+    "G1*": [
+     137,
+     140,
+     133,
+     131,
+     158
+    ],
+    "G2-U": [
+     137,
+     140,
+     133,
+     131,
+     158,
+     148,
+     143
+    ],
+    "G2-U*": [
+     137,
+     140,
+     133,
+     131,
+     158
+    ],
+    "G2-H": [
+     137,
+     140,
+     133,
+     131,
+     158,
+     143,
+     138
+    ],
+    "G2-H*": [
+     137,
+     140,
+     133,
+     131,
+     158
+    ],
+    "G2-W": [
+     137,
+     140,
+     133,
+     131,
+     158,
+     138,
+     139
+    ],
+    "G2-W*": [
+     137,
+     140,
+     133,
+     131,
+     158
+    ]
+   },
+   "added": {
+    "G1": [
+     {
+      "chunk": "AWS:80",
+      "gold": false,
+      "cosine": 0.455,
+      "from": [
+       "rate-based rule",
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "waf --uses--> rate-based rule | While static content should be aggressively cached, truly dynamic endpoints that can't be cached should be identified early and protected with additional controls such as scoped-down AWS WAF rate-based rules with lower limits than any rate-based rules that are broadly applied."
+      ]
+     },
+     {
+      "chunk": "AWS:103",
+      "gold": false,
+      "cosine": 0.656,
+      "from": [
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "waf --protects--> uri paths | Block access to unused URI paths using AWS WAF."
+      ]
+     }
+    ],
+    "G2-U": [
+     {
+      "chunk": "AWS:103",
+      "gold": false,
+      "cosine": 0.656,
+      "from": [
+       "rate-based rule",
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "waf --protects--> uri paths | Block access to unused URI paths using AWS WAF."
+      ]
+     },
+     {
+      "chunk": "AWS:98",
+      "gold": false,
+      "cosine": 0.648,
+      "from": [
+       "rate-based rule",
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "rate-based rule --uses--> waf label namespace awswaf:managed:aws:amazon-ip-list | Leave it in Count mode and create a subsequent rate-based rule using a custom aggregation key using the WAF label namespace awswaf:managed:aws:amazon-ip-list, applied to requests matching this rule group"
+      ]
+     }
+    ],
+    "G2-H": [
+     {
+      "chunk": "AWS:98",
+      "gold": false,
+      "cosine": 0.648,
+      "from": [
+       "rate-based rule",
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "rate-based rule --uses--> waf label namespace awswaf:managed:aws:amazon-ip-list | Leave it in Count mode and create a subsequent rate-based rule using a custom aggregation key using the WAF label namespace awswaf:managed:aws:amazon-ip-list, applied to requests matching this rule group"
+      ]
+     },
+     {
+      "chunk": "AWS:93",
+      "gold": false,
+      "cosine": 0.597,
+      "from": [
+       "rate-based rule",
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "rate-based rule --uses--> ja3 | A rate-based rule with JA3 or JA4 as an aggregation key to monitor request based on client TLS fingerprints.",
+       "rate-based rule --uses--> ja4 | A rate-based rule with JA3 or JA4 as an aggregation key to monitor request based on client TLS fingerprints.",
+       "rate-based rule --evaluates--> client tls fingerprints | A rate-based rule with JA3 or JA4 as an aggregation key to monitor request based on client TLS fingerprints.",
+       "rate-based rule --protects--> uris | One or more rate-based rules to protect specific URIs-such as those that are unable to be cached-at more restrictive rates than the blanket rate-based rule.",
+       "rate-based rule --uses--> scope-down statement | For instance, you can choose a blanket rate-based rule (no scope-down statement) with a limit of 500 requests within a 5-minute period, and then create one or more of the following rate-based rules with lower limits than 500 (as low as 10 requests in a 10-minute period) using scope-down statements:",
+       "scope-down statement --protects--> web pages | Protect your web pages with a scope-down statement such as if NOT uri_path contains '.' so that requests for resources without a file extension are further protected."
+      ]
+     }
+    ],
+    "G2-W": [
+     {
+      "chunk": "AWS:93",
+      "gold": false,
+      "cosine": 0.597,
+      "from": [
+       "rate-based rule",
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "rate-based rule --uses--> ja3 | A rate-based rule with JA3 or JA4 as an aggregation key to monitor request based on client TLS fingerprints.",
+       "rate-based rule --uses--> ja4 | A rate-based rule with JA3 or JA4 as an aggregation key to monitor request based on client TLS fingerprints.",
+       "rate-based rule --evaluates--> client tls fingerprints | A rate-based rule with JA3 or JA4 as an aggregation key to monitor request based on client TLS fingerprints.",
+       "rate-based rule --protects--> uris | One or more rate-based rules to protect specific URIs-such as those that are unable to be cached-at more restrictive rates than the blanket rate-based rule.",
+       "rate-based rule --uses--> scope-down statement | For instance, you can choose a blanket rate-based rule (no scope-down statement) with a limit of 500 requests within a 5-minute period, and then create one or more of the following rate-based rules with lower limits than 500 (as low as 10 requests in a 10-minute period) using scope-down statements:",
+       "scope-down statement --protects--> web pages | Protect your web pages with a scope-down statement such as if NOT uri_path contains '.' so that requests for resources without a file extension are further protected."
+      ]
+     },
+     {
+      "chunk": "AWS:94",
+      "gold": false,
+      "cosine": 0.561,
+      "from": [
+       "rate-based rule",
+       "waf"
+      ],
+      "hops": 2,
+      "quotes": [
+       "scope-down statement --protects--> dynamic endpoints | Protect dynamic endpoints with a scope-down statement such as if method exactly matches 'post' (convert lowercase).",
+       "cloudfront --uses--> ja3 | Rate-based rules with JA3 and JA4 headers are supported in CloudFront and ALB.",
+       "cloudfront --uses--> ja4 | Rate-based rules with JA3 and JA4 headers are supported in CloudFront and ALB.",
+       "alb --uses--> ja3 | Rate-based rules with JA3 and JA4 headers are supported in CloudFront and ALB.",
+       "alb --uses--> ja4 | Rate-based rules with JA3 and JA4 headers are supported in CloudFront and ALB."
+      ]
+     }
+    ]
+   },
+   "latency_ms": {
+    "G1": 1.5098750009201467,
+    "G2-U": 1.5177079985733144,
+    "G2-H": 1.3734170024690684,
+    "G2-W": 1.2567500016302802
+   },
+   "candidates": {
+    "G1": 21,
+    "G2-U": 55,
+    "G2-H": 33,
+    "G2-W": 55
+   }
+  },
+  {
+   "id": "Q07",
+   "category": "plain",
+   "kind": null,
+   "needs_graph": false,
+   "gold": [
+    19,
+    15
+   ],
+   "gold_labels": [
+    "RFC:19 (A0 rank 2)",
+    "RFC:15 (A0 rank 8)"
+   ],
+   "linking": [
+    [
+     "SET Recipient",
+     "missed",
+     "set recipient"
+    ],
+    [
+     "Security Event Token",
+     "missed",
+     "security event token"
+    ]
+   ],
+   "seeds": [
+    "token"
+   ],
+   "contexts": {
+    "A0": [
+     18,
+     19,
+     33,
+     29,
+     32
+    ],
+    "A0@7": [
+     18,
+     19,
+     33,
+     29,
+     32,
+     5,
+     17
+    ],
+    "G1": [
+     18,
+     19,
+     33,
+     29,
+     32,
+     150
+    ],
+    "G1*": [
+     18,
+     19,
+     33,
+     29,
+     32
+    ],
+    "G2-U": [
+     18,
+     19,
+     33,
+     29,
+     32,
+     150,
+     25
+    ],
+    "G2-U*": [
+     18,
+     19,
+     33,
+     29,
+     32
+    ],
+    "G2-H": [
+     18,
+     19,
+     33,
+     29,
+     32,
+     150,
+     25
+    ],
+    "G2-H*": [
+     18,
+     19,
+     33,
+     29,
+     32
+    ],
+    "G2-W": [
+     18,
+     19,
+     33,
+     29,
+     32,
+     150,
+     25
+    ],
+    "G2-W*": [
+     18,
+     19,
+     33,
+     29,
+     32
+    ]
+   },
+   "added": {
+    "G1": [
+     {
+      "chunk": "AWS:105",
+      "gold": false,
+      "cosine": 0.32,
+      "from": [
+       "token"
+      ],
+      "hops": 1,
+      "quotes": [
+       "client --uses--> token | After the token is acquired, it will be presented by the client on subsequent requests for the same domain until the TTL, in the form of cookie expiration, expires."
+      ]
+     }
+    ],
+    "G2-U": [
+     {
+      "chunk": "AWS:105",
+      "gold": false,
+      "cosine": 0.32,
+      "from": [
+       "token"
+      ],
+      "hops": 1,
+      "quotes": [
+       "client --uses--> token | After the token is acquired, it will be presented by the client on subsequent requests for the same domain until the TTL, in the form of cookie expiration, expires."
+      ]
+     },
+     {
+      "chunk": "RFC:25",
+      "gold": false,
+      "cosine": 0.377,
+      "from": [
+       "token"
+      ],
+      "hops": 2,
+      "quotes": [
+       "client --evaluates--> tls/ssl server certificate | The client perform a TLS/SSL server certificate check using DNS-ID and/or DANE .",
+       "client --uses--> dns-id | The client perform a TLS/SSL server certificate check using DNS-ID and/or DANE .",
+       "client --uses--> dns-based authentication of named entities | The client perform a TLS/SSL server certificate check using DNS-ID and/or DANE ."
+      ]
+     }
+    ],
+    "G2-H": [
+     {
+      "chunk": "AWS:105",
+      "gold": false,
+      "cosine": 0.32,
+      "from": [
+       "token"
+      ],
+      "hops": 1,
+      "quotes": [
+       "client --uses--> token | After the token is acquired, it will be presented by the client on subsequent requests for the same domain until the TTL, in the form of cookie expiration, expires."
+      ]
+     },
+     {
+      "chunk": "RFC:25",
+      "gold": false,
+      "cosine": 0.377,
+      "from": [
+       "token"
+      ],
+      "hops": 2,
+      "quotes": [
+       "client --evaluates--> tls/ssl server certificate | The client perform a TLS/SSL server certificate check using DNS-ID and/or DANE .",
+       "client --uses--> dns-id | The client perform a TLS/SSL server certificate check using DNS-ID and/or DANE .",
+       "client --uses--> dns-based authentication of named entities | The client perform a TLS/SSL server certificate check using DNS-ID and/or DANE ."
+      ]
+     }
+    ],
+    "G2-W": [
+     {
+      "chunk": "AWS:105",
+      "gold": false,
+      "cosine": 0.32,
+      "from": [
+       "token"
+      ],
+      "hops": 1,
+      "quotes": [
+       "client --uses--> token | After the token is acquired, it will be presented by the client on subsequent requests for the same domain until the TTL, in the form of cookie expiration, expires."
+      ]
+     },
+     {
+      "chunk": "RFC:25",
+      "gold": false,
+      "cosine": 0.377,
+      "from": [
+       "token"
+      ],
+      "hops": 2,
+      "quotes": [
+       "client --evaluates--> tls/ssl server certificate | The client perform a TLS/SSL server certificate check using DNS-ID and/or DANE .",
+       "client --uses--> dns-id | The client perform a TLS/SSL server certificate check using DNS-ID and/or DANE .",
+       "client --uses--> dns-based authentication of named entities | The client perform a TLS/SSL server certificate check using DNS-ID and/or DANE ."
+      ]
+     }
+    ]
+   },
+   "latency_ms": {
+    "G1": 1.6280000018014107,
+    "G2-U": 1.7818329979490954,
+    "G2-H": 1.3406250000116415,
+    "G2-W": 1.3600839993159752
+   },
+   "candidates": {
+    "G1": 1,
+    "G2-U": 2,
+    "G2-H": 2,
+    "G2-W": 2
+   }
+  },
+  {
+   "id": "Q15",
+   "category": "plain",
+   "kind": null,
+   "needs_graph": false,
+   "gold": [
+    109
+   ],
+   "gold_labels": [
+    "AWS:64 (A0 rank 1)"
+   ],
+   "linking": [],
+   "seeds": [
+    "aws"
+   ],
+   "contexts": {
+    "A0": [
+     109,
+     72,
+     108,
+     100,
+     74
+    ],
+    "A0@7": [
+     109,
+     72,
+     108,
+     100,
+     74,
+     203,
+     76
+    ],
+    "G1": [
+     109,
+     72,
+     108,
+     100,
+     74,
+     46,
+     48
+    ],
+    "G1*": [
+     109,
+     72,
+     108,
+     100,
+     74
+    ],
+    "G2-U": [
+     109,
+     72,
+     108,
+     100,
+     74,
+     46,
+     48
+    ],
+    "G2-U*": [
+     109,
+     72,
+     108,
+     100,
+     74
+    ],
+    "G2-H": [
+     109,
+     72,
+     108,
+     100,
+     74,
+     46,
+     48
+    ],
+    "G2-H*": [
+     109,
+     72,
+     108,
+     100,
+     74
+    ],
+    "G2-W": [
+     109,
+     72,
+     108,
+     100,
+     74,
+     167,
+     46
+    ],
+    "G2-W*": [
+     109,
+     72,
+     108,
+     100,
+     74
+    ]
+   },
+   "added": {
+    "G1": [
+     {
+      "chunk": "AWS:1",
+      "gold": false,
+      "cosine": 0.435,
+      "from": [
+       "aws"
+      ],
+      "hops": 1,
+      "quotes": [
+       "aws --produces--> prescriptive ddos guidance | In this whitepaper, AWS provides you with prescriptive DDoS guidance to improve the resiliency of applications running on AWS."
+      ]
+     },
+     {
+      "chunk": "AWS:3",
+      "gold": false,
+      "cosine": 0.403,
+      "from": [
+       "aws"
+      ],
+      "hops": 1,
+      "quotes": [
+       "aws --mitigates--> ddos event | AWS recommends implementing these best practices proactively, as they significantly reduce the likelihood of business impact from DDoS events."
+      ]
+     }
+    ],
+    "G2-U": [
+     {
+      "chunk": "AWS:1",
+      "gold": false,
+      "cosine": 0.435,
+      "from": [
+       "aws"
+      ],
+      "hops": 1,
+      "quotes": [
+       "aws --produces--> prescriptive ddos guidance | In this whitepaper, AWS provides you with prescriptive DDoS guidance to improve the resiliency of applications running on AWS."
+      ]
+     },
+     {
+      "chunk": "AWS:3",
+      "gold": false,
+      "cosine": 0.403,
+      "from": [
+       "aws"
+      ],
+      "hops": 1,
+      "quotes": [
+       "aws --mitigates--> ddos event | AWS recommends implementing these best practices proactively, as they significantly reduce the likelihood of business impact from DDoS events."
+      ]
+     }
+    ],
+    "G2-H": [
+     {
+      "chunk": "AWS:1",
+      "gold": false,
+      "cosine": 0.435,
+      "from": [
+       "aws"
+      ],
+      "hops": 1,
+      "quotes": [
+       "aws --produces--> prescriptive ddos guidance | In this whitepaper, AWS provides you with prescriptive DDoS guidance to improve the resiliency of applications running on AWS."
+      ]
+     },
+     {
+      "chunk": "AWS:3",
+      "gold": false,
+      "cosine": 0.403,
+      "from": [
+       "aws"
+      ],
+      "hops": 1,
+      "quotes": [
+       "aws --mitigates--> ddos event | AWS recommends implementing these best practices proactively, as they significantly reduce the likelihood of business impact from DDoS events."
+      ]
+     }
+    ],
+    "G2-W": [
+     {
+      "chunk": "AWS:122",
+      "gold": false,
+      "cosine": 0.394,
+      "from": [
+       "aws"
+      ],
+      "hops": 1,
+      "quotes": [
+       "aws --uses--> cloudfront vpc origins | AWS provides several approaches to implement this security control, with CloudFront VPC origins being the newest and recommended solution.",
+       "cloudfront vpc origins --protects--> private subnets | CloudFront VPC origins enables you to keep your applications in private subnets without internet access while restricting access to only your CloudFront distributions.",
+       "cloudfront vpc origins --protects--> cloudfront distributions | CloudFront VPC origins enables you to keep your applications in private subnets without internet access while restricting access to only your CloudFront distributions."
+      ]
+     },
+     {
+      "chunk": "AWS:1",
+      "gold": false,
+      "cosine": 0.435,
+      "from": [
+       "aws"
+      ],
+      "hops": 1,
+      "quotes": [
+       "aws --produces--> prescriptive ddos guidance | In this whitepaper, AWS provides you with prescriptive DDoS guidance to improve the resiliency of applications running on AWS."
+      ]
+     }
+    ]
+   },
+   "latency_ms": {
+    "G1": 1.2903749993711244,
+    "G2-U": 1.379124998493353,
+    "G2-H": 1.2489999971876387,
+    "G2-W": 1.1570000024221372
+   },
+   "candidates": {
+    "G1": 6,
+    "G2-U": 21,
+    "G2-H": 12,
+    "G2-W": 21
+   }
+  },
+  {
+   "id": "Q19",
+   "category": "relationship",
+   "kind": null,
+   "needs_graph": false,
+   "gold": [
+    104
+   ],
+   "gold_labels": [
+    "AWS:59 (A0 rank 1)"
+   ],
+   "linking": [
+    [
+     "origin access control",
+     "linked",
+     "origin access control"
+    ],
+    [
+     "origin access identity",
+     "linked",
+     "origin access identity"
+    ],
+    [
+     "Amazon S3",
+     "linked",
+     "s3"
+    ]
+   ],
+   "seeds": [
+    "s3",
+    "origin",
+    "origin access control",
+    "origin access identity"
+   ],
+   "contexts": {
+    "A0": [
+     104,
+     168,
+     103,
+     102,
+     167
+    ],
+    "A0@7": [
+     104,
+     168,
+     103,
+     102,
+     167,
+     73,
+     169
+    ],
+    "G1": [
+     104,
+     168,
+     103,
+     102,
+     167,
+     73,
+     126
+    ],
+    "G1*": [
+     104,
+     168,
+     103,
+     102,
+     167
+    ],
+    "G2-U": [
+     104,
+     168,
+     103,
+     102,
+     167,
+     73,
+     129
+    ],
+    "G2-U*": [
+     104,
+     168,
+     103,
+     102,
+     167
+    ],
+    "G2-H": [
+     104,
+     168,
+     103,
+     102,
+     167,
+     73,
+     126
+    ],
+    "G2-H*": [
+     104,
+     168,
+     103,
+     102,
+     167
+    ],
+    "G2-W": [
+     104,
+     168,
+     103,
+     102,
+     167,
+     73,
+     129
+    ],
+    "G2-W*": [
+     104,
+     168,
+     103,
+     102,
+     167
+    ]
+   },
+   "added": {
+    "G1": [
+     {
+      "chunk": "AWS:28",
+      "gold": false,
+      "cosine": 0.431,
+      "from": [
+       "s3"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudfront --connects_to--> s3 | CloudFront origin fetches are free from any AWS origin such as Amazon Simple Storage Service (Amazon S3), Amazon EC2, or Elastic Load Balancers, including origins in private subnets through"
+      ]
+     },
+     {
+      "chunk": "AWS:81",
+      "gold": false,
+      "cosine": 0.414,
+      "from": [
+       "origin"
+      ],
+      "hops": 1,
+      "quotes": [
+       "headers --connects_to--> origin | If you forward all headers to the origin, caching is disabled regardless of other cache settings."
+      ]
+     }
+    ],
+    "G2-U": [
+     {
+      "chunk": "AWS:28",
+      "gold": false,
+      "cosine": 0.431,
+      "from": [
+       "origin",
+       "origin access control",
+       "origin access identity",
+       "s3"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudfront --uses--> waf | Application layer defense using CloudFront with AWS WAF, without requiring changes to your existing origin architecture-whether hosted in an AWS Region or on-premises.",
+       "cloudfront --connects_to--> simple storage service | CloudFront origin fetches are free from any AWS origin such as Amazon Simple Storage Service (Amazon S3), Amazon EC2, or Elastic Load Balancers, including origins in private subnets through",
+       "cloudfront --connects_to--> s3 | CloudFront origin fetches are free from any AWS origin such as Amazon Simple Storage Service (Amazon S3), Amazon EC2, or Elastic Load Balancers, including origins in private subnets through",
+       "cloudfront --connects_to--> ec2 | CloudFront origin fetches are free from any AWS origin such as Amazon Simple Storage Service (Amazon S3), Amazon EC2, or Elastic Load Balancers, including origins in private subnets through",
+       "cloudfront --connects_to--> elastic load balancers | CloudFront origin fetches are free from any AWS origin such as Amazon Simple Storage Service (Amazon S3), Amazon EC2, or Elastic Load Balancers, including origins in private subnets through"
+      ]
+     },
+     {
+      "chunk": "AWS:84",
+      "gold": false,
+      "cosine": 0.408,
+      "from": [
+       "origin",
+       "s3"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudfront --receives--> 4xx and 5xx status codes | CloudFront caches some 4xx and 5xx status codes returned by your origin for a default duration of 10 seconds.",
+       "cloudfront --uses--> origin | CloudFront caches some 4xx and 5xx status codes returned by your origin for a default duration of 10 seconds.",
+       "cloudfront --connects_to--> s3 bucket | Storing error pages in an alternate origin, such as an Amazon S3 bucket, so that CloudFront can access them, even when your other origins are returning errors."
+      ]
+     }
+    ],
+    "G2-H": [
+     {
+      "chunk": "AWS:28",
+      "gold": false,
+      "cosine": 0.431,
+      "from": [
+       "origin access control",
+       "origin access identity",
+       "s3"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudfront --connects_to--> s3 | CloudFront origin fetches are free from any AWS origin such as Amazon Simple Storage Service (Amazon S3), Amazon EC2, or Elastic Load Balancers, including origins in private subnets through"
+      ]
+     },
+     {
+      "chunk": "AWS:81",
+      "gold": false,
+      "cosine": 0.414,
+      "from": [
+       "origin"
+      ],
+      "hops": 1,
+      "quotes": [
+       "headers --connects_to--> origin | If you forward all headers to the origin, caching is disabled regardless of other cache settings."
+      ]
+     }
+    ],
+    "G2-W": [
+     {
+      "chunk": "AWS:28",
+      "gold": false,
+      "cosine": 0.431,
+      "from": [
+       "origin",
+       "origin access control",
+       "origin access identity",
+       "s3"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudfront --uses--> waf | Application layer defense using CloudFront with AWS WAF, without requiring changes to your existing origin architecture-whether hosted in an AWS Region or on-premises.",
+       "cloudfront --connects_to--> simple storage service | CloudFront origin fetches are free from any AWS origin such as Amazon Simple Storage Service (Amazon S3), Amazon EC2, or Elastic Load Balancers, including origins in private subnets through",
+       "cloudfront --connects_to--> s3 | CloudFront origin fetches are free from any AWS origin such as Amazon Simple Storage Service (Amazon S3), Amazon EC2, or Elastic Load Balancers, including origins in private subnets through",
+       "cloudfront --connects_to--> ec2 | CloudFront origin fetches are free from any AWS origin such as Amazon Simple Storage Service (Amazon S3), Amazon EC2, or Elastic Load Balancers, including origins in private subnets through",
+       "cloudfront --connects_to--> elastic load balancers | CloudFront origin fetches are free from any AWS origin such as Amazon Simple Storage Service (Amazon S3), Amazon EC2, or Elastic Load Balancers, including origins in private subnets through"
+      ]
+     },
+     {
+      "chunk": "AWS:84",
+      "gold": false,
+      "cosine": 0.408,
+      "from": [
+       "origin",
+       "s3"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudfront --receives--> 4xx and 5xx status codes | CloudFront caches some 4xx and 5xx status codes returned by your origin for a default duration of 10 seconds.",
+       "cloudfront --uses--> origin | CloudFront caches some 4xx and 5xx status codes returned by your origin for a default duration of 10 seconds.",
+       "cloudfront --connects_to--> s3 bucket | Storing error pages in an alternate origin, such as an Amazon S3 bucket, so that CloudFront can access them, even when your other origins are returning errors."
+      ]
+     }
+    ]
+   },
+   "latency_ms": {
+    "G1": 1.5469169993593823,
+    "G2-U": 1.54883399954997,
+    "G2-H": 1.3373330002650619,
+    "G2-W": 1.2861659997724928
+   },
+   "candidates": {
+    "G1": 7,
+    "G2-U": 31,
+    "G2-H": 8,
+    "G2-W": 31
+   }
+  },
+  {
+   "id": "Q28",
+   "category": "relationship",
+   "kind": null,
+   "needs_graph": false,
+   "gold": [
+    12
+   ],
+   "gold_labels": [
+    "RFC:12 (A0 rank 1)"
+   ],
+   "linking": [
+    [
+     "Security Event Token",
+     "linked",
+     "security event token"
+    ],
+    [
+     "SET Transmission Request",
+     "linked",
+     "set transmission request"
+    ]
+   ],
+   "seeds": [
+    "set transmission request",
+    "security event token"
+   ],
+   "contexts": {
+    "A0": [
+     12,
+     6,
+     28,
+     15,
+     21
+    ],
+    "A0@7": [
+     12,
+     6,
+     28,
+     15,
+     21,
+     14,
+     11
+    ],
+    "G1": [
+     12,
+     6,
+     28,
+     15,
+     21,
+     8,
+     11
+    ],
+    "G1*": [
+     12,
+     6,
+     28,
+     15,
+     21
+    ],
+    "G2-U": [
+     12,
+     6,
+     28,
+     15,
+     21,
+     8,
+     11
+    ],
+    "G2-U*": [
+     12,
+     6,
+     28,
+     15,
+     21
+    ],
+    "G2-H": [
+     12,
+     6,
+     28,
+     15,
+     21,
+     8,
+     11
+    ],
+    "G2-H*": [
+     12,
+     6,
+     28,
+     15,
+     21
+    ],
+    "G2-W": [
+     12,
+     6,
+     28,
+     15,
+     21,
+     9,
+     8
+    ],
+    "G2-W*": [
+     12,
+     6,
+     28,
+     15,
+     21
+    ]
+   },
+   "added": {
+    "G1": [
+     {
+      "chunk": "RFC:8",
+      "gold": false,
+      "cosine": 0.628,
+      "from": [
+       "security event token"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set recipient --receives--> security event token | The SET Recipient may accept or reject (i.e., return an error response such as access_denied) a SET at its own discretion.",
+       "set transmitter --produces--> security event token | SET Transmitters transmit SETs issued by another entity."
+      ]
+     },
+     {
+      "chunk": "RFC:11",
+      "gold": false,
+      "cosine": 0.626,
+      "from": [
+       "security event token"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set transmitter --produces--> security event token | To transmit a SET to a SET Recipient, the SET Transmitter makes an HTTP POST request to a TLS-enabled HTTP endpoint provided by the SET Recipient."
+      ]
+     }
+    ],
+    "G2-U": [
+     {
+      "chunk": "RFC:8",
+      "gold": false,
+      "cosine": 0.628,
+      "from": [
+       "security event token",
+       "set transmission request"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set recipient --receives--> security event token | The SET Recipient may accept or reject (i.e., return an error response such as access_denied) a SET at its own discretion.",
+       "set transmitter --produces--> security event token | SET Transmitters transmit SETs issued by another entity.",
+       "set recipient --produces--> error response | The SET Recipient may accept or reject (i.e., return an error response such as access_denied) a SET at its own discretion."
+      ]
+     },
+     {
+      "chunk": "RFC:11",
+      "gold": false,
+      "cosine": 0.626,
+      "from": [
+       "security event token",
+       "set transmission request"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set transmitter --produces--> security event token | To transmit a SET to a SET Recipient, the SET Transmitter makes an HTTP POST request to a TLS-enabled HTTP endpoint provided by the SET Recipient.",
+       "set transmitter --connects_to--> tls-enabled http endpoint | To transmit a SET to a SET Recipient, the SET Transmitter makes an HTTP POST request to a TLS-enabled HTTP endpoint provided by the SET Recipient."
+      ]
+     }
+    ],
+    "G2-H": [
+     {
+      "chunk": "RFC:8",
+      "gold": false,
+      "cosine": 0.628,
+      "from": [
+       "security event token",
+       "set transmission request"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set recipient --receives--> security event token | The SET Recipient may accept or reject (i.e., return an error response such as access_denied) a SET at its own discretion.",
+       "set transmitter --produces--> security event token | SET Transmitters transmit SETs issued by another entity."
+      ]
+     },
+     {
+      "chunk": "RFC:11",
+      "gold": false,
+      "cosine": 0.626,
+      "from": [
+       "security event token",
+       "set transmission request"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set transmitter --produces--> security event token | To transmit a SET to a SET Recipient, the SET Transmitter makes an HTTP POST request to a TLS-enabled HTTP endpoint provided by the SET Recipient.",
+       "set transmitter --connects_to--> tls-enabled http endpoint | To transmit a SET to a SET Recipient, the SET Transmitter makes an HTTP POST request to a TLS-enabled HTTP endpoint provided by the SET Recipient."
+      ]
+     }
+    ],
+    "G2-W": [
+     {
+      "chunk": "RFC:9",
+      "gold": false,
+      "cosine": 0.61,
+      "from": [
+       "security event token",
+       "set transmission request"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set transmitter --produces--> security event token | The SET Transmitter transmit the same SET to the SET Recipient multiple times, regardless of the response from the SET Recipient.",
+       "set recipient --evaluates--> security event token | The SET Recipient perform further processing of the SET beyond the required validation steps prior to sending this response.",
+       "set transmitter --connects_to--> set recipient | The SET Transmitter transmit the same SET to the SET Recipient multiple times, regardless of the response from the SET Recipient."
+      ]
+     },
+     {
+      "chunk": "RFC:8",
+      "gold": false,
+      "cosine": 0.628,
+      "from": [
+       "security event token",
+       "set transmission request"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set recipient --receives--> security event token | The SET Recipient may accept or reject (i.e., return an error response such as access_denied) a SET at its own discretion.",
+       "set transmitter --produces--> security event token | SET Transmitters transmit SETs issued by another entity.",
+       "set recipient --produces--> error response | The SET Recipient may accept or reject (i.e., return an error response such as access_denied) a SET at its own discretion."
+      ]
+     }
+    ]
+   },
+   "latency_ms": {
+    "G1": 2.139958000043407,
+    "G2-U": 1.8883340017055161,
+    "G2-H": 2.214541000284953,
+    "G2-W": 1.99350000184495
+   },
+   "candidates": {
+    "G1": 13,
+    "G2-U": 27,
+    "G2-H": 23,
+    "G2-W": 27
+   }
+  },
+  {
+   "id": "Q31",
+   "category": "relationship",
+   "kind": null,
+   "needs_graph": false,
+   "gold": [
+    196
+   ],
+   "gold_labels": [
+    "AWS:151 (A0 rank 1)"
+   ],
+   "linking": [
+    [
+     "AWS Firewall Manager",
+     "linked",
+     "firewall manager"
+    ]
+   ],
+   "seeds": [
+    "firewall manager"
+   ],
+   "contexts": {
+    "A0": [
+     196,
+     161,
+     197,
+     160,
+     200
+    ],
+    "A0@7": [
+     196,
+     161,
+     197,
+     160,
+     200,
+     153,
+     82
+    ],
+    "G1": [
+     196,
+     161,
+     197,
+     160,
+     200,
+     211,
+     198
+    ],
+    "G1*": [
+     196,
+     161,
+     197,
+     160,
+     200
+    ],
+    "G2-U": [
+     196,
+     161,
+     197,
+     160,
+     200,
+     211,
+     198
+    ],
+    "G2-U*": [
+     196,
+     161,
+     197,
+     160,
+     200
+    ],
+    "G2-H": [
+     196,
+     161,
+     197,
+     160,
+     200,
+     211,
+     198
+    ],
+    "G2-H*": [
+     196,
+     161,
+     197,
+     160,
+     200
+    ],
+    "G2-W": [
+     196,
+     161,
+     197,
+     160,
+     200,
+     211,
+     198
+    ],
+    "G2-W*": [
+     196,
+     161,
+     197,
+     160,
+     200
+    ]
+   },
+   "added": {
+    "G1": [
+     {
+      "chunk": "AWS:166",
+      "gold": false,
+      "cosine": 0.511,
+      "from": [
+       "firewall manager"
+      ],
+      "hops": 1,
+      "quotes": [
+       "firewall manager --evaluates--> ddos event | AWS Firewall Manager for centralized monitoring for DDoS events and auto-remediate non-compliant resources."
+      ]
+     },
+     {
+      "chunk": "AWS:153",
+      "gold": false,
+      "cosine": 0.458,
+      "from": [
+       "firewall manager"
+      ],
+      "hops": 1,
+      "quotes": [
+       "security hub cspm --connects_to--> firewall manager | Security Hub CSPM automatically integrates with Firewall Manager, allowing Shield Advanced customers to view security findings in a single dashboard, alongside other high priority security alerts and compliance statuses."
+      ]
+     }
+    ],
+    "G2-U": [
+     {
+      "chunk": "AWS:166",
+      "gold": false,
+      "cosine": 0.511,
+      "from": [
+       "firewall manager"
+      ],
+      "hops": 1,
+      "quotes": [
+       "firewall manager --evaluates--> ddos event | AWS Firewall Manager for centralized monitoring for DDoS events and auto-remediate non-compliant resources."
+      ]
+     },
+     {
+      "chunk": "AWS:153",
+      "gold": false,
+      "cosine": 0.458,
+      "from": [
+       "firewall manager"
+      ],
+      "hops": 1,
+      "quotes": [
+       "security hub cspm --connects_to--> firewall manager | Security Hub CSPM automatically integrates with Firewall Manager, allowing Shield Advanced customers to view security findings in a single dashboard, alongside other high priority security alerts and compliance statuses."
+      ]
+     }
+    ],
+    "G2-H": [
+     {
+      "chunk": "AWS:166",
+      "gold": false,
+      "cosine": 0.511,
+      "from": [
+       "firewall manager"
+      ],
+      "hops": 1,
+      "quotes": [
+       "firewall manager --evaluates--> ddos event | AWS Firewall Manager for centralized monitoring for DDoS events and auto-remediate non-compliant resources."
+      ]
+     },
+     {
+      "chunk": "AWS:153",
+      "gold": false,
+      "cosine": 0.458,
+      "from": [
+       "firewall manager"
+      ],
+      "hops": 1,
+      "quotes": [
+       "security hub cspm --connects_to--> firewall manager | Security Hub CSPM automatically integrates with Firewall Manager, allowing Shield Advanced customers to view security findings in a single dashboard, alongside other high priority security alerts and compliance statuses."
+      ]
+     }
+    ],
+    "G2-W": [
+     {
+      "chunk": "AWS:166",
+      "gold": false,
+      "cosine": 0.511,
+      "from": [
+       "firewall manager"
+      ],
+      "hops": 1,
+      "quotes": [
+       "firewall manager --evaluates--> ddos event | AWS Firewall Manager for centralized monitoring for DDoS events and auto-remediate non-compliant resources."
+      ]
+     },
+     {
+      "chunk": "AWS:153",
+      "gold": false,
+      "cosine": 0.458,
+      "from": [
+       "firewall manager"
+      ],
+      "hops": 1,
+      "quotes": [
+       "security hub cspm --connects_to--> firewall manager | Security Hub CSPM automatically integrates with Firewall Manager, allowing Shield Advanced customers to view security findings in a single dashboard, alongside other high priority security alerts and compliance statuses."
+      ]
+     }
+    ]
+   },
+   "latency_ms": {
+    "G1": 2.0054580018040724,
+    "G2-U": 1.918582998769125,
+    "G2-H": 1.575416998093715,
+    "G2-W": 2.062707997538382
+   },
+   "candidates": {
+    "G1": 5,
+    "G2-U": 39,
+    "G2-H": 16,
+    "G2-W": 39
+   }
+  },
+  {
+   "id": "Q32",
+   "category": "multi-hop",
+   "kind": null,
+   "needs_graph": true,
+   "gold": [
+    199,
+    198
+   ],
+   "gold_labels": [
+    "AWS:154 (A0 rank 7)",
+    "AWS:153 (A0 rank 14)"
+   ],
+   "linking": [
+    [
+     "Shield Advanced finding",
+     "linked",
+     "shield advanced finding"
+    ],
+    [
+     "incident response",
+     "not in graph",
+     "longer names containing its words: ['ddos attack incident response strategy (rejected: no edge to an admitted entity (R1))', 'security incident response guide (rejected: not admitted)', 'security incident response process (rejected: neither named nor recurring (R3))']"
+    ]
+   ],
+   "seeds": [
+    "shield advanced finding",
+    "response",
+    "aws"
+   ],
+   "contexts": {
+    "A0": [
+     203,
+     158,
+     187,
+     159,
+     83
+    ],
+    "A0@7": [
+     203,
+     158,
+     187,
+     159,
+     83,
+     80,
+     199
+    ],
+    "G1": [
+     203,
+     158,
+     187,
+     159,
+     83,
+     199,
+     201
+    ],
+    "G1*": [
+     203,
+     158,
+     187,
+     159,
+     83,
+     199,
+     201
+    ],
+    "G2-U": [
+     203,
+     158,
+     187,
+     159,
+     83,
+     81,
+     176
+    ],
+    "G2-U*": [
+     203,
+     158,
+     187,
+     159,
+     83,
+     81,
+     176
+    ],
+    "G2-H": [
+     203,
+     158,
+     187,
+     159,
+     83,
+     199,
+     201
+    ],
+    "G2-H*": [
+     203,
+     158,
+     187,
+     159,
+     83,
+     199,
+     201
+    ],
+    "G2-W": [
+     203,
+     158,
+     187,
+     159,
+     83,
+     81,
+     80
+    ],
+    "G2-W*": [
+     203,
+     158,
+     187,
+     159,
+     83,
+     81,
+     80
+    ]
+   },
+   "added": {
+    "G1": [
+     {
+      "chunk": "AWS:154",
+      "gold": true,
+      "cosine": 0.639,
+      "from": [
+       "shield advanced finding"
+      ],
+      "hops": 1,
+      "quotes": [
+       "shield advanced --produces--> shield advanced finding | After the resource is protected, Shield Advanced begins establishing a traffic baseline for it, and any subsequently detected anomalous traffic is surfaced as a Shield Advanced finding in Security Hub CSPM, alongside CloudWatch metrics and events.",
+       "security hub cspm --receives--> shield advanced finding | After the resource is protected, Shield Advanced begins establishing a traffic baseline for it, and any subsequently detected anomalous traffic is surfaced as a Shield Advanced finding in Security Hub CSPM, alongside CloudWatch metrics and events."
+      ]
+     },
+     {
+      "chunk": "AWS:156",
+      "gold": false,
+      "cosine": 0.498,
+      "from": [
+       "aws"
+      ],
+      "hops": 1,
+      "quotes": [
+       "aws --evaluates--> threat | If you experience an attack, you can also benefit from support from AWS in assessing the threat and reviewing the architecture of your application, or you might want to request other assistance."
+      ]
+     }
+    ],
+    "G2-U": [
+     {
+      "chunk": "AWS:36",
+      "gold": false,
+      "cosine": 0.621,
+      "from": [
+       "aws",
+       "shield advanced finding"
+      ],
+      "hops": 2,
+      "quotes": [
+       "shield advanced --mitigates--> ddos attack | Automatic application layer DDoS mitigation where Shield Advanced responds to detected DDoS attacks by creating, evaluating, and deploying custom AWS WAF rules",
+       "shield advanced --creates--> waf rules | Automatic application layer DDoS mitigation where Shield Advanced responds to detected DDoS attacks by creating, evaluating, and deploying custom AWS WAF rules",
+       "shield advanced --evaluates--> waf rules | Automatic application layer DDoS mitigation where Shield Advanced responds to detected DDoS attacks by creating, evaluating, and deploying custom AWS WAF rules",
+       "shield advanced --uses--> waf rules | Automatic application layer DDoS mitigation where Shield Advanced responds to detected DDoS attacks by creating, evaluating, and deploying custom AWS WAF rules",
+       "shield advanced --contains--> waf request coverage | Shield Advanced includes WAF request coverage at no additional cost (subject to usage thresholds)."
+      ]
+     },
+     {
+      "chunk": "AWS:131",
+      "gold": false,
+      "cosine": 0.578,
+      "from": [
+       "aws",
+       "shield advanced finding"
+      ],
+      "hops": 2,
+      "quotes": [
+       "shield advanced --produces--> cloudwatch metrics | If you're subscribed to AWS Shield Advanced, you have access to a number of CloudWatch metrics that can indicate that your application is being targeted.",
+       "alarms --receives--> ddos attack | For example, you can configure alarms to notify you when there's a DDoS attack in progress, so you can check your application's health and decide whether to engage AWS SRT."
+      ]
+     }
+    ],
+    "G2-H": [
+     {
+      "chunk": "AWS:154",
+      "gold": true,
+      "cosine": 0.639,
+      "from": [
+       "shield advanced finding"
+      ],
+      "hops": 1,
+      "quotes": [
+       "shield advanced --produces--> shield advanced finding | After the resource is protected, Shield Advanced begins establishing a traffic baseline for it, and any subsequently detected anomalous traffic is surfaced as a Shield Advanced finding in Security Hub CSPM, alongside CloudWatch metrics and events.",
+       "security hub cspm --receives--> shield advanced finding | After the resource is protected, Shield Advanced begins establishing a traffic baseline for it, and any subsequently detected anomalous traffic is surfaced as a Shield Advanced finding in Security Hub CSPM, alongside CloudWatch metrics and events."
+      ]
+     },
+     {
+      "chunk": "AWS:156",
+      "gold": false,
+      "cosine": 0.498,
+      "from": [
+       "aws"
+      ],
+      "hops": 1,
+      "quotes": [
+       "aws --evaluates--> threat | If you experience an attack, you can also benefit from support from AWS in assessing the threat and reviewing the architecture of your application, or you might want to request other assistance."
+      ]
+     }
+    ],
+    "G2-W": [
+     {
+      "chunk": "AWS:36",
+      "gold": false,
+      "cosine": 0.621,
+      "from": [
+       "aws",
+       "shield advanced finding"
+      ],
+      "hops": 2,
+      "quotes": [
+       "shield advanced --mitigates--> ddos attack | Automatic application layer DDoS mitigation where Shield Advanced responds to detected DDoS attacks by creating, evaluating, and deploying custom AWS WAF rules",
+       "shield advanced --creates--> waf rules | Automatic application layer DDoS mitigation where Shield Advanced responds to detected DDoS attacks by creating, evaluating, and deploying custom AWS WAF rules",
+       "shield advanced --evaluates--> waf rules | Automatic application layer DDoS mitigation where Shield Advanced responds to detected DDoS attacks by creating, evaluating, and deploying custom AWS WAF rules",
+       "shield advanced --uses--> waf rules | Automatic application layer DDoS mitigation where Shield Advanced responds to detected DDoS attacks by creating, evaluating, and deploying custom AWS WAF rules",
+       "shield advanced --contains--> waf request coverage | Shield Advanced includes WAF request coverage at no additional cost (subject to usage thresholds)."
+      ]
+     },
+     {
+      "chunk": "AWS:35",
+      "gold": false,
+      "cosine": 0.577,
+      "from": [
+       "aws",
+       "shield advanced finding"
+      ],
+      "hops": 2,
+      "quotes": [
+       "shield advanced --mitigates--> ddos attack | Another way to improve your readiness to respond to and mitigate DDoS attacks is by subscribing to AWS Shield Advanced.",
+       "shield response team --mitigates--> ddos attack | Access to 24x7 specialized support from the AWS Shield Response Team (AWS SRT) for assistance with mitigating DDoS attacks that impact application availability, including an optional proactive engagement feature."
+      ]
+     }
+    ]
+   },
+   "latency_ms": {
+    "G1": 1.9062499995925464,
+    "G2-U": 1.9448329985607415,
+    "G2-H": 1.9721659991773777,
+    "G2-W": 1.6787919994385447
+   },
+   "candidates": {
+    "G1": 9,
+    "G2-U": 45,
+    "G2-H": 17,
+    "G2-W": 45
+   }
+  },
+  {
+   "id": "Q33",
+   "category": "multi-hop",
+   "kind": null,
+   "needs_graph": false,
+   "gold": [
+    197,
+    198,
+    199
+   ],
+   "gold_labels": [
+    "AWS:152 (A0 rank 5)",
+    "AWS:153 (A0 rank 2)",
+    "AWS:154 (A0 rank 1)"
+   ],
+   "linking": [
+    [
+     "Shield Advanced finding",
+     "linked",
+     "shield advanced finding"
+    ]
+   ],
+   "seeds": [
+    "shield advanced finding"
+   ],
+   "contexts": {
+    "A0": [
+     199,
+     198,
+     200,
+     161,
+     197
+    ],
+    "A0@7": [
+     199,
+     198,
+     200,
+     161,
+     197,
+     175,
+     160
+    ],
+    "G1": [
+     199,
+     198,
+     200,
+     161,
+     197
+    ],
+    "G1*": [
+     199,
+     198,
+     200,
+     161,
+     197
+    ],
+    "G2-U": [
+     199,
+     198,
+     200,
+     161,
+     197,
+     81,
+     203
+    ],
+    "G2-U*": [
+     199,
+     198,
+     200,
+     161,
+     197
+    ],
+    "G2-H": [
+     199,
+     198,
+     200,
+     161,
+     197
+    ],
+    "G2-H*": [
+     199,
+     198,
+     200,
+     161,
+     197
+    ],
+    "G2-W": [
+     199,
+     198,
+     200,
+     161,
+     197,
+     81,
+     203
+    ],
+    "G2-W*": [
+     199,
+     198,
+     200,
+     161,
+     197
+    ]
+   },
+   "added": {
+    "G1": [],
+    "G2-U": [
+     {
+      "chunk": "AWS:36",
+      "gold": false,
+      "cosine": 0.441,
+      "from": [
+       "shield advanced finding"
+      ],
+      "hops": 2,
+      "quotes": [
+       "shield advanced --mitigates--> ddos attack | Automatic application layer DDoS mitigation where Shield Advanced responds to detected DDoS attacks by creating, evaluating, and deploying custom AWS WAF rules",
+       "shield advanced --creates--> waf rules | Automatic application layer DDoS mitigation where Shield Advanced responds to detected DDoS attacks by creating, evaluating, and deploying custom AWS WAF rules",
+       "shield advanced --evaluates--> waf rules | Automatic application layer DDoS mitigation where Shield Advanced responds to detected DDoS attacks by creating, evaluating, and deploying custom AWS WAF rules",
+       "shield advanced --uses--> waf rules | Automatic application layer DDoS mitigation where Shield Advanced responds to detected DDoS attacks by creating, evaluating, and deploying custom AWS WAF rules",
+       "shield advanced --contains--> waf request coverage | Shield Advanced includes WAF request coverage at no additional cost (subject to usage thresholds)."
+      ]
+     },
+     {
+      "chunk": "AWS:158",
+      "gold": false,
+      "cosine": 0.43,
+      "from": [
+       "shield advanced finding"
+      ],
+      "hops": 2,
+      "quotes": [
+       "shield advanced --related_to--> shield response team | If you're subscribed to AWS Shield Advanced and are also subscribed to either Business Support +, Enterprise Support, or Unified Operations, you can also escalate to AWS Shield Response Team (SRT) by creating an Support case under AWS Shield using the Support console (sign-in required), or the support API when a DDoS-related event affects your application's availability."
+      ]
+     }
+    ],
+    "G2-H": [],
+    "G2-W": [
+     {
+      "chunk": "AWS:36",
+      "gold": false,
+      "cosine": 0.441,
+      "from": [
+       "shield advanced finding"
+      ],
+      "hops": 2,
+      "quotes": [
+       "shield advanced --mitigates--> ddos attack | Automatic application layer DDoS mitigation where Shield Advanced responds to detected DDoS attacks by creating, evaluating, and deploying custom AWS WAF rules",
+       "shield advanced --creates--> waf rules | Automatic application layer DDoS mitigation where Shield Advanced responds to detected DDoS attacks by creating, evaluating, and deploying custom AWS WAF rules",
+       "shield advanced --evaluates--> waf rules | Automatic application layer DDoS mitigation where Shield Advanced responds to detected DDoS attacks by creating, evaluating, and deploying custom AWS WAF rules",
+       "shield advanced --uses--> waf rules | Automatic application layer DDoS mitigation where Shield Advanced responds to detected DDoS attacks by creating, evaluating, and deploying custom AWS WAF rules",
+       "shield advanced --contains--> waf request coverage | Shield Advanced includes WAF request coverage at no additional cost (subject to usage thresholds)."
+      ]
+     },
+     {
+      "chunk": "AWS:158",
+      "gold": false,
+      "cosine": 0.43,
+      "from": [
+       "shield advanced finding"
+      ],
+      "hops": 2,
+      "quotes": [
+       "shield advanced --related_to--> shield response team | If you're subscribed to AWS Shield Advanced and are also subscribed to either Business Support +, Enterprise Support, or Unified Operations, you can also escalate to AWS Shield Response Team (SRT) by creating an Support case under AWS Shield using the Support console (sign-in required), or the support API when a DDoS-related event affects your application's availability."
+      ]
+     }
+    ]
+   },
+   "latency_ms": {
+    "G1": 2.0934999993187375,
+    "G2-U": 2.0072080005775206,
+    "G2-H": 2.281083001435036,
+    "G2-W": 2.0094159990549088
+   },
+   "candidates": {
+    "G1": 1,
+    "G2-U": 11,
+    "G2-H": 3,
+    "G2-W": 11
+   }
+  },
+  {
+   "id": "Q34",
+   "category": "relationship",
+   "kind": null,
+   "needs_graph": false,
+   "gold": [
+    176
+   ],
+   "gold_labels": [
+    "AWS:131 (A0 rank 2)"
+   ],
+   "linking": [
+    [
+     "AWS Shield Advanced",
+     "linked",
+     "shield advanced"
+    ],
+    [
+     "CloudWatch metrics",
+     "missed",
+     "cloudwatch metrics"
+    ]
+   ],
+   "seeds": [
+    "shield advanced",
+    "cloudwatch"
+   ],
+   "contexts": {
+    "A0": [
+     178,
+     176,
+     199,
+     158,
+     203
+    ],
+    "A0@7": [
+     178,
+     176,
+     199,
+     158,
+     203,
+     185,
+     186
+    ],
+    "G1": [
+     178,
+     176,
+     199,
+     158,
+     203,
+     177,
+     185
+    ],
+    "G1*": [
+     178,
+     176,
+     199,
+     158,
+     203
+    ],
+    "G2-U": [
+     178,
+     176,
+     199,
+     158,
+     203,
+     177,
+     185
+    ],
+    "G2-U*": [
+     178,
+     176,
+     199,
+     158,
+     203
+    ],
+    "G2-H": [
+     178,
+     176,
+     199,
+     158,
+     203,
+     177,
+     185
+    ],
+    "G2-H*": [
+     178,
+     176,
+     199,
+     158,
+     203
+    ],
+    "G2-W": [
+     178,
+     176,
+     199,
+     158,
+     203,
+     177,
+     81
+    ],
+    "G2-W*": [
+     178,
+     176,
+     199,
+     158,
+     203
+    ]
+   },
+   "added": {
+    "G1": [
+     {
+      "chunk": "AWS:132",
+      "gold": false,
+      "cosine": 0.568,
+      "from": [
+       "cloudwatch"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudwatch --connects_to--> slack | You can monitor these metrics by integrating CloudWatch with your own tools or by using tools provided by third parties, such as Slack or PagerDuty.",
+       "cloudwatch --connects_to--> pagerduty | You can monitor these metrics by integrating CloudWatch with your own tools or by using tools provided by third parties, such as Slack or PagerDuty.",
+       "cloudwatch --uses--> waf | If you're using AWS WAF, you can use CloudWatch to monitor and activate alarms on increases in requests that you've set in AWS WAF to be allowed, counted, or blocked."
+      ]
+     },
+     {
+      "chunk": "AWS:140",
+      "gold": false,
+      "cosine": 0.567,
+      "from": [
+       "cloudwatch"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudwatch --evaluates--> ddos attack | For more information about using Amazon CloudWatch to detect DDoS attacks on your application, refer to Getting Started with Amazon CloudWatch."
+      ]
+     }
+    ],
+    "G2-U": [
+     {
+      "chunk": "AWS:132",
+      "gold": false,
+      "cosine": 0.568,
+      "from": [
+       "cloudwatch",
+       "shield advanced"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudwatch --connects_to--> slack | You can monitor these metrics by integrating CloudWatch with your own tools or by using tools provided by third parties, such as Slack or PagerDuty.",
+       "cloudwatch --connects_to--> pagerduty | You can monitor these metrics by integrating CloudWatch with your own tools or by using tools provided by third parties, such as Slack or PagerDuty.",
+       "application layer attack --produces--> cloudwatch metrics | An application layer attack can elevate many Amazon CloudWatch metrics.",
+       "cloudwatch --uses--> waf | If you're using AWS WAF, you can use CloudWatch to monitor and activate alarms on increases in requests that you've set in AWS WAF to be allowed, counted, or blocked."
+      ]
+     },
+     {
+      "chunk": "AWS:140",
+      "gold": false,
+      "cosine": 0.567,
+      "from": [
+       "cloudwatch",
+       "shield advanced"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudwatch --evaluates--> ddos attack | For more information about using Amazon CloudWatch to detect DDoS attacks on your application, refer to Getting Started with Amazon CloudWatch."
+      ]
+     }
+    ],
+    "G2-H": [
+     {
+      "chunk": "AWS:132",
+      "gold": false,
+      "cosine": 0.568,
+      "from": [
+       "cloudwatch",
+       "shield advanced"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudwatch --connects_to--> slack | You can monitor these metrics by integrating CloudWatch with your own tools or by using tools provided by third parties, such as Slack or PagerDuty.",
+       "cloudwatch --connects_to--> pagerduty | You can monitor these metrics by integrating CloudWatch with your own tools or by using tools provided by third parties, such as Slack or PagerDuty.",
+       "application layer attack --produces--> cloudwatch metrics | An application layer attack can elevate many Amazon CloudWatch metrics.",
+       "cloudwatch --uses--> waf | If you're using AWS WAF, you can use CloudWatch to monitor and activate alarms on increases in requests that you've set in AWS WAF to be allowed, counted, or blocked."
+      ]
+     },
+     {
+      "chunk": "AWS:140",
+      "gold": false,
+      "cosine": 0.567,
+      "from": [
+       "cloudwatch"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudwatch --evaluates--> ddos attack | For more information about using Amazon CloudWatch to detect DDoS attacks on your application, refer to Getting Started with Amazon CloudWatch."
+      ]
+     }
+    ],
+    "G2-W": [
+     {
+      "chunk": "AWS:132",
+      "gold": false,
+      "cosine": 0.568,
+      "from": [
+       "cloudwatch",
+       "shield advanced"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudwatch --connects_to--> slack | You can monitor these metrics by integrating CloudWatch with your own tools or by using tools provided by third parties, such as Slack or PagerDuty.",
+       "cloudwatch --connects_to--> pagerduty | You can monitor these metrics by integrating CloudWatch with your own tools or by using tools provided by third parties, such as Slack or PagerDuty.",
+       "application layer attack --produces--> cloudwatch metrics | An application layer attack can elevate many Amazon CloudWatch metrics.",
+       "cloudwatch --uses--> waf | If you're using AWS WAF, you can use CloudWatch to monitor and activate alarms on increases in requests that you've set in AWS WAF to be allowed, counted, or blocked."
+      ]
+     },
+     {
+      "chunk": "AWS:36",
+      "gold": false,
+      "cosine": 0.538,
+      "from": [
+       "cloudwatch",
+       "shield advanced"
+      ],
+      "hops": 1,
+      "quotes": [
+       "shield advanced --mitigates--> ddos attack | Automatic application layer DDoS mitigation where Shield Advanced responds to detected DDoS attacks by creating, evaluating, and deploying custom AWS WAF rules",
+       "shield advanced --creates--> waf rules | Automatic application layer DDoS mitigation where Shield Advanced responds to detected DDoS attacks by creating, evaluating, and deploying custom AWS WAF rules",
+       "shield advanced --evaluates--> waf rules | Automatic application layer DDoS mitigation where Shield Advanced responds to detected DDoS attacks by creating, evaluating, and deploying custom AWS WAF rules",
+       "shield advanced --uses--> waf rules | Automatic application layer DDoS mitigation where Shield Advanced responds to detected DDoS attacks by creating, evaluating, and deploying custom AWS WAF rules",
+       "shield advanced --contains--> waf request coverage | Shield Advanced includes WAF request coverage at no additional cost (subject to usage thresholds)."
+      ]
+     }
+    ]
+   },
+   "latency_ms": {
+    "G1": 2.6186249997408595,
+    "G2-U": 2.697165997233242,
+    "G2-H": 2.643458999955328,
+    "G2-W": 2.268000000185566
+   },
+   "candidates": {
+    "G1": 13,
+    "G2-U": 43,
+    "G2-H": 21,
+    "G2-W": 43
+   }
+  },
+  {
+   "id": "Q37",
+   "category": "relationship",
+   "kind": null,
+   "needs_graph": false,
+   "gold": [
+    21
+   ],
+   "gold_labels": [
+    "RFC:21 (A0 rank 1)"
+   ],
+   "linking": [
+    [
+     "Security Event Token",
+     "missed",
+     "security event token"
+    ]
+   ],
+   "seeds": [
+    "set delivery"
+   ],
+   "contexts": {
+    "A0": [
+     21,
+     9,
+     22,
+     24,
+     20
+    ],
+    "A0@7": [
+     21,
+     9,
+     22,
+     24,
+     20,
+     6,
+     15
+    ],
+    "G1": [
+     21,
+     9,
+     22,
+     24,
+     20
+    ],
+    "G1*": [
+     21,
+     9,
+     22,
+     24,
+     20
+    ],
+    "G2-U": [
+     21,
+     9,
+     22,
+     24,
+     20,
+     41
+    ],
+    "G2-U*": [
+     21,
+     9,
+     22,
+     24,
+     20
+    ],
+    "G2-H": [
+     21,
+     9,
+     22,
+     24,
+     20,
+     41
+    ],
+    "G2-H*": [
+     21,
+     9,
+     22,
+     24,
+     20
+    ],
+    "G2-W": [
+     21,
+     9,
+     22,
+     24,
+     20,
+     41
+    ],
+    "G2-W*": [
+     21,
+     9,
+     22,
+     24,
+     20
+    ]
+   },
+   "added": {
+    "G1": [],
+    "G2-U": [
+     {
+      "chunk": "RFC:41",
+      "gold": false,
+      "cosine": 0.364,
+      "from": [
+       "set delivery"
+      ],
+      "hops": 2,
+      "quotes": [
+       "http --conforms_to--> transport layer security | When the working group decided to mandate usage of HTTP over TLS, it also decided to preserve the description of these considerations in this non-normative appendix."
+      ]
+     }
+    ],
+    "G2-H": [
+     {
+      "chunk": "RFC:41",
+      "gold": false,
+      "cosine": 0.364,
+      "from": [
+       "set delivery"
+      ],
+      "hops": 2,
+      "quotes": [
+       "http --conforms_to--> transport layer security | When the working group decided to mandate usage of HTTP over TLS, it also decided to preserve the description of these considerations in this non-normative appendix."
+      ]
+     }
+    ],
+    "G2-W": [
+     {
+      "chunk": "RFC:41",
+      "gold": false,
+      "cosine": 0.364,
+      "from": [
+       "set delivery"
+      ],
+      "hops": 2,
+      "quotes": [
+       "http --conforms_to--> transport layer security | When the working group decided to mandate usage of HTTP over TLS, it also decided to preserve the description of these considerations in this non-normative appendix."
+      ]
+     }
+    ]
+   },
+   "latency_ms": {
+    "G1": 2.2290830020210706,
+    "G2-U": 2.047500001935987,
+    "G2-H": 2.25954199777334,
+    "G2-W": 2.202457999374019
+   },
+   "candidates": {
+    "G1": 1,
+    "G2-U": 5,
+    "G2-H": 5,
+    "G2-W": 5
+   }
+  },
+  {
+   "id": "Q38",
+   "category": "multi-hop",
+   "kind": null,
+   "needs_graph": true,
+   "gold": [
+    20,
+    26
+   ],
+   "gold_labels": [
+    "RFC:20 (A0 rank 19)",
+    "RFC:26 (A0 rank 7)"
+   ],
+   "linking": [
+    [
+     "mutual TLS",
+     "linked",
+     "mutual tls"
+    ]
+   ],
+   "seeds": [
+    "mutual tls"
+   ],
+   "contexts": {
+    "A0": [
+     36,
+     40,
+     34,
+     39,
+     0
+    ],
+    "A0@7": [
+     36,
+     40,
+     34,
+     39,
+     0,
+     25,
+     26
+    ],
+    "G1": [
+     36,
+     40,
+     34,
+     39,
+     0,
+     20
+    ],
+    "G1*": [
+     36,
+     40,
+     34,
+     39,
+     0,
+     20
+    ],
+    "G2-U": [
+     36,
+     40,
+     34,
+     39,
+     0,
+     20,
+     25
+    ],
+    "G2-U*": [
+     36,
+     40,
+     34,
+     39,
+     0,
+     20,
+     25
+    ],
+    "G2-H": [
+     36,
+     40,
+     34,
+     39,
+     0,
+     20,
+     25
+    ],
+    "G2-H*": [
+     36,
+     40,
+     34,
+     39,
+     0,
+     20,
+     25
+    ],
+    "G2-W": [
+     36,
+     40,
+     34,
+     39,
+     0,
+     20,
+     11
+    ],
+    "G2-W*": [
+     36,
+     40,
+     34,
+     39,
+     0,
+     20,
+     11
+    ]
+   },
+   "added": {
+    "G1": [
+     {
+      "chunk": "RFC:20",
+      "gold": true,
+      "cosine": 0.328,
+      "from": [
+       "mutual tls"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set transmitter --uses--> mutual tls | Authorization for the eligibility to provide actionable SETs can be determined by using the identity of the SET Issuer, the identity of the SET Transmitter, perhaps using mutual TLS, or via other employed authentication methods."
+      ]
+     }
+    ],
+    "G2-U": [
+     {
+      "chunk": "RFC:20",
+      "gold": true,
+      "cosine": 0.328,
+      "from": [
+       "mutual tls"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set transmitter --uses--> mutual tls | Authorization for the eligibility to provide actionable SETs can be determined by using the identity of the SET Issuer, the identity of the SET Transmitter, perhaps using mutual TLS, or via other employed authentication methods."
+      ]
+     },
+     {
+      "chunk": "RFC:25",
+      "gold": false,
+      "cosine": 0.495,
+      "from": [
+       "mutual tls"
+      ],
+      "hops": 2,
+      "quotes": [
+       "set transmitter --protects--> set contents | In such cases, SET Transmitters and SET Recipients protect the confidentiality of the SET contents."
+      ]
+     }
+    ],
+    "G2-H": [
+     {
+      "chunk": "RFC:20",
+      "gold": true,
+      "cosine": 0.328,
+      "from": [
+       "mutual tls"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set transmitter --uses--> mutual tls | Authorization for the eligibility to provide actionable SETs can be determined by using the identity of the SET Issuer, the identity of the SET Transmitter, perhaps using mutual TLS, or via other employed authentication methods."
+      ]
+     },
+     {
+      "chunk": "RFC:25",
+      "gold": false,
+      "cosine": 0.495,
+      "from": [
+       "mutual tls"
+      ],
+      "hops": 2,
+      "quotes": [
+       "set transmitter --protects--> set contents | In such cases, SET Transmitters and SET Recipients protect the confidentiality of the SET contents."
+      ]
+     }
+    ],
+    "G2-W": [
+     {
+      "chunk": "RFC:20",
+      "gold": true,
+      "cosine": 0.328,
+      "from": [
+       "mutual tls"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set transmitter --uses--> mutual tls | Authorization for the eligibility to provide actionable SETs can be determined by using the identity of the SET Issuer, the identity of the SET Transmitter, perhaps using mutual TLS, or via other employed authentication methods."
+      ]
+     },
+     {
+      "chunk": "RFC:11",
+      "gold": false,
+      "cosine": 0.324,
+      "from": [
+       "mutual tls"
+      ],
+      "hops": 2,
+      "quotes": [
+       "set transmitter --produces--> security event token | To transmit a SET to a SET Recipient, the SET Transmitter makes an HTTP POST request to a TLS-enabled HTTP endpoint provided by the SET Recipient.",
+       "set transmitter --connects_to--> tls-enabled http endpoint | To transmit a SET to a SET Recipient, the SET Transmitter makes an HTTP POST request to a TLS-enabled HTTP endpoint provided by the SET Recipient."
+      ]
+     }
+    ]
+   },
+   "latency_ms": {
+    "G1": 1.7391249966749456,
+    "G2-U": 1.9108749984297901,
+    "G2-H": 1.9467080019239802,
+    "G2-W": 1.630167000257643
+   },
+   "candidates": {
+    "G1": 1,
+    "G2-U": 13,
+    "G2-H": 13,
+    "G2-W": 13
+   }
+  },
+  {
+   "id": "Q46",
+   "category": "multi-hop",
+   "kind": null,
+   "needs_graph": true,
+   "gold": [
+    160,
+    82
+   ],
+   "gold_labels": [
+    "AWS:115 (A0 rank 8)",
+    "AWS:37 (A0 rank 13)"
+   ],
+   "linking": [
+    [
+     "AWS Shield Advanced",
+     "linked",
+     "shield advanced"
+    ],
+    [
+     "AWS WAF",
+     "missed",
+     "waf"
+    ]
+   ],
+   "seeds": [
+    "shield advanced",
+    "waf rules"
+   ],
+   "contexts": {
+    "A0": [
+     161,
+     158,
+     81,
+     199,
+     83
+    ],
+    "A0@7": [
+     161,
+     158,
+     81,
+     199,
+     83,
+     197,
+     196
+    ],
+    "G1": [
+     161,
+     158,
+     81,
+     199,
+     83,
+     203,
+     196
+    ],
+    "G1*": [
+     161,
+     158,
+     81,
+     199,
+     83,
+     203,
+     196
+    ],
+    "G2-U": [
+     161,
+     158,
+     81,
+     199,
+     83,
+     203,
+     196
+    ],
+    "G2-U*": [
+     161,
+     158,
+     81,
+     199,
+     83,
+     203,
+     196
+    ],
+    "G2-H": [
+     161,
+     158,
+     81,
+     199,
+     83,
+     117,
+     203
+    ],
+    "G2-H*": [
+     161,
+     158,
+     81,
+     199,
+     83,
+     117,
+     203
+    ],
+    "G2-W": [
+     161,
+     158,
+     81,
+     199,
+     83,
+     117,
+     196
+    ],
+    "G2-W*": [
+     161,
+     158,
+     81,
+     199,
+     83,
+     117,
+     196
+    ]
+   },
+   "added": {
+    "G1": [
+     {
+      "chunk": "AWS:158",
+      "gold": false,
+      "cosine": 0.568,
+      "from": [
+       "shield advanced"
+      ],
+      "hops": 1,
+      "quotes": [
+       "shield advanced --related_to--> shield response team | If you're subscribed to AWS Shield Advanced and are also subscribed to either Business Support +, Enterprise Support, or Unified Operations, you can also escalate to AWS Shield Response Team (SRT) by creating an Support case under AWS Shield using the Support console (sign-in required), or the support API when a DDoS-related event affects your application's availability."
+      ]
+     },
+     {
+      "chunk": "AWS:151",
+      "gold": false,
+      "cosine": 0.567,
+      "from": [
+       "shield advanced"
+      ],
+      "hops": 1,
+      "quotes": [
+       "firewall manager --protects--> shield advanced | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall."
+      ]
+     }
+    ],
+    "G2-U": [
+     {
+      "chunk": "AWS:158",
+      "gold": false,
+      "cosine": 0.568,
+      "from": [
+       "shield advanced",
+       "waf rules"
+      ],
+      "hops": 1,
+      "quotes": [
+       "shield advanced --related_to--> shield response team | If you're subscribed to AWS Shield Advanced and are also subscribed to either Business Support +, Enterprise Support, or Unified Operations, you can also escalate to AWS Shield Response Team (SRT) by creating an Support case under AWS Shield using the Support console (sign-in required), or the support API when a DDoS-related event affects your application's availability.",
+       "shield response team --creates--> support case | If you're subscribed to AWS Shield Advanced and are also subscribed to either Business Support +, Enterprise Support, or Unified Operations, you can also escalate to AWS Shield Response Team (SRT) by creating an Support case under AWS Shield using the Support console (sign-in required), or the support API when a DDoS-related event affects your application's availability."
+      ]
+     },
+     {
+      "chunk": "AWS:151",
+      "gold": false,
+      "cosine": 0.567,
+      "from": [
+       "shield advanced",
+       "waf rules"
+      ],
+      "hops": 1,
+      "quotes": [
+       "firewall manager --protects--> waf | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> shield advanced | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> vpc security groups | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> network acl | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> network firewall | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> route 53 resolver dns firewall | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall."
+      ]
+     }
+    ],
+    "G2-H": [
+     {
+      "chunk": "AWS:72",
+      "gold": false,
+      "cosine": 0.468,
+      "from": [
+       "shield advanced",
+       "waf rules"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudfront --uses--> waf rules | CloudFront can be combined with properly configured WAF rules and effective caching strategies to absorb large-scale request floods that would otherwise overwhelm backend origin services."
+      ]
+     },
+     {
+      "chunk": "AWS:158",
+      "gold": false,
+      "cosine": 0.568,
+      "from": [
+       "shield advanced"
+      ],
+      "hops": 1,
+      "quotes": [
+       "shield advanced --related_to--> shield response team | If you're subscribed to AWS Shield Advanced and are also subscribed to either Business Support +, Enterprise Support, or Unified Operations, you can also escalate to AWS Shield Response Team (SRT) by creating an Support case under AWS Shield using the Support console (sign-in required), or the support API when a DDoS-related event affects your application's availability.",
+       "shield response team --creates--> support case | If you're subscribed to AWS Shield Advanced and are also subscribed to either Business Support +, Enterprise Support, or Unified Operations, you can also escalate to AWS Shield Response Team (SRT) by creating an Support case under AWS Shield using the Support console (sign-in required), or the support API when a DDoS-related event affects your application's availability."
+      ]
+     }
+    ],
+    "G2-W": [
+     {
+      "chunk": "AWS:72",
+      "gold": false,
+      "cosine": 0.468,
+      "from": [
+       "shield advanced",
+       "waf rules"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudfront --uses--> waf rules | CloudFront can be combined with properly configured WAF rules and effective caching strategies to absorb large-scale request floods that would otherwise overwhelm backend origin services.",
+       "cloudfront --uses--> caching strategies | CloudFront can be combined with properly configured WAF rules and effective caching strategies to absorb large-scale request floods that would otherwise overwhelm backend origin services.",
+       "cloudfront --protects--> origin servers | CloudFront caching capabilities are a powerful tool for protecting your origin servers' capacity, even with dynamic content delivery."
+      ]
+     },
+     {
+      "chunk": "AWS:151",
+      "gold": false,
+      "cosine": 0.567,
+      "from": [
+       "shield advanced",
+       "waf rules"
+      ],
+      "hops": 1,
+      "quotes": [
+       "firewall manager --protects--> waf | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> shield advanced | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> vpc security groups | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> network acl | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> network firewall | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> route 53 resolver dns firewall | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall."
+      ]
+     }
+    ]
+   },
+   "latency_ms": {
+    "G1": 2.4070420004136395,
+    "G2-U": 2.3688330002187286,
+    "G2-H": 2.95758300126181,
+    "G2-W": 2.746832997218007
+   },
+   "candidates": {
+    "G1": 10,
+    "G2-U": 50,
+    "G2-H": 16,
+    "G2-W": 50
+   }
+  },
+  {
+   "id": "Q47",
+   "category": "multi-hop",
+   "kind": null,
+   "needs_graph": true,
+   "gold": [
+    174,
+    159
+   ],
+   "gold_labels": [
+    "AWS:129 (A0 rank 3)",
+    "AWS:114 (A0 rank 1)"
+   ],
+   "linking": [
+    [
+     "health checks",
+     "linked",
+     "health checks"
+    ],
+    [
+     "Shield Response Team",
+     "linked",
+     "shield response team"
+    ]
+   ],
+   "seeds": [
+    "shield response team",
+    "health checks",
+    "ddos event"
+   ],
+   "contexts": {
+    "A0": [
+     159,
+     80,
+     174,
+     158,
+     178
+    ],
+    "A0@7": [
+     159,
+     80,
+     174,
+     158,
+     178,
+     176,
+     200
+    ],
+    "G1": [
+     159,
+     80,
+     174,
+     158,
+     178,
+     176,
+     203
+    ],
+    "G1*": [
+     159,
+     80,
+     174,
+     158,
+     178,
+     176,
+     203
+    ],
+    "G2-U": [
+     159,
+     80,
+     174,
+     158,
+     178,
+     196,
+     176
+    ],
+    "G2-U*": [
+     159,
+     80,
+     174,
+     158,
+     178,
+     196,
+     176
+    ],
+    "G2-H": [
+     159,
+     80,
+     174,
+     158,
+     178,
+     176,
+     203
+    ],
+    "G2-H*": [
+     159,
+     80,
+     174,
+     158,
+     178,
+     176,
+     203
+    ],
+    "G2-W": [
+     159,
+     80,
+     174,
+     158,
+     178,
+     196,
+     203
+    ],
+    "G2-W*": [
+     159,
+     80,
+     174,
+     158,
+     178,
+     196,
+     203
+    ]
+   },
+   "added": {
+    "G1": [
+     {
+      "chunk": "AWS:131",
+      "gold": false,
+      "cosine": 0.599,
+      "from": [
+       "shield response team"
+      ],
+      "hops": 1,
+      "quotes": [
+       "alarms --communicates_with--> shield response team | For example, you can configure alarms to notify you when there's a DDoS attack in progress, so you can check your application's health and decide whether to engage AWS SRT."
+      ]
+     },
+     {
+      "chunk": "AWS:158",
+      "gold": false,
+      "cosine": 0.542,
+      "from": [
+       "shield response team"
+      ],
+      "hops": 1,
+      "quotes": [
+       "shield advanced --related_to--> shield response team | If you're subscribed to AWS Shield Advanced and are also subscribed to either Business Support +, Enterprise Support, or Unified Operations, you can also escalate to AWS Shield Response Team (SRT) by creating an Support case under AWS Shield using the Support console (sign-in required), or the support API when a DDoS-related event affects your application's availability.",
+       "shield response team --creates--> support case | If you're subscribed to AWS Shield Advanced and are also subscribed to either Business Support +, Enterprise Support, or Unified Operations, you can also escalate to AWS Shield Response Team (SRT) by creating an Support case under AWS Shield using the Support console (sign-in required), or the support API when a DDoS-related event affects your application's availability."
+      ]
+     }
+    ],
+    "G2-U": [
+     {
+      "chunk": "AWS:151",
+      "gold": false,
+      "cosine": 0.46,
+      "from": [
+       "ddos event",
+       "health checks",
+       "shield response team"
+      ],
+      "hops": 2,
+      "quotes": [
+       "firewall manager --protects--> waf | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> shield advanced | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> vpc security groups | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> network acl | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> network firewall | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> route 53 resolver dns firewall | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall."
+      ]
+     },
+     {
+      "chunk": "AWS:131",
+      "gold": false,
+      "cosine": 0.599,
+      "from": [
+       "health checks",
+       "shield response team"
+      ],
+      "hops": 1,
+      "quotes": [
+       "shield advanced --produces--> cloudwatch metrics | If you're subscribed to AWS Shield Advanced, you have access to a number of CloudWatch metrics that can indicate that your application is being targeted.",
+       "alarms --communicates_with--> shield response team | For example, you can configure alarms to notify you when there's a DDoS attack in progress, so you can check your application's health and decide whether to engage AWS SRT.",
+       "alarms --receives--> ddos attack | For example, you can configure alarms to notify you when there's a DDoS attack in progress, so you can check your application's health and decide whether to engage AWS SRT."
+      ]
+     }
+    ],
+    "G2-H": [
+     {
+      "chunk": "AWS:131",
+      "gold": false,
+      "cosine": 0.599,
+      "from": [
+       "shield response team"
+      ],
+      "hops": 1,
+      "quotes": [
+       "alarms --communicates_with--> shield response team | For example, you can configure alarms to notify you when there's a DDoS attack in progress, so you can check your application's health and decide whether to engage AWS SRT.",
+       "alarms --receives--> ddos attack | For example, you can configure alarms to notify you when there's a DDoS attack in progress, so you can check your application's health and decide whether to engage AWS SRT."
+      ]
+     },
+     {
+      "chunk": "AWS:158",
+      "gold": false,
+      "cosine": 0.542,
+      "from": [
+       "shield response team"
+      ],
+      "hops": 1,
+      "quotes": [
+       "shield advanced --related_to--> shield response team | If you're subscribed to AWS Shield Advanced and are also subscribed to either Business Support +, Enterprise Support, or Unified Operations, you can also escalate to AWS Shield Response Team (SRT) by creating an Support case under AWS Shield using the Support console (sign-in required), or the support API when a DDoS-related event affects your application's availability.",
+       "shield response team --creates--> support case | If you're subscribed to AWS Shield Advanced and are also subscribed to either Business Support +, Enterprise Support, or Unified Operations, you can also escalate to AWS Shield Response Team (SRT) by creating an Support case under AWS Shield using the Support console (sign-in required), or the support API when a DDoS-related event affects your application's availability.",
+       "support console --creates--> support case | If you're subscribed to AWS Shield Advanced and are also subscribed to either Business Support +, Enterprise Support, or Unified Operations, you can also escalate to AWS Shield Response Team (SRT) by creating an Support case under AWS Shield using the Support console (sign-in required), or the support API when a DDoS-related event affects your application's availability.",
+       "support api --creates--> support case | If you're subscribed to AWS Shield Advanced and are also subscribed to either Business Support +, Enterprise Support, or Unified Operations, you can also escalate to AWS Shield Response Team (SRT) by creating an Support case under AWS Shield using the Support console (sign-in required), or the support API when a DDoS-related event affects your application's availability."
+      ]
+     }
+    ],
+    "G2-W": [
+     {
+      "chunk": "AWS:151",
+      "gold": false,
+      "cosine": 0.46,
+      "from": [
+       "ddos event",
+       "health checks",
+       "shield response team"
+      ],
+      "hops": 2,
+      "quotes": [
+       "firewall manager --protects--> waf | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> shield advanced | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> vpc security groups | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> network acl | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> network firewall | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> route 53 resolver dns firewall | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall."
+      ]
+     },
+     {
+      "chunk": "AWS:158",
+      "gold": false,
+      "cosine": 0.542,
+      "from": [
+       "health checks",
+       "shield response team"
+      ],
+      "hops": 1,
+      "quotes": [
+       "shield advanced --related_to--> shield response team | If you're subscribed to AWS Shield Advanced and are also subscribed to either Business Support +, Enterprise Support, or Unified Operations, you can also escalate to AWS Shield Response Team (SRT) by creating an Support case under AWS Shield using the Support console (sign-in required), or the support API when a DDoS-related event affects your application's availability.",
+       "shield response team --creates--> support case | If you're subscribed to AWS Shield Advanced and are also subscribed to either Business Support +, Enterprise Support, or Unified Operations, you can also escalate to AWS Shield Response Team (SRT) by creating an Support case under AWS Shield using the Support console (sign-in required), or the support API when a DDoS-related event affects your application's availability.",
+       "support console --creates--> support case | If you're subscribed to AWS Shield Advanced and are also subscribed to either Business Support +, Enterprise Support, or Unified Operations, you can also escalate to AWS Shield Response Team (SRT) by creating an Support case under AWS Shield using the Support console (sign-in required), or the support API when a DDoS-related event affects your application's availability.",
+       "support api --creates--> support case | If you're subscribed to AWS Shield Advanced and are also subscribed to either Business Support +, Enterprise Support, or Unified Operations, you can also escalate to AWS Shield Response Team (SRT) by creating an Support case under AWS Shield using the Support console (sign-in required), or the support API when a DDoS-related event affects your application's availability."
+      ]
+     }
+    ]
+   },
+   "latency_ms": {
+    "G1": 2.6380000017525163,
+    "G2-U": 2.488999998604413,
+    "G2-H": 2.220750000560656,
+    "G2-W": 2.0045419987582136
+   },
+   "candidates": {
+    "G1": 12,
+    "G2-U": 34,
+    "G2-H": 21,
+    "G2-W": 34
+   }
+  },
+  {
+   "id": "Q51",
+   "category": "off-topic",
+   "kind": "names-nothing",
+   "needs_graph": false,
+   "gold": [],
+   "gold_labels": [],
+   "linking": [],
+   "seeds": [],
+   "contexts": {
+    "A0": [],
+    "A0@7": [],
+    "G1": [],
+    "G1*": [],
+    "G2-U": [],
+    "G2-U*": [],
+    "G2-H": [],
+    "G2-H*": [],
+    "G2-W": [],
+    "G2-W*": []
+   },
+   "added": {
+    "G1": [],
+    "G2-U": [],
+    "G2-H": [],
+    "G2-W": []
+   },
+   "latency_ms": {
+    "G1": 1.568167001096299,
+    "G2-U": 1.3506670002243482,
+    "G2-H": 1.4098329993430525,
+    "G2-W": 1.344957996479934
+   },
+   "candidates": {
+    "G1": 0,
+    "G2-U": 0,
+    "G2-H": 0,
+    "G2-W": 0
+   }
+  },
+  {
+   "id": "Q52",
+   "category": "off-topic",
+   "kind": "names-nothing",
+   "needs_graph": false,
+   "gold": [],
+   "gold_labels": [],
+   "linking": [],
+   "seeds": [],
+   "contexts": {
+    "A0": [],
+    "A0@7": [],
+    "G1": [],
+    "G1*": [],
+    "G2-U": [],
+    "G2-U*": [],
+    "G2-H": [],
+    "G2-H*": [],
+    "G2-W": [],
+    "G2-W*": []
+   },
+   "added": {
+    "G1": [],
+    "G2-U": [],
+    "G2-H": [],
+    "G2-W": []
+   },
+   "latency_ms": {
+    "G1": 1.6696670027158689,
+    "G2-U": 1.698416999715846,
+    "G2-H": 1.4708329981658608,
+    "G2-W": 1.2499580006988253
+   },
+   "candidates": {
+    "G1": 0,
+    "G2-U": 0,
+    "G2-H": 0,
+    "G2-W": 0
+   }
+  },
+  {
+   "id": "Q54",
+   "category": "off-topic",
+   "kind": "names-entity",
+   "needs_graph": false,
+   "gold": [],
+   "gold_labels": [],
+   "linking": [
+    [
+     "AWS Shield Advanced",
+     "linked",
+     "shield advanced"
+    ]
+   ],
+   "seeds": [
+    "shield advanced"
+   ],
+   "contexts": {
+    "A0": [
+     83,
+     161,
+     158,
+     81,
+     187
+    ],
+    "A0@7": [
+     83,
+     161,
+     158,
+     81,
+     187,
+     80,
+     178
+    ],
+    "G1": [
+     83,
+     161,
+     158,
+     81,
+     187,
+     203,
+     199
+    ],
+    "G1*": [
+     83,
+     161,
+     158,
+     81,
+     187
+    ],
+    "G2-U": [
+     83,
+     161,
+     158,
+     81,
+     187,
+     203,
+     199
+    ],
+    "G2-U*": [
+     83,
+     161,
+     158,
+     81,
+     187
+    ],
+    "G2-H": [
+     83,
+     161,
+     158,
+     81,
+     187,
+     203,
+     199
+    ],
+    "G2-H*": [
+     83,
+     161,
+     158,
+     81,
+     187
+    ],
+    "G2-W": [
+     83,
+     161,
+     158,
+     81,
+     187,
+     199,
+     196
+    ],
+    "G2-W*": [
+     83,
+     161,
+     158,
+     81,
+     187
+    ]
+   },
+   "added": {
+    "G1": [
+     {
+      "chunk": "AWS:158",
+      "gold": false,
+      "cosine": 0.515,
+      "from": [
+       "shield advanced"
+      ],
+      "hops": 1,
+      "quotes": [
+       "shield advanced --related_to--> shield response team | If you're subscribed to AWS Shield Advanced and are also subscribed to either Business Support +, Enterprise Support, or Unified Operations, you can also escalate to AWS Shield Response Team (SRT) by creating an Support case under AWS Shield using the Support console (sign-in required), or the support API when a DDoS-related event affects your application's availability."
+      ]
+     },
+     {
+      "chunk": "AWS:154",
+      "gold": false,
+      "cosine": 0.514,
+      "from": [
+       "shield advanced"
+      ],
+      "hops": 1,
+      "quotes": [
+       "shield advanced --creates--> traffic baseline | After the resource is protected, Shield Advanced begins establishing a traffic baseline for it, and any subsequently detected anomalous traffic is surfaced as a Shield Advanced finding in Security Hub CSPM, alongside CloudWatch metrics and events.",
+       "shield advanced --produces--> shield advanced finding | After the resource is protected, Shield Advanced begins establishing a traffic baseline for it, and any subsequently detected anomalous traffic is surfaced as a Shield Advanced finding in Security Hub CSPM, alongside CloudWatch metrics and events."
+      ]
+     }
+    ],
+    "G2-U": [
+     {
+      "chunk": "AWS:158",
+      "gold": false,
+      "cosine": 0.515,
+      "from": [
+       "shield advanced"
+      ],
+      "hops": 1,
+      "quotes": [
+       "shield advanced --related_to--> shield response team | If you're subscribed to AWS Shield Advanced and are also subscribed to either Business Support +, Enterprise Support, or Unified Operations, you can also escalate to AWS Shield Response Team (SRT) by creating an Support case under AWS Shield using the Support console (sign-in required), or the support API when a DDoS-related event affects your application's availability.",
+       "shield response team --creates--> support case | If you're subscribed to AWS Shield Advanced and are also subscribed to either Business Support +, Enterprise Support, or Unified Operations, you can also escalate to AWS Shield Response Team (SRT) by creating an Support case under AWS Shield using the Support console (sign-in required), or the support API when a DDoS-related event affects your application's availability."
+      ]
+     },
+     {
+      "chunk": "AWS:154",
+      "gold": false,
+      "cosine": 0.514,
+      "from": [
+       "shield advanced"
+      ],
+      "hops": 1,
+      "quotes": [
+       "shield advanced --creates--> traffic baseline | After the resource is protected, Shield Advanced begins establishing a traffic baseline for it, and any subsequently detected anomalous traffic is surfaced as a Shield Advanced finding in Security Hub CSPM, alongside CloudWatch metrics and events.",
+       "shield advanced --produces--> shield advanced finding | After the resource is protected, Shield Advanced begins establishing a traffic baseline for it, and any subsequently detected anomalous traffic is surfaced as a Shield Advanced finding in Security Hub CSPM, alongside CloudWatch metrics and events.",
+       "security hub cspm --receives--> shield advanced finding | After the resource is protected, Shield Advanced begins establishing a traffic baseline for it, and any subsequently detected anomalous traffic is surfaced as a Shield Advanced finding in Security Hub CSPM, alongside CloudWatch metrics and events."
+      ]
+     }
+    ],
+    "G2-H": [
+     {
+      "chunk": "AWS:158",
+      "gold": false,
+      "cosine": 0.515,
+      "from": [
+       "shield advanced"
+      ],
+      "hops": 1,
+      "quotes": [
+       "shield advanced --related_to--> shield response team | If you're subscribed to AWS Shield Advanced and are also subscribed to either Business Support +, Enterprise Support, or Unified Operations, you can also escalate to AWS Shield Response Team (SRT) by creating an Support case under AWS Shield using the Support console (sign-in required), or the support API when a DDoS-related event affects your application's availability.",
+       "shield response team --creates--> support case | If you're subscribed to AWS Shield Advanced and are also subscribed to either Business Support +, Enterprise Support, or Unified Operations, you can also escalate to AWS Shield Response Team (SRT) by creating an Support case under AWS Shield using the Support console (sign-in required), or the support API when a DDoS-related event affects your application's availability."
+      ]
+     },
+     {
+      "chunk": "AWS:154",
+      "gold": false,
+      "cosine": 0.514,
+      "from": [
+       "shield advanced"
+      ],
+      "hops": 1,
+      "quotes": [
+       "shield advanced --creates--> traffic baseline | After the resource is protected, Shield Advanced begins establishing a traffic baseline for it, and any subsequently detected anomalous traffic is surfaced as a Shield Advanced finding in Security Hub CSPM, alongside CloudWatch metrics and events.",
+       "shield advanced --produces--> shield advanced finding | After the resource is protected, Shield Advanced begins establishing a traffic baseline for it, and any subsequently detected anomalous traffic is surfaced as a Shield Advanced finding in Security Hub CSPM, alongside CloudWatch metrics and events.",
+       "security hub cspm --receives--> shield advanced finding | After the resource is protected, Shield Advanced begins establishing a traffic baseline for it, and any subsequently detected anomalous traffic is surfaced as a Shield Advanced finding in Security Hub CSPM, alongside CloudWatch metrics and events."
+      ]
+     }
+    ],
+    "G2-W": [
+     {
+      "chunk": "AWS:154",
+      "gold": false,
+      "cosine": 0.514,
+      "from": [
+       "shield advanced"
+      ],
+      "hops": 1,
+      "quotes": [
+       "shield advanced --creates--> traffic baseline | After the resource is protected, Shield Advanced begins establishing a traffic baseline for it, and any subsequently detected anomalous traffic is surfaced as a Shield Advanced finding in Security Hub CSPM, alongside CloudWatch metrics and events.",
+       "shield advanced --produces--> shield advanced finding | After the resource is protected, Shield Advanced begins establishing a traffic baseline for it, and any subsequently detected anomalous traffic is surfaced as a Shield Advanced finding in Security Hub CSPM, alongside CloudWatch metrics and events.",
+       "security hub cspm --receives--> shield advanced finding | After the resource is protected, Shield Advanced begins establishing a traffic baseline for it, and any subsequently detected anomalous traffic is surfaced as a Shield Advanced finding in Security Hub CSPM, alongside CloudWatch metrics and events."
+      ]
+     },
+     {
+      "chunk": "AWS:151",
+      "gold": false,
+      "cosine": 0.447,
+      "from": [
+       "shield advanced"
+      ],
+      "hops": 1,
+      "quotes": [
+       "firewall manager --protects--> waf | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> shield advanced | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> vpc security groups | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> network acl | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> network firewall | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> route 53 resolver dns firewall | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall."
+      ]
+     }
+    ]
+   },
+   "latency_ms": {
+    "G1": 1.829165998060489,
+    "G2-U": 1.6617500004940666,
+    "G2-H": 1.5852910000830889,
+    "G2-W": 1.7405409998900723
+   },
+   "candidates": {
+    "G1": 9,
+    "G2-U": 27,
+    "G2-H": 16,
+    "G2-W": 27
+   }
+  },
+  {
+   "id": "Q59",
+   "category": "off-topic",
+   "kind": "names-entity",
+   "needs_graph": false,
+   "gold": [],
+   "gold_labels": [],
+   "linking": [
+    [
+     "Amazon Route 53",
+     "linked",
+     "route 53"
+    ]
+   ],
+   "seeds": [
+    "route 53"
+   ],
+   "contexts": {
+    "A0": [
+     110,
+     108,
+     109,
+     112,
+     111
+    ],
+    "A0@7": [
+     110,
+     108,
+     109,
+     112,
+     111,
+     83,
+     72
+    ],
+    "G1": [
+     110,
+     108,
+     109,
+     112,
+     111,
+     83,
+     100
+    ],
+    "G1*": [
+     110,
+     108,
+     109,
+     112,
+     111
+    ],
+    "G2-U": [
+     110,
+     108,
+     109,
+     112,
+     111,
+     83,
+     100
+    ],
+    "G2-U*": [
+     110,
+     108,
+     109,
+     112,
+     111
+    ],
+    "G2-H": [
+     110,
+     108,
+     109,
+     112,
+     111,
+     83,
+     100
+    ],
+    "G2-H*": [
+     110,
+     108,
+     109,
+     112,
+     111
+    ],
+    "G2-W": [
+     110,
+     108,
+     109,
+     112,
+     111,
+     100,
+     71
+    ],
+    "G2-W*": [
+     110,
+     108,
+     109,
+     112,
+     111
+    ]
+   },
+   "added": {
+    "G1": [
+     {
+      "chunk": "AWS:38",
+      "gold": false,
+      "cosine": 0.336,
+      "from": [
+       "route 53"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudfront --related_to--> route 53 | The service is available globally for CloudFront, Route 53, and Global Accelerator."
+      ]
+     },
+     {
+      "chunk": "AWS:55",
+      "gold": false,
+      "cosine": 0.318,
+      "from": [
+       "route 53"
+      ],
+      "hops": 1,
+      "quotes": [
+       "route 53 --uses--> edge locations | AWS edge locations provide an additional layer of network infrastructure that provides these benefits to any application that uses Amazon CloudFront, Global Accelerator and Amazon Route 53."
+      ]
+     }
+    ],
+    "G2-U": [
+     {
+      "chunk": "AWS:38",
+      "gold": false,
+      "cosine": 0.336,
+      "from": [
+       "route 53"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudfront --related_to--> global accelerator | The service is available globally for CloudFront, Route 53, and Global Accelerator.",
+       "cloudfront --related_to--> route 53 | The service is available globally for CloudFront, Route 53, and Global Accelerator."
+      ]
+     },
+     {
+      "chunk": "AWS:55",
+      "gold": false,
+      "cosine": 0.318,
+      "from": [
+       "route 53"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudfront --uses--> edge locations | AWS edge locations provide an additional layer of network infrastructure that provides these benefits to any application that uses Amazon CloudFront, Global Accelerator and Amazon Route 53.",
+       "global accelerator --uses--> edge locations | AWS edge locations provide an additional layer of network infrastructure that provides these benefits to any application that uses Amazon CloudFront, Global Accelerator and Amazon Route 53.",
+       "route 53 --uses--> edge locations | AWS edge locations provide an additional layer of network infrastructure that provides these benefits to any application that uses Amazon CloudFront, Global Accelerator and Amazon Route 53."
+      ]
+     }
+    ],
+    "G2-H": [
+     {
+      "chunk": "AWS:38",
+      "gold": false,
+      "cosine": 0.336,
+      "from": [
+       "route 53"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudfront --related_to--> route 53 | The service is available globally for CloudFront, Route 53, and Global Accelerator."
+      ]
+     },
+     {
+      "chunk": "AWS:55",
+      "gold": false,
+      "cosine": 0.318,
+      "from": [
+       "route 53"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudfront --uses--> edge locations | AWS edge locations provide an additional layer of network infrastructure that provides these benefits to any application that uses Amazon CloudFront, Global Accelerator and Amazon Route 53.",
+       "global accelerator --uses--> edge locations | AWS edge locations provide an additional layer of network infrastructure that provides these benefits to any application that uses Amazon CloudFront, Global Accelerator and Amazon Route 53.",
+       "route 53 --uses--> edge locations | AWS edge locations provide an additional layer of network infrastructure that provides these benefits to any application that uses Amazon CloudFront, Global Accelerator and Amazon Route 53."
+      ]
+     }
+    ],
+    "G2-W": [
+     {
+      "chunk": "AWS:55",
+      "gold": false,
+      "cosine": 0.318,
+      "from": [
+       "route 53"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudfront --uses--> edge locations | AWS edge locations provide an additional layer of network infrastructure that provides these benefits to any application that uses Amazon CloudFront, Global Accelerator and Amazon Route 53.",
+       "global accelerator --uses--> edge locations | AWS edge locations provide an additional layer of network infrastructure that provides these benefits to any application that uses Amazon CloudFront, Global Accelerator and Amazon Route 53.",
+       "route 53 --uses--> edge locations | AWS edge locations provide an additional layer of network infrastructure that provides these benefits to any application that uses Amazon CloudFront, Global Accelerator and Amazon Route 53."
+      ]
+     },
+     {
+      "chunk": "AWS:26",
+      "gold": false,
+      "cosine": 0.283,
+      "from": [
+       "route 53"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudfront --mitigates--> infrastructure layer attacks | You can use AWS services that operate from edge locations, such as Amazon CloudFront, AWS Global Accelerator, and Amazon Route 53 to build comprehensive availability protection against all known infrastructure layer attacks.",
+       "global accelerator --mitigates--> infrastructure layer attacks | You can use AWS services that operate from edge locations, such as Amazon CloudFront, AWS Global Accelerator, and Amazon Route 53 to build comprehensive availability protection against all known infrastructure layer attacks.",
+       "route 53 --mitigates--> infrastructure layer attacks | You can use AWS services that operate from edge locations, such as Amazon CloudFront, AWS Global Accelerator, and Amazon Route 53 to build comprehensive availability protection against all known infrastructure layer attacks."
+      ]
+     }
+    ]
+   },
+   "latency_ms": {
+    "G1": 2.117957999871578,
+    "G2-U": 1.615291999769397,
+    "G2-H": 1.7050419992301613,
+    "G2-W": 1.9847500007017516
+   },
+   "candidates": {
+    "G1": 7,
+    "G2-U": 38,
+    "G2-H": 15,
+    "G2-W": 38
+   }
+  }
+ ]
+}

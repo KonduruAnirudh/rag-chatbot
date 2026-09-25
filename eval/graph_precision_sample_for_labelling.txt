@@ -1,0 +1,829 @@
+GRAPH PRECISION SAMPLE - 40 edges drawn at random (seed 20260925) from the graph
+Step 7 will traverse. Label from THIS file. List the wrong ones.
+
+LABELLING STANDARD (v5, fixed). An edge is WRONG if:
+  1. The verb doesn't match its definition (below).
+  2. The direction is reversed.
+  3. The quote doesn't STATE the relation - a purpose, benefit or effect is inferred.
+     "X for Y" and "access to Y" do not state that X contains Y.
+  4. An endpoint isn't the real participant in the quote (a substitute, or the wrong actor).
+An edge stated in more than one chunk shows every quote. It is CORRECT if at least one
+quote states it: the graph shows all of its quotes as evidence.
+
+Names are the graph's canonical names; "as written" shows the quote's own wording
+where it differs.
+
+VERBS (subject -> object). Use exactly one:
+  uses               subject actively employs object to do its job
+  depends_on         subject cannot work without object
+  connects_to        subject has a network or data-path link to object
+  produces           subject automatically generates or emits object as its own output
+                     (e.g. a sensor emits readings)
+  creates            object is made deliberately by subject, or subject is the tool, console
+                     or API used to make it (e.g. a web form used to open a ticket).
+                     Associating or attaching something that already exists is not creating
+                     it; the destination of a request is not its creator
+  receives           subject takes in object
+  evaluates          subject assesses, reviews or examines object (e.g. an auditor reviews logs)
+  protects           subject defends object, an asset (a service, component or data) - never
+                     a threat. For a threat, use mitigates
+  mitigates          subject reduces or defends against object, a threat
+  contains           object is a part of subject, or the passage says subject includes or
+                     contains it. "X for Y" and "access to Y" do not state that X contains Y
+  communicates_with  subject and object exchange messages
+  conforms_to        subject is based on or complies with object (a standard, guideline or specification)
+  precedes           subject comes before object in a sequence the passage states explicitly
+                     ("then", "after", "before", "once", numbered steps) - never from list order alone
+  related_to         a direct relationship is stated but none of the above fits
+
+==============================================================================
+E1   AWS Firewall Manager  --creates-->  AWS Shield protection policies
+     source: AWS-WhitePaper-Sample.pdf, pages 44-44, chunk 116
+     quote: "AWS Shield protection policies can be created using AWS Firewall
+            Manager only for Shield Advanced users."
+     passage:
+       | This is useful when you have multiple 
+       | accounts and want to standardize your protection. AWS Shield protection policies can be created 
+       | using AWS Firewall Manager only for Shield Advanced users.
+       | For more information about:
+       | • How to manage the deployment of rules across your AWS resources with Firewall Manager, see:
+       | • Getting started with Firewall Manager AWS WAF policies
+       | • Getting started with Firewall Manager Shield Advanced policies
+       | Application layer defense (BP1, BP2) 40
+
+==============================================================================
+E2   Botnets  --related_to-->  distributed denial-of-service (DDoS) attacks
+     source: AWS-WhitePaper-Sample.pdf, pages 41-41, chunk 105
+     quote: "Botnets are a serious security threat and are commonly used to
+            carry out illegal or harmful activities such as sending spam,
+            stealing sensitive data, initiating ransomware attacks, committing
+            ad fraud through fraudulent clicks, or launching distributed
+            denial-of-service (DDoS) attacks."
+     passage:
+       | After the 
+       | token is acquired, it will be presented by the client on subsequent requests for the same domain 
+       | until the TTL, in the form of cookie expiration, expires.
+       | AWS recommends implementing Challenge actions strategically. Consider using them selectively 
+       | during active attacks rather than as a continuous protection measure and combine them with rate-based rules to optimize cost efficiency.
+       | AWS WAF - Intelligent threat mitigation
+       | Botnets are a serious security threat and are commonly used to carry out illegal or harmful 
+       | activities such as sending spam, stealing sensitive data, initiating ransomware attacks, committing 
+       | ad fraud through fraudulent clicks, or launching distributed denial-of-service (DDoS) attacks. To 
+       | Application layer defense (BP1, BP2) 37
+
+==============================================================================
+E3   Security Event Token Error Codes  --evaluates-->  SET
+     source: rfc8935.pdf, pages 6-7, chunk 18
+     quote: "Security Event Token Error Codes are strings that identify a
+            specific category of error that may occur when parsing or
+            validating a SET."
+     passage:
+       | The following is a non-normative example error response indicating that the access token
+       | included in the request is expired.
+       | The following is a non-normative example error response indicating that the SET Receiver is not
+       | willing to accept SETs issued by the specified issuer from this particular SET Transmitter.
+       | Figure 4: Example Error Response (authentication_failed) 
+       |   HTTP/1.1 400 Bad Request
+       |   Content-Language: en-US
+       |   Content-Type: application/json
+       |   {
+       |     "err": "authentication_failed",
+       |     "description": "Access token has expired."
+       |   }
+       | Figure 5: Example Error Response (access_denied) 
+       | HTTP/1.1 400 Bad Request
+       | Content-Language: en-US
+       | Content-Type: application/json
+       | {
+       |   "err": "invalid_issuer",
+       |   "description": "Not authorized for issuer https://iss.example.com/"
+       | }
+       | 2.4. Security Event Token Error Codes 
+       | Security Event Token Error Codes are strings that identify a specific category of error that may
+       | occur when parsing or validating a SET.
+
+==============================================================================
+E4   AWSManagedIPDDoSList rule  --contains-->  DDoS attacks
+     source: AWS-WhitePaper-Sample.pdf, pages 39-39, chunk 98
+     quote: "The AWSManagedIPDDoSList rule, which is in Count mode by default,
+            is curated by the AWS perimeter protection team and contains IPs
+            that have recently been observed participating in DDoS attacks
+            against our customers."
+     passage:
+       | The AWSManagedIPDDoSList rule, which is in Count 
+       | mode by default, is curated by the AWS perimeter protection team and contains IPs that have 
+       | recently been observed participating in DDoS attacks against our customers. Surges in traffic 
+       | matching this rule are a strong indicator of a DDoS attempt and AWS recommends adding the 
+       | AWSManagedRulesAmazonIpReputationList rule group to your web ACL and take one of the 
+       | following actions with regards to the AWSManagedIPDDoSList rule:
+       | • Move it into Block or Challenge mode
+       | • Leave it in Count mode and create a subsequent rate-based rule using a custom aggregation key 
+       | using the WAF label namespace awswaf:managed:aws:amazon-ip-list, applied to requests 
+       | matching this rule group
+       | Choosing between these two options depends on your application's traffic pattern and DDoS 
+       | resilience requirements.
+
+==============================================================================
+E5   Network Load Balancer  --produces-->  ProcessedBytes
+     source: AWS-WhitePaper-Sample.pdf, pages 53-53, chunk 138
+     quote: "Network Load Balancer ProcessedBytes The total number of bytes
+            processed by the load"
+     passage:
+       | AWS Best Practices for DDoS Resiliency AWS Whitepaper
+       | AWS service Metric Description
+       | Application Load Balancer TargetConnectionEr 
+       | rorCount
+       | The number of connections 
+       | that were not successfully 
+       | established between the load 
+       | balancer and the target.
+       | Application Load Balancer TargetResponseTime The time elapsed, in seconds, 
+       | after the request left the load 
+       | balancer until a response 
+       | from the target is received.
+       | Application Load Balancer UnHealthyHostCount The number of targets that 
+       | are considered unhealthy.
+       | Network Load Balancer ActiveFlowCount The total number of 
+       | concurrent TCP flows (or 
+       | connections) from clients to 
+       | targets.
+       | Network Load Balancer ConsumedLCUs The number of load balancer 
+       | capacity units (LCU) used by 
+       | your load balancer.
+       | Network Load Balancer NewFlowCount The total number of new 
+       | TCP flows (or connections) 
+       | established from clients to 
+       | targets in the time period.
+       | Network Load Balancer ProcessedBytes The total number of bytes 
+       | processed by the load
+     source: AWS-WhitePaper-Sample.pdf, pages 53-53, chunk 139
+     quote: "Network Load Balancer ProcessedBytes The total number of bytes
+            processed by the load balancer, including TCP/IP headers."
+     passage:
+       | established from clients to 
+       | targets in the time period.
+       | Network Load Balancer ProcessedBytes The total number of bytes 
+       | processed by the load 
+       | balancer, including TCP/IP 
+       | headers.
+       | Global Accelerator NewFlowCount The total number of new TCP 
+       | and UDP flows (or connectio 
+       | ns) established from clients to 
+       | endpoints in the time period.
+       | Metrics and alarms 49
+
+==============================================================================
+E6   SET Recipient  --receives-->  SET Transmission Request
+     source: rfc8935.pdf, pages 3-3, chunk 6
+     quote: "To deliver a SET to a given SET Recipient, the SET Transmitter
+            makes a SET Transmission Request to the SET Recipient, with the
+            SET itself contained within the request."
+     passage:
+       | [RFC8417]
+       | 2. SET Delivery 
+       | To deliver a SET to a given SET Recipient, the SET Transmitter makes a SET Transmission Request
+       | to the SET Recipient, with the SET itself contained within the request. The SET Recipient replies
+       | to this request with a response either acknowledging successful transmission of the SET or
+       | indicating that an error occurred while receiving, parsing, and/or validating the SET.
+       | RFC 8935 Push-Based SET Using HTTP November 2020
+       | Backman, et al. Standards Track Page 3
+
+==============================================================================
+E7   UDP packet  --contains-->  spoofed source IP
+     source: AWS-WhitePaper-Sample.pdf, pages 9-9, chunk 10
+     quote: "The UDP packet contains the spoofed source IP and is sent by the
+            attacker to an intermediate server."
+     passage:
+       | Attackers can craft a valid 
+       | UDP request packet listing the attack target's IP address as the UDP source IP address. The attacker 
+       | has now falsified (spoofed) the UDP request packet's source IP. The UDP packet contains the 
+       | spoofed source IP and is sent by the attacker to an intermediate server. The server is tricked into 
+       | sending its UDP response packets to the targeted victim IP rather than back to the attacker's IP 
+       | address.
+
+==============================================================================
+E8   AWS Shield Advanced  --produces-->  Shield Advanced finding
+     as written: Shield Advanced ... Shield Advanced finding
+     source: AWS-WhitePaper-Sample.pdf, pages 59-59, chunk 154
+     quote: "After the resource is protected, Shield Advanced begins
+            establishing a traffic baseline for it, and any subsequently
+            detected anomalous traffic is surfaced as a Shield Advanced
+            finding in Security Hub CSPM, alongside CloudWatch metrics and
+            events."
+     passage:
+       | After the resource 
+       | is protected, Shield Advanced begins establishing a traffic baseline for it, and any subsequently 
+       | detected anomalous traffic is surfaced as a Shield Advanced finding in Security Hub CSPM, 
+       | alongside CloudWatch metrics and events.
+       | Visibility and protection management across multiple accounts 55
+
+==============================================================================
+E9   CloudFront  --uses-->  origin
+     source: AWS-WhitePaper-Sample.pdf, pages 34-34, chunk 84
+     quote: "CloudFront caches some 4xx and 5xx status codes returned by your
+            origin for a default duration of 10 seconds."
+     passage:
+       | This can be useful for low-capacity origins that are unable to 
+       | dynamically scale.
+       | Error pages and error caching
+       | CloudFront caches some 4xx and 5xx status codes returned by your origin for a default duration of 
+       | 10 seconds. While it might seem illogical to cache server errors, doing so can prevent a snowball 
+       | effect of viewer retries from an error response further degrading an origin's heath. Another option 
+       | is to use the stale-if-error Cache-Control directive for content that is cached.
+       | In addition, you can now use CloudFront to create custom error pages. If you choose to configure 
+       | these, we recommend:
+       | • Storing error pages in an alternate origin, such as an Amazon S3 bucket, so that CloudFront can 
+       | access them, even when your other origins are returning errors.
+       | • Enabling CDN caching for the error pages with a longer minimum TTL than the error caching TTL 
+       | to minimize requests to the origin containing the error pages.
+       | Application layer defense (BP1, BP2) 30
+
+==============================================================================
+E10  SET Recipient  --receives-->  SET Transmitter
+     source: rfc8935.pdf, pages 4-4, chunk 7
+     quote: "The SET Recipient is willing to accept this SET from this SET
+            Transmitter (e.g., the SET Transmitter is expected to send SETs
+            with the issuer and subject of the SET in question)."
+     passage:
+       | Upon receipt of a SET, the SET Recipient  validate that all of the following are true:
+       | The SET Recipient can parse the SET. 
+       | The SET is authentic (i.e., it was issued by the issuer specified within the SET, and if signed,
+       | was signed by a key belonging to the issuer). 
+       | The SET Recipient is identified as an intended audience of the SET. 
+       | The SET Issuer is recognized as an issuer that the SET Recipient is willing to receive SETs
+       | from (e.g., the issuer is listed as allowed by the SET Recipient). 
+       | The SET Recipient is willing to accept this SET from this SET Transmitter (e.g., the SET
+       | Transmitter is expected to send SETs with the issuer and subject of the SET in question). 
+       | The mechanisms by which the SET Recipient performs this validation are out of scope for this
+       | document. SET parsing, issuer identification, and audience identification are defined in 
+       | .
+
+==============================================================================
+E11  Amazon Route 53  --mitigates-->  infrastructure layer attacks
+     source: AWS-WhitePaper-Sample.pdf, pages 15-15, chunk 26
+     quote: "You can use AWS services that operate from edge locations, such
+            as Amazon CloudFront, AWS Global Accelerator, and Amazon Route 53
+            to build comprehensive availability protection against all known
+            infrastructure layer attacks."
+     passage:
+       | AWS Best Practices for DDoS Resiliency AWS Whitepaper
+       | Mitigation techniques
+       | Some forms of DDoS mitigation are included automatically with AWS services. DDoS resilience 
+       | can be improved further by using an AWS architecture with specific services-covered in the 
+       | following sections-and by implementing additional best practices for each part of the network 
+       | flow between users and your application.
+       | You can use AWS services that operate from edge locations, such as Amazon CloudFront, AWS 
+       | Global Accelerator, and Amazon Route 53 to build comprehensive availability protection against all 
+       | known infrastructure layer attacks. These services are part of the AWS Global Edge Network, and 
+       | can improve the DDoS resilience of your application when serving any type of application traffic 
+       | from edge locations distributed around the world.
+
+==============================================================================
+E12  JSON Web Tokens (JWTs)  --conforms_to-->  OAuth 2.0
+     source: AWS-WhitePaper-Sample.pdf, pages 48-48, chunk 127
+     quote: "You can use JSON Web Tokens (JWTs) as a part of OpenID Connect
+            (OIDC) and OAuth 2.0 frameworks to restrict client access to your
+            APIs."
+     passage:
+       | AWS Best Practices for DDoS Resiliency AWS Whitepaper
+       | • Lambda authorizers - For custom authentication logic (for example, validating tokens from 
+       | third-party identity providers)
+       | • API keys - As an additional layer (not as a sole authentication mechanism)
+       | • JWT authorizers in API Gateway - You can use JSON Web Tokens (JWTs) as a part of OpenID 
+       | Connect (OIDC) and OAuth 2.0 frameworks to restrict client access to your APIs.
+       | For more information about creating APIs with Amazon API Gateway, see Amazon API Gateway 
+       | Getting Started.
+       | Protecting API endpoints (BP4) 44
+
+==============================================================================
+E13  attacker  --related_to-->  website
+     source: AWS-WhitePaper-Sample.pdf, pages 12-12, chunk 20
+     quote: "With a WordPress XML-RPC flood attack, also known as a WordPress
+            pingback flood, an attacker targets a website hosted on the
+            WordPress content management software."
+     passage:
+       | Instead of being able to return cached 
+       | results, the CDN must contact the origin server for every page request, and these origin fetches 
+       | cause additional strain on the application web server.
+       | • With a WordPress XML-RPC flood attack, also known as a WordPress pingback flood, an 
+       | attacker targets a website hosted on the WordPress content management software. The attacker 
+       | misuses the XML-RPC API function to generate a flood of HTTP requests. The pingback feature 
+       | TCP middlebox reflection 8
+
+==============================================================================
+E14  security groups  --protects-->  AWS resources
+     as written: Security groups ... AWS resources
+     source: AWS-WhitePaper-Sample.pdf, pages 45-45, chunk 118
+     quote: "Security groups and network ACLs are similar in that they allow
+            you to control access to AWS resources within your VPC."
+     passage:
+       | Similarly, don't accept traffic from users or 
+       | external applications on ports or protocols that aren't necessary for communication.
+       | In the following section, AWS provides best practices to guide you in reducing your attack surface 
+       | and limiting your application's internet exposure.
+       | Obfuscating AWS resources (BP1, BP4, BP5)
+       | You can limit direct exposure of your backend resources by placing edge services-such as 
+       | CloudFront, API Gateway, or load balancers-between your users and your origin infrastructure. 
+       | The following sections describe specific techniques for achieving this.
+       | Security groups and network ACLs (BP5)
+       | Amazon Virtual Private Cloud (Amazon VPC) allows you to provision a logically isolated section of 
+       | the AWS Cloud where you can launch AWS resources in a virtual network that you define.
+       | Security groups and network ACLs are similar in that they allow you to control access to AWS 
+       | resources within your VPC.
+
+==============================================================================
+E15  CloudFront WAF  --related_to-->  CloudFront points of presence (POP) capacity
+     source: AWS-WhitePaper-Sample.pdf, pages 31-31, chunk 71
+     quote: "CloudFront WAF capacity is scaled to match the CloudFront points
+            of presence (POP) capacity-the capacity constraints of Regional
+            WAF don't apply."
+     passage:
+       | This multi-layer 
+       | validation filters out malformed or incomplete connection attempts before they reach your 
+       | origin.
+       | • CloudFront edge locations provide automatic, always-on mitigation of network and transport 
+       | layer (Layer 3 and 4) attacks, protecting both the CDN service and your origin infrastructure.
+       | • CloudFront automatically closes connections from slow reading or slow writing attackers (for 
+       | example, Slowloris), or novel attacks such as HTTP/2 rapid reset.
+       | • CloudFront provides built-in protection against common HTTP protocol attacks, including HTTP 
+       | request smuggling, HTTP desync attacks, and request splitting.
+       | • CloudFront WAF capacity is scaled to match the CloudFront points of presence (POP) capacity-the capacity constraints of Regional WAF don't apply.
+       | • The CloudFront global edge network provides massive absorption capacity for traffic spikes, 
+       | regardless of where your origin is hosted.
+
+==============================================================================
+E16  alarms  --receives-->  DDoS attacks
+     as written: alarms ... DDoS attack
+     source: AWS-WhitePaper-Sample.pdf, pages 50-50, chunk 131
+     quote: "For example, you can configure alarms to notify you when there's
+            a DDoS attack in progress, so you can check your application's
+            health and decide whether to engage AWS SRT."
+     passage:
+       | AWS Best Practices for DDoS Resiliency AWS Whitepaper
+       | If you follow the DDoS-resilient reference architecture when architecting your application, common 
+       | infrastructure layer attacks will be blocked before reaching your application. If you're subscribed to
+       | AWS Shield Advanced, you have access to a number of CloudWatch metrics that can indicate that 
+       | your application is being targeted.
+       | For example, you can configure alarms to notify you when there's a DDoS attack in progress, 
+       | so you can check your application's health and decide whether to engage AWS SRT. You can 
+       | configure the DDoSDetected metric to tell you if an attack has been detected. If you want to 
+       | be alerted based on the attack volume, you can also use the DDoSAttackBitsPerSecond,
+       | DDoSAttackPacketsPerSecond, or DDoSAttackRequestsPerSecond metrics.
+
+==============================================================================
+E17  DDoS-resilient reference architecture  --mitigates-->  infrastructure layer attacks
+     source: AWS-WhitePaper-Sample.pdf, pages 50-50, chunk 131
+     quote: "If you follow the DDoS-resilient reference architecture when
+            architecting your application, common infrastructure layer attacks
+            will be blocked before reaching your application."
+     passage:
+       | AWS Best Practices for DDoS Resiliency AWS Whitepaper
+       | If you follow the DDoS-resilient reference architecture when architecting your application, common 
+       | infrastructure layer attacks will be blocked before reaching your application. If you're subscribed to
+       | AWS Shield Advanced, you have access to a number of CloudWatch metrics that can indicate that 
+       | your application is being targeted.
+       | For example, you can configure alarms to notify you when there's a DDoS attack in progress, 
+       | so you can check your application's health and decide whether to engage AWS SRT. You can 
+       | configure the DDoSDetected metric to tell you if an attack has been detected. If you want to 
+       | be alerted based on the attack volume, you can also use the DDoSAttackBitsPerSecond,
+       | DDoSAttackPacketsPerSecond, or DDoSAttackRequestsPerSecond metrics.
+
+==============================================================================
+E18  AWS Firewall Manager  --protects-->  AWS Shield Advanced
+     source: AWS-WhitePaper-Sample.pdf, pages 59-59, chunk 151
+     quote: "AWS Firewall Manager simplifies your administration and
+            maintenance tasks across multiple accounts and resources for a
+            variety of protections, including AWS WAF, AWS Shield Advanced,
+            Amazon VPC security groups and network ACLs, AWS Network Firewall,
+            and Amazon Route 53 Resolver DNS Firewall."
+     passage:
+       | AWS Best Practices for DDoS Resiliency AWS Whitepaper
+       | Visibility and protection management across multiple accounts
+       | In scenarios when you operate across multiple AWS accounts and have multiple components to 
+       | protect, use techniques that enable you to operate at scale and reduce operational overhead to 
+       | increase your mitigation capabilities.
+       | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple 
+       | accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, 
+       | Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 
+       | Resolver DNS Firewall. You can use Firewall Manager to centrally set up and monitor your 
+       | resources' compliance against your company policy and to semi-automatically apply security 
+       | mitigations to protected resources.
+
+==============================================================================
+E19  CloudFront  --uses-->  Origin Shield
+     source: AWS-WhitePaper-Sample.pdf, pages 31-31, chunk 73
+     quote: "When content is served from the CloudFront cache hierarchy-edge
+            POPs (points of presence closest to users), Regional Edge Caches
+            (RECs, larger consolidated caching layers that sit between POPs
+            and your origin), and Origin Shield (an additional centralized
+            caching layer that reduces origin load by acting as a single point
+            of contact for cache fills)-requests might be served as cache
+            objects from downstream peers in the network, preventing volume
+            from reaching your origin."
+     passage:
+       | By implementing strategic caching policies, even with 
+       | short time to live (TTL), you can significantly reduce the load on your origin infrastructure.
+       | When content is served from the CloudFront cache hierarchy-edge POPs (points of presence 
+       | closest to users), Regional Edge Caches (RECs, larger consolidated caching layers that sit between 
+       | POPs and your origin), and Origin Shield (an additional centralized caching layer that reduces 
+       | origin load by acting as a single point of contact for cache fills)-requests might be served as cache 
+       | objects from downstream peers in the network, preventing volume from reaching your origin.
+       | For content that isn't yet cached or has expired, CloudFront request collapsing further protects 
+       | origins by consolidating multiple simultaneous requests into a single origin request.
+
+==============================================================================
+E20  AWS Shield Advanced  --produces-->  CloudWatch metrics
+     source: AWS-WhitePaper-Sample.pdf, pages 50-50, chunk 131
+     quote: "If you're subscribed to AWS Shield Advanced, you have access to a
+            number of CloudWatch metrics that can indicate that your
+            application is being targeted."
+     passage:
+       | AWS Best Practices for DDoS Resiliency AWS Whitepaper
+       | If you follow the DDoS-resilient reference architecture when architecting your application, common 
+       | infrastructure layer attacks will be blocked before reaching your application. If you're subscribed to
+       | AWS Shield Advanced, you have access to a number of CloudWatch metrics that can indicate that 
+       | your application is being targeted.
+       | For example, you can configure alarms to notify you when there's a DDoS attack in progress, 
+       | so you can check your application's health and decide whether to engage AWS SRT. You can 
+       | configure the DDoSDetected metric to tell you if an attack has been detected. If you want to 
+       | be alerted based on the attack volume, you can also use the DDoSAttackBitsPerSecond,
+       | DDoSAttackPacketsPerSecond, or DDoSAttackRequestsPerSecond metrics.
+
+==============================================================================
+E21  SETs  --contains-->  Personally Identifiable Information (PII)
+     source: rfc8935.pdf, pages 14-14, chunk 41
+     quote: "SETs may contain sensitive information that is considered
+            Personally Identifiable Information (PII)."
+     passage:
+       | Appendix A. Unencrypted Transport Considerations 
+       | Earlier versions of this specification made the use of TLS optional and described security and
+       | privacy considerations resulting from use of unencrypted HTTP as the underlying transport.
+       | When the working group decided to mandate usage of HTTP over TLS, it also decided to preserve
+       | the description of these considerations in this non-normative appendix.
+       | SETs may contain sensitive information that is considered Personally Identifiable Information
+       | (PII). In such cases, SET Transmitters and SET Recipients  protect the confidentiality of the
+       | SET contents. When TLS is not used, this means that the SET  be encrypted as described in 
+       | .
+       | If SETs were allowed to be transmitted over unencrypted channels, some privacy-sensitive
+       | information about them might leak, even though the SETs themselves are encrypted.
+
+==============================================================================
+E22  AWS WAF  --evaluates-->  web ACL
+     source: AWS-WhitePaper-Sample.pdf, pages 56-56, chunk 145
+     quote: "They show metrics for each web ACL that you monitor with AWS WAF,
+            including total requests, blocked requests, allowed requests, bot
+            compared to non-bot requests, bot categories, CAPTCHA solve rate,
+            top 10 matched rules, and more."
+     passage:
+       | These dashboards are 
+       | available by default and require no additional setup. They show metrics for each web ACL that you 
+       | monitor with AWS WAF, including total requests, blocked requests, allowed requests, bot compared 
+       | to non-bot requests, bot categories, CAPTCHA solve rate, top 10 matched rules, and more.
+       | You can access default metrics such as the total number of requests, blocked requests, and 
+       | common attacks blocked, or you can customize your dashboard with the metrics and visualizations 
+       | that are most important to you.
+       | These dashboards provide enhanced visibility and help you answer questions such as:
+       | AWS WAF traffic overview dashboard 52
+
+==============================================================================
+E23  AWS WAF  --protects-->  URI paths
+     source: AWS-WhitePaper-Sample.pdf, pages 41-41, chunk 103
+     quote: "Block access to unused URI paths using AWS WAF."
+     passage:
+       | AWS Best Practices for DDoS Resiliency AWS Whitepaper
+       | AWS WAF - Block access to unused URI paths and file extensions
+       | Block access to unused URI paths using AWS WAF. The most obvious example here would be the '/' 
+       | URI path for an API endpoint, which would typically return an HTTP 404 (Not Found).
+       | Likewise consider blocking access to file extensions that you don't use, for example: if NOT 
+       | uri_path matches regex .*\.(css|js|png|jpg|svg|woff2|html|json)$ AND 
+       | uri_path contains '.'
+       | Blocking access to such paths prevents sudden high-volume request floods on non-existent 
+       | or mutating URLs from overwhelming your target group (for ALB endpoints) or origin (for 
+       | CloudFront).
+       | AWS WAF - Challenge rule action
+       | The Challenge rule action provides an effective defense against DDoS botnets, which typically use 
+       | basic scripts designed to maximize target impact while minimizing operational costs.
+
+==============================================================================
+E24  CloudFront  --uses-->  caching strategies
+     source: AWS-WhitePaper-Sample.pdf, pages 31-31, chunk 72
+     quote: "CloudFront can be combined with properly configured WAF rules and
+            effective caching strategies to absorb large-scale request floods
+            that would otherwise overwhelm backend origin services."
+     passage:
+       | Whether your backend infrastructure is in AWS, 
+       | another cloud provider, or on-premises, CloudFront can be combined with properly configured 
+       | WAF rules and effective caching strategies to absorb large-scale request floods that would 
+       | otherwise overwhelm backend origin services.
+       | HTTP caching
+       | CloudFront
+       | Amazon CloudFront caching capabilities are a powerful tool for protecting your origin servers' 
+       | capacity, even with dynamic content delivery.
+
+==============================================================================
+E25  protected resources  --protects-->  Elastic IP addresses
+     source: AWS-WhitePaper-Sample.pdf, pages 46-46, chunk 120
+     quote: "DDoS attacks against Elastic IP addresses that have been
+            registered as protected resources are detected more quickly, which
+            can result in a faster time to mitigate."
+     passage:
+       | AWS Best Practices for DDoS Resiliency AWS Whitepaper
+       | When you create network ACLs, you can specify both allow and deny rules. This is useful if you 
+       | want to explicitly deny certain types of traffic to your application. For example, you can define IP 
+       | addresses (as CIDR ranges), protocols, and destination ports that are denied access to the entire 
+       | subnet. If your application is used only for TCP traffic, you can create a rule to deny all UDP traffic, 
+       | or vice versa. This option is useful when responding to DDoS attacks because it lets you create your 
+       | own rules to mitigate the attack when you know the source IPs or other signature.
+       | If you're subscribed to AWS Shield Advanced, you can register Elastic IP addresses as protected 
+       | resources. DDoS attacks against Elastic IP addresses that have been registered as protected 
+       | resources are detected more quickly, which can result in a faster time to mitigate.
+
+==============================================================================
+E26  SET Transmitter  --connects_to-->  TLS-enabled HTTP endpoint
+     source: rfc8935.pdf, pages 5-5, chunk 11
+     quote: "To transmit a SET to a SET Recipient, the SET Transmitter makes
+            an HTTP POST request to a TLS-enabled HTTP endpoint provided by
+            the SET Recipient."
+     passage:
+       | 2.1. Transmitting a SET 
+       | To transmit a SET to a SET Recipient, the SET Transmitter makes an HTTP POST request to a TLS-enabled HTTP endpoint provided by the SET Recipient. The Content-Type header field of this
+       | request  be application/secevent+jwt as defined in Sections 2.3 and 7.2 of , and
+       | the Accept header field  be application/json.
+
+==============================================================================
+E27  acknowledgement (ACK) packet  --precedes-->  three-way handshake
+     source: AWS-WhitePaper-Sample.pdf, pages 10-10, chunk 13
+     quote: "The server returns a synchronization-acknowledgement (SYN-ACK)
+            packet, and finally the client responds with an acknowledgement
+            (ACK) packet, which completes the expected three-way handshake."
+     passage:
+       | AWS Best Practices for DDoS Resiliency AWS Whitepaper
+       | volume of traffic in comparison to other attacks. The following figure illustrates the reflection 
+       | tactic and amplification effect.
+       | Figure 3 - A diagram depicting a UDP reflection attack
+       | It should be noted that reflection attacks, while they provide attackers with amplification, require 
+       | IP spoofing capability and as increasing numbers of network providers adopt Source Address 
+       | Validation Everywhere (SAVE) or BCP38, this capability is removed, requiring DDoS attackers to 
+       | cease reflection attacks or to relocate to data centers and network providers who don't implement 
+       | source address validation.
+       | SYN flood attacks
+       | When a user connects to a Transmission Control Protocol (TCP) service, such as a web server, their 
+       | client sends a SYN packet. The server returns a synchronization-acknowledgement (SYN-ACK) 
+       | packet, and finally the client responds with an acknowledgement (ACK) packet, which completes 
+       | the expected three-way handshake.
+
+==============================================================================
+E28  AWS  --produces-->  prescriptive DDoS guidance
+     source: AWS-WhitePaper-Sample.pdf, pages 2-3, chunk 1
+     quote: "In this whitepaper, AWS provides you with prescriptive DDoS
+            guidance to improve the resiliency of applications running on
+            AWS."
+     passage:
+       | AWS Best Practices for DDoS Resiliency AWS Whitepaper
+       | AWS Best Practices for DDoS Resiliency
+       | Publication date: August 2026 (Document revisions)
+       | It's important to protect your business from the impact of Distributed Denial of Service (DDoS) 
+       | attacks, as well as other cyberattacks. Keeping customer trust in your service by maintaining 
+       | the availability and responsiveness of your application is high priority. You also want to avoid 
+       | unnecessary direct costs when your infrastructure must scale in response to an attack. Amazon 
+       | Web Services (AWS) is committed to providing you with the tools, best practices, and services to 
+       | defend against bad actors on the internet. Using the right services from AWS helps ensure high 
+       | availability, security, and resiliency.
+       | In this whitepaper, AWS provides you with prescriptive DDoS guidance to improve the resiliency 
+       | of applications running on AWS.
+
+==============================================================================
+E29  CloudFront  --mitigates-->  HTTP request smuggling
+     source: AWS-WhitePaper-Sample.pdf, pages 31-31, chunk 71
+     quote: "CloudFront provides built-in protection against common HTTP
+            protocol attacks, including HTTP request smuggling, HTTP desync
+            attacks, and request splitting."
+     passage:
+       | This multi-layer 
+       | validation filters out malformed or incomplete connection attempts before they reach your 
+       | origin.
+       | • CloudFront edge locations provide automatic, always-on mitigation of network and transport 
+       | layer (Layer 3 and 4) attacks, protecting both the CDN service and your origin infrastructure.
+       | • CloudFront automatically closes connections from slow reading or slow writing attackers (for 
+       | example, Slowloris), or novel attacks such as HTTP/2 rapid reset.
+       | • CloudFront provides built-in protection against common HTTP protocol attacks, including HTTP 
+       | request smuggling, HTTP desync attacks, and request splitting.
+       | • CloudFront WAF capacity is scaled to match the CloudFront points of presence (POP) capacity-the capacity constraints of Regional WAF don't apply.
+       | • The CloudFront global edge network provides massive absorption capacity for traffic spikes, 
+       | regardless of where your origin is hosted.
+
+==============================================================================
+E30  scope-down statement  --protects-->  dynamic endpoints
+     source: AWS-WhitePaper-Sample.pdf, pages 38-38, chunk 94
+     quote: "Protect dynamic endpoints with a scope-down statement such as if
+            method exactly matches 'post' (convert lowercase)."
+     passage:
+       | AWS Best Practices for DDoS Resiliency AWS Whitepaper
+       | • Protect dynamic endpoints with a scope-down statement such as if method exactly 
+       | matches 'post' (convert lowercase).
+       | • Protect heavy requests that reach your database or invoke a one-time password (OTP) with a 
+       | scope-down such as if uri_path starts_with '/login', uri_path starts_with 
+       | '/signup' or uri_path starts_with '/forgotpassword'.
+       | • Use lower limits for country codes that aren't your target demographic
+       | Rate-based rules with JA3 and JA4 headers are supported in CloudFront and ALB. Customers 
+       | have asked for SSL/TLS inspection capabilities and JA3 and JA4 fingerprints to help them 
+       | analyze unique TLS handshake characteristics in the form of 32 (JA3)- or 36 (JA4)-character 
+       | hash fingerprint of the TLS Client Hello packet of incoming requests.
+
+==============================================================================
+E31  CloudFront edge locations  --protects-->  CDN service
+     source: AWS-WhitePaper-Sample.pdf, pages 31-31, chunk 71
+     quote: "CloudFront edge locations provide automatic, always-on mitigation
+            of network and transport layer (Layer 3 and 4) attacks, protecting
+            both the CDN service and your origin infrastructure."
+     passage:
+       | This multi-layer 
+       | validation filters out malformed or incomplete connection attempts before they reach your 
+       | origin.
+       | • CloudFront edge locations provide automatic, always-on mitigation of network and transport 
+       | layer (Layer 3 and 4) attacks, protecting both the CDN service and your origin infrastructure.
+       | • CloudFront automatically closes connections from slow reading or slow writing attackers (for 
+       | example, Slowloris), or novel attacks such as HTTP/2 rapid reset.
+       | • CloudFront provides built-in protection against common HTTP protocol attacks, including HTTP 
+       | request smuggling, HTTP desync attacks, and request splitting.
+       | • CloudFront WAF capacity is scaled to match the CloudFront points of presence (POP) capacity-the capacity constraints of Regional WAF don't apply.
+       | • The CloudFront global edge network provides massive absorption capacity for traffic spikes, 
+       | regardless of where your origin is hosted.
+
+==============================================================================
+E32  SET Recipient  --uses-->  TLS mechanisms
+     source: rfc8935.pdf, pages 9-9, chunk 26
+     quote: "At the time of receipt, the SET Recipient can rely upon TLS
+            mechanisms, HTTP authentication methods, and/or other context from
+            the transmission request to authenticate the SET Transmitter and
+            validate the authenticity of the SET."
+     passage:
+       | Denial of Service 
+       | The SET Recipient may be vulnerable to a denial-of-service attack where a malicious party makes
+       | a high volume of requests containing invalid SETs, causing the endpoint to expend significant
+       | resources on cryptographic operations that are bound to fail. This may be mitigated by
+       | authenticating SET Transmitters with a mechanism such as mutual TLS. Rate-limiting
+       | problematic transmitters is also a possible means of mitigation.
+       | 5.5. Authenticating Persisted SETs 
+       | At the time of receipt, the SET Recipient can rely upon TLS mechanisms, HTTP authentication
+       | methods, and/or other context from the transmission request to authenticate the SET Transmitter
+       | and validate the authenticity of the SET. However, this context is typically unavailable to systems
+       | to which the SET Recipient forwards the SET, or to systems that retrieve the SET from storage.
+
+==============================================================================
+E33  name server  --produces-->  response
+     source: AWS-WhitePaper-Sample.pdf, pages 29-29, chunk 64
+     quote: "If one name server in the delegation set is unavailable, users
+            can retry and receive a response from another name server at a
+            different edge location."
+     passage:
+       | It's the only AWS service that has a 100% data plane availability SLA.
+       | Amazon Route 53 uses techniques such as shuffle sharding and anycast striping, that can help 
+       | users access your application even if the DNS service is targeted by a DDoS attack.
+       | With shuffle sharding, each name server in your delegation set corresponds to a unique set of edge 
+       | locations and internet paths. This provides greater fault tolerance and minimizes overlap between 
+       | customers. If one name server in the delegation set is unavailable, users can retry and receive a 
+       | response from another name server at a different edge location.
+       | Anycast striping allows each DNS request to be served by the most optimal location, dispersing 
+       | the network load and reducing DNS latency. This provides a faster response for users.
+
+==============================================================================
+E34  error descriptions  --contains-->  response body
+     source: rfc8935.pdf, pages 6-6, chunk 16
+     quote: "The response include a Content-Language header field whose value
+            indicates the language of the error descriptions included in the
+            response body."
+     passage:
+       | The exact content of this field is implementation
+       | specific. 
+       | The response  include a Content-Language header field whose value indicates the language
+       | of the error descriptions included in the response body. If the SET Recipient can provide error
+       | descriptions in multiple languages, they  choose the language to use according to the
+       | value of the Accept-Language header field sent by the SET Transmitter in the transmission
+       | request, as described in .
+
+==============================================================================
+E35  CloudFront  --protects-->  Application layer
+     as written: CloudFront ... application layer
+     source: AWS-WhitePaper-Sample.pdf, pages 16-16, chunk 30
+     quote: "These applications include the application layer of the Open
+            Systems Interconnection (OSI) model and for that reason use
+            CloudFront and AWS WAF at the edge for the protection."
+     passage:
+       | These applications include the application layer of the Open Systems Interconnection (OSI) model 
+       | and for that reason use CloudFront and AWS WAF at the edge for the protection.
+       | Figure 5 - DDoS-resilient reference architecture for web applications
+       | The following figure illustrates a typical architecture for applications that operate at the transport 
+       | layer of the OSI model and because of that the best practices include a different component for 
+       | protection at the Edge.
+       | 12
+
+==============================================================================
+E36  CloudFront  --uses-->  JA3
+     source: AWS-WhitePaper-Sample.pdf, pages 38-38, chunk 94
+     quote: "Rate-based rules with JA3 and JA4 headers are supported in
+            CloudFront and ALB."
+     passage:
+       | AWS Best Practices for DDoS Resiliency AWS Whitepaper
+       | • Protect dynamic endpoints with a scope-down statement such as if method exactly 
+       | matches 'post' (convert lowercase).
+       | • Protect heavy requests that reach your database or invoke a one-time password (OTP) with a 
+       | scope-down such as if uri_path starts_with '/login', uri_path starts_with 
+       | '/signup' or uri_path starts_with '/forgotpassword'.
+       | • Use lower limits for country codes that aren't your target demographic
+       | Rate-based rules with JA3 and JA4 headers are supported in CloudFront and ALB. Customers 
+       | have asked for SSL/TLS inspection capabilities and JA3 and JA4 fingerprints to help them 
+       | analyze unique TLS handshake characteristics in the form of 32 (JA3)- or 36 (JA4)-character 
+       | hash fingerprint of the TLS Client Hello packet of incoming requests.
+
+==============================================================================
+E37  AWS WAF  --protects-->  AWS Lambda
+     as written: AWS WAF ... Lambda
+     source: AWS-WhitePaper-Sample.pdf, pages 23-23, chunk 45
+     quote: "When Lambda is behind API Gateway, you benefit from the API
+            Gateway built-in throttling (default 10,000 requests per second
+            per Region) and can add AWS WAF for additional protection."
+     passage:
+       | AWS Best Practices for DDoS Resiliency AWS Whitepaper
+       | • Provisioned concurrency - Pre-initialize function instances to reduce cold start latency during 
+       | traffic surges. This is particularly useful for latency-sensitive applications that might experience 
+       | sudden traffic increases.
+       | • Function URL throttling - If using Lambda function URLs, configure reserved concurrency to act 
+       | as a throttle against excessive requests.
+       | • Amazon API Gateway integration - When Lambda is behind API Gateway, you benefit from the 
+       | API Gateway built-in throttling (default 10,000 requests per second per Region) and can add 
+       | AWS WAF for additional protection.
+       | Be aware that Lambda has account-level concurrency limits. A DDoS attack targeting one function 
+       | could consume concurrency needed by other functions. Use reserved concurrency to isolate critical 
+       | functions.
+       | Elastic Load Balancing (BP6)
+       | Large DDoS attacks can overwhelm the capacity of a single Amazon EC2 instance.
+
+==============================================================================
+E38  Network Load Balancer  --produces-->  ActiveFlowCount
+     source: AWS-WhitePaper-Sample.pdf, pages 53-53, chunk 138
+     quote: "Network Load Balancer ActiveFlowCount The total number of
+            concurrent TCP flows (or connections) from clients to targets."
+     passage:
+       | AWS Best Practices for DDoS Resiliency AWS Whitepaper
+       | AWS service Metric Description
+       | Application Load Balancer TargetConnectionEr 
+       | rorCount
+       | The number of connections 
+       | that were not successfully 
+       | established between the load 
+       | balancer and the target.
+       | Application Load Balancer TargetResponseTime The time elapsed, in seconds, 
+       | after the request left the load 
+       | balancer until a response 
+       | from the target is received.
+       | Application Load Balancer UnHealthyHostCount The number of targets that 
+       | are considered unhealthy.
+       | Network Load Balancer ActiveFlowCount The total number of 
+       | concurrent TCP flows (or 
+       | connections) from clients to 
+       | targets.
+       | Network Load Balancer ConsumedLCUs The number of load balancer 
+       | capacity units (LCU) used by 
+       | your load balancer.
+       | Network Load Balancer NewFlowCount The total number of new 
+       | TCP flows (or connections) 
+       | established from clients to 
+       | targets in the time period.
+       | Network Load Balancer ProcessedBytes The total number of bytes 
+       | processed by the load
+
+==============================================================================
+E39  Route 53 health checks  --evaluates-->  DDoS events
+     as written: Route 53 health checks ... DDoS event
+     source: AWS-WhitePaper-Sample.pdf, pages 49-49, chunk 129
+     quote: "As a best practice you should be using infrastructure and
+            application monitoring tools to check the availability of your
+            application to help detect whether your application is being
+            impacted by a DDoS event, as an option you can configure
+            application and infrastructure Route 53 health checks for the
+            resources to help improve the detection of DDoS events."
+     passage:
+       | Test for expected traffic scale-up and down but also for flash-crowd type behavior. Retest either 
+       | periodically or before any major release. For layer 3 or 4 DDoS simulation testing, such as SYN 
+       | flood, follow our DDoS Simulation Testing Policy.
+       | Metrics and alarms
+       | As a best practice you should be using infrastructure and application monitoring tools to check 
+       | the availability of your application to help detect whether your application is being impacted by a 
+       | DDoS event, as an option you can configure application and infrastructure Route 53 health checks
+       | for the resources to help improve the detection of DDoS events. For more information about health 
+       | checks, see AWS WAF, Firewall Manager and Shield Advanced Developer Guide.
+       | For organizations operating across multiple AWS accounts, AWS recommends implementing 
+       | CloudWatch cross-account observability to establish unified monitoring of DDoS-related metrics 
+       | and alarms.
+
+==============================================================================
+E40  OAC  --connects_to-->  Amazon S3
+     as written: origin access control (OAC) ... Amazon S3
+     source: AWS-WhitePaper-Sample.pdf, pages 28-28, chunk 58
+     quote: "two ways to send authenticated requests to an Amazon S3 origin:
+            origin access control (OAC) and origin access identity (OAI)."
+     passage:
+       | AWS Best Practices for DDoS Resiliency AWS Whitepaper
+       | two ways to send authenticated requests to an Amazon S3 origin: origin access control (OAC) and 
+       | origin access identity (OAI).

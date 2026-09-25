@@ -1,0 +1,4421 @@
+{
+ "split": "heldout",
+ "chosen": "G2-H",
+ "scores": {
+  "A0": {
+   "multi_full": 4,
+   "multi_n": 5,
+   "graph_full": 4,
+   "graph_n": 5,
+   "gold_found": 19,
+   "gold_n": 23,
+   "noise": 0.7625,
+   "added": 0,
+   "added_gold": 0,
+   "top5_same": true,
+   "refused": true,
+   "entity_added": {},
+   "p50": null,
+   "p95": null,
+   "candidates": null
+  },
+  "A0@7": {
+   "multi_full": 4,
+   "multi_n": 5,
+   "graph_full": 4,
+   "graph_n": 5,
+   "gold_found": 19,
+   "gold_n": 23,
+   "noise": 0.8303571428571428,
+   "added": 0,
+   "added_gold": 0,
+   "top5_same": true,
+   "refused": true,
+   "entity_added": {},
+   "p50": null,
+   "p95": null,
+   "candidates": null
+  },
+  "G1": {
+   "multi_full": 4,
+   "multi_n": 5,
+   "graph_full": 4,
+   "graph_n": 5,
+   "gold_found": 20,
+   "gold_n": 23,
+   "noise": 0.8165137614678899,
+   "added": 29,
+   "added_gold": 1,
+   "top5_same": true,
+   "refused": true,
+   "entity_added": {
+    "Q55": 0,
+    "Q56": 2
+   },
+   "p50": 2.0856044993706746,
+   "p95": 2.6854589996219147,
+   "candidates": 16.0
+  },
+  "G2-U": {
+   "multi_full": 4,
+   "multi_n": 5,
+   "graph_full": 4,
+   "graph_n": 5,
+   "gold_found": 21,
+   "gold_n": 23,
+   "noise": 0.8090909090909091,
+   "added": 30,
+   "added_gold": 2,
+   "top5_same": true,
+   "refused": true,
+   "entity_added": {
+    "Q55": 0,
+    "Q56": 2
+   },
+   "p50": 2.0842079993599327,
+   "p95": 2.4633329994685482,
+   "candidates": 27.5
+  },
+  "G2-H": {
+   "multi_full": 4,
+   "multi_n": 5,
+   "graph_full": 4,
+   "graph_n": 5,
+   "gold_found": 21,
+   "gold_n": 23,
+   "noise": 0.8073394495412844,
+   "added": 29,
+   "added_gold": 2,
+   "top5_same": true,
+   "refused": true,
+   "entity_added": {
+    "Q55": 0,
+    "Q56": 2
+   },
+   "p50": 2.025437001066166,
+   "p95": 2.71729100131779,
+   "candidates": 24.5
+  },
+  "G2-W": {
+   "multi_full": 4,
+   "multi_n": 5,
+   "graph_full": 4,
+   "graph_n": 5,
+   "gold_found": 20,
+   "gold_n": 23,
+   "noise": 0.8181818181818181,
+   "added": 30,
+   "added_gold": 1,
+   "top5_same": true,
+   "refused": true,
+   "entity_added": {
+    "Q55": 0,
+    "Q56": 2
+   },
+   "p50": 2.049250000709435,
+   "p95": 2.4523329993826337,
+   "candidates": 27.5
+  },
+  "G1*": {
+   "multi_full": 4,
+   "multi_n": 5,
+   "graph_full": 4,
+   "graph_n": 5,
+   "gold_found": 19,
+   "gold_n": 23,
+   "noise": 0.7888888888888889,
+   "added": 10,
+   "added_gold": 0,
+   "top5_same": true,
+   "refused": true,
+   "entity_added": {},
+   "p50": 2.0856044993706746,
+   "p95": 2.6854589996219147,
+   "candidates": 16.0
+  },
+  "G2-U*": {
+   "multi_full": 4,
+   "multi_n": 5,
+   "graph_full": 4,
+   "graph_n": 5,
+   "gold_found": 20,
+   "gold_n": 23,
+   "noise": 0.7777777777777778,
+   "added": 10,
+   "added_gold": 1,
+   "top5_same": true,
+   "refused": true,
+   "entity_added": {},
+   "p50": 2.0842079993599327,
+   "p95": 2.4633329994685482,
+   "candidates": 27.5
+  },
+  "G2-H*": {
+   "multi_full": 4,
+   "multi_n": 5,
+   "graph_full": 4,
+   "graph_n": 5,
+   "gold_found": 20,
+   "gold_n": 23,
+   "noise": 0.7777777777777778,
+   "added": 10,
+   "added_gold": 1,
+   "top5_same": true,
+   "refused": true,
+   "entity_added": {},
+   "p50": 2.025437001066166,
+   "p95": 2.71729100131779,
+   "candidates": 24.5
+  },
+  "G2-W*": {
+   "multi_full": 4,
+   "multi_n": 5,
+   "graph_full": 4,
+   "graph_n": 5,
+   "gold_found": 20,
+   "gold_n": 23,
+   "noise": 0.7777777777777778,
+   "added": 10,
+   "added_gold": 1,
+   "top5_same": true,
+   "refused": true,
+   "entity_added": {},
+   "p50": 2.049250000709435,
+   "p95": 2.4523329993826337,
+   "candidates": 27.5
+  }
+ },
+ "questions": [
+  {
+   "id": "Q01",
+   "category": "plain",
+   "kind": null,
+   "needs_graph": false,
+   "gold": [
+    14
+   ],
+   "gold_labels": [
+    "RFC:14 (A0 rank 11)"
+   ],
+   "linking": [
+    [
+     "SET Recipient",
+     "missed",
+     "set recipient"
+    ],
+    [
+     "Security Event Token",
+     "linked",
+     "security event token"
+    ]
+   ],
+   "seeds": [
+    "security event token",
+    "http status code"
+   ],
+   "contexts": {
+    "A0": [
+     19,
+     15,
+     33,
+     18,
+     0
+    ],
+    "A0@7": [
+     19,
+     15,
+     33,
+     18,
+     0,
+     29,
+     20
+    ],
+    "G1": [
+     19,
+     15,
+     33,
+     18,
+     0,
+     20,
+     14
+    ],
+    "G1*": [
+     19,
+     15,
+     33,
+     18,
+     0
+    ],
+    "G2-U": [
+     19,
+     15,
+     33,
+     18,
+     0,
+     14,
+     8
+    ],
+    "G2-U*": [
+     19,
+     15,
+     33,
+     18,
+     0
+    ],
+    "G2-H": [
+     19,
+     15,
+     33,
+     18,
+     0,
+     20,
+     14
+    ],
+    "G2-H*": [
+     19,
+     15,
+     33,
+     18,
+     0
+    ],
+    "G2-W": [
+     19,
+     15,
+     33,
+     18,
+     0,
+     26,
+     9
+    ],
+    "G2-W*": [
+     19,
+     15,
+     33,
+     18,
+     0
+    ]
+   },
+   "added": {
+    "G1": [
+     {
+      "chunk": "RFC:20",
+      "gold": false,
+      "cosine": 0.538,
+      "from": [
+       "security event token"
+      ],
+      "hops": 1,
+      "quotes": [
+       "security event token --conforms_to--> http | The SET delivery method described in this specification is based upon HTTP over TLS and standard HTTP authentication and authorization schemes, as per .",
+       "security event token --conforms_to--> transport layer security | The SET delivery method described in this specification is based upon HTTP over TLS and standard HTTP authentication and authorization schemes, as per ."
+      ]
+     },
+     {
+      "chunk": "RFC:14",
+      "gold": true,
+      "cosine": 0.494,
+      "from": [
+       "security event token"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set recipient --receives--> security event token | If the SET is determined to be valid, the SET Recipient acknowledge successful transmission by responding with HTTP Response Status Code 202 (Accepted) (see )."
+      ]
+     }
+    ],
+    "G2-U": [
+     {
+      "chunk": "RFC:14",
+      "gold": true,
+      "cosine": 0.494,
+      "from": [
+       "http status code",
+       "security event token"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set recipient --receives--> security event token | If the SET is determined to be valid, the SET Recipient acknowledge successful transmission by responding with HTTP Response Status Code 202 (Accepted) (see ).",
+       "set recipient --uses--> http response status code 202 (accepted) | If the SET is determined to be valid, the SET Recipient acknowledge successful transmission by responding with HTTP Response Status Code 202 (Accepted) (see )."
+      ]
+     },
+     {
+      "chunk": "RFC:8",
+      "gold": false,
+      "cosine": 0.445,
+      "from": [
+       "http status code",
+       "security event token"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set recipient --receives--> security event token | The SET Recipient may accept or reject (i.e., return an error response such as access_denied) a SET at its own discretion.",
+       "set transmitter --produces--> security event token | SET Transmitters transmit SETs issued by another entity.",
+       "set recipient --produces--> error response | The SET Recipient may accept or reject (i.e., return an error response such as access_denied) a SET at its own discretion."
+      ]
+     }
+    ],
+    "G2-H": [
+     {
+      "chunk": "RFC:20",
+      "gold": false,
+      "cosine": 0.538,
+      "from": [
+       "security event token"
+      ],
+      "hops": 1,
+      "quotes": [
+       "security event token --conforms_to--> http | The SET delivery method described in this specification is based upon HTTP over TLS and standard HTTP authentication and authorization schemes, as per .",
+       "security event token --conforms_to--> transport layer security | The SET delivery method described in this specification is based upon HTTP over TLS and standard HTTP authentication and authorization schemes, as per .",
+       "set transmitter --uses--> mutual tls | Authorization for the eligibility to provide actionable SETs can be determined by using the identity of the SET Issuer, the identity of the SET Transmitter, perhaps using mutual TLS, or via other employed authentication methods."
+      ]
+     },
+     {
+      "chunk": "RFC:14",
+      "gold": true,
+      "cosine": 0.494,
+      "from": [
+       "security event token"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set recipient --receives--> security event token | If the SET is determined to be valid, the SET Recipient acknowledge successful transmission by responding with HTTP Response Status Code 202 (Accepted) (see )."
+      ]
+     }
+    ],
+    "G2-W": [
+     {
+      "chunk": "RFC:26",
+      "gold": false,
+      "cosine": 0.434,
+      "from": [
+       "http status code",
+       "security event token"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set recipient --evaluates--> security event token | At the time of receipt, the SET Recipient can rely upon TLS mechanisms, HTTP authentication methods, and/or other context from the transmission request to authenticate the SET Transmitter and validate the authenticity of the SET.",
+       "set recipient --uses--> tls mechanisms | At the time of receipt, the SET Recipient can rely upon TLS mechanisms, HTTP authentication methods, and/or other context from the transmission request to authenticate the SET Transmitter and validate the authenticity of the SET.",
+       "set recipient --uses--> http authentication methods | At the time of receipt, the SET Recipient can rely upon TLS mechanisms, HTTP authentication methods, and/or other context from the transmission request to authenticate the SET Transmitter and validate the authenticity of the SET.",
+       "set recipient --evaluates--> transmission request | At the time of receipt, the SET Recipient can rely upon TLS mechanisms, HTTP authentication methods, and/or other context from the transmission request to authenticate the SET Transmitter and validate the authenticity of the SET."
+      ]
+     },
+     {
+      "chunk": "RFC:9",
+      "gold": false,
+      "cosine": 0.379,
+      "from": [
+       "http status code",
+       "security event token"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set transmitter --produces--> security event token | The SET Transmitter transmit the same SET to the SET Recipient multiple times, regardless of the response from the SET Recipient.",
+       "set recipient --evaluates--> security event token | The SET Recipient perform further processing of the SET beyond the required validation steps prior to sending this response.",
+       "set transmitter --connects_to--> set recipient | The SET Transmitter transmit the same SET to the SET Recipient multiple times, regardless of the response from the SET Recipient."
+      ]
+     }
+    ]
+   },
+   "latency_ms": {
+    "G1": 1.6233329988608602,
+    "G2-U": 1.3811250028084032,
+    "G2-H": 1.2553749984363094,
+    "G2-W": 1.18862499948591
+   },
+   "candidates": {
+    "G1": 14,
+    "G2-U": 27,
+    "G2-H": 24,
+    "G2-W": 27
+   }
+  },
+  {
+   "id": "Q04",
+   "category": "plain",
+   "kind": null,
+   "needs_graph": false,
+   "gold": [
+    201
+   ],
+   "gold_labels": [
+    "AWS:156 (A0 rank 1)"
+   ],
+   "linking": [
+    [
+     "DDoS attacks",
+     "missed",
+     "ddos attack"
+    ],
+    [
+     "incident response",
+     "not in graph",
+     "longer names containing its words: ['ddos attack incident response strategy (rejected: no edge to an admitted entity (R1))', 'security incident response guide (rejected: not admitted)', 'security incident response process (rejected: neither named nor recurring (R3))']"
+    ]
+   ],
+   "seeds": [
+    "response",
+    "ddos"
+   ],
+   "contexts": {
+    "A0": [
+     201,
+     80,
+     204,
+     46,
+     202
+    ],
+    "A0@7": [
+     201,
+     80,
+     204,
+     46,
+     202,
+     207,
+     159
+    ],
+    "G1": [
+     201,
+     80,
+     204,
+     46,
+     202,
+     147,
+     197
+    ],
+    "G1*": [
+     201,
+     80,
+     204,
+     46,
+     202
+    ],
+    "G2-U": [
+     201,
+     80,
+     204,
+     46,
+     202,
+     147,
+     197
+    ],
+    "G2-U*": [
+     201,
+     80,
+     204,
+     46,
+     202
+    ],
+    "G2-H": [
+     201,
+     80,
+     204,
+     46,
+     202,
+     147,
+     197
+    ],
+    "G2-H*": [
+     201,
+     80,
+     204,
+     46,
+     202
+    ],
+    "G2-W": [
+     201,
+     80,
+     204,
+     46,
+     202,
+     109,
+     197
+    ],
+    "G2-W*": [
+     201,
+     80,
+     204,
+     46,
+     202
+    ]
+   },
+   "added": {
+    "G1": [
+     {
+      "chunk": "AWS:102",
+      "gold": false,
+      "cosine": 0.377,
+      "from": [
+       "ddos"
+      ],
+      "hops": 1,
+      "quotes": [
+       "anonymousiplist rule --mitigates--> ddos | Requests from clients matching the AnonymousIPList rule are potential candidates for being used for malicious purposes like DDoS, and you should consider moving this rule to Block, but be careful of the HostingProviderIPListinBlock-it's a very blunt instrument and customers frequently choose to leave this rule in Count mode."
+      ]
+     },
+     {
+      "chunk": "AWS:152",
+      "gold": false,
+      "cosine": 0.37,
+      "from": [
+       "ddos"
+      ],
+      "hops": 1,
+      "quotes": [
+       "firewall manager --mitigates--> ddos | For example, you can set up recommended WAF web ACL rule groups for DDoS compliance that should be used across all or specifically tagged CloudFront distributions or ALBs, and Firewall Manager will monitor and be able to auto-mitigate the ones that are non-compliant."
+      ]
+     }
+    ],
+    "G2-U": [
+     {
+      "chunk": "AWS:102",
+      "gold": false,
+      "cosine": 0.377,
+      "from": [
+       "ddos"
+      ],
+      "hops": 1,
+      "quotes": [
+       "anonymousiplist rule --mitigates--> ddos | Requests from clients matching the AnonymousIPList rule are potential candidates for being used for malicious purposes like DDoS, and you should consider moving this rule to Block, but be careful of the HostingProviderIPListinBlock-it's a very blunt instrument and customers frequently choose to leave this rule in Count mode."
+      ]
+     },
+     {
+      "chunk": "AWS:152",
+      "gold": false,
+      "cosine": 0.37,
+      "from": [
+       "ddos"
+      ],
+      "hops": 1,
+      "quotes": [
+       "firewall manager --evaluates--> waf web acl rule groups | For example, you can set up recommended WAF web ACL rule groups for DDoS compliance that should be used across all or specifically tagged CloudFront distributions or ALBs, and Firewall Manager will monitor and be able to auto-mitigate the ones that are non-compliant.",
+       "firewall manager --mitigates--> ddos | For example, you can set up recommended WAF web ACL rule groups for DDoS compliance that should be used across all or specifically tagged CloudFront distributions or ALBs, and Firewall Manager will monitor and be able to auto-mitigate the ones that are non-compliant.",
+       "centralized monitoring --uses--> firewall manager | When managing AWS Shield Advanced protected resources in multiple accounts, you can set up centralized monitoring by using AWS Firewall Manager and AWS Security Hub CSPM."
+      ]
+     }
+    ],
+    "G2-H": [
+     {
+      "chunk": "AWS:102",
+      "gold": false,
+      "cosine": 0.377,
+      "from": [
+       "ddos"
+      ],
+      "hops": 1,
+      "quotes": [
+       "anonymousiplist rule --mitigates--> ddos | Requests from clients matching the AnonymousIPList rule are potential candidates for being used for malicious purposes like DDoS, and you should consider moving this rule to Block, but be careful of the HostingProviderIPListinBlock-it's a very blunt instrument and customers frequently choose to leave this rule in Count mode."
+      ]
+     },
+     {
+      "chunk": "AWS:152",
+      "gold": false,
+      "cosine": 0.37,
+      "from": [
+       "ddos"
+      ],
+      "hops": 1,
+      "quotes": [
+       "firewall manager --mitigates--> ddos | For example, you can set up recommended WAF web ACL rule groups for DDoS compliance that should be used across all or specifically tagged CloudFront distributions or ALBs, and Firewall Manager will monitor and be able to auto-mitigate the ones that are non-compliant."
+      ]
+     }
+    ],
+    "G2-W": [
+     {
+      "chunk": "AWS:64",
+      "gold": false,
+      "cosine": 0.313,
+      "from": [
+       "response"
+      ],
+      "hops": 1,
+      "quotes": [
+       "name server --connects_to--> edge locations | With shuffle sharding, each name server in your delegation set corresponds to a unique set of edge locations and internet paths.",
+       "name server --produces--> response | If one name server in the delegation set is unavailable, users can retry and receive a response from another name server at a different edge location."
+      ]
+     },
+     {
+      "chunk": "AWS:152",
+      "gold": false,
+      "cosine": 0.37,
+      "from": [
+       "ddos"
+      ],
+      "hops": 1,
+      "quotes": [
+       "firewall manager --evaluates--> waf web acl rule groups | For example, you can set up recommended WAF web ACL rule groups for DDoS compliance that should be used across all or specifically tagged CloudFront distributions or ALBs, and Firewall Manager will monitor and be able to auto-mitigate the ones that are non-compliant.",
+       "firewall manager --mitigates--> ddos | For example, you can set up recommended WAF web ACL rule groups for DDoS compliance that should be used across all or specifically tagged CloudFront distributions or ALBs, and Firewall Manager will monitor and be able to auto-mitigate the ones that are non-compliant.",
+       "centralized monitoring --uses--> firewall manager | When managing AWS Shield Advanced protected resources in multiple accounts, you can set up centralized monitoring by using AWS Firewall Manager and AWS Security Hub CSPM."
+      ]
+     }
+    ]
+   },
+   "latency_ms": {
+    "G1": 1.0995419979735743,
+    "G2-U": 1.087500000721775,
+    "G2-H": 0.966208001045743,
+    "G2-W": 0.9854580021055881
+   },
+   "candidates": {
+    "G1": 4,
+    "G2-U": 22,
+    "G2-H": 4,
+    "G2-W": 22
+   }
+  },
+  {
+   "id": "Q08",
+   "category": "plain",
+   "kind": null,
+   "needs_graph": false,
+   "gold": [
+    80,
+    158
+   ],
+   "gold_labels": [
+    "AWS:35 (A0 rank 26)",
+    "AWS:113 (A0 rank 2)"
+   ],
+   "linking": [],
+   "seeds": [
+    "aws"
+   ],
+   "contexts": {
+    "A0": [
+     159,
+     158,
+     160,
+     178,
+     185
+    ],
+    "A0@7": [
+     159,
+     158,
+     160,
+     178,
+     185,
+     155,
+     175
+    ],
+    "G1": [
+     159,
+     158,
+     160,
+     178,
+     185,
+     201,
+     46
+    ],
+    "G1*": [
+     159,
+     158,
+     160,
+     178,
+     185
+    ],
+    "G2-U": [
+     159,
+     158,
+     160,
+     178,
+     185,
+     201,
+     46
+    ],
+    "G2-U*": [
+     159,
+     158,
+     160,
+     178,
+     185
+    ],
+    "G2-H": [
+     159,
+     158,
+     160,
+     178,
+     185,
+     201,
+     46
+    ],
+    "G2-H*": [
+     159,
+     158,
+     160,
+     178,
+     185
+    ],
+    "G2-W": [
+     159,
+     158,
+     160,
+     178,
+     185,
+     167,
+     201
+    ],
+    "G2-W*": [
+     159,
+     158,
+     160,
+     178,
+     185
+    ]
+   },
+   "added": {
+    "G1": [
+     {
+      "chunk": "AWS:156",
+      "gold": false,
+      "cosine": 0.616,
+      "from": [
+       "aws"
+      ],
+      "hops": 1,
+      "quotes": [
+       "aws --evaluates--> threat | If you experience an attack, you can also benefit from support from AWS in assessing the threat and reviewing the architecture of your application, or you might want to request other assistance."
+      ]
+     },
+     {
+      "chunk": "AWS:1",
+      "gold": false,
+      "cosine": 0.544,
+      "from": [
+       "aws"
+      ],
+      "hops": 1,
+      "quotes": [
+       "aws --produces--> prescriptive ddos guidance | In this whitepaper, AWS provides you with prescriptive DDoS guidance to improve the resiliency of applications running on AWS."
+      ]
+     }
+    ],
+    "G2-U": [
+     {
+      "chunk": "AWS:156",
+      "gold": false,
+      "cosine": 0.616,
+      "from": [
+       "aws"
+      ],
+      "hops": 1,
+      "quotes": [
+       "aws --evaluates--> threat | If you experience an attack, you can also benefit from support from AWS in assessing the threat and reviewing the architecture of your application, or you might want to request other assistance."
+      ]
+     },
+     {
+      "chunk": "AWS:1",
+      "gold": false,
+      "cosine": 0.544,
+      "from": [
+       "aws"
+      ],
+      "hops": 1,
+      "quotes": [
+       "aws --produces--> prescriptive ddos guidance | In this whitepaper, AWS provides you with prescriptive DDoS guidance to improve the resiliency of applications running on AWS."
+      ]
+     }
+    ],
+    "G2-H": [
+     {
+      "chunk": "AWS:156",
+      "gold": false,
+      "cosine": 0.616,
+      "from": [
+       "aws"
+      ],
+      "hops": 1,
+      "quotes": [
+       "aws --evaluates--> threat | If you experience an attack, you can also benefit from support from AWS in assessing the threat and reviewing the architecture of your application, or you might want to request other assistance."
+      ]
+     },
+     {
+      "chunk": "AWS:1",
+      "gold": false,
+      "cosine": 0.544,
+      "from": [
+       "aws"
+      ],
+      "hops": 1,
+      "quotes": [
+       "aws --produces--> prescriptive ddos guidance | In this whitepaper, AWS provides you with prescriptive DDoS guidance to improve the resiliency of applications running on AWS."
+      ]
+     }
+    ],
+    "G2-W": [
+     {
+      "chunk": "AWS:122",
+      "gold": false,
+      "cosine": 0.378,
+      "from": [
+       "aws"
+      ],
+      "hops": 1,
+      "quotes": [
+       "aws --uses--> cloudfront vpc origins | AWS provides several approaches to implement this security control, with CloudFront VPC origins being the newest and recommended solution.",
+       "cloudfront vpc origins --protects--> private subnets | CloudFront VPC origins enables you to keep your applications in private subnets without internet access while restricting access to only your CloudFront distributions.",
+       "cloudfront vpc origins --protects--> cloudfront distributions | CloudFront VPC origins enables you to keep your applications in private subnets without internet access while restricting access to only your CloudFront distributions."
+      ]
+     },
+     {
+      "chunk": "AWS:156",
+      "gold": false,
+      "cosine": 0.616,
+      "from": [
+       "aws"
+      ],
+      "hops": 1,
+      "quotes": [
+       "aws --evaluates--> threat | If you experience an attack, you can also benefit from support from AWS in assessing the threat and reviewing the architecture of your application, or you might want to request other assistance."
+      ]
+     }
+    ]
+   },
+   "latency_ms": {
+    "G1": 2.1596249971480574,
+    "G2-U": 1.8781670005409978,
+    "G2-H": 1.679124998190673,
+    "G2-W": 1.4235830021789297
+   },
+   "candidates": {
+    "G1": 6,
+    "G2-U": 21,
+    "G2-H": 12,
+    "G2-W": 21
+   }
+  },
+  {
+   "id": "Q09",
+   "category": "plain",
+   "kind": null,
+   "needs_graph": false,
+   "gold": [
+    137
+   ],
+   "gold_labels": [
+    "AWS:92 (A0 rank 3)"
+   ],
+   "linking": [],
+   "seeds": [
+    "client"
+   ],
+   "contexts": {
+    "A0": [
+     127,
+     138,
+     137,
+     23,
+     150
+    ],
+    "A0@7": [
+     127,
+     138,
+     137,
+     23,
+     150,
+     101,
+     139
+    ],
+    "G1": [
+     127,
+     138,
+     137,
+     23,
+     150
+    ],
+    "G1*": [
+     127,
+     138,
+     137,
+     23,
+     150
+    ],
+    "G2-U": [
+     127,
+     138,
+     137,
+     23,
+     150
+    ],
+    "G2-U*": [
+     127,
+     138,
+     137,
+     23,
+     150
+    ],
+    "G2-H": [
+     127,
+     138,
+     137,
+     23,
+     150
+    ],
+    "G2-H*": [
+     127,
+     138,
+     137,
+     23,
+     150
+    ],
+    "G2-W": [
+     127,
+     138,
+     137,
+     23,
+     150
+    ],
+    "G2-W*": [
+     127,
+     138,
+     137,
+     23,
+     150
+    ]
+   },
+   "added": {
+    "G1": [],
+    "G2-U": [],
+    "G2-H": [],
+    "G2-W": []
+   },
+   "latency_ms": {
+    "G1": 1.7112920031649992,
+    "G2-U": 1.6085419993032701,
+    "G2-H": 1.8427909999445546,
+    "G2-W": 1.9523750015650876
+   },
+   "candidates": {
+    "G1": 2,
+    "G2-U": 3,
+    "G2-H": 3,
+    "G2-W": 3
+   }
+  },
+  {
+   "id": "Q10",
+   "category": "plain",
+   "kind": null,
+   "needs_graph": false,
+   "gold": [
+    56
+   ],
+   "gold_labels": [
+    "AWS:11 (A0 rank 1)"
+   ],
+   "linking": [
+    [
+     "DNS",
+     "not in graph",
+     "longer names containing its words: ['authoritative dns server (rejected: not admitted)', 'dns latency (rejected: not admitted)', 'dns queries', 'dns query flood']"
+    ],
+    [
+     "UDP reflection attacks",
+     "missed",
+     "udp reflection attacks"
+    ]
+   ],
+   "seeds": [
+    "attacker"
+   ],
+   "contexts": {
+    "A0": [
+     56,
+     57,
+     67,
+     68,
+     55
+    ],
+    "A0@7": [
+     56,
+     57,
+     67,
+     68,
+     55,
+     63,
+     64
+    ],
+    "G1": [
+     56,
+     57,
+     67,
+     68,
+     55,
+     65,
+     162
+    ],
+    "G1*": [
+     56,
+     57,
+     67,
+     68,
+     55
+    ],
+    "G2-U": [
+     56,
+     57,
+     67,
+     68,
+     55,
+     65,
+     162
+    ],
+    "G2-U*": [
+     56,
+     57,
+     67,
+     68,
+     55
+    ],
+    "G2-H": [
+     56,
+     57,
+     67,
+     68,
+     55,
+     65,
+     162
+    ],
+    "G2-H*": [
+     56,
+     57,
+     67,
+     68,
+     55
+    ],
+    "G2-W": [
+     56,
+     57,
+     67,
+     68,
+     55,
+     65,
+     162
+    ],
+    "G2-W*": [
+     56,
+     57,
+     67,
+     68,
+     55
+    ]
+   },
+   "added": {
+    "G1": [
+     {
+      "chunk": "AWS:20",
+      "gold": false,
+      "cosine": 0.432,
+      "from": [
+       "attacker"
+      ],
+      "hops": 1,
+      "quotes": [
+       "attacker --related_to--> website | With a WordPress XML-RPC flood attack, also known as a WordPress pingback flood, an attacker targets a website hosted on the WordPress content management software.",
+       "attacker --uses--> xml-rpc api function | The attacker misuses the XML-RPC API function to generate a flood of HTTP requests."
+      ]
+     },
+     {
+      "chunk": "AWS:117",
+      "gold": false,
+      "cosine": 0.379,
+      "from": [
+       "attacker"
+      ],
+      "hops": 1,
+      "quotes": [
+       "internet --related_to--> attacker | Resources that aren't exposed to the internet are more difficult to attack, which limits the options an attacker has to target your application's availability.",
+       "attacker --related_to--> application's availability | Resources that aren't exposed to the internet are more difficult to attack, which limits the options an attacker has to target your application's availability."
+      ]
+     }
+    ],
+    "G2-U": [
+     {
+      "chunk": "AWS:20",
+      "gold": false,
+      "cosine": 0.432,
+      "from": [
+       "attacker"
+      ],
+      "hops": 1,
+      "quotes": [
+       "attacker --related_to--> website | With a WordPress XML-RPC flood attack, also known as a WordPress pingback flood, an attacker targets a website hosted on the WordPress content management software.",
+       "website --depends_on--> wordpress content management software | With a WordPress XML-RPC flood attack, also known as a WordPress pingback flood, an attacker targets a website hosted on the WordPress content management software.",
+       "attacker --uses--> xml-rpc api function | The attacker misuses the XML-RPC API function to generate a flood of HTTP requests.",
+       "xml-rpc api function --produces--> http requests | The attacker misuses the XML-RPC API function to generate a flood of HTTP requests."
+      ]
+     },
+     {
+      "chunk": "AWS:117",
+      "gold": false,
+      "cosine": 0.379,
+      "from": [
+       "attacker"
+      ],
+      "hops": 1,
+      "quotes": [
+       "internet --related_to--> attacker | Resources that aren't exposed to the internet are more difficult to attack, which limits the options an attacker has to target your application's availability.",
+       "attacker --related_to--> application's availability | Resources that aren't exposed to the internet are more difficult to attack, which limits the options an attacker has to target your application's availability."
+      ]
+     }
+    ],
+    "G2-H": [
+     {
+      "chunk": "AWS:20",
+      "gold": false,
+      "cosine": 0.432,
+      "from": [
+       "attacker"
+      ],
+      "hops": 1,
+      "quotes": [
+       "attacker --related_to--> website | With a WordPress XML-RPC flood attack, also known as a WordPress pingback flood, an attacker targets a website hosted on the WordPress content management software.",
+       "website --depends_on--> wordpress content management software | With a WordPress XML-RPC flood attack, also known as a WordPress pingback flood, an attacker targets a website hosted on the WordPress content management software.",
+       "attacker --uses--> xml-rpc api function | The attacker misuses the XML-RPC API function to generate a flood of HTTP requests.",
+       "xml-rpc api function --produces--> http requests | The attacker misuses the XML-RPC API function to generate a flood of HTTP requests."
+      ]
+     },
+     {
+      "chunk": "AWS:117",
+      "gold": false,
+      "cosine": 0.379,
+      "from": [
+       "attacker"
+      ],
+      "hops": 1,
+      "quotes": [
+       "internet --related_to--> attacker | Resources that aren't exposed to the internet are more difficult to attack, which limits the options an attacker has to target your application's availability.",
+       "attacker --related_to--> application's availability | Resources that aren't exposed to the internet are more difficult to attack, which limits the options an attacker has to target your application's availability."
+      ]
+     }
+    ],
+    "G2-W": [
+     {
+      "chunk": "AWS:20",
+      "gold": false,
+      "cosine": 0.432,
+      "from": [
+       "attacker"
+      ],
+      "hops": 1,
+      "quotes": [
+       "attacker --related_to--> website | With a WordPress XML-RPC flood attack, also known as a WordPress pingback flood, an attacker targets a website hosted on the WordPress content management software.",
+       "website --depends_on--> wordpress content management software | With a WordPress XML-RPC flood attack, also known as a WordPress pingback flood, an attacker targets a website hosted on the WordPress content management software.",
+       "attacker --uses--> xml-rpc api function | The attacker misuses the XML-RPC API function to generate a flood of HTTP requests.",
+       "xml-rpc api function --produces--> http requests | The attacker misuses the XML-RPC API function to generate a flood of HTTP requests."
+      ]
+     },
+     {
+      "chunk": "AWS:117",
+      "gold": false,
+      "cosine": 0.379,
+      "from": [
+       "attacker"
+      ],
+      "hops": 1,
+      "quotes": [
+       "internet --related_to--> attacker | Resources that aren't exposed to the internet are more difficult to attack, which limits the options an attacker has to target your application's availability.",
+       "attacker --related_to--> application's availability | Resources that aren't exposed to the internet are more difficult to attack, which limits the options an attacker has to target your application's availability."
+      ]
+     }
+    ]
+   },
+   "latency_ms": {
+    "G1": 2.0652500024880283,
+    "G2-U": 1.9744160017580725,
+    "G2-H": 1.8611660016176756,
+    "G2-W": 1.6334159990947228
+   },
+   "candidates": {
+    "G1": 6,
+    "G2-U": 7,
+    "G2-H": 7,
+    "G2-W": 7
+   }
+  },
+  {
+   "id": "Q14",
+   "category": "plain",
+   "kind": null,
+   "needs_graph": false,
+   "gold": [
+    149
+   ],
+   "gold_labels": [
+    "AWS:104 (A0 rank 1)"
+   ],
+   "linking": [
+    [
+     "AWS WAF",
+     "linked",
+     "waf"
+    ],
+    [
+     "Challenge rule action",
+     "not admitted",
+     "not admitted"
+    ]
+   ],
+   "seeds": [
+    "challenge",
+    "waf",
+    "client"
+   ],
+   "contexts": {
+    "A0": [
+     149,
+     148,
+     133,
+     150,
+     137
+    ],
+    "A0@7": [
+     149,
+     148,
+     133,
+     150,
+     137,
+     136,
+     131
+    ],
+    "G1": [
+     149,
+     148,
+     133,
+     150,
+     137,
+     141,
+     158
+    ],
+    "G1*": [
+     149,
+     148,
+     133,
+     150,
+     137
+    ],
+    "G2-U": [
+     149,
+     148,
+     133,
+     150,
+     137,
+     141,
+     158
+    ],
+    "G2-U*": [
+     149,
+     148,
+     133,
+     150,
+     137
+    ],
+    "G2-H": [
+     149,
+     148,
+     133,
+     150,
+     137,
+     141,
+     158
+    ],
+    "G2-H*": [
+     149,
+     148,
+     133,
+     150,
+     137
+    ],
+    "G2-W": [
+     149,
+     148,
+     133,
+     150,
+     137,
+     141,
+     25
+    ],
+    "G2-W*": [
+     149,
+     148,
+     133,
+     150,
+     137
+    ]
+   },
+   "added": {
+    "G1": [
+     {
+      "chunk": "AWS:96",
+      "gold": false,
+      "cosine": 0.477,
+      "from": [
+       "challenge",
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "asn-based matching --related_to--> waf | ASN-based matching simplifies WAF operations by reducing the need to use customer-maintained IP sets for similar purposes:",
+       "challenge --mitigates--> asns leased by professional spam or cyber-criminals | You can improve control by introducing Captcha, Challenge, or Block of ASNs listed in the Spamhaus ASN-DROP list, which contains ASNs leased by professional SPAM or cyber-criminals"
+      ]
+     },
+     {
+      "chunk": "AWS:113",
+      "gold": false,
+      "cosine": 0.552,
+      "from": [
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "waf --uses--> rate-based rule | For HTTP-based applications, AWS recommends that these firewalls are used as a secondary defense layer (fine-grained protections) behind AWS resources integrated with AWS WAF, which is configured with volumetric protection using rate-based rules and IP reputation rule groups to protect your firewall tier.",
+       "waf --uses--> ip reputation rule groups | For HTTP-based applications, AWS recommends that these firewalls are used as a secondary defense layer (fine-grained protections) behind AWS resources integrated with AWS WAF, which is configured with volumetric protection using rate-based rules and IP reputation rule groups to protect your firewall tier."
+      ]
+     }
+    ],
+    "G2-U": [
+     {
+      "chunk": "AWS:96",
+      "gold": false,
+      "cosine": 0.477,
+      "from": [
+       "challenge",
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "asn-based matching --uses--> customer-maintained ip sets | ASN-based matching simplifies WAF operations by reducing the need to use customer-maintained IP sets for similar purposes:",
+       "asn-based matching --related_to--> waf | ASN-based matching simplifies WAF operations by reducing the need to use customer-maintained IP sets for similar purposes:",
+       "spamhaus asn-drop list --contains--> asns leased by professional spam or cyber-criminals | You can improve control by introducing Captcha, Challenge, or Block of ASNs listed in the Spamhaus ASN-DROP list, which contains ASNs leased by professional SPAM or cyber-criminals",
+       "captcha --mitigates--> asns leased by professional spam or cyber-criminals | You can improve control by introducing Captcha, Challenge, or Block of ASNs listed in the Spamhaus ASN-DROP list, which contains ASNs leased by professional SPAM or cyber-criminals",
+       "challenge --mitigates--> asns leased by professional spam or cyber-criminals | You can improve control by introducing Captcha, Challenge, or Block of ASNs listed in the Spamhaus ASN-DROP list, which contains ASNs leased by professional SPAM or cyber-criminals",
+       "block --mitigates--> asns leased by professional spam or cyber-criminals | You can improve control by introducing Captcha, Challenge, or Block of ASNs listed in the Spamhaus ASN-DROP list, which contains ASNs leased by professional SPAM or cyber-criminals"
+      ]
+     },
+     {
+      "chunk": "AWS:113",
+      "gold": false,
+      "cosine": 0.552,
+      "from": [
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "waf --uses--> rate-based rule | For HTTP-based applications, AWS recommends that these firewalls are used as a secondary defense layer (fine-grained protections) behind AWS resources integrated with AWS WAF, which is configured with volumetric protection using rate-based rules and IP reputation rule groups to protect your firewall tier.",
+       "waf --uses--> ip reputation rule groups | For HTTP-based applications, AWS recommends that these firewalls are used as a secondary defense layer (fine-grained protections) behind AWS resources integrated with AWS WAF, which is configured with volumetric protection using rate-based rules and IP reputation rule groups to protect your firewall tier."
+      ]
+     }
+    ],
+    "G2-H": [
+     {
+      "chunk": "AWS:96",
+      "gold": false,
+      "cosine": 0.477,
+      "from": [
+       "challenge",
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "asn-based matching --uses--> customer-maintained ip sets | ASN-based matching simplifies WAF operations by reducing the need to use customer-maintained IP sets for similar purposes:",
+       "asn-based matching --related_to--> waf | ASN-based matching simplifies WAF operations by reducing the need to use customer-maintained IP sets for similar purposes:",
+       "spamhaus asn-drop list --contains--> asns leased by professional spam or cyber-criminals | You can improve control by introducing Captcha, Challenge, or Block of ASNs listed in the Spamhaus ASN-DROP list, which contains ASNs leased by professional SPAM or cyber-criminals",
+       "captcha --mitigates--> asns leased by professional spam or cyber-criminals | You can improve control by introducing Captcha, Challenge, or Block of ASNs listed in the Spamhaus ASN-DROP list, which contains ASNs leased by professional SPAM or cyber-criminals",
+       "challenge --mitigates--> asns leased by professional spam or cyber-criminals | You can improve control by introducing Captcha, Challenge, or Block of ASNs listed in the Spamhaus ASN-DROP list, which contains ASNs leased by professional SPAM or cyber-criminals",
+       "block --mitigates--> asns leased by professional spam or cyber-criminals | You can improve control by introducing Captcha, Challenge, or Block of ASNs listed in the Spamhaus ASN-DROP list, which contains ASNs leased by professional SPAM or cyber-criminals"
+      ]
+     },
+     {
+      "chunk": "AWS:113",
+      "gold": false,
+      "cosine": 0.552,
+      "from": [
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "waf --uses--> rate-based rule | For HTTP-based applications, AWS recommends that these firewalls are used as a secondary defense layer (fine-grained protections) behind AWS resources integrated with AWS WAF, which is configured with volumetric protection using rate-based rules and IP reputation rule groups to protect your firewall tier.",
+       "waf --uses--> ip reputation rule groups | For HTTP-based applications, AWS recommends that these firewalls are used as a secondary defense layer (fine-grained protections) behind AWS resources integrated with AWS WAF, which is configured with volumetric protection using rate-based rules and IP reputation rule groups to protect your firewall tier."
+      ]
+     }
+    ],
+    "G2-W": [
+     {
+      "chunk": "AWS:96",
+      "gold": false,
+      "cosine": 0.477,
+      "from": [
+       "challenge",
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "asn-based matching --uses--> customer-maintained ip sets | ASN-based matching simplifies WAF operations by reducing the need to use customer-maintained IP sets for similar purposes:",
+       "asn-based matching --related_to--> waf | ASN-based matching simplifies WAF operations by reducing the need to use customer-maintained IP sets for similar purposes:",
+       "spamhaus asn-drop list --contains--> asns leased by professional spam or cyber-criminals | You can improve control by introducing Captcha, Challenge, or Block of ASNs listed in the Spamhaus ASN-DROP list, which contains ASNs leased by professional SPAM or cyber-criminals",
+       "captcha --mitigates--> asns leased by professional spam or cyber-criminals | You can improve control by introducing Captcha, Challenge, or Block of ASNs listed in the Spamhaus ASN-DROP list, which contains ASNs leased by professional SPAM or cyber-criminals",
+       "challenge --mitigates--> asns leased by professional spam or cyber-criminals | You can improve control by introducing Captcha, Challenge, or Block of ASNs listed in the Spamhaus ASN-DROP list, which contains ASNs leased by professional SPAM or cyber-criminals",
+       "block --mitigates--> asns leased by professional spam or cyber-criminals | You can improve control by introducing Captcha, Challenge, or Block of ASNs listed in the Spamhaus ASN-DROP list, which contains ASNs leased by professional SPAM or cyber-criminals"
+      ]
+     },
+     {
+      "chunk": "RFC:25",
+      "gold": false,
+      "cosine": 0.337,
+      "from": [
+       "client"
+      ],
+      "hops": 1,
+      "quotes": [
+       "client --evaluates--> tls/ssl server certificate | The client perform a TLS/SSL server certificate check using DNS-ID and/or DANE .",
+       "client --uses--> dns-id | The client perform a TLS/SSL server certificate check using DNS-ID and/or DANE .",
+       "client --uses--> dns-based authentication of named entities | The client perform a TLS/SSL server certificate check using DNS-ID and/or DANE ."
+      ]
+     }
+    ]
+   },
+   "latency_ms": {
+    "G1": 2.094291998218978,
+    "G2-U": 2.646332999574952,
+    "G2-H": 2.4029160013014916,
+    "G2-W": 2.3437090021616314
+   },
+   "candidates": {
+    "G1": 21,
+    "G2-U": 58,
+    "G2-H": 36,
+    "G2-W": 58
+   }
+  },
+  {
+   "id": "Q17",
+   "category": "relationship",
+   "kind": null,
+   "needs_graph": false,
+   "gold": [
+    81
+   ],
+   "gold_labels": [
+    "AWS:36 (A0 rank 3)"
+   ],
+   "linking": [
+    [
+     "AWS Shield Advanced",
+     "linked",
+     "shield advanced"
+    ],
+    [
+     "application layer DDoS attacks",
+     "not admitted",
+     "not admitted"
+    ]
+   ],
+   "seeds": [
+    "application layer",
+    "shield advanced",
+    "ddos attack"
+   ],
+   "contexts": {
+    "A0": [
+     158,
+     159,
+     81,
+     166,
+     176
+    ],
+    "A0@7": [
+     158,
+     159,
+     81,
+     166,
+     176,
+     178,
+     83
+    ],
+    "G1": [
+     158,
+     159,
+     81,
+     166,
+     176,
+     80,
+     83
+    ],
+    "G1*": [
+     158,
+     159,
+     81,
+     166,
+     176
+    ],
+    "G2-U": [
+     158,
+     159,
+     81,
+     166,
+     176,
+     83,
+     196
+    ],
+    "G2-U*": [
+     158,
+     159,
+     81,
+     166,
+     176
+    ],
+    "G2-H": [
+     158,
+     159,
+     81,
+     166,
+     176,
+     80,
+     203
+    ],
+    "G2-H*": [
+     158,
+     159,
+     81,
+     166,
+     176
+    ],
+    "G2-W": [
+     158,
+     159,
+     81,
+     166,
+     176,
+     101,
+     196
+    ],
+    "G2-W*": [
+     158,
+     159,
+     81,
+     166,
+     176
+    ]
+   },
+   "added": {
+    "G1": [
+     {
+      "chunk": "AWS:35",
+      "gold": false,
+      "cosine": 0.64,
+      "from": [
+       "ddos attack",
+       "shield advanced"
+      ],
+      "hops": 1,
+      "quotes": [
+       "shield advanced --mitigates--> ddos attack | Another way to improve your readiness to respond to and mitigate DDoS attacks is by subscribing to AWS Shield Advanced.",
+       "shield response team --mitigates--> ddos attack | Access to 24x7 specialized support from the AWS Shield Response Team (AWS SRT) for assistance with mitigating DDoS attacks that impact application availability, including an optional proactive engagement feature."
+      ]
+     },
+     {
+      "chunk": "AWS:38",
+      "gold": false,
+      "cosine": 0.647,
+      "from": [
+       "shield advanced"
+      ],
+      "hops": 1,
+      "quotes": [
+       "shield advanced --related_to--> shield | For a complete list of AWS Shield Advanced features and for more information about AWS Shield, see How AWS Shield Advanced works."
+      ]
+     }
+    ],
+    "G2-U": [
+     {
+      "chunk": "AWS:38",
+      "gold": false,
+      "cosine": 0.647,
+      "from": [
+       "application layer",
+       "ddos attack",
+       "shield advanced"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudfront --related_to--> global accelerator | The service is available globally for CloudFront, Route 53, and Global Accelerator.",
+       "cloudfront --related_to--> route 53 | The service is available globally for CloudFront, Route 53, and Global Accelerator.",
+       "shield advanced --related_to--> shield | For a complete list of AWS Shield Advanced features and for more information about AWS Shield, see How AWS Shield Advanced works."
+      ]
+     },
+     {
+      "chunk": "AWS:151",
+      "gold": false,
+      "cosine": 0.494,
+      "from": [
+       "application layer",
+       "ddos attack",
+       "shield advanced"
+      ],
+      "hops": 1,
+      "quotes": [
+       "firewall manager --protects--> waf | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> shield advanced | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> vpc security groups | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> network acl | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> network firewall | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> route 53 resolver dns firewall | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall."
+      ]
+     }
+    ],
+    "G2-H": [
+     {
+      "chunk": "AWS:35",
+      "gold": false,
+      "cosine": 0.64,
+      "from": [
+       "ddos attack",
+       "shield advanced"
+      ],
+      "hops": 1,
+      "quotes": [
+       "shield advanced --mitigates--> ddos attack | Another way to improve your readiness to respond to and mitigate DDoS attacks is by subscribing to AWS Shield Advanced.",
+       "shield response team --mitigates--> ddos attack | Access to 24x7 specialized support from the AWS Shield Response Team (AWS SRT) for assistance with mitigating DDoS attacks that impact application availability, including an optional proactive engagement feature."
+      ]
+     },
+     {
+      "chunk": "AWS:158",
+      "gold": false,
+      "cosine": 0.504,
+      "from": [
+       "ddos attack",
+       "shield advanced"
+      ],
+      "hops": 1,
+      "quotes": [
+       "shield advanced --related_to--> shield response team | If you're subscribed to AWS Shield Advanced and are also subscribed to either Business Support +, Enterprise Support, or Unified Operations, you can also escalate to AWS Shield Response Team (SRT) by creating an Support case under AWS Shield using the Support console (sign-in required), or the support API when a DDoS-related event affects your application's availability.",
+       "shield response team --creates--> support case | If you're subscribed to AWS Shield Advanced and are also subscribed to either Business Support +, Enterprise Support, or Unified Operations, you can also escalate to AWS Shield Response Team (SRT) by creating an Support case under AWS Shield using the Support console (sign-in required), or the support API when a DDoS-related event affects your application's availability."
+      ]
+     }
+    ],
+    "G2-W": [
+     {
+      "chunk": "AWS:56",
+      "gold": false,
+      "cosine": 0.493,
+      "from": [
+       "application layer",
+       "ddos attack",
+       "shield advanced"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudfront --protects--> web application | Use of these CloudFront features reduces the number of requests and TCP connections back to your origin, helping protect your web application from HTTP floods.",
+       "cloudfront --mitigates--> http floods | Use of these CloudFront features reduces the number of requests and TCP connections back to your origin, helping protect your web application from HTTP floods.",
+       "cloudfront --mitigates--> ddos attack | CloudFront only accepts well-formed connections, which helps prevent many common DDoS attacks, such as SYN floods and UDP reflection attacks, from reaching your origin.",
+       "cloudfront --mitigates--> syn floods | CloudFront only accepts well-formed connections, which helps prevent many common DDoS attacks, such as SYN floods and UDP reflection attacks, from reaching your origin.",
+       "cloudfront --mitigates--> udp reflection attacks | CloudFront only accepts well-formed connections, which helps prevent many common DDoS attacks, such as SYN floods and UDP reflection attacks, from reaching your origin."
+      ]
+     },
+     {
+      "chunk": "AWS:151",
+      "gold": false,
+      "cosine": 0.494,
+      "from": [
+       "application layer",
+       "ddos attack",
+       "shield advanced"
+      ],
+      "hops": 1,
+      "quotes": [
+       "firewall manager --protects--> waf | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> shield advanced | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> vpc security groups | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> network acl | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> network firewall | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> route 53 resolver dns firewall | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall."
+      ]
+     }
+    ]
+   },
+   "latency_ms": {
+    "G1": 2.1095830015838146,
+    "G2-U": 2.2807499990449287,
+    "G2-H": 2.71729100131779,
+    "G2-W": 2.4865830018825363
+   },
+   "candidates": {
+    "G1": 18,
+    "G2-U": 66,
+    "G2-H": 32,
+    "G2-W": 66
+   }
+  },
+  {
+   "id": "Q21",
+   "category": "relationship",
+   "kind": null,
+   "needs_graph": false,
+   "gold": [
+    20
+   ],
+   "gold_labels": [
+    "RFC:20 (A0 rank 1)"
+   ],
+   "linking": [
+    [
+     "SET Recipient",
+     "linked",
+     "set recipient"
+    ],
+    [
+     "SET Transmitter",
+     "linked",
+     "set transmitter"
+    ]
+   ],
+   "seeds": [
+    "set transmitter",
+    "set recipient"
+   ],
+   "contexts": {
+    "A0": [
+     20,
+     9,
+     26,
+     15,
+     8
+    ],
+    "A0@7": [
+     20,
+     9,
+     26,
+     15,
+     8,
+     22,
+     19
+    ],
+    "G1": [
+     20,
+     9,
+     26,
+     15,
+     8,
+     22,
+     7
+    ],
+    "G1*": [
+     20,
+     9,
+     26,
+     15,
+     8
+    ],
+    "G2-U": [
+     20,
+     9,
+     26,
+     15,
+     8,
+     22,
+     7
+    ],
+    "G2-U*": [
+     20,
+     9,
+     26,
+     15,
+     8
+    ],
+    "G2-H": [
+     20,
+     9,
+     26,
+     15,
+     8,
+     22,
+     7
+    ],
+    "G2-H*": [
+     20,
+     9,
+     26,
+     15,
+     8
+    ],
+    "G2-W": [
+     20,
+     9,
+     26,
+     15,
+     8,
+     6,
+     7
+    ],
+    "G2-W*": [
+     20,
+     9,
+     26,
+     15,
+     8
+    ]
+   },
+   "added": {
+    "G1": [
+     {
+      "chunk": "RFC:22",
+      "gold": false,
+      "cosine": 0.681,
+      "from": [
+       "set recipient",
+       "set transmitter"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set transmitter --connects_to--> set recipient | For example, it may be appropriate for the SET Transmitter to retransmit the SET to the SET Recipient, erring on the side of guaranteeing delivery, or it may be appropriate to assume delivery was successful, erring on the side of not spending resources retransmitting previously delivered SETs.",
+       "set transmitter --receives--> success response | For example, a network interruption could prevent the SET Transmitter from receiving the success response, or a service outage could prevent the SET Transmitter from recording the fact that the SET was delivered."
+      ]
+     },
+     {
+      "chunk": "RFC:7",
+      "gold": false,
+      "cosine": 0.595,
+      "from": [
+       "set recipient",
+       "set transmitter"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set recipient --receives--> security event token | Upon receipt of a SET, the SET Recipient validate that all of the following are true:",
+       "set recipient --receives--> set issuer | The SET Issuer is recognized as an issuer that the SET Recipient is willing to receive SETs from (e.g., the issuer is listed as allowed by the SET Recipient).",
+       "set recipient --receives--> set transmitter | The SET Recipient is willing to accept this SET from this SET Transmitter (e.g., the SET Transmitter is expected to send SETs with the issuer and subject of the SET in question)."
+      ]
+     }
+    ],
+    "G2-U": [
+     {
+      "chunk": "RFC:22",
+      "gold": false,
+      "cosine": 0.681,
+      "from": [
+       "set recipient",
+       "set transmitter"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set transmitter --connects_to--> set recipient | For example, it may be appropriate for the SET Transmitter to retransmit the SET to the SET Recipient, erring on the side of guaranteeing delivery, or it may be appropriate to assume delivery was successful, erring on the side of not spending resources retransmitting previously delivered SETs.",
+       "set transmitter --receives--> success response | For example, a network interruption could prevent the SET Transmitter from receiving the success response, or a service outage could prevent the SET Transmitter from recording the fact that the SET was delivered."
+      ]
+     },
+     {
+      "chunk": "RFC:7",
+      "gold": false,
+      "cosine": 0.595,
+      "from": [
+       "set recipient",
+       "set transmitter"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set recipient --receives--> security event token | Upon receipt of a SET, the SET Recipient validate that all of the following are true:",
+       "set recipient --receives--> set issuer | The SET Issuer is recognized as an issuer that the SET Recipient is willing to receive SETs from (e.g., the issuer is listed as allowed by the SET Recipient).",
+       "set recipient --receives--> set transmitter | The SET Recipient is willing to accept this SET from this SET Transmitter (e.g., the SET Transmitter is expected to send SETs with the issuer and subject of the SET in question)."
+      ]
+     }
+    ],
+    "G2-H": [
+     {
+      "chunk": "RFC:22",
+      "gold": false,
+      "cosine": 0.681,
+      "from": [
+       "set recipient",
+       "set transmitter"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set transmitter --connects_to--> set recipient | For example, it may be appropriate for the SET Transmitter to retransmit the SET to the SET Recipient, erring on the side of guaranteeing delivery, or it may be appropriate to assume delivery was successful, erring on the side of not spending resources retransmitting previously delivered SETs.",
+       "set transmitter --receives--> success response | For example, a network interruption could prevent the SET Transmitter from receiving the success response, or a service outage could prevent the SET Transmitter from recording the fact that the SET was delivered."
+      ]
+     },
+     {
+      "chunk": "RFC:7",
+      "gold": false,
+      "cosine": 0.595,
+      "from": [
+       "set recipient",
+       "set transmitter"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set recipient --receives--> security event token | Upon receipt of a SET, the SET Recipient validate that all of the following are true:",
+       "set recipient --receives--> set issuer | The SET Issuer is recognized as an issuer that the SET Recipient is willing to receive SETs from (e.g., the issuer is listed as allowed by the SET Recipient).",
+       "set recipient --receives--> set transmitter | The SET Recipient is willing to accept this SET from this SET Transmitter (e.g., the SET Transmitter is expected to send SETs with the issuer and subject of the SET in question)."
+      ]
+     }
+    ],
+    "G2-W": [
+     {
+      "chunk": "RFC:6",
+      "gold": false,
+      "cosine": 0.589,
+      "from": [
+       "set recipient",
+       "set transmitter"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set transmitter --creates--> set transmission request | To deliver a SET to a given SET Recipient, the SET Transmitter makes a SET Transmission Request to the SET Recipient, with the SET itself contained within the request.",
+       "set transmission request --contains--> security event token | To deliver a SET to a given SET Recipient, the SET Transmitter makes a SET Transmission Request to the SET Recipient, with the SET itself contained within the request.",
+       "set recipient --receives--> set transmission request | To deliver a SET to a given SET Recipient, the SET Transmitter makes a SET Transmission Request to the SET Recipient, with the SET itself contained within the request.",
+       "set recipient --produces--> response | The SET Recipient replies to this request with a response either acknowledging successful transmission of the SET or indicating that an error occurred while receiving, parsing, and/or validating the SET."
+      ]
+     },
+     {
+      "chunk": "RFC:7",
+      "gold": false,
+      "cosine": 0.595,
+      "from": [
+       "set recipient",
+       "set transmitter"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set recipient --receives--> security event token | Upon receipt of a SET, the SET Recipient validate that all of the following are true:",
+       "set recipient --receives--> set issuer | The SET Issuer is recognized as an issuer that the SET Recipient is willing to receive SETs from (e.g., the issuer is listed as allowed by the SET Recipient).",
+       "set recipient --receives--> set transmitter | The SET Recipient is willing to accept this SET from this SET Transmitter (e.g., the SET Transmitter is expected to send SETs with the issuer and subject of the SET in question)."
+      ]
+     }
+    ]
+   },
+   "latency_ms": {
+    "G1": 1.9969999993918464,
+    "G2-U": 2.4340410018339753,
+    "G2-H": 2.2350830004143063,
+    "G2-W": 2.173332999518607
+   },
+   "candidates": {
+    "G1": 19,
+    "G2-U": 23,
+    "G2-H": 23,
+    "G2-W": 23
+   }
+  },
+  {
+   "id": "Q23",
+   "category": "relationship",
+   "kind": null,
+   "needs_graph": false,
+   "gold": [
+    109
+   ],
+   "gold_labels": [
+    "AWS:64 (A0 rank 2)"
+   ],
+   "linking": [
+    [
+     "Amazon Route 53",
+     "linked",
+     "route 53"
+    ],
+    [
+     "DDoS attacks",
+     "linked",
+     "ddos attack"
+    ]
+   ],
+   "seeds": [
+    "route 53",
+    "dns queries",
+    "ddos attack"
+   ],
+   "contexts": {
+    "A0": [
+     110,
+     109,
+     108,
+     178,
+     111
+    ],
+    "A0@7": [
+     110,
+     109,
+     108,
+     178,
+     111,
+     72,
+     112
+    ],
+    "G1": [
+     110,
+     109,
+     108,
+     178,
+     111,
+     80,
+     176
+    ],
+    "G1*": [
+     110,
+     109,
+     108,
+     178,
+     111
+    ],
+    "G2-U": [
+     110,
+     109,
+     108,
+     178,
+     111,
+     71,
+     100
+    ],
+    "G2-U*": [
+     110,
+     109,
+     108,
+     178,
+     111
+    ],
+    "G2-H": [
+     110,
+     109,
+     108,
+     178,
+     111,
+     176,
+     71
+    ],
+    "G2-H*": [
+     110,
+     109,
+     108,
+     178,
+     111
+    ],
+    "G2-W": [
+     110,
+     109,
+     108,
+     178,
+     111,
+     100,
+     71
+    ],
+    "G2-W*": [
+     110,
+     109,
+     108,
+     178,
+     111
+    ]
+   },
+   "added": {
+    "G1": [
+     {
+      "chunk": "AWS:35",
+      "gold": false,
+      "cosine": 0.563,
+      "from": [
+       "ddos attack"
+      ],
+      "hops": 1,
+      "quotes": [
+       "shield advanced --mitigates--> ddos attack | Another way to improve your readiness to respond to and mitigate DDoS attacks is by subscribing to AWS Shield Advanced.",
+       "shield response team --mitigates--> ddos attack | Access to 24x7 specialized support from the AWS Shield Response Team (AWS SRT) for assistance with mitigating DDoS attacks that impact application availability, including an optional proactive engagement feature."
+      ]
+     },
+     {
+      "chunk": "AWS:131",
+      "gold": false,
+      "cosine": 0.558,
+      "from": [
+       "ddos attack"
+      ],
+      "hops": 1,
+      "quotes": [
+       "alarms --receives--> ddos attack | For example, you can configure alarms to notify you when there's a DDoS attack in progress, so you can check your application's health and decide whether to engage AWS SRT."
+      ]
+     }
+    ],
+    "G2-U": [
+     {
+      "chunk": "AWS:26",
+      "gold": false,
+      "cosine": 0.543,
+      "from": [
+       "ddos attack",
+       "dns queries",
+       "route 53"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudfront --mitigates--> infrastructure layer attacks | You can use AWS services that operate from edge locations, such as Amazon CloudFront, AWS Global Accelerator, and Amazon Route 53 to build comprehensive availability protection against all known infrastructure layer attacks.",
+       "global accelerator --mitigates--> infrastructure layer attacks | You can use AWS services that operate from edge locations, such as Amazon CloudFront, AWS Global Accelerator, and Amazon Route 53 to build comprehensive availability protection against all known infrastructure layer attacks.",
+       "route 53 --mitigates--> infrastructure layer attacks | You can use AWS services that operate from edge locations, such as Amazon CloudFront, AWS Global Accelerator, and Amazon Route 53 to build comprehensive availability protection against all known infrastructure layer attacks."
+      ]
+     },
+     {
+      "chunk": "AWS:55",
+      "gold": false,
+      "cosine": 0.538,
+      "from": [
+       "ddos attack",
+       "dns queries",
+       "route 53"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudfront --uses--> edge locations | AWS edge locations provide an additional layer of network infrastructure that provides these benefits to any application that uses Amazon CloudFront, Global Accelerator and Amazon Route 53.",
+       "global accelerator --uses--> edge locations | AWS edge locations provide an additional layer of network infrastructure that provides these benefits to any application that uses Amazon CloudFront, Global Accelerator and Amazon Route 53.",
+       "route 53 --uses--> edge locations | AWS edge locations provide an additional layer of network infrastructure that provides these benefits to any application that uses Amazon CloudFront, Global Accelerator and Amazon Route 53."
+      ]
+     }
+    ],
+    "G2-H": [
+     {
+      "chunk": "AWS:131",
+      "gold": false,
+      "cosine": 0.558,
+      "from": [
+       "ddos attack",
+       "route 53"
+      ],
+      "hops": 1,
+      "quotes": [
+       "ddos-resilient reference architecture --mitigates--> infrastructure layer attacks | If you follow the DDoS-resilient reference architecture when architecting your application, common infrastructure layer attacks will be blocked before reaching your application.",
+       "alarms --communicates_with--> shield response team | For example, you can configure alarms to notify you when there's a DDoS attack in progress, so you can check your application's health and decide whether to engage AWS SRT.",
+       "alarms --receives--> ddos attack | For example, you can configure alarms to notify you when there's a DDoS attack in progress, so you can check your application's health and decide whether to engage AWS SRT."
+      ]
+     },
+     {
+      "chunk": "AWS:26",
+      "gold": false,
+      "cosine": 0.543,
+      "from": [
+       "dns queries",
+       "route 53"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudfront --mitigates--> infrastructure layer attacks | You can use AWS services that operate from edge locations, such as Amazon CloudFront, AWS Global Accelerator, and Amazon Route 53 to build comprehensive availability protection against all known infrastructure layer attacks.",
+       "global accelerator --mitigates--> infrastructure layer attacks | You can use AWS services that operate from edge locations, such as Amazon CloudFront, AWS Global Accelerator, and Amazon Route 53 to build comprehensive availability protection against all known infrastructure layer attacks.",
+       "route 53 --mitigates--> infrastructure layer attacks | You can use AWS services that operate from edge locations, such as Amazon CloudFront, AWS Global Accelerator, and Amazon Route 53 to build comprehensive availability protection against all known infrastructure layer attacks."
+      ]
+     }
+    ],
+    "G2-W": [
+     {
+      "chunk": "AWS:55",
+      "gold": false,
+      "cosine": 0.538,
+      "from": [
+       "ddos attack",
+       "dns queries",
+       "route 53"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudfront --uses--> edge locations | AWS edge locations provide an additional layer of network infrastructure that provides these benefits to any application that uses Amazon CloudFront, Global Accelerator and Amazon Route 53.",
+       "global accelerator --uses--> edge locations | AWS edge locations provide an additional layer of network infrastructure that provides these benefits to any application that uses Amazon CloudFront, Global Accelerator and Amazon Route 53.",
+       "route 53 --uses--> edge locations | AWS edge locations provide an additional layer of network infrastructure that provides these benefits to any application that uses Amazon CloudFront, Global Accelerator and Amazon Route 53."
+      ]
+     },
+     {
+      "chunk": "AWS:26",
+      "gold": false,
+      "cosine": 0.543,
+      "from": [
+       "ddos attack",
+       "dns queries",
+       "route 53"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudfront --mitigates--> infrastructure layer attacks | You can use AWS services that operate from edge locations, such as Amazon CloudFront, AWS Global Accelerator, and Amazon Route 53 to build comprehensive availability protection against all known infrastructure layer attacks.",
+       "global accelerator --mitigates--> infrastructure layer attacks | You can use AWS services that operate from edge locations, such as Amazon CloudFront, AWS Global Accelerator, and Amazon Route 53 to build comprehensive availability protection against all known infrastructure layer attacks.",
+       "route 53 --mitigates--> infrastructure layer attacks | You can use AWS services that operate from edge locations, such as Amazon CloudFront, AWS Global Accelerator, and Amazon Route 53 to build comprehensive availability protection against all known infrastructure layer attacks."
+      ]
+     }
+    ]
+   },
+   "latency_ms": {
+    "G1": 2.0769170005223714,
+    "G2-U": 2.1661669998138677,
+    "G2-H": 2.331415998924058,
+    "G2-W": 2.23516600090079
+   },
+   "candidates": {
+    "G1": 18,
+    "G2-U": 60,
+    "G2-H": 34,
+    "G2-W": 60
+   }
+  },
+  {
+   "id": "Q35",
+   "category": "relationship",
+   "kind": null,
+   "needs_graph": false,
+   "gold": [
+    203
+   ],
+   "gold_labels": [
+    "AWS:158 (A0 rank 1)"
+   ],
+   "linking": [
+    [
+     "Shield Response Team",
+     "linked",
+     "shield response team"
+    ]
+   ],
+   "seeds": [
+    "shield response team"
+   ],
+   "contexts": {
+    "A0": [
+     203,
+     81,
+     159,
+     80,
+     158
+    ],
+    "A0@7": [
+     203,
+     81,
+     159,
+     80,
+     158,
+     202,
+     201
+    ],
+    "G1": [
+     203,
+     81,
+     159,
+     80,
+     158,
+     176
+    ],
+    "G1*": [
+     203,
+     81,
+     159,
+     80,
+     158
+    ],
+    "G2-U": [
+     203,
+     81,
+     159,
+     80,
+     158,
+     176,
+     199
+    ],
+    "G2-U*": [
+     203,
+     81,
+     159,
+     80,
+     158
+    ],
+    "G2-H": [
+     203,
+     81,
+     159,
+     80,
+     158,
+     176
+    ],
+    "G2-H*": [
+     203,
+     81,
+     159,
+     80,
+     158
+    ],
+    "G2-W": [
+     203,
+     81,
+     159,
+     80,
+     158,
+     176,
+     199
+    ],
+    "G2-W*": [
+     203,
+     81,
+     159,
+     80,
+     158
+    ]
+   },
+   "added": {
+    "G1": [
+     {
+      "chunk": "AWS:131",
+      "gold": false,
+      "cosine": 0.36,
+      "from": [
+       "shield response team"
+      ],
+      "hops": 1,
+      "quotes": [
+       "alarms --communicates_with--> shield response team | For example, you can configure alarms to notify you when there's a DDoS attack in progress, so you can check your application's health and decide whether to engage AWS SRT."
+      ]
+     }
+    ],
+    "G2-U": [
+     {
+      "chunk": "AWS:131",
+      "gold": false,
+      "cosine": 0.36,
+      "from": [
+       "shield response team"
+      ],
+      "hops": 1,
+      "quotes": [
+       "shield advanced --produces--> cloudwatch metrics | If you're subscribed to AWS Shield Advanced, you have access to a number of CloudWatch metrics that can indicate that your application is being targeted.",
+       "alarms --communicates_with--> shield response team | For example, you can configure alarms to notify you when there's a DDoS attack in progress, so you can check your application's health and decide whether to engage AWS SRT.",
+       "alarms --receives--> ddos attack | For example, you can configure alarms to notify you when there's a DDoS attack in progress, so you can check your application's health and decide whether to engage AWS SRT."
+      ]
+     },
+     {
+      "chunk": "AWS:154",
+      "gold": false,
+      "cosine": 0.429,
+      "from": [
+       "shield response team"
+      ],
+      "hops": 2,
+      "quotes": [
+       "shield advanced --creates--> traffic baseline | After the resource is protected, Shield Advanced begins establishing a traffic baseline for it, and any subsequently detected anomalous traffic is surfaced as a Shield Advanced finding in Security Hub CSPM, alongside CloudWatch metrics and events.",
+       "shield advanced --produces--> shield advanced finding | After the resource is protected, Shield Advanced begins establishing a traffic baseline for it, and any subsequently detected anomalous traffic is surfaced as a Shield Advanced finding in Security Hub CSPM, alongside CloudWatch metrics and events."
+      ]
+     }
+    ],
+    "G2-H": [
+     {
+      "chunk": "AWS:131",
+      "gold": false,
+      "cosine": 0.36,
+      "from": [
+       "shield response team"
+      ],
+      "hops": 1,
+      "quotes": [
+       "alarms --communicates_with--> shield response team | For example, you can configure alarms to notify you when there's a DDoS attack in progress, so you can check your application's health and decide whether to engage AWS SRT.",
+       "alarms --receives--> ddos attack | For example, you can configure alarms to notify you when there's a DDoS attack in progress, so you can check your application's health and decide whether to engage AWS SRT."
+      ]
+     }
+    ],
+    "G2-W": [
+     {
+      "chunk": "AWS:131",
+      "gold": false,
+      "cosine": 0.36,
+      "from": [
+       "shield response team"
+      ],
+      "hops": 1,
+      "quotes": [
+       "shield advanced --produces--> cloudwatch metrics | If you're subscribed to AWS Shield Advanced, you have access to a number of CloudWatch metrics that can indicate that your application is being targeted.",
+       "alarms --communicates_with--> shield response team | For example, you can configure alarms to notify you when there's a DDoS attack in progress, so you can check your application's health and decide whether to engage AWS SRT.",
+       "alarms --receives--> ddos attack | For example, you can configure alarms to notify you when there's a DDoS attack in progress, so you can check your application's health and decide whether to engage AWS SRT."
+      ]
+     },
+     {
+      "chunk": "AWS:154",
+      "gold": false,
+      "cosine": 0.429,
+      "from": [
+       "shield response team"
+      ],
+      "hops": 2,
+      "quotes": [
+       "shield advanced --creates--> traffic baseline | After the resource is protected, Shield Advanced begins establishing a traffic baseline for it, and any subsequently detected anomalous traffic is surfaced as a Shield Advanced finding in Security Hub CSPM, alongside CloudWatch metrics and events.",
+       "shield advanced --produces--> shield advanced finding | After the resource is protected, Shield Advanced begins establishing a traffic baseline for it, and any subsequently detected anomalous traffic is surfaced as a Shield Advanced finding in Security Hub CSPM, alongside CloudWatch metrics and events."
+      ]
+     }
+    ]
+   },
+   "latency_ms": {
+    "G1": 2.095499999995809,
+    "G2-U": 2.2676660009892657,
+    "G2-H": 2.4361670002690516,
+    "G2-W": 2.309374998731073
+   },
+   "candidates": {
+    "G1": 4,
+    "G2-U": 17,
+    "G2-H": 4,
+    "G2-W": 17
+   }
+  },
+  {
+   "id": "Q36",
+   "category": "relationship",
+   "kind": null,
+   "needs_graph": false,
+   "gold": [
+    19
+   ],
+   "gold_labels": [
+    "RFC:19 (A0 rank 1)"
+   ],
+   "linking": [
+    [
+     "SET Recipient",
+     "linked",
+     "set recipient"
+    ],
+    [
+     "Security Event Token",
+     "linked",
+     "security event token"
+    ]
+   ],
+   "seeds": [
+    "set recipient",
+    "security event token",
+    "key"
+   ],
+   "contexts": {
+    "A0": [
+     19,
+     20,
+     17,
+     29,
+     8
+    ],
+    "A0@7": [
+     19,
+     20,
+     17,
+     29,
+     8,
+     21,
+     34
+    ],
+    "G1": [
+     19,
+     20,
+     17,
+     29,
+     8,
+     7,
+     26
+    ],
+    "G1*": [
+     19,
+     20,
+     17,
+     29,
+     8
+    ],
+    "G2-U": [
+     19,
+     20,
+     17,
+     29,
+     8,
+     21,
+     18
+    ],
+    "G2-U*": [
+     19,
+     20,
+     17,
+     29,
+     8
+    ],
+    "G2-H": [
+     19,
+     20,
+     17,
+     29,
+     8,
+     21,
+     18
+    ],
+    "G2-H*": [
+     19,
+     20,
+     17,
+     29,
+     8
+    ],
+    "G2-W": [
+     19,
+     20,
+     17,
+     29,
+     8,
+     9,
+     6
+    ],
+    "G2-W*": [
+     19,
+     20,
+     17,
+     29,
+     8
+    ]
+   },
+   "added": {
+    "G1": [
+     {
+      "chunk": "RFC:7",
+      "gold": false,
+      "cosine": 0.549,
+      "from": [
+       "security event token",
+       "set recipient"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set recipient --receives--> security event token | Upon receipt of a SET, the SET Recipient validate that all of the following are true:",
+       "set recipient --receives--> set issuer | The SET Issuer is recognized as an issuer that the SET Recipient is willing to receive SETs from (e.g., the issuer is listed as allowed by the SET Recipient).",
+       "set recipient --receives--> set transmitter | The SET Recipient is willing to accept this SET from this SET Transmitter (e.g., the SET Transmitter is expected to send SETs with the issuer and subject of the SET in question)."
+      ]
+     },
+     {
+      "chunk": "RFC:26",
+      "gold": false,
+      "cosine": 0.525,
+      "from": [
+       "security event token",
+       "set recipient"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set recipient --evaluates--> security event token | At the time of receipt, the SET Recipient can rely upon TLS mechanisms, HTTP authentication methods, and/or other context from the transmission request to authenticate the SET Transmitter and validate the authenticity of the SET.",
+       "set recipient --uses--> tls mechanisms | At the time of receipt, the SET Recipient can rely upon TLS mechanisms, HTTP authentication methods, and/or other context from the transmission request to authenticate the SET Transmitter and validate the authenticity of the SET.",
+       "set recipient --uses--> http authentication methods | At the time of receipt, the SET Recipient can rely upon TLS mechanisms, HTTP authentication methods, and/or other context from the transmission request to authenticate the SET Transmitter and validate the authenticity of the SET.",
+       "set recipient --evaluates--> transmission request | At the time of receipt, the SET Recipient can rely upon TLS mechanisms, HTTP authentication methods, and/or other context from the transmission request to authenticate the SET Transmitter and validate the authenticity of the SET."
+      ]
+     }
+    ],
+    "G2-U": [
+     {
+      "chunk": "RFC:21",
+      "gold": false,
+      "cosine": 0.584,
+      "from": [
+       "key",
+       "security event token",
+       "set recipient"
+      ],
+      "hops": 1,
+      "quotes": [
+       "invalid_request --related_to--> security event token | For example, invalid_request indicates a structural error in the content of the request body that is likely to remain when retransmitting the same SET."
+      ]
+     },
+     {
+      "chunk": "RFC:18",
+      "gold": false,
+      "cosine": 0.577,
+      "from": [
+       "key",
+       "security event token",
+       "set recipient"
+      ],
+      "hops": 1,
+      "quotes": [
+       "security event token error code --evaluates--> security event token | Security Event Token Error Codes are strings that identify a specific category of error that may occur when parsing or validating a SET."
+      ]
+     }
+    ],
+    "G2-H": [
+     {
+      "chunk": "RFC:21",
+      "gold": false,
+      "cosine": 0.584,
+      "from": [
+       "key",
+       "security event token",
+       "set recipient"
+      ],
+      "hops": 1,
+      "quotes": [
+       "invalid_request --related_to--> security event token | For example, invalid_request indicates a structural error in the content of the request body that is likely to remain when retransmitting the same SET."
+      ]
+     },
+     {
+      "chunk": "RFC:18",
+      "gold": false,
+      "cosine": 0.577,
+      "from": [
+       "key",
+       "security event token",
+       "set recipient"
+      ],
+      "hops": 1,
+      "quotes": [
+       "security event token error code --evaluates--> security event token | Security Event Token Error Codes are strings that identify a specific category of error that may occur when parsing or validating a SET."
+      ]
+     }
+    ],
+    "G2-W": [
+     {
+      "chunk": "RFC:9",
+      "gold": false,
+      "cosine": 0.521,
+      "from": [
+       "key",
+       "security event token",
+       "set recipient"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set transmitter --produces--> security event token | The SET Transmitter transmit the same SET to the SET Recipient multiple times, regardless of the response from the SET Recipient.",
+       "set recipient --evaluates--> security event token | The SET Recipient perform further processing of the SET beyond the required validation steps prior to sending this response.",
+       "set transmitter --connects_to--> set recipient | The SET Transmitter transmit the same SET to the SET Recipient multiple times, regardless of the response from the SET Recipient."
+      ]
+     },
+     {
+      "chunk": "RFC:6",
+      "gold": false,
+      "cosine": 0.501,
+      "from": [
+       "key",
+       "security event token",
+       "set recipient"
+      ],
+      "hops": 1,
+      "quotes": [
+       "set transmitter --creates--> set transmission request | To deliver a SET to a given SET Recipient, the SET Transmitter makes a SET Transmission Request to the SET Recipient, with the SET itself contained within the request.",
+       "set transmission request --contains--> security event token | To deliver a SET to a given SET Recipient, the SET Transmitter makes a SET Transmission Request to the SET Recipient, with the SET itself contained within the request.",
+       "set recipient --receives--> set transmission request | To deliver a SET to a given SET Recipient, the SET Transmitter makes a SET Transmission Request to the SET Recipient, with the SET itself contained within the request.",
+       "set recipient --produces--> response | The SET Recipient replies to this request with a response either acknowledging successful transmission of the SET or indicating that an error occurred while receiving, parsing, and/or validating the SET."
+      ]
+     }
+    ]
+   },
+   "latency_ms": {
+    "G1": 2.320417002920294,
+    "G2-U": 2.06241599880741,
+    "G2-H": 2.0148330004303716,
+    "G2-W": 2.0458750004763715
+   },
+   "candidates": {
+    "G1": 21,
+    "G2-U": 28,
+    "G2-H": 25,
+    "G2-W": 28
+   }
+  },
+  {
+   "id": "Q39",
+   "category": "multi-hop",
+   "kind": null,
+   "needs_graph": true,
+   "gold": [
+    64,
+    136,
+    137
+   ],
+   "gold_labels": [
+    "AWS:19 (A0 rank 16)",
+    "AWS:91 (A0 rank 34)",
+    "AWS:92 (A0 rank 4)"
+   ],
+   "linking": [
+    [
+     "cache-busting attacks",
+     "linked",
+     "cache-busting attacks"
+    ],
+    [
+     "CloudFront",
+     "linked",
+     "cloudfront"
+    ]
+   ],
+   "seeds": [
+    "cache-busting attacks",
+    "cloudfront"
+   ],
+   "contexts": {
+    "A0": [
+     128,
+     130,
+     212,
+     137,
+     118
+    ],
+    "A0@7": [
+     128,
+     130,
+     212,
+     137,
+     118,
+     114,
+     124
+    ],
+    "G1": [
+     128,
+     130,
+     212,
+     137,
+     118,
+     114,
+     139
+    ],
+    "G1*": [
+     128,
+     130,
+     212,
+     137,
+     118,
+     114,
+     139
+    ],
+    "G2-U": [
+     128,
+     130,
+     212,
+     137,
+     118,
+     64,
+     114
+    ],
+    "G2-U*": [
+     128,
+     130,
+     212,
+     137,
+     118,
+     64,
+     114
+    ],
+    "G2-H": [
+     128,
+     130,
+     212,
+     137,
+     118,
+     64,
+     114
+    ],
+    "G2-H*": [
+     128,
+     130,
+     212,
+     137,
+     118,
+     64,
+     114
+    ],
+    "G2-W": [
+     128,
+     130,
+     212,
+     137,
+     118,
+     64,
+     73
+    ],
+    "G2-W*": [
+     128,
+     130,
+     212,
+     137,
+     118,
+     64,
+     73
+    ]
+   },
+   "added": {
+    "G1": [
+     {
+      "chunk": "AWS:69",
+      "gold": false,
+      "cosine": 0.561,
+      "from": [
+       "cloudfront"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudfront --protects--> http | Amazon CloudFront is a content delivery network (CDN) that helps protect HTTP/S-based applications in the following ways:"
+      ]
+     },
+     {
+      "chunk": "AWS:94",
+      "gold": false,
+      "cosine": 0.555,
+      "from": [
+       "cloudfront"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudfront --uses--> ja3 | Rate-based rules with JA3 and JA4 headers are supported in CloudFront and ALB.",
+       "cloudfront --uses--> ja4 | Rate-based rules with JA3 and JA4 headers are supported in CloudFront and ALB."
+      ]
+     }
+    ],
+    "G2-U": [
+     {
+      "chunk": "AWS:19",
+      "gold": true,
+      "cosine": 0.478,
+      "from": [
+       "cache-busting attacks",
+       "cloudfront"
+      ],
+      "hops": 1,
+      "quotes": [
+       "http requests --connects_to--> web application | In an HTTP flood attack, an attacker sends HTTP requests that appear to be from a valid user of the web application.",
+       "cache-busting attacks --uses--> query string | Cache-busting attacks are a type of HTTP flood that uses variations in the query string to circumvent content delivery network (CDN) caching."
+      ]
+     },
+     {
+      "chunk": "AWS:69",
+      "gold": false,
+      "cosine": 0.561,
+      "from": [
+       "cloudfront"
+      ],
+      "hops": 1,
+      "quotes": [
+       "http caching --protects--> infrastructure behind cloudfront | Second, HTTP caching serves as an additional protective layer by reducing the load on your infrastructure behind CloudFront.",
+       "cloudfront --protects--> http | Amazon CloudFront is a content delivery network (CDN) that helps protect HTTP/S-based applications in the following ways:"
+      ]
+     }
+    ],
+    "G2-H": [
+     {
+      "chunk": "AWS:19",
+      "gold": true,
+      "cosine": 0.478,
+      "from": [
+       "cache-busting attacks",
+       "cloudfront"
+      ],
+      "hops": 1,
+      "quotes": [
+       "http requests --connects_to--> web application | In an HTTP flood attack, an attacker sends HTTP requests that appear to be from a valid user of the web application.",
+       "cache-busting attacks --uses--> query string | Cache-busting attacks are a type of HTTP flood that uses variations in the query string to circumvent content delivery network (CDN) caching."
+      ]
+     },
+     {
+      "chunk": "AWS:69",
+      "gold": false,
+      "cosine": 0.561,
+      "from": [
+       "cloudfront"
+      ],
+      "hops": 1,
+      "quotes": [
+       "http caching --protects--> infrastructure behind cloudfront | Second, HTTP caching serves as an additional protective layer by reducing the load on your infrastructure behind CloudFront.",
+       "cloudfront --protects--> http | Amazon CloudFront is a content delivery network (CDN) that helps protect HTTP/S-based applications in the following ways:"
+      ]
+     }
+    ],
+    "G2-W": [
+     {
+      "chunk": "AWS:19",
+      "gold": true,
+      "cosine": 0.478,
+      "from": [
+       "cache-busting attacks",
+       "cloudfront"
+      ],
+      "hops": 1,
+      "quotes": [
+       "http requests --connects_to--> web application | In an HTTP flood attack, an attacker sends HTTP requests that appear to be from a valid user of the web application.",
+       "cache-busting attacks --uses--> query string | Cache-busting attacks are a type of HTTP flood that uses variations in the query string to circumvent content delivery network (CDN) caching."
+      ]
+     },
+     {
+      "chunk": "AWS:28",
+      "gold": false,
+      "cosine": 0.514,
+      "from": [
+       "cloudfront"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudfront --uses--> waf | Application layer defense using CloudFront with AWS WAF, without requiring changes to your existing origin architecture-whether hosted in an AWS Region or on-premises.",
+       "cloudfront --connects_to--> simple storage service | CloudFront origin fetches are free from any AWS origin such as Amazon Simple Storage Service (Amazon S3), Amazon EC2, or Elastic Load Balancers, including origins in private subnets through",
+       "cloudfront --connects_to--> s3 | CloudFront origin fetches are free from any AWS origin such as Amazon Simple Storage Service (Amazon S3), Amazon EC2, or Elastic Load Balancers, including origins in private subnets through",
+       "cloudfront --connects_to--> ec2 | CloudFront origin fetches are free from any AWS origin such as Amazon Simple Storage Service (Amazon S3), Amazon EC2, or Elastic Load Balancers, including origins in private subnets through",
+       "cloudfront --connects_to--> elastic load balancers | CloudFront origin fetches are free from any AWS origin such as Amazon Simple Storage Service (Amazon S3), Amazon EC2, or Elastic Load Balancers, including origins in private subnets through"
+      ]
+     }
+    ]
+   },
+   "latency_ms": {
+    "G1": 2.571249999164138,
+    "G2-U": 2.2880410033394583,
+    "G2-H": 3.168749997712439,
+    "G2-W": 2.4523329993826337
+   },
+   "candidates": {
+    "G1": 28,
+    "G2-U": 75,
+    "G2-H": 57,
+    "G2-W": 75
+   }
+  },
+  {
+   "id": "Q41",
+   "category": "multi-hop",
+   "kind": null,
+   "needs_graph": true,
+   "gold": [
+    140,
+    82
+   ],
+   "gold_labels": [
+    "AWS:95 (A0 rank 3)",
+    "AWS:37 (A0 rank 1)"
+   ],
+   "linking": [
+    [
+     "AWS WAF",
+     "linked",
+     "waf"
+    ],
+    [
+     "AWS Shield Advanced",
+     "linked",
+     "shield advanced"
+    ],
+    [
+     "cost protection",
+     "not in graph",
+     "longer names containing its words: none"
+    ]
+   ],
+   "seeds": [
+    "shield advanced",
+    "waf"
+   ],
+   "contexts": {
+    "A0": [
+     82,
+     81,
+     140,
+     161,
+     158
+    ],
+    "A0@7": [
+     82,
+     81,
+     140,
+     161,
+     158,
+     83,
+     200
+    ],
+    "G1": [
+     82,
+     81,
+     140,
+     161,
+     158,
+     196,
+     189
+    ],
+    "G1*": [
+     82,
+     81,
+     140,
+     161,
+     158,
+     196,
+     189
+    ],
+    "G2-U": [
+     82,
+     81,
+     140,
+     161,
+     158,
+     189,
+     83
+    ],
+    "G2-U*": [
+     82,
+     81,
+     140,
+     161,
+     158,
+     189,
+     83
+    ],
+    "G2-H": [
+     82,
+     81,
+     140,
+     161,
+     158,
+     189,
+     196
+    ],
+    "G2-H*": [
+     82,
+     81,
+     140,
+     161,
+     158,
+     189,
+     196
+    ],
+    "G2-W": [
+     82,
+     81,
+     140,
+     161,
+     158,
+     196,
+     176
+    ],
+    "G2-W*": [
+     82,
+     81,
+     140,
+     161,
+     158,
+     196,
+     176
+    ]
+   },
+   "added": {
+    "G1": [
+     {
+      "chunk": "AWS:151",
+      "gold": false,
+      "cosine": 0.555,
+      "from": [
+       "shield advanced",
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "firewall manager --protects--> waf | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> shield advanced | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall."
+      ]
+     },
+     {
+      "chunk": "AWS:144",
+      "gold": false,
+      "cosine": 0.589,
+      "from": [
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "waf --produces--> cloudwatch metrics | The dashboards include near real-time summaries of the CloudWatch metrics that AWS WAF collects when it evaluates your applications' web traffic."
+      ]
+     }
+    ],
+    "G2-U": [
+     {
+      "chunk": "AWS:144",
+      "gold": false,
+      "cosine": 0.589,
+      "from": [
+       "shield advanced",
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "waf --produces--> cloudwatch metrics | The dashboards include near real-time summaries of the CloudWatch metrics that AWS WAF collects when it evaluates your applications' web traffic."
+      ]
+     },
+     {
+      "chunk": "AWS:38",
+      "gold": false,
+      "cosine": 0.586,
+      "from": [
+       "shield advanced",
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudfront --related_to--> global accelerator | The service is available globally for CloudFront, Route 53, and Global Accelerator.",
+       "cloudfront --related_to--> route 53 | The service is available globally for CloudFront, Route 53, and Global Accelerator.",
+       "shield advanced --related_to--> shield | For a complete list of AWS Shield Advanced features and for more information about AWS Shield, see How AWS Shield Advanced works."
+      ]
+     }
+    ],
+    "G2-H": [
+     {
+      "chunk": "AWS:144",
+      "gold": false,
+      "cosine": 0.589,
+      "from": [
+       "shield advanced",
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "waf --produces--> cloudwatch metrics | The dashboards include near real-time summaries of the CloudWatch metrics that AWS WAF collects when it evaluates your applications' web traffic."
+      ]
+     },
+     {
+      "chunk": "AWS:151",
+      "gold": false,
+      "cosine": 0.555,
+      "from": [
+       "shield advanced",
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "firewall manager --protects--> waf | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> shield advanced | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall."
+      ]
+     }
+    ],
+    "G2-W": [
+     {
+      "chunk": "AWS:151",
+      "gold": false,
+      "cosine": 0.555,
+      "from": [
+       "shield advanced",
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "firewall manager --protects--> waf | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> shield advanced | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> vpc security groups | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> network acl | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> network firewall | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall.",
+       "firewall manager --protects--> route 53 resolver dns firewall | AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall."
+      ]
+     },
+     {
+      "chunk": "AWS:131",
+      "gold": false,
+      "cosine": 0.517,
+      "from": [
+       "shield advanced",
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "shield advanced --produces--> cloudwatch metrics | If you're subscribed to AWS Shield Advanced, you have access to a number of CloudWatch metrics that can indicate that your application is being targeted.",
+       "alarms --communicates_with--> shield response team | For example, you can configure alarms to notify you when there's a DDoS attack in progress, so you can check your application's health and decide whether to engage AWS SRT.",
+       "alarms --receives--> ddos attack | For example, you can configure alarms to notify you when there's a DDoS attack in progress, so you can check your application's health and decide whether to engage AWS SRT."
+      ]
+     }
+    ]
+   },
+   "latency_ms": {
+    "G1": 2.4892080000427086,
+    "G2-U": 2.4633329994685482,
+    "G2-H": 2.255916999274632,
+    "G2-W": 2.0526250009424984
+   },
+   "candidates": {
+    "G1": 27,
+    "G2-U": 66,
+    "G2-H": 43,
+    "G2-W": 66
+   }
+  },
+  {
+   "id": "Q42",
+   "category": "multi-hop",
+   "kind": null,
+   "needs_graph": true,
+   "gold": [
+    90,
+    170
+   ],
+   "gold_labels": [
+    "AWS:45 (A0 rank 5)",
+    "AWS:125 (A0 rank 4)"
+   ],
+   "linking": [
+    [
+     "AWS WAF",
+     "linked",
+     "waf"
+    ],
+    [
+     "AWS Lambda",
+     "linked",
+     "lambda"
+    ],
+    [
+     "Amazon API Gateway",
+     "linked",
+     "api gateway"
+    ]
+   ],
+   "seeds": [
+    "api gateway",
+    "waf",
+    "lambda"
+   ],
+   "contexts": {
+    "A0": [
+     172,
+     169,
+     171,
+     170,
+     90
+    ],
+    "A0@7": [
+     172,
+     169,
+     171,
+     170,
+     90,
+     113,
+     148
+    ],
+    "G1": [
+     172,
+     169,
+     171,
+     170,
+     90,
+     78,
+     158
+    ],
+    "G1*": [
+     172,
+     169,
+     171,
+     170,
+     90,
+     78,
+     158
+    ],
+    "G2-U": [
+     172,
+     169,
+     171,
+     170,
+     90,
+     73,
+     78
+    ],
+    "G2-U*": [
+     172,
+     169,
+     171,
+     170,
+     90,
+     73,
+     78
+    ],
+    "G2-H": [
+     172,
+     169,
+     171,
+     170,
+     90,
+     78,
+     89
+    ],
+    "G2-H*": [
+     172,
+     169,
+     171,
+     170,
+     90,
+     78,
+     89
+    ],
+    "G2-W": [
+     172,
+     169,
+     171,
+     170,
+     90,
+     78,
+     163
+    ],
+    "G2-W*": [
+     172,
+     169,
+     171,
+     170,
+     90,
+     78,
+     163
+    ]
+   },
+   "added": {
+    "G1": [
+     {
+      "chunk": "AWS:33",
+      "gold": false,
+      "cosine": 0.523,
+      "from": [
+       "lambda",
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudfront --uses--> waf | Using Amazon CloudFront (BP1) with AWS WAF (BP2)",
+       "lambda --uses--> auto scaling | Using Amazon Elastic Compute Cloud, Amazon EKS, and Amazon ECS with auto scaling, and Lambda (BP7)"
+      ]
+     },
+     {
+      "chunk": "AWS:113",
+      "gold": false,
+      "cosine": 0.598,
+      "from": [
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "waf --uses--> rate-based rule | For HTTP-based applications, AWS recommends that these firewalls are used as a secondary defense layer (fine-grained protections) behind AWS resources integrated with AWS WAF, which is configured with volumetric protection using rate-based rules and IP reputation rule groups to protect your firewall tier.",
+       "waf --uses--> ip reputation rule groups | For HTTP-based applications, AWS recommends that these firewalls are used as a secondary defense layer (fine-grained protections) behind AWS resources integrated with AWS WAF, which is configured with volumetric protection using rate-based rules and IP reputation rule groups to protect your firewall tier."
+      ]
+     }
+    ],
+    "G2-U": [
+     {
+      "chunk": "AWS:28",
+      "gold": false,
+      "cosine": 0.531,
+      "from": [
+       "api gateway",
+       "lambda",
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudfront --uses--> waf | Application layer defense using CloudFront with AWS WAF, without requiring changes to your existing origin architecture-whether hosted in an AWS Region or on-premises.",
+       "cloudfront --connects_to--> simple storage service | CloudFront origin fetches are free from any AWS origin such as Amazon Simple Storage Service (Amazon S3), Amazon EC2, or Elastic Load Balancers, including origins in private subnets through",
+       "cloudfront --connects_to--> s3 | CloudFront origin fetches are free from any AWS origin such as Amazon Simple Storage Service (Amazon S3), Amazon EC2, or Elastic Load Balancers, including origins in private subnets through",
+       "cloudfront --connects_to--> ec2 | CloudFront origin fetches are free from any AWS origin such as Amazon Simple Storage Service (Amazon S3), Amazon EC2, or Elastic Load Balancers, including origins in private subnets through",
+       "cloudfront --connects_to--> elastic load balancers | CloudFront origin fetches are free from any AWS origin such as Amazon Simple Storage Service (Amazon S3), Amazon EC2, or Elastic Load Balancers, including origins in private subnets through"
+      ]
+     },
+     {
+      "chunk": "AWS:33",
+      "gold": false,
+      "cosine": 0.523,
+      "from": [
+       "api gateway",
+       "lambda",
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudfront --related_to--> global accelerator | For example, an upcoming section discusses the capabilities provided by Amazon CloudFront and Global Accelerator that includes the best practice indicator BP1.",
+       "cloudfront --uses--> waf | Using Amazon CloudFront (BP1) with AWS WAF (BP2)",
+       "elastic compute cloud --uses--> auto scaling | Using Amazon Elastic Compute Cloud, Amazon EKS, and Amazon ECS with auto scaling, and Lambda (BP7)",
+       "eks --uses--> auto scaling | Using Amazon Elastic Compute Cloud, Amazon EKS, and Amazon ECS with auto scaling, and Lambda (BP7)",
+       "ecs --uses--> auto scaling | Using Amazon Elastic Compute Cloud, Amazon EKS, and Amazon ECS with auto scaling, and Lambda (BP7)",
+       "lambda --uses--> auto scaling | Using Amazon Elastic Compute Cloud, Amazon EKS, and Amazon ECS with auto scaling, and Lambda (BP7)"
+      ]
+     }
+    ],
+    "G2-H": [
+     {
+      "chunk": "AWS:33",
+      "gold": false,
+      "cosine": 0.523,
+      "from": [
+       "api gateway",
+       "lambda",
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudfront --uses--> waf | Using Amazon CloudFront (BP1) with AWS WAF (BP2)",
+       "elastic compute cloud --uses--> auto scaling | Using Amazon Elastic Compute Cloud, Amazon EKS, and Amazon ECS with auto scaling, and Lambda (BP7)",
+       "eks --uses--> auto scaling | Using Amazon Elastic Compute Cloud, Amazon EKS, and Amazon ECS with auto scaling, and Lambda (BP7)",
+       "ecs --uses--> auto scaling | Using Amazon Elastic Compute Cloud, Amazon EKS, and Amazon ECS with auto scaling, and Lambda (BP7)",
+       "lambda --uses--> auto scaling | Using Amazon Elastic Compute Cloud, Amazon EKS, and Amazon ECS with auto scaling, and Lambda (BP7)"
+      ]
+     },
+     {
+      "chunk": "AWS:44",
+      "gold": false,
+      "cosine": 0.442,
+      "from": [
+       "api gateway",
+       "lambda",
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "lambda --receives--> incoming requests | AWS Lambda automatically scales by running additional instances of your functions in response to incoming requests."
+      ]
+     }
+    ],
+    "G2-W": [
+     {
+      "chunk": "AWS:33",
+      "gold": false,
+      "cosine": 0.523,
+      "from": [
+       "api gateway",
+       "lambda",
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudfront --related_to--> global accelerator | For example, an upcoming section discusses the capabilities provided by Amazon CloudFront and Global Accelerator that includes the best practice indicator BP1.",
+       "cloudfront --uses--> waf | Using Amazon CloudFront (BP1) with AWS WAF (BP2)",
+       "elastic compute cloud --uses--> auto scaling | Using Amazon Elastic Compute Cloud, Amazon EKS, and Amazon ECS with auto scaling, and Lambda (BP7)",
+       "eks --uses--> auto scaling | Using Amazon Elastic Compute Cloud, Amazon EKS, and Amazon ECS with auto scaling, and Lambda (BP7)",
+       "ecs --uses--> auto scaling | Using Amazon Elastic Compute Cloud, Amazon EKS, and Amazon ECS with auto scaling, and Lambda (BP7)",
+       "lambda --uses--> auto scaling | Using Amazon Elastic Compute Cloud, Amazon EKS, and Amazon ECS with auto scaling, and Lambda (BP7)"
+      ]
+     },
+     {
+      "chunk": "AWS:118",
+      "gold": false,
+      "cosine": 0.512,
+      "from": [
+       "api gateway",
+       "lambda",
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudfront --connects_to--> origin infrastructure | You can limit direct exposure of your backend resources by placing edge services-such as CloudFront, API Gateway, or load balancers-between your users and your origin infrastructure.",
+       "api gateway --connects_to--> origin infrastructure | You can limit direct exposure of your backend resources by placing edge services-such as CloudFront, API Gateway, or load balancers-between your users and your origin infrastructure.",
+       "load balancer --connects_to--> origin infrastructure | You can limit direct exposure of your backend resources by placing edge services-such as CloudFront, API Gateway, or load balancers-between your users and your origin infrastructure."
+      ]
+     }
+    ]
+   },
+   "latency_ms": {
+    "G1": 2.005665999604389,
+    "G2-U": 2.1059999999124557,
+    "G2-H": 2.2312910004984587,
+    "G2-W": 2.2371660015778616
+   },
+   "candidates": {
+    "G1": 23,
+    "G2-U": 58,
+    "G2-H": 38,
+    "G2-W": 58
+   }
+  },
+  {
+   "id": "Q44",
+   "category": "multi-hop",
+   "kind": null,
+   "needs_graph": true,
+   "gold": [
+    72,
+    91
+   ],
+   "gold_labels": [
+    "AWS:27 (A0 rank 2)",
+    "AWS:46 (A0 rank 5)"
+   ],
+   "linking": [
+    [
+     "SYN floods",
+     "linked",
+     "syn floods"
+    ]
+   ],
+   "seeds": [
+    "load balancer",
+    "syn floods",
+    "block",
+    "aws"
+   ],
+   "contexts": {
+    "A0": [
+     60,
+     72,
+     95,
+     107,
+     91
+    ],
+    "A0@7": [
+     60,
+     72,
+     95,
+     107,
+     91,
+     83,
+     106
+    ],
+    "G1": [
+     60,
+     72,
+     95,
+     107,
+     91,
+     86,
+     101
+    ],
+    "G1*": [
+     60,
+     72,
+     95,
+     107,
+     91,
+     86,
+     101
+    ],
+    "G2-U": [
+     60,
+     72,
+     95,
+     107,
+     91,
+     167,
+     101
+    ],
+    "G2-U*": [
+     60,
+     72,
+     95,
+     107,
+     91,
+     167,
+     101
+    ],
+    "G2-H": [
+     60,
+     72,
+     95,
+     107,
+     91,
+     167,
+     86
+    ],
+    "G2-H*": [
+     60,
+     72,
+     95,
+     107,
+     91,
+     167,
+     86
+    ],
+    "G2-W": [
+     60,
+     72,
+     95,
+     107,
+     91,
+     167,
+     101
+    ],
+    "G2-W*": [
+     60,
+     72,
+     95,
+     107,
+     91,
+     167,
+     101
+    ]
+   },
+   "added": {
+    "G1": [
+     {
+      "chunk": "AWS:41",
+      "gold": false,
+      "cosine": 0.524,
+      "from": [
+       "load balancer"
+      ],
+      "hops": 1,
+      "quotes": [
+       "load balancer --connects_to--> ec2 instances | you can use load balancers to distribute traffic to Amazon EC2 instances that are overprovisioned or configured to automatically scale."
+      ]
+     },
+     {
+      "chunk": "AWS:56",
+      "gold": false,
+      "cosine": 0.505,
+      "from": [
+       "syn floods"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudfront --mitigates--> syn floods | CloudFront only accepts well-formed connections, which helps prevent many common DDoS attacks, such as SYN floods and UDP reflection attacks, from reaching your origin."
+      ]
+     }
+    ],
+    "G2-U": [
+     {
+      "chunk": "AWS:122",
+      "gold": false,
+      "cosine": 0.424,
+      "from": [
+       "aws",
+       "load balancer",
+       "syn floods"
+      ],
+      "hops": 1,
+      "quotes": [
+       "aws --uses--> cloudfront vpc origins | AWS provides several approaches to implement this security control, with CloudFront VPC origins being the newest and recommended solution.",
+       "cloudfront vpc origins --protects--> private subnets | CloudFront VPC origins enables you to keep your applications in private subnets without internet access while restricting access to only your CloudFront distributions.",
+       "cloudfront vpc origins --protects--> cloudfront distributions | CloudFront VPC origins enables you to keep your applications in private subnets without internet access while restricting access to only your CloudFront distributions.",
+       "cloudfront --connects_to--> application load balancers | This feature allows CloudFront to deliver content directly from applications hosted in VPC private subnets, supporting Application Load Balancers (ALB), Network Load Balancers (NLB), and EC2 instances.",
+       "cloudfront --connects_to--> network load balancers | This feature allows CloudFront to deliver content directly from applications hosted in VPC private subnets, supporting Application Load Balancers (ALB), Network Load Balancers (NLB), and EC2 instances.",
+       "cloudfront --connects_to--> ec2 instances | This feature allows CloudFront to deliver content directly from applications hosted in VPC private subnets, supporting Application Load Balancers (ALB), Network Load Balancers (NLB), and EC2 instances."
+      ]
+     },
+     {
+      "chunk": "AWS:56",
+      "gold": false,
+      "cosine": 0.505,
+      "from": [
+       "aws",
+       "syn floods"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudfront --protects--> web application | Use of these CloudFront features reduces the number of requests and TCP connections back to your origin, helping protect your web application from HTTP floods.",
+       "cloudfront --mitigates--> http floods | Use of these CloudFront features reduces the number of requests and TCP connections back to your origin, helping protect your web application from HTTP floods.",
+       "cloudfront --mitigates--> ddos attack | CloudFront only accepts well-formed connections, which helps prevent many common DDoS attacks, such as SYN floods and UDP reflection attacks, from reaching your origin.",
+       "cloudfront --mitigates--> syn floods | CloudFront only accepts well-formed connections, which helps prevent many common DDoS attacks, such as SYN floods and UDP reflection attacks, from reaching your origin.",
+       "cloudfront --mitigates--> udp reflection attacks | CloudFront only accepts well-formed connections, which helps prevent many common DDoS attacks, such as SYN floods and UDP reflection attacks, from reaching your origin."
+      ]
+     }
+    ],
+    "G2-H": [
+     {
+      "chunk": "AWS:122",
+      "gold": false,
+      "cosine": 0.424,
+      "from": [
+       "aws",
+       "load balancer"
+      ],
+      "hops": 1,
+      "quotes": [
+       "aws --uses--> cloudfront vpc origins | AWS provides several approaches to implement this security control, with CloudFront VPC origins being the newest and recommended solution.",
+       "cloudfront vpc origins --protects--> private subnets | CloudFront VPC origins enables you to keep your applications in private subnets without internet access while restricting access to only your CloudFront distributions.",
+       "cloudfront vpc origins --protects--> cloudfront distributions | CloudFront VPC origins enables you to keep your applications in private subnets without internet access while restricting access to only your CloudFront distributions.",
+       "cloudfront --connects_to--> ec2 instances | This feature allows CloudFront to deliver content directly from applications hosted in VPC private subnets, supporting Application Load Balancers (ALB), Network Load Balancers (NLB), and EC2 instances."
+      ]
+     },
+     {
+      "chunk": "AWS:41",
+      "gold": false,
+      "cosine": 0.524,
+      "from": [
+       "load balancer"
+      ],
+      "hops": 1,
+      "quotes": [
+       "load balancer --connects_to--> ec2 instances | you can use load balancers to distribute traffic to Amazon EC2 instances that are overprovisioned or configured to automatically scale."
+      ]
+     }
+    ],
+    "G2-W": [
+     {
+      "chunk": "AWS:122",
+      "gold": false,
+      "cosine": 0.424,
+      "from": [
+       "aws",
+       "load balancer",
+       "syn floods"
+      ],
+      "hops": 1,
+      "quotes": [
+       "aws --uses--> cloudfront vpc origins | AWS provides several approaches to implement this security control, with CloudFront VPC origins being the newest and recommended solution.",
+       "cloudfront vpc origins --protects--> private subnets | CloudFront VPC origins enables you to keep your applications in private subnets without internet access while restricting access to only your CloudFront distributions.",
+       "cloudfront vpc origins --protects--> cloudfront distributions | CloudFront VPC origins enables you to keep your applications in private subnets without internet access while restricting access to only your CloudFront distributions.",
+       "cloudfront --connects_to--> application load balancers | This feature allows CloudFront to deliver content directly from applications hosted in VPC private subnets, supporting Application Load Balancers (ALB), Network Load Balancers (NLB), and EC2 instances.",
+       "cloudfront --connects_to--> network load balancers | This feature allows CloudFront to deliver content directly from applications hosted in VPC private subnets, supporting Application Load Balancers (ALB), Network Load Balancers (NLB), and EC2 instances.",
+       "cloudfront --connects_to--> ec2 instances | This feature allows CloudFront to deliver content directly from applications hosted in VPC private subnets, supporting Application Load Balancers (ALB), Network Load Balancers (NLB), and EC2 instances."
+      ]
+     },
+     {
+      "chunk": "AWS:56",
+      "gold": false,
+      "cosine": 0.505,
+      "from": [
+       "aws",
+       "syn floods"
+      ],
+      "hops": 1,
+      "quotes": [
+       "cloudfront --protects--> web application | Use of these CloudFront features reduces the number of requests and TCP connections back to your origin, helping protect your web application from HTTP floods.",
+       "cloudfront --mitigates--> http floods | Use of these CloudFront features reduces the number of requests and TCP connections back to your origin, helping protect your web application from HTTP floods.",
+       "cloudfront --mitigates--> ddos attack | CloudFront only accepts well-formed connections, which helps prevent many common DDoS attacks, such as SYN floods and UDP reflection attacks, from reaching your origin.",
+       "cloudfront --mitigates--> syn floods | CloudFront only accepts well-formed connections, which helps prevent many common DDoS attacks, such as SYN floods and UDP reflection attacks, from reaching your origin.",
+       "cloudfront --mitigates--> udp reflection attacks | CloudFront only accepts well-formed connections, which helps prevent many common DDoS attacks, such as SYN floods and UDP reflection attacks, from reaching your origin."
+      ]
+     }
+    ]
+   },
+   "latency_ms": {
+    "G1": 2.6854589996219147,
+    "G2-U": 2.329082999494858,
+    "G2-H": 2.0360410017019603,
+    "G2-W": 2.0961250011168886
+   },
+   "candidates": {
+    "G1": 12,
+    "G2-U": 56,
+    "G2-H": 25,
+    "G2-W": 56
+   }
+  },
+  {
+   "id": "Q45",
+   "category": "multi-hop",
+   "kind": null,
+   "needs_graph": true,
+   "gold": [
+    133,
+    155
+   ],
+   "gold_labels": [
+    "AWS:88 (A0 rank 4)",
+    "AWS:110 (A0 rank 3)"
+   ],
+   "linking": [
+    [
+     "AntiDDoS AMR",
+     "linked",
+     "antiddos amr"
+    ],
+    [
+     "AWS WAF",
+     "linked",
+     "waf"
+    ]
+   ],
+   "seeds": [
+    "antiddos amr",
+    "waf"
+   ],
+   "contexts": {
+    "A0": [
+     157,
+     70,
+     155,
+     133,
+     156
+    ],
+    "A0@7": [
+     157,
+     70,
+     155,
+     133,
+     156,
+     142,
+     158
+    ],
+    "G1": [
+     157,
+     70,
+     155,
+     133,
+     156,
+     158,
+     148
+    ],
+    "G1*": [
+     157,
+     70,
+     155,
+     133,
+     156,
+     158,
+     148
+    ],
+    "G2-U": [
+     157,
+     70,
+     155,
+     133,
+     156,
+     158,
+     148
+    ],
+    "G2-U*": [
+     157,
+     70,
+     155,
+     133,
+     156,
+     158,
+     148
+    ],
+    "G2-H": [
+     157,
+     70,
+     155,
+     133,
+     156,
+     158,
+     148
+    ],
+    "G2-H*": [
+     157,
+     70,
+     155,
+     133,
+     156,
+     158,
+     148
+    ],
+    "G2-W": [
+     157,
+     70,
+     155,
+     133,
+     156,
+     179,
+     199
+    ],
+    "G2-W*": [
+     157,
+     70,
+     155,
+     133,
+     156,
+     179,
+     199
+    ]
+   },
+   "added": {
+    "G1": [
+     {
+      "chunk": "AWS:113",
+      "gold": false,
+      "cosine": 0.672,
+      "from": [
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "waf --uses--> rate-based rule | For HTTP-based applications, AWS recommends that these firewalls are used as a secondary defense layer (fine-grained protections) behind AWS resources integrated with AWS WAF, which is configured with volumetric protection using rate-based rules and IP reputation rule groups to protect your firewall tier.",
+       "waf --uses--> ip reputation rule groups | For HTTP-based applications, AWS recommends that these firewalls are used as a secondary defense layer (fine-grained protections) behind AWS resources integrated with AWS WAF, which is configured with volumetric protection using rate-based rules and IP reputation rule groups to protect your firewall tier."
+      ]
+     },
+     {
+      "chunk": "AWS:103",
+      "gold": false,
+      "cosine": 0.632,
+      "from": [
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "waf --protects--> uri paths | Block access to unused URI paths using AWS WAF."
+      ]
+     }
+    ],
+    "G2-U": [
+     {
+      "chunk": "AWS:113",
+      "gold": false,
+      "cosine": 0.672,
+      "from": [
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "waf --uses--> rate-based rule | For HTTP-based applications, AWS recommends that these firewalls are used as a secondary defense layer (fine-grained protections) behind AWS resources integrated with AWS WAF, which is configured with volumetric protection using rate-based rules and IP reputation rule groups to protect your firewall tier.",
+       "waf --uses--> ip reputation rule groups | For HTTP-based applications, AWS recommends that these firewalls are used as a secondary defense layer (fine-grained protections) behind AWS resources integrated with AWS WAF, which is configured with volumetric protection using rate-based rules and IP reputation rule groups to protect your firewall tier."
+      ]
+     },
+     {
+      "chunk": "AWS:103",
+      "gold": false,
+      "cosine": 0.632,
+      "from": [
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "waf --protects--> uri paths | Block access to unused URI paths using AWS WAF."
+      ]
+     }
+    ],
+    "G2-H": [
+     {
+      "chunk": "AWS:113",
+      "gold": false,
+      "cosine": 0.672,
+      "from": [
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "waf --uses--> rate-based rule | For HTTP-based applications, AWS recommends that these firewalls are used as a secondary defense layer (fine-grained protections) behind AWS resources integrated with AWS WAF, which is configured with volumetric protection using rate-based rules and IP reputation rule groups to protect your firewall tier.",
+       "waf --uses--> ip reputation rule groups | For HTTP-based applications, AWS recommends that these firewalls are used as a secondary defense layer (fine-grained protections) behind AWS resources integrated with AWS WAF, which is configured with volumetric protection using rate-based rules and IP reputation rule groups to protect your firewall tier."
+      ]
+     },
+     {
+      "chunk": "AWS:103",
+      "gold": false,
+      "cosine": 0.632,
+      "from": [
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "waf --protects--> uri paths | Block access to unused URI paths using AWS WAF."
+      ]
+     }
+    ],
+    "G2-W": [
+     {
+      "chunk": "AWS:134",
+      "gold": false,
+      "cosine": 0.62,
+      "from": [
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "waf --produces--> allowedrequests | AWS WAF AllowedRequests The number of allowed web requests.",
+       "waf --produces--> blockedrequests | AWS WAF BlockedRequests The number of blocked web requests.",
+       "waf --produces--> countedrequests | AWS WAF CountedRequests The number of counted web requests.",
+       "waf --produces--> passedrequests | AWS WAF PassedRequests The number of passed requests."
+      ]
+     },
+     {
+      "chunk": "AWS:154",
+      "gold": false,
+      "cosine": 0.406,
+      "from": [
+       "antiddos amr"
+      ],
+      "hops": 2,
+      "quotes": [
+       "shield advanced --creates--> traffic baseline | After the resource is protected, Shield Advanced begins establishing a traffic baseline for it, and any subsequently detected anomalous traffic is surfaced as a Shield Advanced finding in Security Hub CSPM, alongside CloudWatch metrics and events."
+      ]
+     }
+    ]
+   },
+   "latency_ms": {
+    "G1": 2.963874998386018,
+    "G2-U": 2.4150839999492746,
+    "G2-H": 2.080750000459375,
+    "G2-W": 2.134124999429332
+   },
+   "candidates": {
+    "G1": 21,
+    "G2-U": 58,
+    "G2-H": 36,
+    "G2-W": 58
+   }
+  },
+  {
+   "id": "Q48",
+   "category": "off-topic",
+   "kind": "names-nothing",
+   "needs_graph": false,
+   "gold": [],
+   "gold_labels": [],
+   "linking": [],
+   "seeds": [],
+   "contexts": {
+    "A0": [],
+    "A0@7": [],
+    "G1": [],
+    "G1*": [],
+    "G2-U": [],
+    "G2-U*": [],
+    "G2-H": [],
+    "G2-H*": [],
+    "G2-W": [],
+    "G2-W*": []
+   },
+   "added": {
+    "G1": [],
+    "G2-U": [],
+    "G2-H": [],
+    "G2-W": []
+   },
+   "latency_ms": {
+    "G1": 1.2408750008034986,
+    "G2-U": 1.0985000008076895,
+    "G2-H": 1.3583330000983551,
+    "G2-W": 1.366958000289742
+   },
+   "candidates": {
+    "G1": 0,
+    "G2-U": 0,
+    "G2-H": 0,
+    "G2-W": 0
+   }
+  },
+  {
+   "id": "Q50",
+   "category": "off-topic",
+   "kind": "names-nothing",
+   "needs_graph": false,
+   "gold": [],
+   "gold_labels": [],
+   "linking": [],
+   "seeds": [],
+   "contexts": {
+    "A0": [],
+    "A0@7": [],
+    "G1": [],
+    "G1*": [],
+    "G2-U": [],
+    "G2-U*": [],
+    "G2-H": [],
+    "G2-H*": [],
+    "G2-W": [],
+    "G2-W*": []
+   },
+   "added": {
+    "G1": [],
+    "G2-U": [],
+    "G2-H": [],
+    "G2-W": []
+   },
+   "latency_ms": {
+    "G1": 1.318334001553012,
+    "G2-U": 1.9537499974831007,
+    "G2-H": 1.6160419982043095,
+    "G2-W": 1.4960000007704366
+   },
+   "candidates": {
+    "G1": 0,
+    "G2-U": 0,
+    "G2-H": 0,
+    "G2-W": 0
+   }
+  },
+  {
+   "id": "Q55",
+   "category": "off-topic",
+   "kind": "names-entity",
+   "needs_graph": false,
+   "gold": [],
+   "gold_labels": [],
+   "linking": [
+    [
+     "Amazon",
+     "linked",
+     "amazon"
+    ]
+   ],
+   "seeds": [
+    "amazon"
+   ],
+   "contexts": {
+    "A0": [
+     45,
+     209,
+     102,
+     103,
+     169
+    ],
+    "A0@7": [
+     45,
+     209,
+     102,
+     103,
+     169,
+     85,
+     72
+    ],
+    "G1": [
+     45,
+     209,
+     102,
+     103,
+     169
+    ],
+    "G1*": [
+     45,
+     209,
+     102,
+     103,
+     169
+    ],
+    "G2-U": [
+     45,
+     209,
+     102,
+     103,
+     169
+    ],
+    "G2-U*": [
+     45,
+     209,
+     102,
+     103,
+     169
+    ],
+    "G2-H": [
+     45,
+     209,
+     102,
+     103,
+     169
+    ],
+    "G2-H*": [
+     45,
+     209,
+     102,
+     103,
+     169
+    ],
+    "G2-W": [
+     45,
+     209,
+     102,
+     103,
+     169
+    ],
+    "G2-W*": [
+     45,
+     209,
+     102,
+     103,
+     169
+    ]
+   },
+   "added": {
+    "G1": [],
+    "G2-U": [],
+    "G2-H": [],
+    "G2-W": []
+   },
+   "latency_ms": {
+    "G1": 1.1376660004316363,
+    "G2-U": 1.6419160019722767,
+    "G2-H": 1.3173330007703044,
+    "G2-W": 1.3097909977659583
+   },
+   "candidates": {
+    "G1": 1,
+    "G2-U": 1,
+    "G2-H": 1,
+    "G2-W": 1
+   }
+  },
+  {
+   "id": "Q56",
+   "category": "off-topic",
+   "kind": "names-entity",
+   "needs_graph": false,
+   "gold": [],
+   "gold_labels": [],
+   "linking": [
+    [
+     "AWS WAF",
+     "linked",
+     "waf"
+    ]
+   ],
+   "seeds": [
+    "waf"
+   ],
+   "contexts": {
+    "A0": [
+     135,
+     209,
+     148,
+     212,
+     136
+    ],
+    "A0@7": [
+     135,
+     209,
+     148,
+     212,
+     136,
+     189,
+     130
+    ],
+    "G1": [
+     135,
+     209,
+     148,
+     212,
+     136,
+     158,
+     189
+    ],
+    "G1*": [
+     135,
+     209,
+     148,
+     212,
+     136
+    ],
+    "G2-U": [
+     135,
+     209,
+     148,
+     212,
+     136,
+     158,
+     189
+    ],
+    "G2-U*": [
+     135,
+     209,
+     148,
+     212,
+     136
+    ],
+    "G2-H": [
+     135,
+     209,
+     148,
+     212,
+     136,
+     158,
+     189
+    ],
+    "G2-H*": [
+     135,
+     209,
+     148,
+     212,
+     136
+    ],
+    "G2-W": [
+     135,
+     209,
+     148,
+     212,
+     136,
+     179,
+     158
+    ],
+    "G2-W*": [
+     135,
+     209,
+     148,
+     212,
+     136
+    ]
+   },
+   "added": {
+    "G1": [
+     {
+      "chunk": "AWS:113",
+      "gold": false,
+      "cosine": 0.572,
+      "from": [
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "waf --uses--> rate-based rule | For HTTP-based applications, AWS recommends that these firewalls are used as a secondary defense layer (fine-grained protections) behind AWS resources integrated with AWS WAF, which is configured with volumetric protection using rate-based rules and IP reputation rule groups to protect your firewall tier.",
+       "waf --uses--> ip reputation rule groups | For HTTP-based applications, AWS recommends that these firewalls are used as a secondary defense layer (fine-grained protections) behind AWS resources integrated with AWS WAF, which is configured with volumetric protection using rate-based rules and IP reputation rule groups to protect your firewall tier."
+      ]
+     },
+     {
+      "chunk": "AWS:144",
+      "gold": false,
+      "cosine": 0.515,
+      "from": [
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "waf --produces--> cloudwatch metrics | The dashboards include near real-time summaries of the CloudWatch metrics that AWS WAF collects when it evaluates your applications' web traffic."
+      ]
+     }
+    ],
+    "G2-U": [
+     {
+      "chunk": "AWS:113",
+      "gold": false,
+      "cosine": 0.572,
+      "from": [
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "waf --uses--> rate-based rule | For HTTP-based applications, AWS recommends that these firewalls are used as a secondary defense layer (fine-grained protections) behind AWS resources integrated with AWS WAF, which is configured with volumetric protection using rate-based rules and IP reputation rule groups to protect your firewall tier.",
+       "waf --uses--> ip reputation rule groups | For HTTP-based applications, AWS recommends that these firewalls are used as a secondary defense layer (fine-grained protections) behind AWS resources integrated with AWS WAF, which is configured with volumetric protection using rate-based rules and IP reputation rule groups to protect your firewall tier."
+      ]
+     },
+     {
+      "chunk": "AWS:144",
+      "gold": false,
+      "cosine": 0.515,
+      "from": [
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "waf --produces--> cloudwatch metrics | The dashboards include near real-time summaries of the CloudWatch metrics that AWS WAF collects when it evaluates your applications' web traffic."
+      ]
+     }
+    ],
+    "G2-H": [
+     {
+      "chunk": "AWS:113",
+      "gold": false,
+      "cosine": 0.572,
+      "from": [
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "waf --uses--> rate-based rule | For HTTP-based applications, AWS recommends that these firewalls are used as a secondary defense layer (fine-grained protections) behind AWS resources integrated with AWS WAF, which is configured with volumetric protection using rate-based rules and IP reputation rule groups to protect your firewall tier.",
+       "waf --uses--> ip reputation rule groups | For HTTP-based applications, AWS recommends that these firewalls are used as a secondary defense layer (fine-grained protections) behind AWS resources integrated with AWS WAF, which is configured with volumetric protection using rate-based rules and IP reputation rule groups to protect your firewall tier."
+      ]
+     },
+     {
+      "chunk": "AWS:144",
+      "gold": false,
+      "cosine": 0.515,
+      "from": [
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "waf --produces--> cloudwatch metrics | The dashboards include near real-time summaries of the CloudWatch metrics that AWS WAF collects when it evaluates your applications' web traffic."
+      ]
+     }
+    ],
+    "G2-W": [
+     {
+      "chunk": "AWS:134",
+      "gold": false,
+      "cosine": 0.469,
+      "from": [
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "waf --produces--> allowedrequests | AWS WAF AllowedRequests The number of allowed web requests.",
+       "waf --produces--> blockedrequests | AWS WAF BlockedRequests The number of blocked web requests.",
+       "waf --produces--> countedrequests | AWS WAF CountedRequests The number of counted web requests.",
+       "waf --produces--> passedrequests | AWS WAF PassedRequests The number of passed requests."
+      ]
+     },
+     {
+      "chunk": "AWS:113",
+      "gold": false,
+      "cosine": 0.572,
+      "from": [
+       "waf"
+      ],
+      "hops": 1,
+      "quotes": [
+       "waf --uses--> rate-based rule | For HTTP-based applications, AWS recommends that these firewalls are used as a secondary defense layer (fine-grained protections) behind AWS resources integrated with AWS WAF, which is configured with volumetric protection using rate-based rules and IP reputation rule groups to protect your firewall tier.",
+       "waf --uses--> ip reputation rule groups | For HTTP-based applications, AWS recommends that these firewalls are used as a secondary defense layer (fine-grained protections) behind AWS resources integrated with AWS WAF, which is configured with volumetric protection using rate-based rules and IP reputation rule groups to protect your firewall tier."
+      ]
+     }
+    ]
+   },
+   "latency_ms": {
+    "G1": 2.1864160007680766,
+    "G2-U": 1.8697079976845998,
+    "G2-H": 1.688958000158891,
+    "G2-W": 1.4406250011234079
+   },
+   "candidates": {
+    "G1": 19,
+    "G2-U": 55,
+    "G2-H": 33,
+    "G2-W": 55
+   }
+  }
+ ]
+}

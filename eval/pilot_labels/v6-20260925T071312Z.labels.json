@@ -1,0 +1,27 @@
+{
+  "run": "v6-20260925T071312Z.json",
+  "standard": "v5 (fixed)",
+  "labelled_by": "project owner",
+  "labelled_on": "2026-09-25",
+  "wrong": {
+    "E4": "Firewall Manager evaluates accounts within the scope of the policy, not the policy itself - wrong endpoint",
+    "E6": "'Shield Advanced finding' does not state that Shield Advanced produces it; the name carries 'Shield Advanced' - endpoint/actor",
+    "E11": "Unified Operations provides/has workload monitoring; 'uses' is not stated",
+    "E24": "'delivered over TLS' does not establish conforms_to ('based on or complies with')",
+    "E25": "the server processes unreadable data; 'receives' is not stated",
+    "E26": "the server receiving a legitimate handshake is not stated",
+    "E31": "validated using DNS-ID does not mean the certificate conforms to DNS-ID",
+    "E32": "validated using DANE does not mean the certificate conforms to DANE",
+    "E33": "mentions the IANA registry; no direct Error Codes -> IANA relationship",
+    "E35": "authorisation uses both identities; no direct SET Issuer -> SET Transmitter relationship",
+    "E36": "'perhaps using mutual TLS' describes the authorisation mechanism; not stated that the Transmitter uses it"
+  },
+  "notes": [
+    "All 42 kept edges were reviewed; every edge not listed as wrong is correct.",
+    "E6 confirmed wrong: the quote is passive ('is surfaced as a Shield Advanced finding') with no stated agent. It was labelled correct as the identical edge in v4 and v5; under the strict standard it is not stated. This removes the first hop of the planned demo path (Shield Advanced -> finding -> Security Hub CSPM).",
+    "E13 confirmed correct (borderline): 'escalate to SRT by creating a Support case' states 'creating' and connects the two things the sentence connects. The identical v5 edge (E19) was labelled wrong."
+  ],
+  "rejected_but_correct": {
+    "AWS Global Accelerator --contains--> SYN proxy": "'has an inbuilt SYN proxy' states inclusion; verb_not_stated rejected it because 'has'/'inbuilt' are not in the word list. Deliberately NOT added to the list: that would fit the list to the holdout."
+  }
+}

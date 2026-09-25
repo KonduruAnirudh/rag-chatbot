@@ -5,11 +5,13 @@ import asyncio
 import uuid
 from pathlib import Path
 
-from fastapi import APIRouter, UploadFile, File, HTTPException
+from fastapi import APIRouter, BackgroundTasks, UploadFile, File, HTTPException
 
 from app.rag.extract import extract_text, ExtractionError
 from app.rag.chunk import chunk_text
 from app.rag.embed import embed_texts, EmbeddingError
+from app.rag.graph import graph_store
+from app.rag.graph_extract import extract_many
 from app.rag.store import store
 from app.rag.registry import registry
 
@@ -23,8 +25,39 @@ ALLOWED_EXTENSIONS = {".pdf", ".txt", ".png", ".jpg", ".jpeg", ".webp", ".tiff",
 MAX_FILE_SIZE = 10 * 1024 * 1024  # 10 MB
 
 
+async def extract_graph(doc_id: str, chunks: list[dict]) -> None:
+    """
+    Background task: extract entities and relations from a new document's
+    chunks and add them to the graph.
+
+    Runs after the upload has returned, because extraction takes several model
+    calls per chunk; the document is searchable by vector and keyword meanwhile.
+    If the document was deleted while extraction ran, nothing is written — the
+    delete has already cascaded, and writing now would leave orphaned edges.
+    """
+    try:
+        results = await extract_many(chunks)
+    except Exception as e:
+        print(f"[GRAPH ERROR] {doc_id}: {type(e).__name__}: {e}")
+        return
+
+    if registry.get(doc_id) is None:
+        print(f"[GRAPH] {doc_id} was deleted during extraction; nothing written.")
+        return
+
+    try:
+        graph_store.add_document(doc_id, chunks, results)
+    except ValueError as e:                  # a prompt-version mismatch
+        print(f"[GRAPH ERROR] {doc_id}: {e}")
+        return
+
+    failed = sum(1 for r in results if "error" in r)
+    edges = sum(len(r.get("relations", [])) for r in results)
+    print(f"[GRAPH] {doc_id}: {len(chunks)} chunks extracted ({failed} failed), {edges} edges.")
+
+
 @router.post("/documents")
-async def upload_document(file: UploadFile = File(...)):
+async def upload_document(background_tasks: BackgroundTasks, file: UploadFile = File(...)):
     # 1. Validate the file extension
     suffix = Path(file.filename).suffix.lower()
 
@@ -126,7 +159,12 @@ async def upload_document(file: UploadFile = File(...)):
         content_hash=content_hash,
     )
 
-    # 9. Return upload/indexing information
+    # 9. Extract graph entities and relations after responding. Only once the
+    #    document is fully registered: the graph is an addition, and a failure
+    #    there must never fail an upload that is already searchable.
+    background_tasks.add_task(extract_graph, doc_id, chunks)
+
+    # 10. Return upload/indexing information
     return {
         "doc_id": doc_id,
         "filename": file.filename,
@@ -137,6 +175,7 @@ async def upload_document(file: UploadFile = File(...)):
         "total_pages": extract_report["total_pages"],
         "ocr_skipped": extract_report["ocr_skipped"],
         "total_chunks_indexed": store.count(),
+        "graph": "extracting in the background",
         "message": "Uploaded and processed.",
     }
 
@@ -170,16 +209,26 @@ async def delete_document(doc_id: str):
             detail="Document not found.",
         )
 
+    # Steps 2-5 contain no `await`, so the background graph task (extract_graph)
+    # cannot run in between them: it either finishes before this delete, and its
+    # records are removed in step 3, or after it, and its registry check (step 5
+    # has run) stops it writing. Adding an `await` here would break that.
+
     # 2. Remove its vectors from the vector store
     removed = store.delete_document(doc_id)
 
-    # 3. Remove the physical file
+    # 3. Remove its graph records. After the vectors: rebuilding the graph reads
+    #    chunk text from the vector store, which must no longer include them.
+    graph_removed = graph_store.delete_document(doc_id)
+
+    # 4. Remove the physical file
     Path(record["path"]).unlink(missing_ok=True)
 
-    # 4. Remove the document from the registry
+    # 5. Remove the document from the registry
     registry.remove(doc_id)
 
     return {
         "doc_id": doc_id,
         "chunks_removed": removed,
+        "graph_chunks_removed": graph_removed,
     }

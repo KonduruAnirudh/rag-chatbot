@@ -1,0 +1,950 @@
+PILOT v6 + 2-of-3 voting - extraction A (42 edges)
+Label from THIS file - a fresh run renumbers the edges.
+Chunks marked [HOLDOUT] were drawn at random after the prompt and checks were fixed.
+
+LABEL ALL 42 EDGES (E1-E42). List the wrong ones.
+
+LABELLING STANDARD (v5's, fixed for this iteration). An edge is WRONG if:
+  1. The verb doesn't match its definition.
+  2. The direction is reversed.
+  3. The quote doesn't STATE the relation - a purpose, benefit or effect is
+     inferred. "X for Y" and "access to Y" do not state that X contains Y.
+  4. An endpoint isn't the real participant in the quote (a substitute, or the
+     wrong actor).
+  conforms_to = "based on or complies with"; a quote saying "based on" is correct.
+
+==============================================================================
+[1] AWS-WhitePaper-Sample.pdf  chunk 39  pages 21-21  ocr=False
+    tests: Shield Standard vs Shield Advanced vs AWS WAF; 'mitigate'; running header
+------------------------------------------------------------------------------
+    | AWS Best Practices for DDoS Resiliency AWS Whitepaper
+    | for both static and dynamic web applications using AWS services and architectural patterns. The 
+    | sections are organized to guide you through implementing layers of defense, from edge protection 
+    | to application-level security, to help ensure a robust DDoS-resilient architecture.
+    | Infrastructure layer defense (BP1, BP3, BP6, BP7)
+    | In a traditional datacenter environment, you can mitigate infrastructure layer DDoS attacks by 
+    | using techniques like overprovisioning capacity, deploying DDoS mitigation systems, or scrubbing 
+    | traffic with the help of DDoS mitigation services. On AWS, baseline DDoS mitigation capabilities 
+    | are automatically provided by AWS Shield Standard at no additional cost; however, additional 
+    | protections-such as AWS Shield Advanced, AWS WAF, and application-layer mitigations-require 
+    | configuration and can incur additional charges.
+------------------------------------------------------------------------------
+ENTITIES (8 kept)
+    service    AWS Shield Standard
+    service    AWS Shield Advanced
+    service    AWS WAF
+    service    DDoS mitigation services
+    component  DDoS mitigation systems
+    threat     infrastructure layer DDoS attacks
+    component  application-layer mitigations
+    service    AWS
+
+EDGES (2 kept)
+    E1   DDoS mitigation systems  --mitigates-->  infrastructure layer DDoS attacks
+           "In a traditional datacenter environment, you can mitigate
+           infrastructure layer DDoS attacks by using techniques like
+           overprovisioning capacity, deploying DDoS mitigation systems, or
+           scrubbing traffic with the help of DDoS mitigation services."
+    E2   DDoS mitigation services  --mitigates-->  infrastructure layer DDoS attacks
+           "In a traditional datacenter environment, you can mitigate
+           infrastructure layer DDoS attacks by using techniques like
+           overprovisioning capacity, deploying DDoS mitigation systems, or
+           scrubbing traffic with the help of DDoS mitigation services."
+
+DROPPED (across all 3 runs)
+    relation  endpoint_not_in_quote  AWS Shield Standard --mitigates--> infrastructure layer DDoS attacks
+              evidence: "On AWS, baseline DDoS mitigation capabilities are
+              automatically provided by AWS Shield Standard at no additional
+              cost; however, additional protections-such as AWS Shield
+              Advanced, AWS WAF, and application-layer mitigations-require
+              configuration and can incur additional charges."
+    relation  endpoint_not_in_quote  AWS Shield Advanced --mitigates--> infrastructure layer DDoS attacks
+              evidence: "On AWS, baseline DDoS mitigation capabilities are
+              automatically provided by AWS Shield Standard at no additional
+              cost; however, additional protections-such as AWS Shield
+              Advanced, AWS WAF, and application-layer mitigations-require
+              configuration and can incur additional charges."
+    relation  endpoint_not_in_quote  AWS WAF --mitigates--> infrastructure layer DDoS attacks
+              evidence: "On AWS, baseline DDoS mitigation capabilities are
+              automatically provided by AWS Shield Standard at no additional
+              cost; however, additional protections-such as AWS Shield
+              Advanced, AWS WAF, and application-layer mitigations-require
+              configuration and can incur additional charges."
+    relation  endpoint_not_in_quote  AWS Shield Standard --mitigates--> infrastructure layer DDoS attacks
+              evidence: "On AWS, baseline DDoS mitigation capabilities are
+              automatically provided by AWS Shield Standard at no additional
+              cost; however, additional protections-such as AWS Shield
+              Advanced, AWS WAF, and application-layer mitigations-require
+              configuration and can incur additional charges."
+    relation  endpoint_not_in_quote  AWS Shield Advanced --mitigates--> infrastructure layer DDoS attacks
+              evidence: "On AWS, baseline DDoS mitigation capabilities are
+              automatically provided by AWS Shield Standard at no additional
+              cost; however, additional protections-such as AWS Shield
+              Advanced, AWS WAF, and application-layer mitigations-require
+              configuration and can incur additional charges."
+    relation  endpoint_not_in_quote  AWS WAF --mitigates--> infrastructure layer DDoS attacks
+              evidence: "On AWS, baseline DDoS mitigation capabilities are
+              automatically provided by AWS Shield Standard at no additional
+              cost; however, additional protections-such as AWS Shield
+              Advanced, AWS WAF, and application-layer mitigations-require
+              configuration and can incur additional charges."
+    relation  endpoint_not_in_quote  AWS Shield Standard --mitigates--> infrastructure layer DDoS attacks
+              evidence: "On AWS, baseline DDoS mitigation capabilities are
+              automatically provided by AWS Shield Standard at no additional
+              cost; however, additional protections-such as AWS Shield
+              Advanced, AWS WAF, and application-layer mitigations-require
+              configuration and can incur additional charges."
+    relation  endpoint_not_in_quote  AWS Shield Advanced --mitigates--> infrastructure layer DDoS attacks
+              evidence: "On AWS, baseline DDoS mitigation capabilities are
+              automatically provided by AWS Shield Standard at no additional
+              cost; however, additional protections-such as AWS Shield
+              Advanced, AWS WAF, and application-layer mitigations-require
+              configuration and can incur additional charges."
+    relation  endpoint_not_in_quote  AWS WAF --mitigates--> infrastructure layer DDoS attacks
+              evidence: "On AWS, baseline DDoS mitigation capabilities are
+              automatically provided by AWS Shield Standard at no additional
+              cost; however, additional protections-such as AWS Shield
+              Advanced, AWS WAF, and application-layer mitigations-require
+              configuration and can incur additional charges."
+
+==============================================================================
+[2] AWS-WhitePaper-Sample.pdf  chunk 153  pages 59-59  ocr=False
+    tests: Security Hub CSPM / Firewall Manager; a negation that must not become an edge
+------------------------------------------------------------------------------
+    | Security Hub 
+    | CSPM automatically integrates with Firewall Manager, allowing Shield Advanced customers to view 
+    | security findings in a single dashboard, alongside other high priority security alerts and compliance 
+    | statuses.
+    | As of writing, the Shield Advanced event doesn't appear in the Firewall Manager central account 
+    | in real-time-there can be a delay of up to 15 minutes, so it's not recommended to rely on this 
+    | feature for real-time notifications.
+    | For example, when Firewall Manager evaluates accounts within the scope of a Shield Advanced 
+    | policy and finds a resource that isn't yet protected by Shield Advanced, it generates a non-compliance. If the policy is configured for automatic remediation, Firewall Manager brings the 
+    | resource into compliance by associating Shield Advanced protection with it.
+------------------------------------------------------------------------------
+ENTITIES (11 kept)
+    service    Security Hub CSPM
+    service    Firewall Manager
+    service    Shield Advanced
+    data       security findings
+    data       security alerts
+    data       compliance statuses
+    data       Shield Advanced event
+    component  Firewall Manager central account
+    component  Shield Advanced policy
+    data       non-compliance
+    component  Shield Advanced protection
+
+EDGES (2 kept)
+    E3   Security Hub CSPM  --connects_to-->  Firewall Manager
+           "Security Hub CSPM automatically integrates with Firewall Manager,
+           allowing Shield Advanced customers to view security findings in a
+           single dashboard, alongside other high priority security alerts and
+           compliance statuses."
+    E4   Firewall Manager  --evaluates-->  Shield Advanced policy
+           "When Firewall Manager evaluates accounts within the scope of a
+           Shield Advanced policy and finds a resource that isn't yet
+           protected by Shield Advanced, it generates a non-compliance."
+
+DROPPED (across all 3 runs)
+    relation  unknown_entity         Shield Advanced customers --receives--> security findings
+              evidence: "Security Hub CSPM automatically integrates with
+              Firewall Manager, allowing Shield Advanced customers to view
+              security findings in a single dashboard, alongside other high
+              priority security alerts and compliance statuses."
+    relation  unknown_entity         Shield Advanced customers --receives--> security alerts
+              evidence: "Security Hub CSPM automatically integrates with
+              Firewall Manager, allowing Shield Advanced customers to view
+              security findings in a single dashboard, alongside other high
+              priority security alerts and compliance statuses."
+    relation  unknown_entity         Shield Advanced customers --receives--> compliance statuses
+              evidence: "Security Hub CSPM automatically integrates with
+              Firewall Manager, allowing Shield Advanced customers to view
+              security findings in a single dashboard, alongside other high
+              priority security alerts and compliance statuses."
+    relation  negated                Shield Advanced event --connects_to--> Firewall Manager central account
+              evidence: "As of writing, the Shield Advanced event doesn't
+              appear in the Firewall Manager central account in
+              real-time-there can be a delay of up to 15 minutes, so it's not
+              recommended to rely on this feature for real-time
+              notifications."
+    relation  negated                Firewall Manager --produces--> non-compliance
+              evidence: "When Firewall Manager evaluates accounts within the
+              scope of a Shield Advanced policy and finds a resource that
+              isn't yet protected by Shield Advanced, it generates a
+              non-compliance."
+    relation  verb_not_stated        Firewall Manager --creates--> Shield Advanced protection
+              evidence: "If the policy is configured for automatic
+              remediation, Firewall Manager brings the resource into
+              compliance by associating Shield Advanced protection with it."
+    relation  generic_modifier       Shield Advanced --receives--> security findings
+              evidence: "Security Hub CSPM automatically integrates with
+              Firewall Manager, allowing Shield Advanced customers to view
+              security findings in a single dashboard, alongside other high
+              priority security alerts and compliance statuses."
+    relation  generic_modifier       Shield Advanced --receives--> security alerts
+              evidence: "Security Hub CSPM automatically integrates with
+              Firewall Manager, allowing Shield Advanced customers to view
+              security findings in a single dashboard, alongside other high
+              priority security alerts and compliance statuses."
+    relation  generic_modifier       Shield Advanced --receives--> compliance statuses
+              evidence: "Security Hub CSPM automatically integrates with
+              Firewall Manager, allowing Shield Advanced customers to view
+              security findings in a single dashboard, alongside other high
+              priority security alerts and compliance statuses."
+    relation  negated                Shield Advanced event --connects_to--> Firewall Manager central account
+              evidence: "As of writing, the Shield Advanced event doesn't
+              appear in the Firewall Manager central account in
+              real-time-there can be a delay of up to 15 minutes, so it's not
+              recommended to rely on this feature for real-time
+              notifications."
+    relation  negated                Firewall Manager --produces--> non-compliance
+              evidence: "For example, when Firewall Manager evaluates accounts
+              within the scope of a Shield Advanced policy and finds a
+              resource that isn't yet protected by Shield Advanced, it
+              generates a non-compliance."
+    relation  verb_not_stated        Firewall Manager --creates--> Shield Advanced protection
+              evidence: "If the policy is configured for automatic
+              remediation, Firewall Manager brings the resource into
+              compliance by associating Shield Advanced protection with it."
+    relation  unknown_entity         Shield Advanced customers --receives--> security findings
+              evidence: "Security Hub CSPM automatically integrates with
+              Firewall Manager, allowing Shield Advanced customers to view
+              security findings in a single dashboard, alongside other high
+              priority security alerts and compliance statuses."
+    relation  unknown_entity         Shield Advanced customers --receives--> security alerts
+              evidence: "Security Hub CSPM automatically integrates with
+              Firewall Manager, allowing Shield Advanced customers to view
+              security findings in a single dashboard, alongside other high
+              priority security alerts and compliance statuses."
+    relation  unknown_entity         Shield Advanced customers --receives--> compliance statuses
+              evidence: "Security Hub CSPM automatically integrates with
+              Firewall Manager, allowing Shield Advanced customers to view
+              security findings in a single dashboard, alongside other high
+              priority security alerts and compliance statuses."
+    relation  negated                Firewall Manager --produces--> non-compliance
+              evidence: "For example, when Firewall Manager evaluates accounts
+              within the scope of a Shield Advanced policy and finds a
+              resource that isn't yet protected by Shield Advanced, it
+              generates a non-compliance."
+    relation  verb_not_stated        Firewall Manager --creates--> Shield Advanced protection
+              evidence: "If the policy is configured for automatic
+              remediation, Firewall Manager brings the resource into
+              compliance by associating Shield Advanced protection with it."
+    relation  unstable               Security Hub CSPM --uses--> Firewall Manager
+    relation  unstable               Firewall Manager --evaluates--> accounts
+    relation  unstable               Firewall Manager --uses--> automatic remediation
+
+==============================================================================
+[3] AWS-WhitePaper-Sample.pdf  chunk 154  pages 59-59  ocr=False
+    tests: finding -> Security Hub CSPM; an explicit 'after' sequence; footer; pronoun
+------------------------------------------------------------------------------
+    | After the resource 
+    | is protected, Shield Advanced begins establishing a traffic baseline for it, and any subsequently 
+    | detected anomalous traffic is surfaced as a Shield Advanced finding in Security Hub CSPM, 
+    | alongside CloudWatch metrics and events.
+    | Visibility and protection management across multiple accounts 55
+------------------------------------------------------------------------------
+ENTITIES (6 kept)
+    service    Shield Advanced
+    data       traffic baseline
+    data       anomalous traffic
+    data       Shield Advanced finding
+    service    Security Hub CSPM
+    data       CloudWatch metrics
+
+EDGES (3 kept)
+    E5   Shield Advanced  --creates-->  traffic baseline
+           "After the resource is protected, Shield Advanced begins
+           establishing a traffic baseline for it, and any subsequently
+           detected anomalous traffic is surfaced as a Shield Advanced finding
+           in Security Hub CSPM, alongside CloudWatch metrics and events."
+    E6   Shield Advanced  --produces-->  Shield Advanced finding
+           "After the resource is protected, Shield Advanced begins
+           establishing a traffic baseline for it, and any subsequently
+           detected anomalous traffic is surfaced as a Shield Advanced finding
+           in Security Hub CSPM, alongside CloudWatch metrics and events."
+    E7   Security Hub CSPM  --receives-->  Shield Advanced finding
+           "After the resource is protected, Shield Advanced begins
+           establishing a traffic baseline for it, and any subsequently
+           detected anomalous traffic is surfaced as a Shield Advanced finding
+           in Security Hub CSPM, alongside CloudWatch metrics and events."
+
+DROPPED (across all 3 runs)
+    entity    name_not_in_text       data: CloudWatch events
+    entity    name_not_in_text       data: CloudWatch events
+    entity    name_not_in_text       data: CloudWatch events
+
+==============================================================================
+[4] AWS-WhitePaper-Sample.pdf  chunk 158  pages 61-61  ocr=False
+    tests: SRT escalation (conditional); support-plan noise; footer
+------------------------------------------------------------------------------
+    | For mission-critical workloads, consider Enterprise Support 
+    | for a designated Technical Account Manager and less than 15-minute response times, or Unified 
+    | Operations for designated Domain Specialist Engineers, Incident Management Engineers, and 
+    | always available workload monitoring with less than 5-minute response times for critical issues.
+    | For more information, refer to Compare Support Plans.
+    | If you're subscribed to AWS Shield Advanced and are also subscribed to either Business Support
+    | +, Enterprise Support, or Unified Operations, you can also escalate to AWS Shield Response Team 
+    | (SRT) by creating an Support case under AWS Shield using the Support console (sign-in required), 
+    | or the support API when a DDoS-related event affects your application's availability.
+    | Incident response strategy and runbooks 57
+------------------------------------------------------------------------------
+ENTITIES (15 kept)
+    service    Enterprise Support
+    actor      Technical Account Manager
+    service    Unified Operations
+    actor      Domain Specialist Engineers
+    actor      Incident Management Engineers
+    component  workload monitoring
+    service    AWS Shield Advanced
+    service    Business Support +
+    actor      AWS Shield Response Team (SRT)
+    data       Support case
+    service    AWS Shield
+    component  Support console
+    component  support API
+    threat     DDoS-related event
+    data       application's availability
+
+EDGES (9 kept)
+    E8   Enterprise Support  --related_to-->  Technical Account Manager
+           "For mission-critical workloads, consider Enterprise Support for a
+           designated Technical Account Manager and less than 15-minute
+           response times, or Unified Operations for designated Domain
+           Specialist Engineers, Incident Management Engineers, and always
+           available workload monitoring with less than 5-minute response
+           times for critical issues."
+    E9   Unified Operations  --related_to-->  Domain Specialist Engineers
+           "For mission-critical workloads, consider Enterprise Support for a
+           designated Technical Account Manager and less than 15-minute
+           response times, or Unified Operations for designated Domain
+           Specialist Engineers, Incident Management Engineers, and always
+           available workload monitoring with less than 5-minute response
+           times for critical issues."
+    E10  Unified Operations  --related_to-->  Incident Management Engineers
+           "For mission-critical workloads, consider Enterprise Support for a
+           designated Technical Account Manager and less than 15-minute
+           response times, or Unified Operations for designated Domain
+           Specialist Engineers, Incident Management Engineers, and always
+           available workload monitoring with less than 5-minute response
+           times for critical issues."
+    E11  Unified Operations  --uses-->  workload monitoring
+           "For mission-critical workloads, consider Enterprise Support for a
+           designated Technical Account Manager and less than 15-minute
+           response times, or Unified Operations for designated Domain
+           Specialist Engineers, Incident Management Engineers, and always
+           available workload monitoring with less than 5-minute response
+           times for critical issues."
+    E12  AWS Shield Advanced  --related_to-->  AWS Shield Response Team (SRT)
+           "If you're subscribed to AWS Shield Advanced and are also
+           subscribed to either Business Support +, Enterprise Support, or
+           Unified Operations, you can also escalate to AWS Shield Response
+           Team (SRT) by creating an Support case under AWS Shield using the
+           Support console (sign-in required), or the support API when a
+           DDoS-related event affects your application's availability."
+    E13  AWS Shield Response Team (SRT)  --creates-->  Support case
+           "If you're subscribed to AWS Shield Advanced and are also
+           subscribed to either Business Support +, Enterprise Support, or
+           Unified Operations, you can also escalate to AWS Shield Response
+           Team (SRT) by creating an Support case under AWS Shield using the
+           Support console (sign-in required), or the support API when a
+           DDoS-related event affects your application's availability."
+    E14  Support console  --creates-->  Support case
+           "If you're subscribed to AWS Shield Advanced and are also
+           subscribed to either Business Support +, Enterprise Support, or
+           Unified Operations, you can also escalate to AWS Shield Response
+           Team (SRT) by creating an Support case under AWS Shield using the
+           Support console (sign-in required), or the support API when a
+           DDoS-related event affects your application's availability."
+    E15  support API  --creates-->  Support case
+           "If you're subscribed to AWS Shield Advanced and are also
+           subscribed to either Business Support +, Enterprise Support, or
+           Unified Operations, you can also escalate to AWS Shield Response
+           Team (SRT) by creating an Support case under AWS Shield using the
+           Support console (sign-in required), or the support API when a
+           DDoS-related event affects your application's availability."
+    E16  Support case  --related_to-->  AWS Shield
+           "If you're subscribed to AWS Shield Advanced and are also
+           subscribed to either Business Support +, Enterprise Support, or
+           Unified Operations, you can also escalate to AWS Shield Response
+           Team (SRT) by creating an Support case under AWS Shield using the
+           Support console (sign-in required), or the support API when a
+           DDoS-related event affects your application's availability."
+
+DROPPED (across all 3 runs)
+    relation  verb_not_stated        AWS Shield Response Team (SRT) --mitigates--> DDoS-related event
+              evidence: "If you're subscribed to AWS Shield Advanced and are
+              also subscribed to either Business Support +, Enterprise
+              Support, or Unified Operations, you can also escalate to AWS
+              Shield Response Team  (SRT) by creating an Support case under
+              AWS Shield using the Support console (sign-in required),  or the
+              support API when a DDoS-related event affects your application's
+              availability."
+    relation  verb_not_stated        AWS Shield Response Team (SRT) --mitigates--> DDoS-related event
+              evidence: "If you're subscribed to AWS Shield Advanced and are
+              also subscribed to either Business Support +, Enterprise
+              Support, or Unified Operations, you can also escalate to AWS
+              Shield Response Team  (SRT) by creating an Support case under
+              AWS Shield using the Support console (sign-in required),   or
+              the support API when a DDoS-related event affects your
+              application's availability."
+    relation  verb_not_stated        AWS Shield Response Team (SRT) --mitigates--> DDoS-related event
+              evidence: "If you're subscribed to AWS Shield Advanced and are
+              also subscribed to either Business Support +, Enterprise
+              Support, or Unified Operations, you can also escalate to AWS
+              Shield Response Team  (SRT) by creating an Support case under
+              AWS Shield using the Support console (sign-in required),   or
+              the support API when a DDoS-related event affects your
+              application's availability."
+    relation  unstable               Business Support + --related_to--> AWS Shield Response Team (SRT)
+    relation  unstable               Enterprise Support --related_to--> AWS Shield Response Team (SRT)
+    relation  unstable               Unified Operations --related_to--> AWS Shield Response Team (SRT)
+
+==============================================================================
+[5] rfc8935.pdf  chunk 15  pages 6-6  ocr=False
+    tests: different domain: SET Recipient, 400 Bad Request
+------------------------------------------------------------------------------
+    | The following is a non-normative example of a successful receipt of a SET.
+    | Figure 2: Example Successful Delivery Response 
+    |   HTTP/1.1 202 Accepted
+    | err:
+    | description:
+    | 2.3. Failure Response 
+    | In the event of a general HTTP error condition, the SET Recipient responds with the applicable
+    | HTTP Status Code, as defined in .
+    | When the SET Recipient detects an error parsing, validating, or authenticating a SET transmitted
+    | in a SET Transmission Request, the SET Recipient  respond with an HTTP Response Status
+    | Code of 400 (Bad Request). The Content-Type header field of this response  be 
+    | application/json, and the body  be a UTF-8 encoded  object containing the
+    | following name/value pairs:
+    | A Security Event Token Error Code (see Section 2.4). 
+    | A UTF-8 string containing a human-readable description of the error that may
+    | provide additional diagnostic information. The exact content of this field is implementation
+    | specific.
+------------------------------------------------------------------------------
+ENTITIES (11 kept)
+    data       SET
+    actor      SET Recipient
+    protocol   HTTP Status Code
+    data       SET Transmission Request
+    protocol   HTTP Response Status Code
+    protocol   400 (Bad Request)
+    protocol   Content-Type
+    protocol   application/json
+    protocol   UTF-8
+    data       Security Event Token Error Code
+    data       human-readable description
+
+EDGES (3 kept)
+    E17  SET Recipient  --produces-->  HTTP Status Code
+           "In the event of a general HTTP error condition, the SET Recipient
+           responds with the applicable HTTP Status Code, as defined in ."
+    E18  SET Recipient  --receives-->  SET Transmission Request
+           "When the SET Recipient detects an error parsing, validating, or
+           authenticating a SET transmitted in a SET Transmission Request, the
+           SET Recipient respond with an HTTP Response Status Code of 400 (Bad
+           Request)."
+    E19  SET Recipient  --produces-->  HTTP Response Status Code
+           "When the SET Recipient detects an error parsing, validating, or
+           authenticating a SET transmitted in a SET Transmission Request, the
+           SET Recipient respond with an HTTP Response Status Code of 400 (Bad
+           Request)."
+
+DROPPED (across all 3 runs)
+    relation  endpoint_not_in_quote  HTTP Response Status Code --conforms_to--> application/json
+              evidence: "The Content-Type header field of this response  be
+              application/json, and the body  be a UTF-8 encoded  object
+              containing the following name/value pairs:"
+    relation  endpoint_not_in_quote  HTTP Response Status Code --conforms_to--> UTF-8
+              evidence: "The Content-Type header field of this response  be
+              application/json, and the body  be a UTF-8 encoded  object
+              containing the following name/value pairs:"
+    relation  endpoint_not_in_quote  HTTP Response Status Code --contains--> Security Event Token Error Code
+              evidence: "A Security Event Token Error Code (see Section 2.4)."
+    relation  endpoint_not_in_quote  HTTP Response Status Code --contains--> human-readable description
+              evidence: "A UTF-8 string containing a human-readable
+              description of the error that may provide additional diagnostic
+              information."
+    relation  endpoint_not_in_quote  HTTP Response Status Code --conforms_to--> application/json
+              evidence: "The Content-Type header field of this response  be
+              application/json, and the body  be a UTF-8 encoded  object
+              containing the following name/value pairs:"
+    relation  endpoint_not_in_quote  HTTP Response Status Code --conforms_to--> UTF-8
+              evidence: "The Content-Type header field of this response  be
+              application/json, and the body  be a UTF-8 encoded  object
+              containing the following name/value pairs:"
+    relation  endpoint_not_in_quote  HTTP Response Status Code --contains--> Security Event Token Error Code
+              evidence: "A Security Event Token Error Code (see Section 2.4)."
+    relation  endpoint_not_in_quote  HTTP Response Status Code --contains--> human-readable description
+              evidence: "A UTF-8 string containing a human-readable
+              description of the error that may provide additional diagnostic
+              information."
+    relation  endpoint_not_in_quote  HTTP Response Status Code --conforms_to--> application/json
+              evidence: "The Content-Type header field of this response  be
+              application/json, and the body  be a UTF-8 encoded  object
+              containing the following name/value pairs:"
+    relation  endpoint_not_in_quote  HTTP Response Status Code --conforms_to--> UTF-8
+              evidence: "The Content-Type header field of this response  be
+              application/json, and the body  be a UTF-8 encoded  object
+              containing the following name/value pairs:"
+    relation  endpoint_not_in_quote  HTTP Response Status Code --contains--> Security Event Token Error Code
+              evidence: "A Security Event Token Error Code (see Section 2.4)."
+    relation  endpoint_not_in_quote  HTTP Response Status Code --contains--> human-readable description
+              evidence: "A UTF-8 string containing a human-readable
+              description of the error that may provide additional diagnostic
+              information."
+
+==============================================================================
+[6] AWS-WhitePaper-Sample.pdf  chunk 156  pages 61-61  ocr=False
+    tests: conforms_to NIST; a list of steps that must NOT become precedes
+------------------------------------------------------------------------------
+    | AWS Best Practices for DDoS Resiliency AWS Whitepaper
+    | Incident response strategy and runbooks
+    | Developing a DDoS attack incident response strategy and building a security incident response 
+    | process around it is crucial for all organizations. A recommended approach is to model your 
+    | response playbook based on NIST's suggested steps such as gathering evidence, mitigating, 
+    | recovering, and conducting post-incident analysis. For example, a response playbook for web 
+    | application DoS or DDoS attacks is provided as an example. Additional resources are available in 
+    | the AWS Security Incident Response Guide.
+    | Support
+    | If you experience an attack, you can also benefit from support from AWS in assessing the threat 
+    | and reviewing the architecture of your application, or you might want to request other assistance. 
+    | It is important to create a response plan for DDoS attacks before an actual event.
+------------------------------------------------------------------------------
+ENTITIES (11 kept)
+    actor      AWS
+    threat     DDoS attack
+    threat     web application DoS
+    threat     DDoS attacks
+    actor      NIST
+    process    response playbook
+    process    AWS Security Incident Response Guide
+    process    response plan
+    process    security incident response process
+    data       evidence
+    component  architecture of your application
+
+EDGES (2 kept)
+    E20  response playbook  --conforms_to-->  NIST
+           "A recommended approach is to model your response playbook based on
+           NIST's suggested steps such as gathering evidence, mitigating,
+           recovering, and conducting post-incident analysis."
+    E21  AWS  --evaluates-->  architecture of your application
+           "If you experience an attack, you can also benefit from support
+           from AWS in assessing the threat and reviewing the architecture of
+           your application, or you might want to request other assistance."
+
+DROPPED (across all 3 runs)
+    relation  verb_not_stated        response playbook --mitigates--> web application DoS
+              evidence: "For example, a response playbook for web application
+              DoS or DDoS attacks is provided as an example."
+    relation  verb_not_stated        response playbook --mitigates--> DDoS attacks
+              evidence: "For example, a response playbook for web application
+              DoS or DDoS attacks is provided as an example."
+    relation  endpoint_not_in_quote  AWS Security Incident Response Guide --related_to--> response playbook
+              evidence: "Additional resources are available in the AWS
+              Security Incident Response Guide."
+    relation  verb_not_stated        response plan --mitigates--> DDoS attacks
+              evidence: "It is important to create a response plan for DDoS
+              attacks before an actual event."
+    relation  verb_not_stated        response playbook --mitigates--> web application DoS
+              evidence: "For example, a response playbook for web application
+              DoS or DDoS attacks is provided as an example."
+    relation  verb_not_stated        response playbook --mitigates--> DDoS attacks
+              evidence: "For example, a response playbook for web application
+              DoS or DDoS attacks is provided as an example."
+    relation  endpoint_not_in_quote  AWS Security Incident Response Guide --related_to--> response playbook
+              evidence: "Additional resources are available in the AWS
+              Security Incident Response Guide."
+    relation  verb_not_stated        response plan --mitigates--> DDoS attacks
+              evidence: "It is important to create a response plan for DDoS
+              attacks before an actual event."
+    relation  verb_not_stated        response playbook --mitigates--> web application DoS
+              evidence: "For example, a response playbook for web application
+              DoS or DDoS attacks is provided as an example."
+    relation  verb_not_stated        response playbook --mitigates--> DDoS attacks
+              evidence: "For example, a response playbook for web application
+              DoS or DDoS attacks is provided as an example."
+    relation  endpoint_not_in_quote  AWS Security Incident Response Guide --related_to--> response playbook
+              evidence: "Additional resources are available in the AWS
+              Security Incident Response Guide."
+    relation  verb_not_stated        response plan --mitigates--> DDoS attacks
+              evidence: "It is important to create a response plan for DDoS
+              attacks before an actual event."
+
+==============================================================================
+[7] AWS-WhitePaper-Sample.pdf  chunk 157  pages 61-61  ocr=False
+    tests: an explicit 'before': a candidate for precedes
+------------------------------------------------------------------------------
+    | It is important to create a response plan for DDoS attacks before an actual event. The best 
+    | practices outlined in this paper are intended to be proactive measures that you implement before 
+    | you launch an application, but DDoS attacks against your application might still occur. Review the 
+    | options in this section to determine the support resources that are best suited for your scenario.
+    | Your account team can evaluate your use case and application and assist with specific questions or 
+    | challenges that you have.
+    | If you're running production workloads on AWS, consider subscribing to Business Support+, which 
+    | provides 24/7 access to Cloud Support Engineers and a response time of less than 30 minutes 
+    | for business-critical system outages.
+------------------------------------------------------------------------------
+ENTITIES (9 kept)
+    process    response plan
+    threat     DDoS attacks
+    component  application
+    actor      account team
+    process    use case
+    service    Business Support+
+    service    AWS
+    actor      Cloud Support Engineers
+    threat     business-critical system outages
+
+EDGES (2 kept)
+    E22  account team  --evaluates-->  use case
+           "Your account team can evaluate your use case and application and
+           assist with specific questions or challenges that you have."
+    E23  account team  --evaluates-->  application
+           "Your account team can evaluate your use case and application and
+           assist with specific questions or challenges that you have."
+
+DROPPED (across all 3 runs)
+    relation  verb_not_stated        response plan --mitigates--> DDoS attacks
+              evidence: "It is important to create a response plan for DDoS
+              attacks before an actual event."
+    relation  verb_not_stated        Business Support+ --contains--> Cloud Support Engineers
+              evidence: "If you're running production workloads on AWS,
+              consider subscribing to Business Support+, which provides 24/7
+              access to Cloud Support Engineers and a response time of less
+              than 30 minutes for business-critical system outages."
+    relation  verb_not_stated        Business Support+ --mitigates--> business-critical system outages
+              evidence: "If you're running production workloads on AWS,
+              consider subscribing to Business Support+, which provides 24/7
+              access to Cloud Support Engineers and a response time of less
+              than 30 minutes for business-critical system outages."
+    relation  verb_not_stated        response plan --mitigates--> DDoS attacks
+              evidence: "It is important to create a response plan for DDoS
+              attacks before an actual event."
+    relation  verb_not_stated        Business Support+ --contains--> Cloud Support Engineers
+              evidence: "If you're running production workloads on AWS,
+              consider subscribing to Business Support+, which provides 24/7
+              access to Cloud Support Engineers and a response time of less
+              than 30 minutes for business-critical system outages."
+    relation  verb_not_stated        Business Support+ --mitigates--> business-critical system outages
+              evidence: "If you're running production workloads on AWS,
+              consider subscribing to Business Support+, which provides 24/7
+              access to Cloud Support Engineers and a response time of less
+              than 30 minutes for business-critical system outages."
+    relation  verb_not_stated        Business Support+ --contains--> Cloud Support Engineers
+              evidence: "If you're running production workloads on AWS,
+              consider subscribing to Business Support+, which provides 24/7
+              access to Cloud Support Engineers and a response time of less
+              than 30 minutes for business-critical system outages."
+    relation  unstable               Business Support+ --related_to--> business-critical system outages
+
+==============================================================================
+[8] AWS-WhitePaper-Sample.pdf  chunk 23  pages 13-13  ocr=False  [HOLDOUT]
+    tests: random whitepaper chunk
+------------------------------------------------------------------------------
+    | As a result, the resolver can't take advantage of cached domain queries and must instead 
+    | repeatedly contact the authoritative DNS server, which amplifies the attack.
+    | If a web application is delivered over Transport Layer Security (TLS), an attacker can also choose to 
+    | attack the TLS negotiation process. TLS is computationally expensive so an attacker, by generating 
+    | extra workload on the server to process unreadable data (or unintelligible (ciphertext)) as a 
+    | legitimate handshake, can reduce server's availability. In a variation of this attack, an attacker 
+    | completes the TLS handshake but perpetually renegotiates the encryption method. An attacker can 
+    | alternatively attempt to exhaust server resources by opening and closing many TLS sessions.
+    | Application layer (L7) attacks have become increasingly prevalent in recent years, shifting from 
+    | traditional network layer attacks.
+------------------------------------------------------------------------------
+ENTITIES (15 kept)
+    component  resolver
+    data       cached domain queries
+    service    authoritative DNS server
+    threat     attack
+    service    web application
+    protocol   Transport Layer Security (TLS)
+    process    TLS negotiation process
+    component  server
+    data       unreadable data
+    process    legitimate handshake
+    process    TLS handshake
+    data       encryption method
+    data       TLS sessions
+    threat     Application layer (L7) attacks
+    threat     traditional network layer attacks
+
+EDGES (4 kept)
+    E24  web application  --conforms_to-->  Transport Layer Security (TLS)
+           "If a web application is delivered over Transport Layer Security
+           (TLS), an attacker can also choose to attack the TLS negotiation
+           process."
+    E25  server  --receives-->  unreadable data
+           "TLS is computationally expensive so an attacker, by generating
+           extra workload on the server to process unreadable data (or
+           unintelligible (ciphertext)) as a legitimate handshake, can reduce
+           server's availability."
+    E26  server  --receives-->  legitimate handshake
+           "TLS is computationally expensive so an attacker, by generating
+           extra workload on the server to process unreadable data (or
+           unintelligible (ciphertext)) as a legitimate handshake, can reduce
+           server's availability."
+    E27  Application layer (L7) attacks  --related_to-->  traditional network layer attacks
+           "Application layer (L7) attacks have become increasingly prevalent
+           in recent years, shifting from traditional network layer attacks."
+
+DROPPED (across all 3 runs)
+    relation  negated                resolver --connects_to--> authoritative DNS server
+              evidence: "As a result, the resolver can't take advantage of
+              cached domain queries and must instead  repeatedly contact the
+              authoritative DNS server, which amplifies the attack."
+    relation  unknown_entity         attacker --mitigates--> TLS negotiation process
+              evidence: "If a web application is delivered over Transport
+              Layer Security (TLS), an attacker can also choose to  attack the
+              TLS negotiation process."
+    relation  unknown_entity         attacker --uses--> TLS handshake
+              evidence: "In a variation of this attack, an attacker  completes
+              the TLS handshake but perpetually renegotiates the encryption
+              method."
+    relation  unknown_entity         attacker --uses--> encryption method
+              evidence: "In a variation of this attack, an attacker  completes
+              the TLS handshake but perpetually renegotiates the encryption
+              method."
+    relation  unknown_entity         attacker --uses--> TLS sessions
+              evidence: "An attacker can alternatively attempt to exhaust
+              server resources by opening and closing many TLS sessions."
+    relation  negated                resolver --connects_to--> authoritative DNS server
+              evidence: "As a result, the resolver can't take advantage of
+              cached domain queries and must instead repeatedly contact the
+              authoritative DNS server, which amplifies the attack."
+    relation  unknown_entity         attacker --mitigates--> TLS negotiation process
+              evidence: "If a web application is delivered over Transport
+              Layer Security (TLS), an attacker can also choose to attack the
+              TLS negotiation process."
+    relation  unknown_entity         attacker --uses--> TLS handshake
+              evidence: "In a variation of this attack, an attacker completes
+              the TLS handshake but perpetually renegotiates the encryption
+              method."
+    relation  unknown_entity         attacker --uses--> encryption method
+              evidence: "In a variation of this attack, an attacker completes
+              the TLS handshake but perpetually renegotiates the encryption
+              method."
+    relation  unknown_entity         attacker --uses--> TLS sessions
+              evidence: "An attacker can alternatively attempt to exhaust
+              server resources by opening and closing many TLS sessions."
+    relation  negated                resolver --connects_to--> authoritative DNS server
+              evidence: "As a result, the resolver can't take advantage of
+              cached domain queries and must instead repeatedly contact the
+              authoritative DNS server, which amplifies the attack."
+    relation  unknown_entity         attacker --mitigates--> TLS negotiation process
+              evidence: "If a web application is delivered over Transport
+              Layer Security (TLS), an attacker can also choose to attack the
+              TLS negotiation process."
+    relation  unknown_entity         attacker --uses--> TLS handshake
+              evidence: "In a variation of this attack, an attacker completes
+              the TLS handshake but perpetually renegotiates the encryption
+              method."
+    relation  unknown_entity         attacker --uses--> encryption method
+              evidence: "In a variation of this attack, an attacker completes
+              the TLS handshake but perpetually renegotiates the encryption
+              method."
+    relation  unknown_entity         attacker --uses--> TLS sessions
+              evidence: "An attacker can alternatively attempt to exhaust
+              server resources by opening and closing many TLS sessions."
+    relation  unstable               Application layer (L7) attacks --precedes--> traditional network layer attacks
+
+==============================================================================
+[9] rfc8935.pdf  chunk 20  pages 8-8  ocr=False  [HOLDOUT]
+    tests: random RFC chunk
+------------------------------------------------------------------------------
+    | Other Error Codes may also be received, as the set of Error Codes is extensible via the IANA
+    | "Security Event Token Error Codes" registry established in Section 7.1.
+    | Error Code Description
+    | invalid_audience The SET Audience does not correspond to the SET Recipient.
+    | authentication_failed The SET Recipient could not authenticate the SET Transmitter.
+    | access_denied The SET Transmitter is not authorized to transmit the SET to the SET
+    | Recipient.
+    | Table 1: SET Error Codes 
+    | 3. Authentication and Authorization 
+    | The SET delivery method described in this specification is based upon HTTP over TLS 
+    | and standard HTTP authentication and authorization schemes, as per . The TLS server
+    | certificate  be validated using DNS-ID  and/or DNS-Based Authentication of
+    | Named Entities (DANE) .
+    | Authorization for the eligibility to provide actionable SETs can be determined by using the
+    | identity of the SET Issuer, the identity of the SET Transmitter, perhaps using mutual TLS, or via
+    | other employed authentication methods.
+------------------------------------------------------------------------------
+ENTITIES (15 kept)
+    data       Error Codes
+    actor      IANA
+    component  SET Audience
+    component  SET Recipient
+    component  SET Transmitter
+    data       SET
+    protocol   HTTP
+    protocol   TLS
+    protocol   standard HTTP authentication and authorization schemes
+    data       TLS server certificate
+    protocol   DNS-ID
+    protocol   DNS-Based Authentication of Named Entities (DANE)
+    actor      SET Issuer
+    protocol   mutual TLS
+    data       "Security Event Token Error Codes" registry
+
+EDGES (9 kept)
+    E28  SET  --conforms_to-->  HTTP
+           "The SET delivery method described in this specification is based
+           upon HTTP over TLS and standard HTTP authentication and
+           authorization schemes, as per ."
+    E29  SET  --conforms_to-->  TLS
+           "The SET delivery method described in this specification is based
+           upon HTTP over TLS and standard HTTP authentication and
+           authorization schemes, as per ."
+    E30  SET  --conforms_to-->  standard HTTP authentication and authorization schemes
+           "The SET delivery method described in this specification is based
+           upon HTTP over TLS and standard HTTP authentication and
+           authorization schemes, as per ."
+    E31  TLS server certificate  --conforms_to-->  DNS-ID
+           "The TLS server certificate be validated using DNS-ID and/or
+           DNS-Based Authentication of Named Entities (DANE) ."
+    E32  TLS server certificate  --conforms_to-->  DNS-Based Authentication of Named Entities (DANE)
+           "The TLS server certificate be validated using DNS-ID and/or
+           DNS-Based Authentication of Named Entities (DANE) ."
+    E33  Error Codes  --related_to-->  IANA
+           "Other Error Codes may also be received, as the set of Error Codes
+           is extensible via the IANA "Security Event Token Error Codes"
+           registry established in Section 7.1."
+    E34  Error Codes  --related_to-->  "Security Event Token Error Codes" registry
+           "Other Error Codes may also be received, as the set of Error Codes
+           is extensible via the IANA "Security Event Token Error Codes"
+           registry established in Section 7.1."
+    E35  SET Issuer  --related_to-->  SET Transmitter
+           "Authorization for the eligibility to provide actionable SETs can
+           be determined by using the identity of the SET Issuer, the identity
+           of the SET Transmitter, perhaps using mutual TLS, or via other
+           employed authentication methods."
+    E36  SET Transmitter  --uses-->  mutual TLS
+           "Authorization for the eligibility to provide actionable SETs can
+           be determined by using the identity of the SET Issuer, the identity
+           of the SET Transmitter, perhaps using mutual TLS, or via other
+           employed authentication methods."
+
+DROPPED (across all 3 runs)
+    relation  unknown_entity         Authorization --uses--> SET Issuer
+              evidence: "Authorization for the eligibility to provide
+              actionable SETs can be determined by using the identity of the
+              SET Issuer, the identity of the SET Transmitter, perhaps using
+              mutual TLS, or via other employed authentication methods."
+    relation  unknown_entity         Authorization --uses--> SET Transmitter
+              evidence: "Authorization for the eligibility to provide
+              actionable SETs can be determined by using the identity of the
+              SET Issuer, the identity of the SET Transmitter, perhaps using
+              mutual TLS, or via other employed authentication methods."
+    relation  unknown_entity         Authorization --uses--> mutual TLS
+              evidence: "Authorization for the eligibility to provide
+              actionable SETs can be determined by using the identity of the
+              SET Issuer, the identity of the SET Transmitter, perhaps using
+              mutual TLS, or via other employed authentication methods."
+    relation  unstable               IANA --creates--> Security Event Token Error Codes
+
+==============================================================================
+[10] scanned5.pdf  chunk 11  pages 4-5  ocr=True  [HOLDOUT]
+    tests: random OCR'd chunk (vision OCR of scanned5.pdf)
+------------------------------------------------------------------------------
+    | Elastic Load Balancing (BP6)                                 20
+
+    | AWS Best Practices for DDoS Resiliency                         AWS Whitepaper
+
+    | i Note
+
+    | For NLB with TCP listeners, it's recommended to deploy these behind an AWS Global  
+    | Accelerator to help protect against SYN floods. Global Accelerator has an inbuilt SYN proxy  
+    | and connections made through the NLB are automatically tracked.
+
+    | VPC  
+    | VPCE  
+    | VPC  
+    | NLB  
+    | TCP  
+    | UDP  
+    | TLS  
+    | ALB
+
+    | [Diagram: A user connects to a VPC endpoint (VPCE) in a VPC and to a Network Load Balancer (NLB) in another VPC. The NLB provides TCP, UDP, and TLS listeners. The TCP listener connects to an Application Load Balancer (ALB); the UDP listener connects to a target group; and the TLS listener connects to target resources.]
+
+    | Figure 10 - Network load balancers provide high performance and a suite of support features
+------------------------------------------------------------------------------
+ENTITIES (14 kept)
+    component  NLB
+    component  TCP listeners
+    service    AWS Global Accelerator
+    threat     SYN floods
+    component  SYN proxy
+    component  VPC endpoint (VPCE)
+    component  VPC
+    protocol   TCP
+    protocol   UDP
+    protocol   TLS
+    component  Application Load Balancer (ALB)
+    component  target group
+    component  target resources
+    actor      user
+
+EDGES (6 kept)
+    E37  AWS Global Accelerator  --mitigates-->  SYN floods
+           "For NLB with TCP listeners, it's recommended to deploy these
+           behind an AWS Global Accelerator to help protect against SYN
+           floods."
+    E38  NLB  --uses-->  TCP
+           "The NLB provides TCP, UDP, and TLS listeners."
+    E39  NLB  --uses-->  UDP
+           "The NLB provides TCP, UDP, and TLS listeners."
+    E40  NLB  --uses-->  TLS
+           "The NLB provides TCP, UDP, and TLS listeners."
+    E41  user  --connects_to-->  VPC endpoint (VPCE)
+           "[Diagram: A user connects to a VPC endpoint (VPCE) in a VPC and to
+           a Network Load Balancer (NLB) in another VPC."
+    E42  user  --connects_to-->  NLB
+           "[Diagram: A user connects to a VPC endpoint (VPCE) in a VPC and to
+           a Network Load Balancer (NLB) in another VPC."
+
+DROPPED (across all 3 runs)
+    relation  verb_not_stated        AWS Global Accelerator --contains--> SYN proxy
+              evidence: "Global Accelerator has an inbuilt SYN proxy and
+              connections made through the NLB are automatically tracked."
+    relation  verb_not_stated        AWS Global Accelerator --contains--> SYN proxy
+              evidence: "Global Accelerator has an inbuilt SYN proxy and
+              connections made through the NLB are automatically tracked."
+    relation  endpoint_not_in_quote  TCP listeners --connects_to--> Application Load Balancer (ALB)
+              evidence: "The TCP listener connects to an Application Load
+              Balancer (ALB); the UDP listener connects to a target group; and
+              the TLS listener connects to target resources."
+    relation  unknown_entity         UDP listeners --connects_to--> target group
+              evidence: "The TCP listener connects to an Application Load
+              Balancer (ALB); the UDP listener connects to a target group; and
+              the TLS listener connects to target resources."
+    relation  unknown_entity         TLS listeners --connects_to--> target resources
+              evidence: "The TCP listener connects to an Application Load
+              Balancer (ALB); the UDP listener connects to a target group; and
+              the TLS listener connects to target resources."
+    relation  verb_not_stated        AWS Global Accelerator --contains--> SYN proxy
+              evidence: "Global Accelerator has an inbuilt SYN proxy and
+              connections made through the NLB are automatically tracked."
+    relation  endpoint_not_in_quote  TCP listeners --connects_to--> Application Load Balancer (ALB)
+              evidence: "The TCP listener connects to an Application Load
+              Balancer (ALB); the UDP listener connects to a target group; and
+              the TLS listener connects to target resources."
+    relation  unknown_entity         UDP listeners --connects_to--> target group
+              evidence: "The TCP listener connects to an Application Load
+              Balancer (ALB); the UDP listener connects to a target group; and
+              the TLS listener connects to target resources."
+    relation  unknown_entity         TLS listeners --connects_to--> target resources
+              evidence: "The TCP listener connects to an Application Load
+              Balancer (ALB); the UDP listener connects to a target group; and
+              the TLS listener connects to target resources."
+    relation  unstable               NLB --connects_to--> AWS Global Accelerator
+    relation  unstable               AWS Global Accelerator --evaluates--> connections made through the NLB
+    relation  unstable               VPC endpoint (VPCE) --connects_to--> VPC
+    relation  unstable               VPC endpoint (VPCE) --connects_to--> NLB
+    relation  unstable               TCP --connects_to--> Application Load Balancer (ALB)
+    relation  unstable               UDP --connects_to--> target group
+    relation  unstable               TLS --connects_to--> target resources
+

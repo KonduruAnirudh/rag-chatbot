@@ -30,7 +30,7 @@ Three mechanisms keep answers grounded, applied in layers:
 
 | Layer | Mechanism | Guarantee |
 |---|---|---|
-| Retrieval gate | Chunks below the similarity threshold are discarded. If none survive, the LLM is never called | **Structural.** Cannot fail — no context, no generation |
+| Retrieval gate | Chunks below the similarity threshold are discarded. If none survive, the LLM is never called | **Structural.** Cannot fail — no context, no generation. But an off-topic question that names something in the documents usually passes the gate (Known limitation 17), so for those the prompt instruction is what refuses |
 | Prompt instruction | The model is told to answer only from the supplied passages and to say when they don't cover the question | Strong, but probabilistic |
 | Source display | Every response returns the passages used, with scores | Makes any drift visible and verifiable |
 
@@ -218,6 +218,24 @@ The document registry is a small list read in full on every access. There is no 
 
 The boundary: thousands of documents, where whole-file rewrites get slow, or more than one server process — JSON has no write locking, so concurrent writes would corrupt the file.
 
+### The graph holds multi-hop paths, not lookup facts
+
+The knowledge graph exists for questions that need several hops across documents or sections — how a Shield Advanced finding reaches Security Hub CSPM, and what happens next. A fact stated plainly in one sentence ("Enterprise Support includes a designated Technical Account Manager") is already found by vector and keyword search, so the graph does not need to hold it.
+
+This is why plan-to-feature relationships deliberately have no verb. `supports` was removed after it caused two-thirds of the labelled errors, and `contains` was narrowed so "for X" and "access to X" no longer count as inclusion; those relationships now fall to `related_to` or are skipped. No verb was added for them, because every verb added during the extraction pilot lowered agreement between runs, and the information is easy to retrieve without the graph.
+
+### Graph evidence is quoted, not asserted
+
+*Designed for Step 8, which was not built: graph retrieval did not pass its pre-registered test (see "Graph retrieval experiment"). The design stands for any future experiment.*
+
+Decided before answer generation uses the graph. Measured edge precision on untuned text is 48%, so a two-hop path is fully right only about a quarter of the time. Every edge, though, carries the sentence it came from, verbatim — and the sentence is right even when the relationship label is not.
+
+Showing the quote alongside the verb is not enough at this precision: a wrong verb still frames how the model reads a correct sentence. So graph evidence enters the prompt with the **quoted sentence as the primary evidence** and its source cited, and the relationship label as a secondary hint that the prompt explicitly calls unreliable — the model is told the sentence is what counts. Never a bare triple stated as fact.
+
+If this works, the graph's value does not depend on its labels being right: it becomes a way of surfacing sentences that vector search would not have retrieved, reached by following entities from one passage to another. That value survives a wrong verb.
+
+Evidence from a diagram is kept distinct. When vision OCR reads a diagram, it writes its own description ("[Diagram: A user connects to a VPC endpoint …]"). An edge quoting that description rests on machine-written text, not on a transcribed sentence, and is shown as weaker evidence than either a text-layer sentence or an OCR'd one.
+
 ---
 
 ## Project structure
@@ -343,9 +361,12 @@ curl -X POST http://127.0.0.1:8000/api/documents -F "file=@whitepaper.pdf"
   "char_count": 118218,
   "chunk_count": 142,
   "total_chunks_indexed": 186,
+  "graph": "extracting in the background",
   "message": "Uploaded and processed."
 }
 ```
+
+The document is searchable as soon as this returns. Knowledge-graph extraction runs afterwards as a background task (three model calls per chunk), because it is slow and the graph is an addition: a failure there never fails an upload. If the document is deleted before extraction finishes, nothing is written to the graph.
 
 | Status | Condition |
 |---|---|
@@ -359,9 +380,9 @@ curl -X POST http://127.0.0.1:8000/api/documents -F "file=@whitepaper.pdf"
 Lists indexed documents with their metadata and chunk counts.
 
 ### `DELETE /api/documents/{doc_id}`
-Removes a document's vectors from the index, deletes the stored file, and clears its registry entry. Returns `404` if the document doesn't exist.
+Removes a document's vectors from the index, its records from the knowledge graph, deletes the stored file, and clears its registry entry. Returns `404` if the document doesn't exist. The response reports `chunks_removed` and `graph_chunks_removed`.
 
-Deletion order is deliberate: vectors first (the user-visible effect), registry last (the source of truth, so a failed delete can be retried).
+Deletion order is deliberate: vectors first (the user-visible effect), then the graph — which is rebuilt from its remaining records and reads chunk text from the vector store, so the vectors must already be gone — and the registry last (the source of truth, so a failed delete can be retried). The graph after a delete is exactly the graph that would exist had the document never been uploaded; `python -m eval.graph_lifecycle_check` verifies this on a copy of `data/`.
 
 ### `POST /api/chat`
 Asks a question against the knowledge base.
@@ -432,6 +453,8 @@ range rather than a single page.
 **Embedding** batches up to 64 chunks per API call and normalizes each vector to unit length, so cosine similarity later reduces to a plain dot product.
 
 **Indexing** appends the new vectors to the existing matrix. Nothing is recomputed — each chunk's vector depends only on its own text, so adding a document can never invalidate existing vectors.
+
+**Graph extraction** then runs in the background: entities and quoted relationships are extracted from each chunk and stored in `data/graph/`. Deleting a document removes them. Answers do not use the graph (see Known limitation 18).
 
 ### Querying
 
@@ -605,7 +628,248 @@ Three conclusions:
 - **`TOP_K = 5` is justified by measurement.** In the successful case the answer chunk ranked exactly 5th. With the earlier setting of 4, the correctly phrased question would also have been refused.
 - **The same fact can be retrievable or not depending on phrasing.** Pure vector search is sensitive to whether the question uses the document's terminology. Hybrid search, which adds keyword matching, or query expansion, which rewrites terms like "Security Event Token" to "SET" before searching, would address this.
 
-The same chunk exposed an extraction artefact. The RFC renders its normative keywords (MUST, SHALL) and cross-references in a distinct style, and pypdf emits those text runs after the paragraph rather than in place. So *"the body of the response MUST be empty"* extracts as *"the body of the response be empty … MUST"* — the obligation detached from the sentence it governs. In a specification, MUST versus MAY is the meaning of the sentence, and every downstream stage reported success regardless. A layout-aware extractor would likely fix this.
+The same chunk exposed an extraction artefact (see also Known limitation 13). The RFC renders its normative keywords (MUST, SHALL) and cross-references in a distinct style, and pypdf emits those text runs after the paragraph rather than in place. So *"the body of the response MUST be empty"* extracts as *"the body of the response be empty … MUST"* — the obligation detached from the sentence it governs. In a specification, MUST versus MAY is the meaning of the sentence, and every downstream stage reported success regardless. A layout-aware extractor would likely fix this.
+
+### Graph extraction: precision only means something under one labelling standard
+
+Edges from the extraction pilot were labelled by hand after each prompt change. Between prompt v4 and v5 the labelling standard tightened: "Enterprise Support **for** a designated Technical Account Manager" was accepted as `contains` in v4 and rejected in v5, because the sentence does not state inclusion. Seven edges were identical in both runs — same verb, same quote — and changed label.
+
+| Prompt | Precision as first reported | Precision under the v5 standard |
+|---|---|---|
+| v4 | 21/35 = 60% | 14/35 = 40% |
+| v5 | — | 21/30 = 70% |
+
+The honest trend is 40% → 70%, not 60% → 70%. The standard is now written at the top of every labelling file and held fixed, so later iterations are comparable.
+
+### Graph extraction: about half the edges are correct on untuned text
+
+**Headline: 48% of the graph's edges are correct on untuned text** (28/58, 95% range 36–61%). That is the expected precision of the full graph, because 207 of the 214 indexed chunks were never used to tune the extraction. It pools every hand-labelled edge from untuned text: the v6 pilot's holdout and a random sample of the finished graph.
+
+| Labelled by hand | Precision | 95% range |
+|---|---|---|
+| **Pooled, untuned text (the expected figure)** | **28/58 = 48%** | **36–61%** |
+| Random sample of the finished graph — 40 edges, seeded, after resolution and admission | 17/40 = 42.5% | 29–58% |
+| v6 pilot holdout — 3 chunks drawn after the prompt was fixed | 11/19 = 58% | 36–77% |
+| v6 pilot known chunks — tuned on, so optimistic | 20/23 = 87% | 68–95% |
+
+The holdout's 58% was the first estimate. The 40-edge sample is twice its size and measures the graph actually traversed; the two ranges overlap, so the pooled figure is the best estimate. Admission did not raise precision — it makes the graph smaller, not more correct. Votes did not predict correctness either: edges found by all three extraction runs scored 38%, those found by two of three 47%.
+
+**The edges traversal depends on are the least reliable.** An edge can sit in the middle of a multi-hop path only if both of its entities have at least two neighbours. Those edges scored 32% (6/19, 95% range 15–54%) — the lowest of any group — against 52% for edges with an entity at a dead end (11/21). The sample is small, so this is a direction rather than a conclusion. Combined with the pooled figure, a two-hop path is fully right about 23% of the time (0.48²), and less if its middle edges are the weaker ones.
+
+The known-chunk figure alone would be misleading: precision on the chunks the prompt was tuned against rose from 70% to 87%, while on unseen text it was below v5's 70%. The holdout's errors took forms the known chunks barely contained — `conforms_to` for "delivered over" and "validated using", `receives`/`uses` inferred from "processes" and "provides", and `related_to` for entities that are merely listed together.
+
+What the pilot established:
+
+1. **Perfect agreement, 42% wrong.** On the holdout, two independent extractions agreed exactly (1.00), and 8 of 19 edges were still wrong. Voting measures consistency, not correctness: a mistake the prompt causes is made by every run.
+2. **Code checks worked; prompt rules did not.** The `verb_not_stated` check caught 73% of errors on the known chunks and 0% on the holdout. The prompt rules "never infer a purpose" and "never substitute a nearby entity" failed repeatedly. No prompt-only rule held in this project; every lasting fix was enforced in code.
+3. **Word lists do not generalise.** Tuned for `contains`, `creates` and `mitigates`, they score 7/7 — and the errors moved to verbs they don't cover. Extending them to `receives` and `uses` would have rejected correct edges, including the planned demo path's middle hop. The one holdout rejection ("Global Accelerator *has an inbuilt* SYN proxy") was a correct edge; its words were deliberately not added, which would have fitted the list to the holdout.
+4. **The holdout is spent.** Any future change to the extraction prompt or checks needs a fresh holdout to be tested honestly.
+
+The demo path planned at the start — Shield Advanced → finding → Security Hub CSPM — is not fully supported by explicit text. Its first hop comes from a passive sentence ("anomalous traffic is surfaced as a Shield Advanced finding") that names no agent, so under the strict standard it is not an edge.
+
+### Graph extraction over the full corpus
+
+All 214 chunks were extracted with the frozen v6 prompt (2-of-3 voting): no chunk failed, 642 model calls, 9.3 minutes, about $0.31 at list prices. 96% of input tokens were served from the prompt cache, which is why the pilot's projection ($0.45) was high.
+
+| | Count |
+|---|---|
+| Entity mentions / distinct names | 1,880 / 1,149 |
+| Edges extracted | 545 |
+| Edges after dropping generic endpoints (rule R2) | 514 (−31, 5.7%) |
+| Distinct entities admitted (rules R1–R3), exact names | 416 |
+| … with "AWS"/"Amazon" prefixes merged | 396 |
+| Edges between admitted entities | 385–389 (71% of extracted) |
+| Chunks with no edge | 42 |
+
+The admitted counts are upper bounds: entity resolution (aliases, embedding similarity) is not built yet and will merge further.
+
+### Graph retrieval experiment: fixed before any data
+
+Written down before any retrieval arm exists, so the thresholds cannot drift towards the results.
+
+**Outcome (recorded after the single held-out run, 2026-09-25): the stop rule fired.** On the held-out half no graph configuration fully recalled more multi-hop questions than today's retrieval: every arm scored 4 of 5. The graph found 1–2 more gold chunks, but the primary metric gained 0 points against the +15 required. As pre-registered, the experiment stops and reports that the graph does not help on this corpus. Details are in "Phase 3 result" below.
+
+**The question.** Does graph retrieval help on this corpus, and if so, when should it run?
+
+**What the graph is for on this corpus: promoting evidence, not finding it.** This was measured on the development half before any graph arm existed. Every gold chunk that today's retrieval (A0) leaves out of its top 5 still passes the 0.20 cosine gate: it is ranked lower, not rejected (6 multi-hop chunks at ranks 7, 7, 8, 13, 14 and 19, and 1 plain chunk at rank 8). The gate passes 48–209 of the 214 chunks for these questions, so it works as a refusal switch, not a relevance filter. The graph's possible value here is therefore moving evidence that retrieval ranked too low into the context, not reaching evidence retrieval cannot see. That has an obvious cheaper alternative: raise `TOP_K`. The A0@7 control partly tests it. On the development half, 7 chunks would have completed none of the 3 multi-hop questions A0 misses, because each has a gold chunk ranked 13th or lower. If A0@7 alone closes most of the gap on the held-out half, the honest finding is that the graph's value is small next to a one-line configuration change.
+
+**Step zero — linking.** Before any arm is built, measure whether the entities a question is about can be found in the graph at all (`python -m eval.linking_recall`). If they can't, no traversal policy matters.
+
+**Arms**
+
+| Arm | Policy |
+|---|---|
+| A0 | Today: dense + BM25 + Reciprocal Rank Fusion |
+| A0@7 | A0 with the top 7 instead of 5: the control for showing the model two more chunks *(added 2026-09-25)* |
+| A2 | Always run graph retrieval too, and fuse its chunks into the ranking; the cosine gate still decides refusal |
+| A3 | A deterministic trigger decides when graph retrieval runs, then fuses as A2 |
+| Ceiling | A2's fusion applied only to questions a person labelled as needing the graph — the most any trigger could gain |
+
+A classifier arm (graph-only when a model says so) was dropped: it is the most complex, needs its own labelled set, loses the vector evidence whenever it misroutes, and model decisions varied between runs during extraction (agreement 0.44–0.62). It returns only if the ceiling shows a large gain that A3's rules cannot capture.
+
+**Questions.** 40, written and labelled by the project owner — 12 plain, 10 relationship, 10 multi-hop, 8 off-topic (4 naming nothing in the corpus, 4 naming a corpus entity) — split 20 development / 20 held out, the held-out half run once. 60 candidates were drafted from the documents, not from the graph, to keep the set from favouring what the graph happens to contain.
+
+**Pass/fail, per arm**
+
+| Criterion | Threshold |
+|---|---|
+| No regression on the existing 9 retrieval questions | MRR within 0.03 of 0.704, Recall@5 stays 100% |
+| Refusal | All 8 off-topic questions refused; any failure fails the arm outright. *Amended 2026-09-25: absolute for the 4 naming nothing only; see "How refusal is evaluated"* |
+| All-hops recall on multi-hop questions, held-out half | At least +15 points over A0, *and over A0@7 (tightened 2026-09-25, before any graph arm or held-out question ran)* |
+| Added latency | Under 500 ms when the graph is used |
+| Noise | Non-gold share of the context no worse than A0 + 10 points |
+
+**Stop rule.** If the ceiling arm does not clear +15 points of all-hops recall, the experiment stops and reports that the graph does not help on this corpus.
+
+**Found while preparing.** Off-topic questions that name a corpus entity are not refused by the cosine gate today: 7 of 7 candidates scored 0.33–0.70 against the 0.20 threshold ("What is the monthly price of AWS Shield Advanced?" scored 0.695) and reach the model, which then has to decline on its own. Off-topic questions naming nothing scored at most 0.17 and are refused before any model call. So what "refused" means in the refusal criterion — no retrieval, or an answer that declines — has to be fixed before the experiment runs.
+
+**How refusal is evaluated (owner decision, 2026-09-25).** Production refusal is unchanged: retrieval keeps only chunks at or above the 0.20 cosine gate, and when none pass, the fixed reply is returned without calling the model. A graph arm keeps that rule across both of its sides: it refuses without calling the model only when neither side finds sufficiently relevant evidence, meaning nothing passes the cosine gate and the graph side contributes nothing. What counts as sufficiently relevant graph evidence is fixed with each arm, before its development run. Refusal is scored from the retrieval output alone (no evidence means refused), so no answer text has to be judged. Measured on the 8 kept off-topic questions with A0 today:
+
+| Questions | Top cosine | A0 today | Graph linking |
+|---|---|---|---|
+| Naming nothing: Q48, Q50, Q51, Q52 | 0.10–0.17 | Refused without the model, all 4 | Links nothing in any of them |
+| Naming a corpus entity: Q54, Q55, Q56, Q59 | 0.33–0.70 | 5 chunks pass the gate for each; all 4 reach the model | Each links to its entity |
+
+Every arm must refuse the 4 that name nothing; one failure fails the arm. The 4 that name a corpus entity are not refused by A0 under this definition, so "all 8 refused" cannot be met by any arm, A0 included, while production refusal stays as it is. Decided by the owner before any arm runs: the absolute criterion covers only the 4 that name nothing. For the 4 that name a corpus entity, A0's behaviour is the baseline, production refusal stays unchanged, and each arm records separately whether graph retrieval contributed evidence to them, with no pass/fail.
+
+**Change to the plan: the assistant labelled the questions.** At the owner's request (2026-09-25) the labels in `eval/graph_questions.yaml` were written by the assistant, not the owner; owner review is pending. The safeguards: every answer fact is a verbatim phrase of its gold chunks, checked in code; the 40 kept questions and the 20/20 split were drawn with a fixed seed, not chosen. Labelling against the text moved 5 of the 16 drafted multi-hop questions to relationship (one passage answers each) and marked 2 more as not needing the graph (the evidence is adjacent chunks of one section), which leaves 9 drafted questions that need passages from different sections, including one that is borderline and one (the demo question) that is only partly answerable. The 10 kept multi-hop questions are those 9 plus one of the 2 same-section questions, because a plain random draw had dropped a clean cross-section question. On owner review the multi-hop questions were re-split so both halves hold several clean graph questions: held out Q39, Q41, Q44, Q45 (clean) and Q42 (borderline); development Q38, Q46, Q47 (clean), Q32 (partly answerable) and Q33 (does not need the graph). The held-out multi-hop half is therefore all graph-needed, but it is still 5 questions, so a single question moves all-hops recall by 20 points. `python -m eval.check_graph_questions` re-checks every field, gold chunk and answer fact after any edit to the labels.
+
+**Step zero result: linking recall 41/56 = 73%.** Every question that needs the graph linked at least one of its entities, so traversal has a starting point for all 9. Of the 15 intended entities that did not link, 4 are not in the graph under any name ("incident response" twice, "cost protection", "DNS"), 2 were rejected by admission while a shorter admitted node carries the concept ("challenge", "application layer"), and 9 are misses. Most misses are the question's wording differing from the documents ("recipient" for SET Recipient, "DNS reflection" for UDP reflection attacks). Two are a longer, more specific node taking the words ("waf rules", "set delivery"), and one is a singular question word against a plural node ("CloudWatch metric"). The first run counted a tenth miss that was a labelling error: Q34 listed the Shield Response Team, which is the answer rather than something the question names. It was removed on owner review (41/57 = 72% before). All 4 off-topic questions that name a corpus entity link to it, and the 4 naming nothing link to nothing.
+
+**Linking by question type** (the 40 kept questions)
+
+| Type | Intended entities linked | Recall | Every entity linked | At least one linked |
+|---|---|---|---|---|
+| Plain | 6 of 15 | 40% | 3 of 9 | 5 of 9 |
+| Relationship | 15 of 18 | 83% | 7 of 10 | 9 of 10 |
+| Multi-hop | 16 of 19 | 84% | 7 of 10 | 10 of 10 |
+| Needing the graph (9) | 15 of 18 | 83% | 6 of 9 | 9 of 9 |
+| Off-topic naming an entity | 4 of 4 | 100% | 4 of 4 | 4 of 4 |
+
+Linking is weakest on plain questions, which do not need the graph. Every question that needs the graph links at least one of its entities. The 3 that miss one are "incident response" and "cost protection", which are not in the graph, and "AWS WAF", which the more specific "waf rules" took. Phase 1 reports linking next to each question's retrieval result, so a multi-hop failure can be put down to linking or to traversal.
+
+**Step 7 design, fixed before Phase 1 (2026-09-25).** Every graph arm runs the same pipeline; only the traversal differs.
+
+1. **Link:** the step-zero linker, unchanged. The entities it finds are the starting points.
+2. **Reach:** the chunks whose quotes support an edge reached from them (four configurations, below).
+3. **Relevance:** a graph chunk counts only if it passes the production cosine gate for the question and is not already in A0's top 5.
+4. **Rank:** chunks reached from the most starting entities come first, then the configuration's score decides, then cosine.
+5. **Add:** the top 2 go after A0's unchanged top 5.
+
+*Why add rather than fuse.* Adding makes the graph's contribution exactly two chunks, so it can be attributed and removed. Fusing the graph into RRF as a third ranked list would give a source that is 48% correct an equal vote over the top 5, and make its effect inseparable from the baseline. Adding also means neither refusal nor the existing 9 questions' top 5 can change: if nothing passes the gate, A0 refuses, and no graph chunk can pass it either. The cost is a context of 7 chunks instead of 5, which is why A0@7 is a control.
+
+*Why no relation verbs.* Verbs are 48% correct. "This quote names both entities" is true by construction, because the quote check rejects any edge whose quote does not name both ends. Retrieval uses the reliable part and ignores the unreliable part.
+
+| Configuration | Reach | Chunks reached per entity (median / 90th percentile) |
+|---|---|---|
+| G1 (the default) | 1 hop | 1 / 3 |
+| G2-U | 2 hops | 5 / 27 |
+| G2-H | 2 hops, never through a hub (10 or more neighbours) | 2 / 10 |
+| G2-W | 2 hops, each step weighted by 1 / neighbour count | 5 / 27, weighted |
+
+Each configuration runs as A2 (on every question) and as the ceiling (only on questions labelled as needing the graph), next to A0 and A0@7.
+
+**Phase 1** covers only the development half and measures retrieval only. It reports, per arm:
+- multi-hop questions with every gold chunk in the context, over all 5 and over the 4 that need the graph
+- gold recall
+- graph-chunk precision: the share of added chunks that are gold
+- noise: the non-gold share of the context, pooled over the questions that have gold chunks
+- whether the existing questions' top 5 is identical to A0's
+- refusal of the questions naming nothing
+- chunks added to the entity-naming off-topic questions (recorded, with no pass or fail)
+- latency of the graph side (link, reach, rank): median and 95th percentile
+- candidate chunks per question
+
+"The context" is what the model would see: 5 chunks for A0, 7 for A0@7, and up to 7 for a graph arm.
+
+**Selection rule, fixed now.** A configuration is out if, under A2, it changes the refusal of a question naming nothing, changes the existing questions' top 5, or has a 95th-percentile latency of 500 ms or more. Among the rest, the configuration that fully recalls the most development multi-hop questions wins. Ties go to the higher graph-chunk precision, then to the simpler configuration, in the order G1, G2-U, G2-H, G2-W. G1 is the default that a 2-hop configuration has to beat. The script applies the rule; nobody picks.
+
+**A3.** If the chosen configuration passes the noise criterion under A2 on the development half, A3 is skipped and the result says so: a trigger that only saves cost is not worth its brittleness. Otherwise its trigger is designed from development results only, and fixed before the held-out run.
+
+**Phase 3, the held-out half, run once.** It runs A0, A0@7, and the chosen configuration under A2 (and A3 if built) and as the ceiling, against the pass/fail table. The multi-hop gain must be at least 15 points over both A0 and A0@7.
+
+**Phase 1 result, development half (2026-09-25; `python -m eval.graph_retrieval_eval`).** No configuration fully recalled a multi-hop question that A0 misses. A0, A0@7 and all four configurations each score 2 of 5, and 1 of the 4 that need the graph. Gold chunks found: A0 17 of 24; A0@7, G1 and G2-H 19; G2-U and G2-W 18.
+
+- **What G1 added.** 2 of the 24 chunks it added are gold (8%), both on questions that need the graph. AWS:154 for Q32 was ranked 7th by A0, so A0@7 reaches it too. RFC:20 for Q38 was ranked 19th, which A0@7 does not reach: that is the one promotion only the graph made. A0@7 in turn reached RFC:26 (ranked 7th), which the graph missed.
+- **Why the rest was missed.** A0 left 6 gold chunks out of its top 5 on the 3 incomplete graph questions. G1 added 2 of them. AWS:153 (Q32) is reachable only at 2 hops and ranked 8th to 13th among the candidates, below the cap. RFC:26 (Q38) has edges, but none involving the linked entity. AWS:115 and AWS:37 (Q46) have no edge at all. None was lost to linking, so on this half the limit is how much of the text extraction turned into edges, not linking or traversal.
+- **Selection.** The rule chose G1: all configurations tied on multi-hop, and G1 had the highest graph-chunk precision.
+- **A3 is skipped, as pre-registered.** G1's noise under A2 is 82%, against A0's 79%, which is within 10 points.
+- **Hard criteria.** Every configuration refused both questions naming nothing and left the existing questions' top 5 unchanged. The graph side takes 2.6 ms at the 95th percentile.
+- **Entity-naming off-topic questions.** Every configuration added 2 chunks to each of the 2 in this half (recorded, with no pass or fail).
+
+**Phase 3 result, held-out half, run once (2026-09-25; `eval/graph_runs/heldout-20260925-230948.json`).** This is the final Step 7 retrieval evaluation, recorded as measured.
+
+| Arm | Multi-hop fully recalled | Of those needing the graph | Gold chunks found | Noise | Added chunks that are gold | Graph side, 95th percentile |
+|---|---|---|---|---|---|---|
+| A0 | 4 of 5 | 4 of 5 | 19 of 23 | 76.2% | | |
+| A0@7 | 4 of 5 | 4 of 5 | 19 of 23 | 83.0% | | |
+| G1 | 4 of 5 | 4 of 5 | 20 of 23 | 81.7% | 1 of 29 | 2.7 ms |
+| G2-U | 4 of 5 | 4 of 5 | 21 of 23 | 80.9% | 2 of 30 | 2.5 ms |
+| G2-H | 4 of 5 | 4 of 5 | 21 of 23 | 80.7% | 2 of 29 | 2.7 ms |
+| G2-W | 4 of 5 | 4 of 5 | 20 of 23 | 81.8% | 1 of 30 | 2.5 ms |
+| G1, ceiling | 4 of 5 | 4 of 5 | 19 of 23 | 78.9% | 0 of 10 | 2.7 ms |
+| G2-U, G2-H, G2-W, ceiling | 4 of 5 each | 4 of 5 | 20 of 23 | 77.8% | 1 of 10 | 2.5–2.7 ms |
+
+- **The graph improved gold-chunk retrieval but not the primary metric.** Every graph configuration found more gold chunks than A0 and A0@7 (19 of 23): G1 and G2-W found 20, and G2-U and G2-H found 21. None fully recalled more multi-hop questions: every arm scores 4 of 5, including A0@7 and every ceiling.
+  - The one held-out multi-hop question A0 misses is Q39. It needs AWS:19 (A0 rank 16) and AWS:91 (rank 34). The 2-hop configurations added AWS:19; no configuration reached AWS:91.
+  - G1's one extra gold chunk is RFC:14 for Q01, a plain question. On the questions that need the graph, G1 added no gold chunk: its ceiling finds 19 of 23, the same as A0.
+  - A0 already fully recalled 4 of the 5, so the largest gain possible on this half was one question (20 points).
+- **Which configuration was tested.** The pre-registered rule selected G1 on the development half, and Phase 3 tests that choice. The script also applies the rule to whichever half it runs on, so this run printed "chosen: G2-H": tied at 4 of 5, with higher graph-chunk precision on the held-out half. That would be a choice made on held-out data, so it is reported here but not used. Every configuration gained 0 points, so the outcome does not depend on it. The script has since been fixed: the selection function refuses any half but the development half, and a held-out run evaluates only G1. Re-scoring both saved runs with the fixed code reproduces every recorded number.
+- **A3 was skipped** because the pre-registered noise condition was met on the development half (G1: 82% against A0's 79% + 10 points). On the held-out half G1's noise, 81.7%, is also within A0's 76.2% + 10.
+
+| Criterion, for G1 | Result | |
+|---|---|---|
+| No regression on the existing questions | Top 5 identical to A0's on every one | Pass |
+| Refusal, the 4 naming nothing | All refused (Q48 and Q50 here, Q51 and Q52 in Phase 1) | Pass |
+| Multi-hop fully recalled, held-out half | +0 points over A0 and over A0@7; +15 required | **Fail** |
+| Added latency | 2.7 ms at the 95th percentile; under 500 ms required | Pass |
+| Noise | 81.7%, against a limit of 86.2% | Pass |
+| Entity-naming off-topic questions (recorded only) | G1 added 0 chunks to Q55 and 2 to Q56 | — |
+
+**Stop rule.** The ceiling arm (G1 applied only to questions needing the graph) gained 0 points over A0 and over A0@7, short of the +15 required. As pre-registered, the experiment stops and reports that the graph does not help on this corpus. Production retrieval never called the graph during Step 7 and is unchanged.
+
+**Decisions after Step 7 (owner, 2026-09-25).**
+
+- **The graph improved some retrieval-level metrics, not the pre-registered primary one.** It found 1–2 more gold chunks on the held-out half, but did not fully recall more multi-hop questions.
+- **Step 8 is not built.** Graph evidence is not fused into production answers, following the stop rule.
+- **The graph code, its stored data and extraction on upload are kept,** so the graph stays current and available for future experiments. The chatbot does not read it when answering.
+- **Steps 9–13** (comparing vector-only with vector-plus-graph retrieval) take this Step 7 evaluation as their primary evidence. Nothing is re-run after the held-out result, and the held-out evaluation is not modified.
+
+**Damaged source text costs an edge; it does not create a false one.** 15 of 3,187 proposed relations (0.5%) quoted text that was not in the chunk. The most common cause (8 of 15) was PDF text damaged in extraction — words split by a stray space ("connectio ns") or a word pypdf moved out of its sentence — which the model silently repaired when quoting. The rest were a quote stitched from a lead-in and a non-adjacent bullet, an abbreviated name, and an added full stop. The quote check rejected all 15, so the damage became a recall loss rather than a precision loss — the right direction to fail in. Nothing was changed.
+
+### Entity resolution: connectivity comes from extraction, not merging
+
+Resolution turns the 1,170 entity names the extraction produced into one key per real-world thing. Its effect on what multi-hop retrieval can use — two-hop paths whose two edges come from different chunks:
+
+| Resolution | Admitted entities | Cross-chunk two-hop paths | Across documents |
+|---|---|---|---|
+| None (exact names) | 372 | 1,514 | 18 |
+| Layer 1: "AWS"/"Amazon" prefixes, acronyms defined in brackets | 347 | 1,846 (+22%) | 26 |
+| + all layer-3 similarity proposals, if every one were right | 334 | 1,894 | 26 |
+| + folding all 53 singular/plural pairs | 329 | 1,884 | 26 |
+
+Almost all of the gain comes from layer 1. Layer 3 and plural folding add 2–3% between them, so the graph's connectivity is set by what extraction finds, not by how cleverly names are merged — worth knowing for anyone who expects entity resolution to be where graph quality comes from. Plural folding was not adopted: 2% is not worth a new merge rule with a known trap ("HTTPS" is not the plural of "HTTP").
+
+**Embedding similarity proposes candidates; it cannot decide them.** At a cosine similarity of 0.90 or more, layer 3 proposed 16 pairs. A person labelled 14 the same thing and 2 different — 87.5% precision (95% range 64–97%). No threshold separates the two: "CDN cache" / "CDN caching" (different) scored 0.946, higher than 11 of the 14 correct pairs, so the only error-free threshold would catch 4 of the 14. That is why layer 3 stays human-labelled rather than automated: the 14 labelled pairs are applied as recorded decisions, the 2 different pairs are kept apart and never proposed again, and new proposals wait for a person.
+
+| | Admitted entities | Components | Cross-chunk two-hop paths |
+|---|---|---|---|
+| Layers 1–2 | 347 | 42 | 1,846 |
+| + the 14 labelled layer-3 merges (the graph now used) | 335 | 39 | 1,892 (+2.5%) |
+
+*Observation, not generalised:* all 14 pairs labelled the same were singular/plural variants ("SET Recipient" / "SET Recipients"), and both proposals that were not plurals were labelled different. That is consistent with a plural rule, but it is one sample of 16, and the known trap ("HTTPS" is not the plural of "HTTP") still stands — so no plural rule was added; plurals merge only case by case, when a person has labelled the pair.
+
+Over-merging makes a graph confidently wrong, so the resolution report checks named families on every run:
+
+| Must stay apart | Result |
+|---|---|
+| Shield / Shield Standard / Shield Advanced / Shield Response Team / Origin Shield | Pass |
+| SET / SET Recipient / SET Transmitter / SET Issuer | Pass |
+| AWS endpoint / endpoint | Pass — after a fix. The first version stripped "AWS" from any name, merging the whitepaper's AWS endpoint with the RFC's HTTP endpoint; the prefix is now removed only when what follows is itself a name ("AWS WAF") |
+| Amazon VPC / virtual private cloud (VPC) | Pass — by a hand-written decision: Amazon VPC is the service, a VPC is a resource created with it |
+| Security Hub / Security Hub CSPM | **Untested.** Only "Security Hub CSPM" occurs in the corpus; the rule keeps the two apart, but no real data has tested it |
+
+**A small pilot misrepresents more than precision.** `related_to` was 21% of edges on the seven-chunk pilot and 14% (76/545) across the corpus. The pilot's chunks were unusually heavy in support-plan and escalation language, which has no verb in the vocabulary, so they overstated the catch-all rate. Figures measured on a hand-picked sample describe that sample; only the full run is large enough to judge the vocabulary.
 
 ## Example questions
 
@@ -662,6 +926,25 @@ Upload a document, stop the server, restart it, then call `GET /api/documents`. 
 
 Set `CHAT_MODEL` to an invalid value and restart: chat requests should return `502` with a generic message, while the real error appears only in the server log.
 
+**Evaluation scripts**
+
+Run from the project root. The expected results are the current measured values.
+
+| Command | What it verifies | Expected | Notes |
+|---|---|---|---|
+| `python -m eval.retrieval_eval` | Retrieval ranking on the original 9 questions: dense, BM25 and hybrid | MRR 0.587 / 0.713 / 0.704; Recall@5 100% for all three | The regression baseline. 9 embedding calls |
+| `python -m eval.ocr_check data/test_documents/rfc8935.pdf` | Tesseract OCR against pypdf's text for the same rendered pages | One line per page: word counts and the share of pypdf's words recovered | Needs Tesseract installed |
+| `python -m eval.graph_lifecycle_check` | Uploading and deleting with the graph: the delete cascade, a delete during extraction, and documents containing planted instructions | `17 of 17 checks passed.` | Runs on a temporary copy of `data/` and checks the real one is untouched. About 2 cents |
+| `python -m eval.graph_report` | Entity resolution: merges, over-merge checks and the graph's shape | Each over-merge check prints `PASS`; Security Hub prints `UNTESTED` | Rewrites the layer-3 labelling files. A fraction of a cent |
+| `python -m eval.check_graph_questions` | The Step 7 question labels: required fields, gold chunks that exist, answer facts found verbatim | `All checks passed.` | Run after any label edit; exits 1 on a problem. No API calls |
+| `python -m eval.linking_recall` | How many of each question's entities the linker finds in the graph | `linking recall: 41/56 = 73%` | No API calls |
+| `python -m eval.graph_retrieval_eval` | The Step 7 graph retrieval arms against A0 and A0@7, on the development half | Every arm fully recalls 2 of 5 multi-hop questions; `-> chosen: G1` | Saves a run to `eval/graph_runs/`. 20 embedding calls |
+
+**Not for re-running.** These are records of steps that are closed:
+
+- `python -m eval.graph_retrieval_eval --heldout-once`: the held-out half was run once (`eval/graph_runs/heldout-20260925-230948.json`), and a second run would not be an independent test.
+- `python -m eval.extract_pilot` and `python -m eval.graph_precision_sample`: they produced the Step 5 and Step 6 labelling files. Extraction is frozen at v6, and the labels refer to saved runs; testing a changed extraction needs fresh, unlabelled text.
+
 ---
 
 ## Known limitations
@@ -691,8 +974,80 @@ Set `CHAT_MODEL` to an invalid value and restart: chat requests should return `5
 10. **No authentication or rate limiting.**
 11. **Evaluation sets are small** — 9 retrieval questions, 3 OCR pages sampled.
     Results are indicative rather than conclusive.
+12. **Graph extraction is consistent, which is not the same as correct.**
+    With the final prompt (v6), two independent extractions agree on 81% of
+    edges on the seven tuned chunks and 100% on the holdout; earlier prompts
+    ranged 37–72%. Removing the vaguest verb, `supports`, did more for
+    agreement than any voting rule. But the holdout agreed perfectly while 42%
+    of its edges were wrong: voting filters random disagreement, and a mistake
+    the prompt causes is made by every run. Building the graph once and saving
+    it makes it fixed, not right.
+13. **pypdf moves the RFC's normative keywords out of their sentences.** As
+    recorded under "Vocabulary mismatch" above, styled text runs (MUST,
+    SHOULD, cross-references) are emitted after the paragraph, not in place.
+    RFC 8935 has 45 resulting gaps across 22 of its 45 chunks, e.g. "the SET
+    Recipient respond with" and "as defined in ."; 20 of the 25 MUSTs in the
+    index sit in detached keyword runs rather than inside a clause. This
+    corrupts chunk text and also the evidence quotes stored on graph edges,
+    so an edge's quote can silently lose the requirement level of the
+    sentence it came from.
+14. **About half the graph's edges are wrong** — measured precision 48% on
+    untuned text (95% range 36–61%, 58 labelled edges). Errors compound along
+    a path: a two-hop path is fully right about 23% of the time, and the edges
+    that can sit mid-path scored lowest of all (32%, small sample). Every
+    edge's quote is verbatim document text (100% in every pilot run), so the
+    Step 8 design (not built) shows graph evidence as quoted sentences with the
+    relationship label marked as unreliable — see "Graph evidence is quoted,
+    not asserted". The
+    extraction prompt is frozen at v6.
+15. **Graph extraction resists planted instructions only through its prompt.**
+    A test document with an instruction to add a fake edge, placed between two
+    real technical statements, was extracted correctly: the real edges, none
+    from the instruction. But that is one document, and nothing in code would
+    stop an edge built from such a sentence — it names both entities verbatim.
+    A chunk whose extraction fails on upload is kept with its error; there is
+    no retry yet short of re-running the backfill.
+16. **The planned demo path is not fully supported by the text.** Shield
+    Advanced → finding → Security Hub CSPM: the first hop rests on a passive
+    sentence ("anomalous traffic is surfaced as a Shield Advanced finding")
+    that names no agent, so it is not an edge. It is recorded rather than
+    demonstrated on an inferred edge.
+17. **The structural refusal only covers questions that share no topic with
+    the documents.** The cosine gate (0.20) refuses "What is the capital of
+    France?" before any model call, but an off-topic question that names a
+    corpus entity — "What is the monthly price of AWS Shield Advanced?" —
+    scores up to 0.70 and reaches the model, which must decline on its own
+    instructions. For those questions, refusal is a prompt behaviour, not a
+    structural guarantee.
+18. **The graph is built on every upload but no answer uses it.** Graph
+    retrieval did not improve the pre-registered multi-hop metric on the
+    held-out half (4 of 5 questions fully recalled with or without it), so it
+    was not added to the answer path. Extraction still runs in the background
+    after each upload (about $0.0015 per chunk) to keep the graph available for
+    future experiments.
 
 ## Future improvements
+
+**Graph retrieval — out of scope for the first experiment**
+
+- **Questions about scanned pages and diagrams.** Answering them needs `scanned5.pdf` and `diagram.png` in the index. Uploading them mid-experiment would change the corpus and move the retrieval baseline, and `scanned5.pdf` is a scan of whitepaper pages 21–25, so its chunks would duplicate existing ones and blur which chunk counts as the gold evidence. One variable at a time: they come after the first graph retrieval experiment.
+
+**Graph extraction — candidate changes, each needing a fresh holdout**
+
+The extraction prompt and its checks are frozen at v6, and the only unseen text has been used for testing. A change tested on the sample that motivated it is overfitting — it happened twice during the pilot — so each candidate below needs new, randomly drawn text to be tested on.
+
+- **Reject metrics-table rows as evidence.** The whitepaper's CloudWatch metric tables extract as lines like "Network Load Balancer ProcessedBytes The total number of bytes processed…", which contain no verb; the model reads them as "Network Load Balancer produces ProcessedBytes". Both such edges in the 40-edge sample were wrong. A quote shaped like a table row (a service name, a CamelCase metric name, then "The total/number of…") is detectable in code. The 8 edges affected (9 quotes):
+
+  | Edge | Source |
+  |---|---|
+  | Application Load Balancer —produces→ UnHealthyHostCount | whitepaper chunk 138, p. 53 |
+  | Network Load Balancer —produces→ ActiveFlowCount | whitepaper chunk 138, p. 53 |
+  | Network Load Balancer —produces→ NewFlowCount | whitepaper chunk 138, p. 53 |
+  | Network Load Balancer —produces→ ProcessedBytes | whitepaper chunks 138 and 139, p. 53 |
+  | AWS WAF —produces→ AllowedRequests | whitepaper chunk 134, p. 51 |
+  | AWS WAF —produces→ BlockedRequests | whitepaper chunk 134, p. 51 |
+  | AWS WAF —produces→ CountedRequests | whitepaper chunk 134, p. 51 |
+  | AWS WAF —produces→ PassedRequests | whitepaper chunk 134, p. 51 |
 
 **Retrieval quality**
 - Hybrid search combining BM25 keyword matching with vector similarity, to close the gap on structured content that embeds weakly
@@ -717,9 +1072,11 @@ Set `CHAT_MODEL` to an invalid value and restart: chat requests should return `5
 - **Structured diagram extraction.** Vision OCR describes diagram relationships
   in prose. Returning them as structured entity–relation pairs would let them
   populate a knowledge graph directly rather than passing through text.
-- **Hybrid retrieval over a knowledge graph**, so questions about connections
-  and multi-hop relationships can traverse entities rather than matching
-  passages.
+- **A second graph retrieval experiment.** The first (Step 7) did not improve
+  the primary multi-hop metric. A new attempt needs a fresh held-out question
+  set, since the current one is spent. On the development half the measured
+  limit was edge coverage, not linking or traversal: gold chunks with no edge
+  at all, and a gold chunk reachable only past the cap.
   
 ---
 

@@ -1,0 +1,49 @@
+{
+  "_comment": [
+    "Layer 2 of entity resolution: hand-written decisions, name as written (case-insensitive) -> entity key.",
+    "They are applied BEFORE the automatic rules, so a person's decision always wins. Use them to join names",
+    "the text never links, or to keep apart names the automatic rules would merge.",
+    "An acronym defined in brackets, e.g. 'Transport Layer Security (TLS)', is harvested automatically by layer 1",
+    "and does not belong here. Initials alone are not evidence: in this corpus 'waf' has the initials of",
+    "'aws well-architected framework' and 'ip' those of 'internet paths' - both wrong.",
+    "",
+    "Decisions:",
+    "  2026-09-25  Amazon VPC kept apart from 'virtual private cloud (VPC)'. Amazon VPC is the service; a VPC is",
+    "              a resource created with it - the same distinction as Shield vs Shield Advanced. The automatic",
+    "              rules had merged them via the 'Amazon' prefix and the harvested acronym 'VPC'.",
+    "  2026-09-25  'merges': the 14 layer-3 proposals labelled SAME (eval/pilot_labels/graph_l3_labels.json),",
+    "              applied after the automatic rules, entity key -> entity key. Each was labelled by a person;",
+    "              similarity scores cannot decide them (a DIFFERENT pair scored 0.946, above 11 SAME pairs).",
+    "  2026-09-25  'keep_apart': the 2 proposals labelled DIFFERENT; layer 3 never proposes them again."
+  ],
+  "aliases": {
+    "amazon vpc": "amazon vpc",
+    "amazon virtual private cloud": "amazon vpc"
+  },
+  "merges": {
+    "application layer attacks": "application layer attack",
+    "cache policies": "cache policy",
+    "ddos attacks": "ddos attack",
+    "ddos events": "ddos event",
+    "ddos mitigation services": "ddos mitigation service",
+    "load balancers": "load balancer",
+    "network acls": "network acl",
+    "rate-based rules": "rate-based rule",
+    "security event token error codes": "security event token error code",
+    "security groups": "security group",
+    "set issuers": "set issuer",
+    "set recipients": "set recipient",
+    "set transmitters": "set transmitter",
+    "web applications": "web application"
+  },
+  "keep_apart": [
+    [
+      "cdn cache",
+      "cdn caching"
+    ],
+    [
+      "ddos resilient architecture",
+      "ddos-resilient reference architecture"
+    ]
+  ]
+}

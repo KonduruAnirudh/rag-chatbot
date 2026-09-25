@@ -1,0 +1,689 @@
+{
+  "seed": 20260925,
+  "graph_edges": 370,
+  "prompt_version": "v6",
+  "sample": [
+    {
+      "id": "E1",
+      "subject": "firewall manager",
+      "relation": "creates",
+      "object": "shield protection policies",
+      "quotes": 1,
+      "votes": [
+        2
+      ],
+      "admitted": true,
+      "subject_neighbours": 12,
+      "object_neighbours": 1,
+      "tuned_chunk": false,
+      "sources": [
+        "AWS-WhitePaper-Sample.pdf:116"
+      ]
+    },
+    {
+      "id": "E2",
+      "subject": "botnets",
+      "relation": "related_to",
+      "object": "distributed denial-of-service (ddos) attacks",
+      "quotes": 1,
+      "votes": [
+        2
+      ],
+      "admitted": true,
+      "subject_neighbours": 2,
+      "object_neighbours": 1,
+      "tuned_chunk": false,
+      "sources": [
+        "AWS-WhitePaper-Sample.pdf:105"
+      ]
+    },
+    {
+      "id": "E3",
+      "subject": "security event token error code",
+      "relation": "evaluates",
+      "object": "security event token",
+      "quotes": 1,
+      "votes": [
+        2
+      ],
+      "admitted": true,
+      "subject_neighbours": 2,
+      "object_neighbours": 9,
+      "tuned_chunk": false,
+      "sources": [
+        "rfc8935.pdf:18"
+      ]
+    },
+    {
+      "id": "E4",
+      "subject": "awsmanagedipddoslist rule",
+      "relation": "contains",
+      "object": "ddos attack",
+      "quotes": 1,
+      "votes": [
+        2
+      ],
+      "admitted": true,
+      "subject_neighbours": 2,
+      "object_neighbours": 10,
+      "tuned_chunk": false,
+      "sources": [
+        "AWS-WhitePaper-Sample.pdf:98"
+      ]
+    },
+    {
+      "id": "E5",
+      "subject": "network load balancer",
+      "relation": "produces",
+      "object": "processedbytes",
+      "quotes": 2,
+      "votes": [
+        3,
+        3
+      ],
+      "admitted": true,
+      "subject_neighbours": 11,
+      "object_neighbours": 1,
+      "tuned_chunk": false,
+      "sources": [
+        "AWS-WhitePaper-Sample.pdf:138",
+        "AWS-WhitePaper-Sample.pdf:139"
+      ]
+    },
+    {
+      "id": "E6",
+      "subject": "set recipient",
+      "relation": "receives",
+      "object": "set transmission request",
+      "quotes": 1,
+      "votes": [
+        3
+      ],
+      "admitted": true,
+      "subject_neighbours": 17,
+      "object_neighbours": 3,
+      "tuned_chunk": false,
+      "sources": [
+        "rfc8935.pdf:6"
+      ]
+    },
+    {
+      "id": "E7",
+      "subject": "udp packet",
+      "relation": "contains",
+      "object": "spoofed source ip",
+      "quotes": 1,
+      "votes": [
+        2
+      ],
+      "admitted": true,
+      "subject_neighbours": 2,
+      "object_neighbours": 1,
+      "tuned_chunk": false,
+      "sources": [
+        "AWS-WhitePaper-Sample.pdf:10"
+      ]
+    },
+    {
+      "id": "E8",
+      "subject": "shield advanced",
+      "relation": "produces",
+      "object": "shield advanced finding",
+      "quotes": 1,
+      "votes": [
+        3
+      ],
+      "admitted": true,
+      "subject_neighbours": 11,
+      "object_neighbours": 2,
+      "tuned_chunk": true,
+      "sources": [
+        "AWS-WhitePaper-Sample.pdf:154"
+      ]
+    },
+    {
+      "id": "E9",
+      "subject": "cloudfront",
+      "relation": "uses",
+      "object": "origin",
+      "quotes": 1,
+      "votes": [
+        2
+      ],
+      "admitted": true,
+      "subject_neighbours": 42,
+      "object_neighbours": 3,
+      "tuned_chunk": false,
+      "sources": [
+        "AWS-WhitePaper-Sample.pdf:84"
+      ]
+    },
+    {
+      "id": "E10",
+      "subject": "set recipient",
+      "relation": "receives",
+      "object": "set transmitter",
+      "quotes": 1,
+      "votes": [
+        2
+      ],
+      "admitted": true,
+      "subject_neighbours": 17,
+      "object_neighbours": 8,
+      "tuned_chunk": false,
+      "sources": [
+        "rfc8935.pdf:7"
+      ]
+    },
+    {
+      "id": "E11",
+      "subject": "route 53",
+      "relation": "mitigates",
+      "object": "infrastructure layer attacks",
+      "quotes": 1,
+      "votes": [
+        3
+      ],
+      "admitted": true,
+      "subject_neighbours": 7,
+      "object_neighbours": 5,
+      "tuned_chunk": false,
+      "sources": [
+        "AWS-WhitePaper-Sample.pdf:26"
+      ]
+    },
+    {
+      "id": "E12",
+      "subject": "json web tokens",
+      "relation": "conforms_to",
+      "object": "oauth 2.0",
+      "quotes": 1,
+      "votes": [
+        3
+      ],
+      "admitted": true,
+      "subject_neighbours": 3,
+      "object_neighbours": 1,
+      "tuned_chunk": false,
+      "sources": [
+        "AWS-WhitePaper-Sample.pdf:127"
+      ]
+    },
+    {
+      "id": "E13",
+      "subject": "attacker",
+      "relation": "related_to",
+      "object": "website",
+      "quotes": 1,
+      "votes": [
+        2
+      ],
+      "admitted": true,
+      "subject_neighbours": 12,
+      "object_neighbours": 3,
+      "tuned_chunk": false,
+      "sources": [
+        "AWS-WhitePaper-Sample.pdf:20"
+      ]
+    },
+    {
+      "id": "E14",
+      "subject": "security group",
+      "relation": "protects",
+      "object": "aws resources",
+      "quotes": 1,
+      "votes": [
+        3
+      ],
+      "admitted": true,
+      "subject_neighbours": 7,
+      "object_neighbours": 2,
+      "tuned_chunk": false,
+      "sources": [
+        "AWS-WhitePaper-Sample.pdf:118"
+      ]
+    },
+    {
+      "id": "E15",
+      "subject": "cloudfront waf",
+      "relation": "related_to",
+      "object": "cloudfront points of presence (pop) capacity",
+      "quotes": 1,
+      "votes": [
+        2
+      ],
+      "admitted": true,
+      "subject_neighbours": 1,
+      "object_neighbours": 1,
+      "tuned_chunk": false,
+      "sources": [
+        "AWS-WhitePaper-Sample.pdf:71"
+      ]
+    },
+    {
+      "id": "E16",
+      "subject": "alarms",
+      "relation": "receives",
+      "object": "ddos attack",
+      "quotes": 1,
+      "votes": [
+        2
+      ],
+      "admitted": true,
+      "subject_neighbours": 2,
+      "object_neighbours": 10,
+      "tuned_chunk": false,
+      "sources": [
+        "AWS-WhitePaper-Sample.pdf:131"
+      ]
+    },
+    {
+      "id": "E17",
+      "subject": "ddos-resilient reference architecture",
+      "relation": "mitigates",
+      "object": "infrastructure layer attacks",
+      "quotes": 1,
+      "votes": [
+        3
+      ],
+      "admitted": true,
+      "subject_neighbours": 2,
+      "object_neighbours": 5,
+      "tuned_chunk": false,
+      "sources": [
+        "AWS-WhitePaper-Sample.pdf:131"
+      ]
+    },
+    {
+      "id": "E18",
+      "subject": "firewall manager",
+      "relation": "protects",
+      "object": "shield advanced",
+      "quotes": 1,
+      "votes": [
+        2
+      ],
+      "admitted": true,
+      "subject_neighbours": 12,
+      "object_neighbours": 11,
+      "tuned_chunk": false,
+      "sources": [
+        "AWS-WhitePaper-Sample.pdf:151"
+      ]
+    },
+    {
+      "id": "E19",
+      "subject": "cloudfront",
+      "relation": "uses",
+      "object": "origin shield",
+      "quotes": 1,
+      "votes": [
+        3
+      ],
+      "admitted": true,
+      "subject_neighbours": 42,
+      "object_neighbours": 1,
+      "tuned_chunk": false,
+      "sources": [
+        "AWS-WhitePaper-Sample.pdf:73"
+      ]
+    },
+    {
+      "id": "E20",
+      "subject": "shield advanced",
+      "relation": "produces",
+      "object": "cloudwatch metrics",
+      "quotes": 1,
+      "votes": [
+        3
+      ],
+      "admitted": true,
+      "subject_neighbours": 11,
+      "object_neighbours": 3,
+      "tuned_chunk": false,
+      "sources": [
+        "AWS-WhitePaper-Sample.pdf:131"
+      ]
+    },
+    {
+      "id": "E21",
+      "subject": "sets",
+      "relation": "contains",
+      "object": "personally identifiable information",
+      "quotes": 1,
+      "votes": [
+        3
+      ],
+      "admitted": true,
+      "subject_neighbours": 1,
+      "object_neighbours": 1,
+      "tuned_chunk": false,
+      "sources": [
+        "rfc8935.pdf:41"
+      ]
+    },
+    {
+      "id": "E22",
+      "subject": "waf",
+      "relation": "evaluates",
+      "object": "web acl",
+      "quotes": 1,
+      "votes": [
+        3
+      ],
+      "admitted": true,
+      "subject_neighbours": 20,
+      "object_neighbours": 1,
+      "tuned_chunk": false,
+      "sources": [
+        "AWS-WhitePaper-Sample.pdf:145"
+      ]
+    },
+    {
+      "id": "E23",
+      "subject": "waf",
+      "relation": "protects",
+      "object": "uri paths",
+      "quotes": 1,
+      "votes": [
+        3
+      ],
+      "admitted": true,
+      "subject_neighbours": 20,
+      "object_neighbours": 1,
+      "tuned_chunk": false,
+      "sources": [
+        "AWS-WhitePaper-Sample.pdf:103"
+      ]
+    },
+    {
+      "id": "E24",
+      "subject": "cloudfront",
+      "relation": "uses",
+      "object": "caching strategies",
+      "quotes": 1,
+      "votes": [
+        2
+      ],
+      "admitted": true,
+      "subject_neighbours": 42,
+      "object_neighbours": 1,
+      "tuned_chunk": false,
+      "sources": [
+        "AWS-WhitePaper-Sample.pdf:72"
+      ]
+    },
+    {
+      "id": "E25",
+      "subject": "protected resources",
+      "relation": "protects",
+      "object": "elastic ip addresses",
+      "quotes": 1,
+      "votes": [
+        3
+      ],
+      "admitted": true,
+      "subject_neighbours": 1,
+      "object_neighbours": 2,
+      "tuned_chunk": false,
+      "sources": [
+        "AWS-WhitePaper-Sample.pdf:120"
+      ]
+    },
+    {
+      "id": "E26",
+      "subject": "set transmitter",
+      "relation": "connects_to",
+      "object": "tls-enabled http endpoint",
+      "quotes": 1,
+      "votes": [
+        2
+      ],
+      "admitted": true,
+      "subject_neighbours": 8,
+      "object_neighbours": 2,
+      "tuned_chunk": false,
+      "sources": [
+        "rfc8935.pdf:11"
+      ]
+    },
+    {
+      "id": "E27",
+      "subject": "acknowledgement (ack) packet",
+      "relation": "precedes",
+      "object": "three-way handshake",
+      "quotes": 1,
+      "votes": [
+        3
+      ],
+      "admitted": true,
+      "subject_neighbours": 1,
+      "object_neighbours": 1,
+      "tuned_chunk": false,
+      "sources": [
+        "AWS-WhitePaper-Sample.pdf:13"
+      ]
+    },
+    {
+      "id": "E28",
+      "subject": "aws",
+      "relation": "produces",
+      "object": "prescriptive ddos guidance",
+      "quotes": 1,
+      "votes": [
+        2
+      ],
+      "admitted": true,
+      "subject_neighbours": 6,
+      "object_neighbours": 1,
+      "tuned_chunk": false,
+      "sources": [
+        "AWS-WhitePaper-Sample.pdf:1"
+      ]
+    },
+    {
+      "id": "E29",
+      "subject": "cloudfront",
+      "relation": "mitigates",
+      "object": "http request smuggling",
+      "quotes": 1,
+      "votes": [
+        3
+      ],
+      "admitted": true,
+      "subject_neighbours": 42,
+      "object_neighbours": 1,
+      "tuned_chunk": false,
+      "sources": [
+        "AWS-WhitePaper-Sample.pdf:71"
+      ]
+    },
+    {
+      "id": "E30",
+      "subject": "scope-down statement",
+      "relation": "protects",
+      "object": "dynamic endpoints",
+      "quotes": 1,
+      "votes": [
+        3
+      ],
+      "admitted": true,
+      "subject_neighbours": 3,
+      "object_neighbours": 1,
+      "tuned_chunk": false,
+      "sources": [
+        "AWS-WhitePaper-Sample.pdf:94"
+      ]
+    },
+    {
+      "id": "E31",
+      "subject": "cloudfront edge locations",
+      "relation": "protects",
+      "object": "cdn service",
+      "quotes": 1,
+      "votes": [
+        2
+      ],
+      "admitted": true,
+      "subject_neighbours": 3,
+      "object_neighbours": 1,
+      "tuned_chunk": false,
+      "sources": [
+        "AWS-WhitePaper-Sample.pdf:71"
+      ]
+    },
+    {
+      "id": "E32",
+      "subject": "set recipient",
+      "relation": "uses",
+      "object": "tls mechanisms",
+      "quotes": 1,
+      "votes": [
+        3
+      ],
+      "admitted": true,
+      "subject_neighbours": 17,
+      "object_neighbours": 1,
+      "tuned_chunk": false,
+      "sources": [
+        "rfc8935.pdf:26"
+      ]
+    },
+    {
+      "id": "E33",
+      "subject": "name server",
+      "relation": "produces",
+      "object": "response",
+      "quotes": 1,
+      "votes": [
+        2
+      ],
+      "admitted": true,
+      "subject_neighbours": 2,
+      "object_neighbours": 2,
+      "tuned_chunk": false,
+      "sources": [
+        "AWS-WhitePaper-Sample.pdf:64"
+      ]
+    },
+    {
+      "id": "E34",
+      "subject": "error descriptions",
+      "relation": "contains",
+      "object": "response body",
+      "quotes": 1,
+      "votes": [
+        3
+      ],
+      "admitted": true,
+      "subject_neighbours": 2,
+      "object_neighbours": 1,
+      "tuned_chunk": false,
+      "sources": [
+        "rfc8935.pdf:16"
+      ]
+    },
+    {
+      "id": "E35",
+      "subject": "cloudfront",
+      "relation": "protects",
+      "object": "application layer",
+      "quotes": 1,
+      "votes": [
+        3
+      ],
+      "admitted": true,
+      "subject_neighbours": 42,
+      "object_neighbours": 2,
+      "tuned_chunk": false,
+      "sources": [
+        "AWS-WhitePaper-Sample.pdf:30"
+      ]
+    },
+    {
+      "id": "E36",
+      "subject": "cloudfront",
+      "relation": "uses",
+      "object": "ja3",
+      "quotes": 1,
+      "votes": [
+        3
+      ],
+      "admitted": true,
+      "subject_neighbours": 42,
+      "object_neighbours": 3,
+      "tuned_chunk": false,
+      "sources": [
+        "AWS-WhitePaper-Sample.pdf:94"
+      ]
+    },
+    {
+      "id": "E37",
+      "subject": "waf",
+      "relation": "protects",
+      "object": "lambda",
+      "quotes": 1,
+      "votes": [
+        2
+      ],
+      "admitted": true,
+      "subject_neighbours": 20,
+      "object_neighbours": 4,
+      "tuned_chunk": false,
+      "sources": [
+        "AWS-WhitePaper-Sample.pdf:45"
+      ]
+    },
+    {
+      "id": "E38",
+      "subject": "network load balancer",
+      "relation": "produces",
+      "object": "activeflowcount",
+      "quotes": 1,
+      "votes": [
+        3
+      ],
+      "admitted": true,
+      "subject_neighbours": 11,
+      "object_neighbours": 1,
+      "tuned_chunk": false,
+      "sources": [
+        "AWS-WhitePaper-Sample.pdf:138"
+      ]
+    },
+    {
+      "id": "E39",
+      "subject": "route 53 health checks",
+      "relation": "evaluates",
+      "object": "ddos event",
+      "quotes": 1,
+      "votes": [
+        2
+      ],
+      "admitted": true,
+      "subject_neighbours": 1,
+      "object_neighbours": 7,
+      "tuned_chunk": false,
+      "sources": [
+        "AWS-WhitePaper-Sample.pdf:129"
+      ]
+    },
+    {
+      "id": "E40",
+      "subject": "origin access control",
+      "relation": "connects_to",
+      "object": "s3",
+      "quotes": 1,
+      "votes": [
+        2
+      ],
+      "admitted": true,
+      "subject_neighbours": 3,
+      "object_neighbours": 3,
+      "tuned_chunk": false,
+      "sources": [
+        "AWS-WhitePaper-Sample.pdf:58"
+      ]
+    }
+  ]
+}

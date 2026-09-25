@@ -1,0 +1,128 @@
+{
+  "source": "data/test_documents/scanned5.pdf",
+  "ocr_report": {
+    "ocr_pages": 5,
+    "total_pages": 5,
+    "ocr_skipped": 0
+  },
+  "note": "Frozen OCR output: vision OCR is not deterministic, so the holdout must not be re-read on each run.",
+  "chunks": [
+    {
+      "text": "AWS Best Practices for DDoS Resiliency AWS Whitepaper\n\nfor both static and dynamic web applications using AWS services and architectural patterns. The sections are organized to guide you through implementing layers of defense, from edge protection to application-level security, to help ensure a robust DDoS-resilient architecture.\n\nInfrastructure layer defense (BP1, BP3, BP6, BP7)",
+      "doc_id": "fixture-scanned5",
+      "filename": "scanned5.pdf",
+      "chunk_index": 0,
+      "page_start": 1,
+      "page_end": 1,
+      "ocr": true
+    },
+    {
+      "text": "Infrastructure layer defense (BP1, BP3, BP6, BP7)\n\nIn a traditional datacenter environment, you can mitigate infrastructure layer DDoS attacks by using techniques like overprovisioning capacity, deploying DDoS mitigation systems, or scrubbing traffic with the help of DDoS mitigation services. On AWS, baseline DDoS mitigation capabilities are automatically provided by AWS Shield Standard at no additional cost; however, additional protections\u2014such as AWS Shield Advanced, AWS WAF, and application-layer mitigations\u2014require configuration and can incur additional charges. You can further optimize your application's DDoS resilience by making architecture choices that best use these capabilities and allow you to scale for excess traffic.\n\nKey considerations to help mitigate volumetric DDoS attacks include ensuring that enough transit capacity and diversity are available and protecting AWS resources, like Amazon EC2 instances, against attack traffic.",
+      "doc_id": "fixture-scanned5",
+      "filename": "scanned5.pdf",
+      "chunk_index": 1,
+      "page_start": 1,
+      "page_end": 1,
+      "ocr": true
+    },
+    {
+      "text": "To allow this high level of resilience, AWS recommends using Amazon EC2 instances with higher networking throughput that have an N suffix and support for Enhanced Networking with up to 200 Gbps of network bandwidth, for example, c7gn.16xlarge (Graviton3E, network-optimized) and c6in.32xlarge (Intel, network-optimized).\n\nAmazon EC2 with Auto Scaling (BP7)",
+      "doc_id": "fixture-scanned5",
+      "filename": "scanned5.pdf",
+      "chunk_index": 2,
+      "page_start": 1,
+      "page_end": 1,
+      "ocr": true
+    },
+    {
+      "text": "Amazon EC2 with Auto Scaling (BP7)\n\nAnother way to mitigate both infrastructure and application layer attacks is to operate at scale. If you have web applications, you can use load balancers to distribute traffic to Amazon EC2 instances that are overprovisioned or configured to automatically scale. These instances can handle sudden traffic surges that occur for any reason, including a flash crowd or an application layer DDoS attack. You can set Amazon CloudWatch alarms to initiate Auto Scaling to automatically scale the size of your Amazon EC2 fleet in response to events that you define, such as CPU, RAM, Network I/O, and even custom metrics. That approach is illustrated in the following diagram.",
+      "doc_id": "fixture-scanned5",
+      "filename": "scanned5.pdf",
+      "chunk_index": 3,
+      "page_start": 1,
+      "page_end": 1,
+      "ocr": true
+    },
+    {
+      "text": "This approach protects application availability when there's an unexpected increase in request volume. When using Amazon CloudFront, Application Load Balancer, or Network Load Balancer with your application, TLS negotiation is handled by the distribution (CloudFront) or by the load balancer. These features help protect your instances from being impacted by TLS-based attacks by scaling to handle legitimate requests and TLS abuse attacks.\n\nInfrastructure layer defense (BP1, BP3, BP6, BP7) 17\n\nAWS Best Practices for DDoS Resiliency\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000AWS Whitepaper\n\nFor more information about using Amazon CloudWatch to invoke Auto Scaling, see Monitoring  \nAmazon CloudWatch metrics for your Auto Scaling groups and instances.\n\nAuto Scaling group\n\nMinimum size  \nDesired capacity  \nScale out as needed  \nMaximum size\n\nFigure 8 \u2013 EC2 Auto Scaling group configuration showing minimum, desired, and maximum instance capacity ranges",
+      "doc_id": "fixture-scanned5",
+      "filename": "scanned5.pdf",
+      "chunk_index": 4,
+      "page_start": 1,
+      "page_end": 2,
+      "ocr": true
+    },
+    {
+      "text": "Figure 8 \u2013 EC2 Auto Scaling group configuration showing minimum, desired, and maximum instance capacity ranges\n\nAmazon EC2 Auto Scaling groups are collections of Amazon EC2 instances that provide resizable compute capacity so that you can quickly scale up or down as requirements change. You can scale horizontally by automatically adding instances to your application by scaling the size of your Amazon EC2 Auto Scaling group, and you can scale vertically by using larger EC2 instance types.\n\nBy using Amazon RDS Proxy, you can allow your applications to pool and share database connections to improve their ability to scale and handle unpredictable surges in database traffic. You can also enable storage auto-scaling for an Amazon RDS database instance. See Managing capacity automatically with Amazon RDS storage autoscaling for more information.\n\nAWS Lambda and Serverless Compute (BP6)",
+      "doc_id": "fixture-scanned5",
+      "filename": "scanned5.pdf",
+      "chunk_index": 5,
+      "page_start": 2,
+      "page_end": 2,
+      "ocr": true
+    },
+    {
+      "text": "AWS Lambda and Serverless Compute (BP6)\n\nAWS Lambda automatically scales by running additional instances of your functions in response to incoming requests. Each function instance handles one request at a time, and Lambda can scale to thousands of concurrent executions within seconds.\n\nFor DDoS resilience considerations with Lambda:\n\n\u2022 Reserved concurrency \u2013 Set a reserved concurrency limit to help ensure your function has capacity available, even if other functions in the account are consuming concurrency.\n\nAWS Lambda and Serverless Compute (BP6)\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u300018\n\nAWS Best Practices for DDoS Resiliency\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000AWS Whitepaper\n\n\u2022 **Provisioned concurrency** \u2013 Pre-initialize function instances to reduce cold start latency during traffic surges. This is particularly useful for latency-sensitive applications that might experience sudden traffic increases.",
+      "doc_id": "fixture-scanned5",
+      "filename": "scanned5.pdf",
+      "chunk_index": 6,
+      "page_start": 2,
+      "page_end": 3,
+      "ocr": true
+    },
+    {
+      "text": "\u2022 *Function URL throttling* \u2013 If using **Lambda function URLs**, configure reserved concurrency to act as a throttle against excessive requests.\n\n\u2022 *Amazon API Gateway integration* \u2013 When Lambda is behind API Gateway, you benefit from the API Gateway built-in throttling (default 10,000 requests per second per Region) and can add AWS WAF for additional protection.\n\nBe aware that Lambda has account-level concurrency limits. A DDoS attack targeting one function could consume concurrency needed by other functions. Use reserved concurrency to isolate critical functions.\n\n## Elastic Load Balancing (BP6)",
+      "doc_id": "fixture-scanned5",
+      "filename": "scanned5.pdf",
+      "chunk_index": 7,
+      "page_start": 3,
+      "page_end": 3,
+      "ocr": true
+    },
+    {
+      "text": "## Elastic Load Balancing (BP6)\n\nLarge DDoS attacks can overwhelm the capacity of a single Amazon EC2 instance. With **Elastic Load Balancing**, you can reduce the risk of overloading your application by distributing traffic across many backend instances. Elastic Load Balancing can scale automatically, allowing you to manage larger volumes when you have unanticipated extra traffic, for example, because flash crowds or DDoS attacks. For applications built within an Amazon VPC, there are different types of ELBs to consider, for example: Application Load Balancer (ALB) and Network Load Balancer (NLB).\n\n### Best practices for web applications (HTTP/HTTPS)",
+      "doc_id": "fixture-scanned5",
+      "filename": "scanned5.pdf",
+      "chunk_index": 8,
+      "page_start": 3,
+      "page_end": 3,
+      "ocr": true
+    },
+    {
+      "text": "### Best practices for web applications (HTTP/HTTPS)\n\nFor web applications, you can use the **Application Load Balancer** to route traffic based on content and accept only well-formed web requests, as shown in the following diagram. Application Load Balancer blocks many common DDoS attacks, such as SYN floods or UDP reflection attacks, protecting your application from the attack. Application Load Balancer automatically scales to absorb the additional traffic when these types of attacks are detected. Scaling activities due to infrastructure layer attacks are transparent for AWS customers and don't affect your bill.\n\nElastic Load Balancing (BP6)\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u300019\n\nAWS Best Practices for DDoS Resiliency\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000AWS Whitepaper\n\n[Diagram: A user sends traffic to an ALB. The ALB supports HTTP and HTTPS and routes traffic to application targets, including AWS Lambda, containers, and compute instances.]",
+      "doc_id": "fixture-scanned5",
+      "filename": "scanned5.pdf",
+      "chunk_index": 9,
+      "page_start": 3,
+      "page_end": 4,
+      "ocr": true
+    },
+    {
+      "text": "Figure 9 \u2013 Application Load Balancers provide a flexible feature set for HTTP and HTTPS applications\n\nFor more information about protecting web applications with Application Load Balancer, see  \nGetting Started with Application Load Balancers.\n\nBest practices for TCP and UDP applications\n\nFor TCP, UDP, and TLS applications, you can use Network Load Balancer to route traffic to targets (for example, Amazon EC2 instances) at ultra-low latency, as shown in the following diagram. Choose a network load balancer (NLB) when you need ultra-high performance, TLS offloading at scale, centralized certificate deployment, support UDP, and static IP address for your applications. One key consideration with Network Load Balancer is that any TCP or UDP traffic that reaches the load balancer on a valid listener will be routed to your targets, not absorbed, however this doesn't apply for TLS-listeners that terminate the TCP connection.\n\nElastic Load Balancing (BP6)\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u300020",
+      "doc_id": "fixture-scanned5",
+      "filename": "scanned5.pdf",
+      "chunk_index": 10,
+      "page_start": 4,
+      "page_end": 4,
+      "ocr": true
+    },
+    {
+      "text": "Elastic Load Balancing (BP6)\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u300020\n\nAWS Best Practices for DDoS Resiliency\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000AWS Whitepaper\n\n\u24d8 Note\n\nFor NLB with TCP listeners, it's recommended to deploy these behind an AWS Global  \nAccelerator to help protect against SYN floods. Global Accelerator has an inbuilt SYN proxy  \nand connections made through the NLB are automatically tracked.\n\nVPC  \nVPCE  \nVPC  \nNLB  \nTCP  \nUDP  \nTLS  \nALB\n\n[Diagram: A user connects to a VPC endpoint (VPCE) in a VPC and to a Network Load Balancer (NLB) in another VPC. The NLB provides TCP, UDP, and TLS listeners. The TCP listener connects to an Application Load Balancer (ALB); the UDP listener connects to a target group; and the TLS listener connects to target resources.]\n\nFigure 10 \u2013 Network load balancers provide high performance and a suite of support features",
+      "doc_id": "fixture-scanned5",
+      "filename": "scanned5.pdf",
+      "chunk_index": 11,
+      "page_start": 4,
+      "page_end": 5,
+      "ocr": true
+    },
+    {
+      "text": "Figure 10 \u2013 Network load balancers provide high performance and a suite of support features\n\nYou can use Shield Advanced to configure DDoS protection for Elastic IP addresses. When an Elastic  \nIP address is assigned per Availability Zone to the NLB, Shield Advanced will apply the relevant  \nDDoS protections for the NLB traffic.\n\nFor more information about protecting TCP and UDP applications with Network Load Balancer, see  \nCreate a Network Load Balancer.\n\nElastic Load Balancing (BP6)\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u3000\u300021",
+      "doc_id": "fixture-scanned5",
+      "filename": "scanned5.pdf",
+      "chunk_index": 12,
+      "page_start": 5,
+      "page_end": 5,
+      "ocr": true
+    }
+  ]
+}

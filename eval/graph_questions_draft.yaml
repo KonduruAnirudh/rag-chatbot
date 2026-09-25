@@ -1,0 +1,796 @@
+# Step 7 question set - 60 DRAFT candidates, written from the documents (not the graph).
+#
+# Your job: keep 40 (12 plain, 10 relationship, 10 multi-hop, 8 off-topic: 4 naming nothing,
+# 4 naming a corpus entity), and write the labels. Everything under "your labels" is yours;
+# "found_in" is only where I found the answer - verify it, don't trust it.
+#
+#   keep         yes / no
+#   split        dev / heldout (20 each)
+#   category     plain / relationship / multi-hop / off-topic
+#   needs_graph  yes / no - does answering need a link across passages?
+#   entities     what the question is ABOUT, in your own words (used by step zero: linking recall)
+#   gold_chunks  every chunk needed for a full answer, e.g. [AWS:154, AWS:153] ([] for off-topic)
+#   answer_facts the facts a correct answer must contain
+#
+# Save your edited copy as eval/graph_questions.yaml.
+
+
+- id: Q01
+  draft_category: "plain"
+  question: "What HTTP status code does a recipient return when it accepts a Security Event Token?"
+  found_in: "RFC:14 (p. 5) - existing eval question"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q02
+  draft_category: "plain"
+  question: "What media type is used when transmitting a SET?"
+  found_in: "RFC:11 (p. 5) - existing eval question"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q03
+  draft_category: "plain"
+  question: "Which error code means the SET issuer is not recognised?"
+  found_in: "RFC:19 (p. 7), RFC:18 - existing eval question"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q04
+  draft_category: "plain"
+  question: "What does the whitepaper recommend for DDoS incident response?"
+  found_in: "AWS:156 (p. 61) - existing eval question"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q05
+  draft_category: "plain"
+  question: "Which best practices apply to application layer defense?"
+  found_in: "AWS:67-68 (p. 30) - existing eval question"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q06
+  draft_category: "plain"
+  question: "What are AWS WAF rate-based rules used for?"
+  found_in: "AWS:92 (p. 37) - existing eval question"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q07
+  draft_category: "plain"
+  question: "What should a receiver reply if it cannot verify the token's signature?"
+  found_in: "RFC:19 (p. 7), RFC:17 - existing eval question"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q08
+  draft_category: "plain"
+  question: "Who at AWS can I contact for help during an ongoing attack?"
+  found_in: "AWS:35 (p. 20), AWS:113 (p. 43) - existing eval question"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q09
+  draft_category: "plain"
+  question: "How do I stop one client from sending too many requests?"
+  found_in: "AWS:92 (p. 37) - existing eval question"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q10
+  draft_category: "plain"
+  question: "How much can a DNS reflection attack amplify the attacker's traffic?"
+  found_in: "AWS:11 (p. 9)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q11
+  draft_category: "plain"
+  question: "What is Amazon API Gateway's default throttling limit?"
+  found_in: "AWS:45 (p. 23)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q12
+  draft_category: "plain"
+  question: "For how long does CloudFront cache 4xx and 5xx error responses from the origin by default?"
+  found_in: "AWS:84 (p. 34)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q13
+  draft_category: "plain"
+  question: "What is the minimum TLS version a SET delivery endpoint must support?"
+  found_in: "RFC:25 (p. 9)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q14
+  draft_category: "plain"
+  question: "What must a client do before a request protected by the AWS WAF Challenge action is allowed through?"
+  found_in: "AWS:104 (p. 41)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q15
+  draft_category: "plain"
+  question: "Which AWS service has a 100% data plane availability SLA?"
+  found_in: "AWS:64 (p. 29) - names no entity; the answer is Route 53"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q16
+  draft_category: "relationship"
+  question: "How does AWS Global Accelerator help protect a Network Load Balancer's TCP listeners from SYN floods?"
+  found_in: "AWS:50 (p. 25)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q17
+  draft_category: "relationship"
+  question: "What does Shield Advanced do automatically when it detects an application layer DDoS attack?"
+  found_in: "AWS:36 (p. 20)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q18
+  draft_category: "relationship"
+  question: "How does CloudFront restrict direct access to content in an Amazon S3 bucket?"
+  found_in: "AWS:57-58 (p. 27-28)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q19
+  draft_category: "relationship"
+  question: "Why is OAC recommended over OAI for Amazon S3 origins?"
+  found_in: "AWS:59 (p. 28)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q20
+  draft_category: "relationship"
+  question: "How does the requestId field in AWS WAF logs relate to CloudFront's X-Amz-Cf-Id header?"
+  found_in: "AWS:149 (p. 58)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q21
+  draft_category: "relationship"
+  question: "What error code does a SET Recipient return when it cannot authenticate the SET Transmitter?"
+  found_in: "RFC:20 (p. 8)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q22
+  draft_category: "relationship"
+  question: "How can a SET Recipient reduce the impact of a flood of invalid SETs?"
+  found_in: "RFC:26 (p. 9)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q23
+  draft_category: "relationship"
+  question: "How does Amazon Route 53 keep answering DNS queries while it is under a DDoS attack?"
+  found_in: "AWS:64 (p. 29)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q24
+  draft_category: "relationship"
+  question: "What does the AntiDDoS AMR do to requests for a resource during a detected DDoS event?"
+  found_in: "AWS:110 (p. 43)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q25
+  draft_category: "relationship"
+  question: "Which AWS Shield policies can only be created with AWS Firewall Manager, and for whom?"
+  found_in: "AWS:116 (p. 44)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q26
+  draft_category: "relationship"
+  question: "How does CloudFront request collapsing protect an origin server?"
+  found_in: "AWS:81-83 (p. 33-34)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q27
+  draft_category: "relationship"
+  question: "Where does the DDoS mitigation system enforce the network ACL of an Elastic IP address registered with Shield Advanced?"
+  found_in: "AWS:120-121 (p. 46)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q28
+  draft_category: "relationship"
+  question: "How is a SET represented in the body of a SET Transmission Request?"
+  found_in: "RFC:12 (p. 5) - note: pypdf moved 'JSON Web Token (JWT)' out of this sentence (Known limitation 13)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q29
+  draft_category: "relationship"
+  question: "Which resources can CloudFront VPC origins serve from private subnets?"
+  found_in: "AWS:122 (p. 46)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q30
+  draft_category: "relationship"
+  question: "What does the AWSManagedIPDDoSList rule contain, and who curates it?"
+  found_in: "AWS:98 (p. 39)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q31
+  draft_category: "relationship"
+  question: "Which protections can AWS Firewall Manager manage across multiple accounts?"
+  found_in: "AWS:151 (p. 59)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q32
+  draft_category: "multi-hop"
+  question: "How do AWS Shield Advanced findings reach incident response?"
+  found_in: "your demo question - AWS:154, AWS:153 (p. 59), AWS:156 (p. 61); the text may not state the final hop"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q33
+  draft_category: "multi-hop"
+  question: "How do Shield Advanced findings become visible to a central team that monitors multiple accounts?"
+  found_in: "AWS:154, AWS:153, AWS:151-152 (p. 59)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q34
+  draft_category: "multi-hop"
+  question: "Which Shield Advanced CloudWatch metric tells me an attack has been detected, and which specialist team can I then engage?"
+  found_in: "AWS:131 (p. 50), AWS:35-36 (p. 20)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q35
+  draft_category: "multi-hop"
+  question: "What support subscription do I need to reach the Shield Response Team, and how do I open an escalation?"
+  found_in: "AWS:36 (p. 20), AWS:158 (p. 61)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q36
+  draft_category: "multi-hop"
+  question: "If a SET Recipient rejects a SET because its signing key was revoked, which error code does it return, and where are such codes registered?"
+  found_in: "RFC:17 (p. 6), RFC:19 (p. 7), RFC:29 (p. 10)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q37
+  draft_category: "multi-hop"
+  question: "Which SET delivery errors are unlikely to be fixed by retrying, and what does such an error mean?"
+  found_in: "RFC:21 (p. 8), RFC:19 (p. 7)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q38
+  draft_category: "multi-hop"
+  question: "What two different purposes does mutual TLS serve in RFC 8935?"
+  found_in: "RFC:20 (p. 8), RFC:26 (p. 9)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q39
+  draft_category: "multi-hop"
+  question: "How do cache-busting attacks get around CloudFront caching, and what does the whitepaper recommend configuring against them?"
+  found_in: "AWS:19-20 (p. 12), AWS:91-92 (p. 37)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q40
+  draft_category: "multi-hop"
+  question: "What should sit in front of a Network Load Balancer with TCP listeners, and how does Shield Advanced protect the load balancer's Elastic IP addresses?"
+  found_in: "AWS:50 (p. 25), AWS:38 (p. 20), AWS:120-121 (p. 46)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q41
+  draft_category: "multi-hop"
+  question: "What AWS WAF configuration is required for a Shield Advanced cost protection request to be approved, and what does cost protection refund?"
+  found_in: "AWS:95 (p. 38), AWS:37 (p. 20)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q42
+  draft_category: "multi-hop"
+  question: "How can I add AWS WAF protection to an API that runs on Lambda behind API Gateway?"
+  found_in: "AWS:45 (p. 23), AWS:125 (p. 47)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q43
+  draft_category: "multi-hop"
+  question: "How can I trace one request through CloudFront, AWS WAF and ALB logs?"
+  found_in: "AWS:148-149 (p. 58)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q44
+  draft_category: "multi-hop"
+  question: "Where is SYN flood mitigation applied at the AWS edge, and which regional load balancer also blocks SYN floods?"
+  found_in: "AWS:27 (p. 15), AWS:61 (p. 28), AWS:46 (p. 23)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q45
+  draft_category: "multi-hop"
+  question: "Where does the AntiDDoS AMR sit in the recommended AWS WAF rule order, and how quickly does it mitigate attacks?"
+  found_in: "AWS:88 (p. 36), AWS:110-112 (p. 43)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q46
+  draft_category: "multi-hop"
+  question: "Which service centrally deploys Shield Advanced protections and AWS WAF rules across accounts, and does Shield Advanced charge extra for it?"
+  found_in: "AWS:115 (p. 44), AWS:37 (p. 20)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q47
+  draft_category: "multi-hop"
+  question: "Which health checks help detect DDoS events, and what does the Shield Response Team do when they degrade?"
+  found_in: "AWS:129 (p. 49), AWS:114 (p. 44)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q48
+  draft_category: "off-topic, names nothing"
+  question: "What is the capital of France?"
+  found_in: "absent - existing refusal check; A0 top cosine 0.101 (refused structurally)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q49
+  draft_category: "off-topic, names nothing"
+  question: "How many moons does Jupiter have?"
+  found_in: "absent; A0 top cosine 0.104 (refused structurally)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q50
+  draft_category: "off-topic, names nothing"
+  question: "What is a good recipe for sourdough bread?"
+  found_in: "absent; A0 top cosine 0.172 (refused structurally)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q51
+  draft_category: "off-topic, names nothing"
+  question: "Who won the 2018 FIFA World Cup?"
+  found_in: "absent; A0 top cosine 0.117 (refused structurally)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q52
+  draft_category: "off-topic, names nothing"
+  question: "How do I file a personal income tax return?"
+  found_in: "absent; A0 top cosine 0.099 (refused structurally)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q53
+  draft_category: "off-topic, names nothing"
+  question: "What is the boiling point of water at sea level in Fahrenheit?"
+  found_in: "absent; A0 top cosine 0.105 (refused structurally)"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q54
+  draft_category: "off-topic, names a corpus entity"
+  question: "What is the monthly price of AWS Shield Advanced?"
+  found_in: "absent (searched for prices); A0 top cosine 0.695 - REACHES THE MODEL"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q55
+  draft_category: "off-topic, names a corpus entity"
+  question: "Who is the CEO of Amazon?"
+  found_in: "absent; A0 top cosine 0.328 - REACHES THE MODEL"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q56
+  draft_category: "off-topic, names a corpus entity"
+  question: "Which programming language is AWS WAF written in?"
+  found_in: "absent; A0 top cosine 0.609 - REACHES THE MODEL"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q57
+  draft_category: "off-topic, names a corpus entity"
+  question: "In which year was Amazon CloudFront launched?"
+  found_in: "absent; A0 top cosine 0.520 - REACHES THE MODEL"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q58
+  draft_category: "off-topic, names a corpus entity"
+  question: "What is the maximum execution timeout of an AWS Lambda function?"
+  found_in: "absent; A0 top cosine 0.451 - REACHES THE MODEL"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q59
+  draft_category: "off-topic, names a corpus entity"
+  question: "How do I register a domain name with Amazon Route 53?"
+  found_in: "absent; A0 top cosine 0.521 - REACHES THE MODEL"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []
+
+- id: Q60
+  draft_category: "off-topic, names a corpus entity"
+  question: "In which AWS Regions is AWS Global Accelerator not available?"
+  found_in: "absent; A0 top cosine 0.624 - REACHES THE MODEL"
+  # --- your labels ---
+  keep:
+  split:
+  category:
+  needs_graph:
+  entities: []
+  gold_chunks: []
+  answer_facts: []

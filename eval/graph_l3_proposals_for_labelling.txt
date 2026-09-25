@@ -1,0 +1,4 @@
+LAYER 3 PROPOSALS - label each pair: SAME thing (merge) or DIFFERENT (keep apart).
+Nothing has been merged. Under-merging is recoverable; over-merging makes the graph
+confidently wrong, so when unsure, answer DIFFERENT.
+

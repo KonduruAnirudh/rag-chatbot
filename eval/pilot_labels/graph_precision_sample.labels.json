@@ -1,0 +1,37 @@
+{
+  "sample": "eval/pilot_runs/graph_precision_sample.json",
+  "standard": "v5 (fixed)",
+  "labelled_by": "project owner",
+  "labelled_on": "2026-09-25",
+  "wrong": [
+    "E3",
+    "E4",
+    "E5",
+    "E8",
+    "E9",
+    "E10",
+    "E12",
+    "E14",
+    "E16",
+    "E18",
+    "E19",
+    "E20",
+    "E22",
+    "E25",
+    "E27",
+    "E28",
+    "E34",
+    "E35",
+    "E36",
+    "E37",
+    "E38",
+    "E39",
+    "E40"
+  ],
+  "corrections": {
+    "E8": "correct -> wrong: passive 'is surfaced as a Shield Advanced finding', no stated agent (as in v6)",
+    "E2": "wrong -> correct: 'botnets are used to launch DDoS attacks' is stated; no more precise verb (v5 related_to rule)",
+    "E11": "wrong -> correct: same shape as E17 ('do X and you get protection')",
+    "E37": "stays wrong: WAF attaches to API Gateway, not Lambda - wrong participant"
+  }
+}

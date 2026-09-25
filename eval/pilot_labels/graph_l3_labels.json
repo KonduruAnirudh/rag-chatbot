@@ -1,0 +1,168 @@
+{
+  "labelled_by": "project owner",
+  "labelled_on": "2026-09-25",
+  "threshold": 0.9,
+  "note": "Labels recorded exactly as given. Nothing has been merged into the graph.",
+  "pairs": [
+    {
+      "id": "P1",
+      "a": "ddos mitigation service",
+      "b": "ddos mitigation services",
+      "name_a": "DDoS mitigation service",
+      "name_b": "DDoS mitigation services",
+      "type": "service",
+      "cosine": 0.964,
+      "label": "SAME"
+    },
+    {
+      "id": "P2",
+      "a": "application layer attack",
+      "b": "application layer attacks",
+      "name_a": "application layer attack",
+      "name_b": "application layer attacks",
+      "type": "threat",
+      "cosine": 0.961,
+      "label": "SAME"
+    },
+    {
+      "id": "P3",
+      "a": "security event token error code",
+      "b": "security event token error codes",
+      "name_a": "Security Event Token Error Code",
+      "name_b": "Security Event Token Error Codes",
+      "type": "data",
+      "cosine": 0.955,
+      "label": "SAME"
+    },
+    {
+      "id": "P4",
+      "a": "load balancer",
+      "b": "load balancers",
+      "name_a": "load balancer",
+      "name_b": "load balancers",
+      "type": "component",
+      "cosine": 0.951,
+      "label": "SAME"
+    },
+    {
+      "id": "P5",
+      "a": "cdn cache",
+      "b": "cdn caching",
+      "name_a": "CDN cache",
+      "name_b": "CDN caching",
+      "type": "component",
+      "cosine": 0.946,
+      "label": "DIFFERENT"
+    },
+    {
+      "id": "P6",
+      "a": "network acl",
+      "b": "network acls",
+      "name_a": "network ACL",
+      "name_b": "network ACLs",
+      "type": "component",
+      "cosine": 0.945,
+      "label": "SAME"
+    },
+    {
+      "id": "P7",
+      "a": "rate-based rule",
+      "b": "rate-based rules",
+      "name_a": "rate-based rule",
+      "name_b": "rate-based rules",
+      "type": "component",
+      "cosine": 0.944,
+      "label": "SAME"
+    },
+    {
+      "id": "P8",
+      "a": "set transmitter",
+      "b": "set transmitters",
+      "name_a": "SET Transmitter",
+      "name_b": "SET Transmitters",
+      "type": "actor",
+      "cosine": 0.941,
+      "label": "SAME"
+    },
+    {
+      "id": "P9",
+      "a": "set issuer",
+      "b": "set issuers",
+      "name_a": "SET Issuer",
+      "name_b": "SET Issuers",
+      "type": "actor",
+      "cosine": 0.937,
+      "label": "SAME"
+    },
+    {
+      "id": "P10",
+      "a": "cache policies",
+      "b": "cache policy",
+      "name_a": "cache policies",
+      "name_b": "cache policy",
+      "type": "component",
+      "cosine": 0.931,
+      "label": "SAME"
+    },
+    {
+      "id": "P11",
+      "a": "ddos event",
+      "b": "ddos events",
+      "name_a": "DDoS event",
+      "name_b": "DDoS events",
+      "type": "threat",
+      "cosine": 0.928,
+      "label": "SAME"
+    },
+    {
+      "id": "P12",
+      "a": "set recipient",
+      "b": "set recipients",
+      "name_a": "SET Recipient",
+      "name_b": "SET Recipients",
+      "type": "actor",
+      "cosine": 0.928,
+      "label": "SAME"
+    },
+    {
+      "id": "P13",
+      "a": "web application",
+      "b": "web applications",
+      "name_a": "web application",
+      "name_b": "web applications",
+      "type": "service",
+      "cosine": 0.921,
+      "label": "SAME"
+    },
+    {
+      "id": "P14",
+      "a": "security group",
+      "b": "security groups",
+      "name_a": "security group",
+      "name_b": "security groups",
+      "type": "component",
+      "cosine": 0.914,
+      "label": "SAME"
+    },
+    {
+      "id": "P15",
+      "a": "ddos resilient architecture",
+      "b": "ddos-resilient reference architecture",
+      "name_a": "DDoS resilient architecture",
+      "name_b": "DDoS-resilient reference architecture",
+      "type": "component",
+      "cosine": 0.902,
+      "label": "DIFFERENT"
+    },
+    {
+      "id": "P16",
+      "a": "ddos attack",
+      "b": "ddos attacks",
+      "name_a": "DDoS attack",
+      "name_b": "DDoS attacks",
+      "type": "threat",
+      "cosine": 0.9,
+      "label": "SAME"
+    }
+  ]
+}

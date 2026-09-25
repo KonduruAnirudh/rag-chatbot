@@ -25,6 +25,15 @@ TEMPERATURE = 0.2             # answers: faithful and consistent, not roboticall
 REWRITE_TEMPERATURE = 0.0     # query rewriting: a mechanical transformation, so deterministic
 REASONING_EFFORT = "none"     # GPT-5.x rejects `temperature` unless reasoning is off
 
+# --- Graph extraction ---
+EXTRACT_TEMPERATURE = 0.0     # extraction is a mechanical reading task, so deterministic
+EXTRACT_CONCURRENCY = 4       # chunks extracted in parallel; same rate-limit reasoning as OCR
+EXTRACT_RUNS = 3              # independent extractions per chunk; edges are kept by vote
+EXTRACT_MIN_AGREE = 2         # votes an edge needs; 2-of-2 dropped every verb disagreement (42% of v3's losses)
+GRAPH_PROMPT_VERSION = "v6"   # bump whenever the extraction prompt changes; stored on every record
+# v6 is FROZEN (end of Step 5): 48% edge precision on untuned text. The pilot's
+# holdout has been used, so any change to the prompt or checks needs a fresh one.
+
 # --- OCR settings ---
 OCR_ENABLED = True
 OCR_ENGINE = "vision"    # "vision" (layout-aware, costs tokens) or "tesseract" (local, free)
