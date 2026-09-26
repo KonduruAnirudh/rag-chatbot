@@ -16,8 +16,8 @@ withheld in code - graph_passage() never reads it - rather than flagged as
 unreliable in the prompt. It stays in the API response for people to read.
 
 Refusal is unchanged: no search passages means the fixed reply and no model call.
-Graph passages are added only while the context stays within MAX_CONTEXT_CHARS;
-search passages are never dropped.
+Search passages arrive already fitted to MAX_CONTEXT_CHARS (generate.fit_context,
+as in /api/chat); graph passages are then added only while the context still fits.
 """
 from app.config import CHAT_MODEL, MAX_CONTEXT_CHARS, TEMPERATURE
 from app.rag import generate

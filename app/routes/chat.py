@@ -4,6 +4,7 @@ from fastapi import APIRouter, HTTPException
 from app.schemas import ChatRequest, ChatResponse, Source
 from app.rag.retrieve import retrieve
 from app.rag.generate import generate_answer, rewrite_question, GenerationError
+from app.rag.generate import fit_context
 from app.rag.store import store
 
 router = APIRouter(prefix="/api", tags=["chat"])
@@ -33,6 +34,9 @@ async def chat(payload: ChatRequest):
     except Exception as e:
         print(f"[RETRIEVAL ERROR] {type(e).__name__}: {e}")
         raise HTTPException(status_code=502, detail="Could not search the documents.")
+
+    # The context budget: the prompt and the sources below drop the same passages
+    chunks = fit_context(chunks)
 
     # 2. Generate
     try:
