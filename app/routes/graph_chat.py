@@ -10,7 +10,7 @@ found it does not on this corpus.
 from fastapi import APIRouter, HTTPException
 
 from app.config import GRAPH_RAG_ENABLED
-from app.rag.generate import GenerationError, rewrite_question
+from app.rag.generate import GenerationError, fit_context, rewrite_question
 from app.rag.graph_answer import generate_graph_answer
 from app.rag.graph_retrieve import graph_evidence
 from app.rag.retrieve import retrieve
@@ -56,7 +56,7 @@ async def chat_graph(payload: ChatRequest):
 
     # 1. Retrieve: today's vector retrieval, then graph passages beside it (none if it found nothing)
     try:
-        vector_chunks = await retrieve(search_query)
+        vector_chunks = fit_context(await retrieve(search_query))    # the same budget as /api/chat
         graph_chunks = await graph_evidence(search_query, vector_chunks)
     except Exception as e:
         print(f"[GRAPH RETRIEVAL ERROR] {type(e).__name__}: {e}")

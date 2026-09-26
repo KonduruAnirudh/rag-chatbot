@@ -505,7 +505,7 @@ Set in `app/config.py`:
 | `CHUNK_OVERLAP` | 150 | 15%. Prevents loss of facts spanning a chunk boundary |
 | `TOP_K` | 5 | Raised from 4 after a real question's answer ranked exactly 5th — see findings |
 | `SIMILARITY_THRESHOLD` | 0.20 | Calibrated — see findings below |
-| `MAX_CONTEXT_CHARS` | 8000 | Backstop against `TOP_K` being raised without bound. Enforced only in graph mode, where graph passages are dropped before it is exceeded |
+| `MAX_CONTEXT_CHARS` | 8000 | Backstop against `TOP_K` being raised without bound. Enforced in both modes by `generate.fit_context`: whole passages are dropped from the end, never cut, and the first is always kept. The prompt and the sources drop the same passages. At 5 chunks it never triggers (about 5,300 characters) |
 | `GRAPH_EVIDENCE_MAX` | 2 | Graph passages added after the vector top 5 in graph mode: Step 7's G1 cap, unchanged |
 | `OCR_ENGINE` | vision | Layout-aware. `tesseract` is available for offline use |
 | `OCR_MIN_CHARS` | 100 | Below this, a page has no usable text layer |
@@ -709,7 +709,7 @@ The admitted counts are upper bounds: entity resolution (aliases, embedding simi
 
 Written down before any retrieval arm exists, so the thresholds cannot drift towards the results.
 
-**Outcome (recorded after the single held-out run, 2026-09-25): the stop rule fired.** On the held-out half no graph configuration fully recalled more multi-hop questions than today's retrieval: every arm scored 4 of 5. The graph found 1–2 more gold chunks, but the primary metric gained 0 points against the +15 required. As pre-registered, the experiment stops and reports that the graph does not help on this corpus. Details are in "Phase 3 result" below.
+**Outcome (recorded after the single held-out run, 2026-09-25): the stop rule fired.** On the held-out half no graph configuration fully recalled more multi-hop questions than today's retrieval: every arm scored 4 of 5. The graph found 1–2 more gold chunks, but the primary metric gained 0 points against the +15 required. As pre-registered, the experiment stops and reports that the graph does not help on this corpus. Details are in "Phase 3 result" below. Step 7 was measured at commit `44f32db`, before the close-out ligature fix; see "Close-out fixes" for why re-running it today gives slightly different search results.
 
 **The question.** Does graph retrieval help on this corpus, and if so, when should it run?
 
@@ -878,11 +878,14 @@ Each configuration runs as A2 (on every question) and as the ceiling (only on qu
   - Every answer is tagged with the endpoint that produced it, read from the response.
   - Graph passages carry a badge, the path from the question and the linking sentence.
 
-**What the checks prove.** `python -m eval.step8_check` passes 26 of 26. Each key check was also shown to fail on a planted fault.
-- **`/api/chat` is byte-identical to the Step 7 commit.** The same three-turn session runs through both versions of the code, with embeddings replayed and the model replaced by a stub whose answer is a hash of the whole request. It passes with the graph flag off and on. A single added space in the prompt was detected.
+**What the checks prove.** `python -m eval.step8_check` passes 25 of 25. Each key check was also shown to fail on a planted fault.
+- **Step 8's code leaves `/api/chat` byte-identical.** The same three-turn session runs through the current code and through a copy with Step 8's files removed. Embeddings are replayed, and the model is replaced by a stub whose answer is a hash of the whole request. It passes with the graph flag off and on.
+  - **At the Step 8 merge (`c9feb8a`),** `/api/chat` was also byte-identical to the Step 7 commit.
+  - **The close-out fixes then changed the vector path on purpose,** so the check now isolates Step 8's own contribution.
+  - **Shown to fail:** a one-space prompt change was detected, and so was a planted Step 8 router that altered `/api/chat`'s snippets.
 - **The relationship label never reaches the model.** This is asserted on the exact request sent, for every label that is not also a word of the passages or instructions. It is asserted again with every label replaced by a sentinel string: 99 sentinels, and none reached the prompt.
 - **The rest match Step 7 and the refusal rules.**
-  - The graph passages are exactly Step 7's G1 choices on all 20 development questions.
+  - The graph passages are exactly what Step 7's own G1 code chooses on all 20 development questions, run live on the same search passages.
   - Every quote is verbatim in its passage.
   - Refusals make no model call and no graph lookup.
 
@@ -941,6 +944,33 @@ The automatic reading first counted one flip each way among the entity-naming qu
   - authenticating the transmitter, a fair reading of RFC:20's "or via other employed authentication methods"
 - **The answer is partly correct.** The labelled second purpose, mitigating denial of service by authenticating transmitters (RFC:26), is missing, because no edge links RFC:26 to mutual TLS.
 - **What it shows.** This is the clearest single picture of what the graph does on this corpus: it promotes evidence that retrieval ranked above the gate but too low to use.
+
+### Close-out fixes: the context budget and PDF ligatures
+
+Two gaps found earlier, fixed after Step 8, each measured before and after.
+
+**The context budget was declared but never enforced.** `MAX_CONTEXT_CHARS` (8,000) was never checked by `/api/chat`. At 5 chunks of at most 999 characters the context is about 5,300 characters, so nothing broke. Raise `TOP_K`, though, and the budget silently did nothing.
+- **The fix.** `generate.fit_context` keeps the leading whole passages that fit, and both chat routes apply it before building the prompt *and* the sources. Citations are positional (`[n]` is `sources[n-1]`), so trimming only the prompt would have misnumbered every citation after the cut.
+- **Checked three ways:**
+  - Twelve 999-character passages trim to 7 (7,222 characters).
+  - Through `/api/chat` with retrieval forced to 12 passages, the result was 8 passages, a 7,498-character context, and every citation still aligned.
+  - At today's settings `/api/chat` is byte-identical to before.
+
+**PDF ligatures were invisible to keyword search.** PDF text keeps typographic ligatures as single characters ("ﬁ", "ﬂ", "ﬃ"), and the BM25 tokenizer keeps only `a–z` and `0–9`. So "traﬃc" became the tokens `tra` and `c`, which no query matches. **171 of the 214 chunks contain a ligature**, in 123 distinct words.
+- **The fix is in `sparse.py`'s tokenizer only.** It applies NFKC normalisation before lowercasing. Extraction and the stored text are untouched, and no re-index is needed: BM25 is rebuilt from the stored text at every start.
+
+| Query word | Chunks it matched before | After |
+|---|---|---|
+| traffic | 0 | 65 |
+| specific | 0 | 21 |
+| flood | 1 | 17 |
+| configure | 0 | 13 |
+| reflection | 0 | 10 |
+
+- **The measured baseline did not move.** On the original 9 questions, MRR is still 0.587 dense, 0.713 BM25 and 0.704 hybrid, and Recall@5 is 100%.
+- **Few search results changed.** Of the 40 questions outside the held-out half, 5 have a different top 5 (Q02, Q13, Q15, Q33, Q38). Gold chunks in the top 5 are unchanged at 34 of 41, with none entering or leaving. The graph passages are unchanged on all 20 development questions.
+- **The honest reading.** The bug was real and large: words used dozens of times were unsearchable by keyword. But none of the labelled questions depends on one of them, so no measured number improves.
+- **Step 7's numbers still stand.** They were measured at commit `44f32db`, before this fix, and the saved runs in `eval/graph_runs/` are the record. Re-running `eval.graph_retrieval_eval` today measures the current system, where 4 of the 20 development questions have a different top 5. To reproduce Step 7 exactly, check out `44f32db`.
 
 ### Entity resolution: connectivity comes from extraction, not merging
 
@@ -1044,7 +1074,7 @@ Run from the project root. The expected results are the current measured values.
 | `python -m eval.check_graph_questions` | The Step 7 question labels: required fields, gold chunks that exist, answer facts found verbatim | `All checks passed.` | Run after any label edit; exits 1 on a problem. No API calls |
 | `python -m eval.linking_recall` | How many of each question's entities the linker finds in the graph | `linking recall: 41/56 = 73%` | No API calls |
 | `python -m eval.graph_retrieval_eval` | The Step 7 graph retrieval arms against A0 and A0@7, on the development half | Every arm fully recalls 2 of 5 multi-hop questions; `-> chosen: G1` | Saves a run to `eval/graph_runs/`. 20 embedding calls |
-| `python -m eval.step8_check` | Step 8 wiring: `/api/chat` byte-identical to the Step 7 commit, the label never reaching the model, refusal, provenance, G1 parity, citation numbering, separate histories | `26 of 26 checks passed.` | The model is stubbed. About 110 embedding calls |
+| `python -m eval.step8_check` | Step 8 wiring: `/api/chat` byte-identical with and without Step 8's code, the label never reaching the model, refusal, provenance, G1 parity, citation numbering, separate histories | `25 of 25 checks passed.` | The model is stubbed. About 110 embedding calls |
 | `python -m eval.step8_demo` | Step 8 demonstration: both modes answer the 40 questions outside the held-out half; refusal flips, citation of graph passages, latency | Summary tables, then a run and a labelling file saved to `eval/step8_runs/` | A demonstration, not evidence. Real answers, a few cents; answers vary from run to run |
 
 **Not for re-running.** These are records of steps that are closed:

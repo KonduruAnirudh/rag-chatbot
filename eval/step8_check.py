@@ -9,21 +9,27 @@ France?", which predates Step 7 (it is also held-out Q48, and is used here only
 as a refusal check, never scored).
 
 8a - graph retrieval (app/rag/graph_retrieve.py)
-  1. protected files: the vector path, the frozen graph build and every Step 7 file
-     are unchanged since the Step 7 commit; config, schemas and main only gained
-     lines; the Step 5 extraction records for the corpus are the frozen ones
+  1. protected files: the frozen graph build, every Step 7 file, and retrieve, embed
+     and store are unchanged since the Step 7 commit; config, schemas, main, generate
+     and chat only gained lines; the Step 5 extraction records are the frozen ones.
+     (sparse.py is the one deliberate edit since: the close-out ligature fix.)
   2. same linker as Step 7, on every question outside the held-out half
-  3. same method: on the 20 development questions it adds exactly Step 7's G1 chunks
+  3. same method: on the 20 development questions it adds exactly what Step 7's own
+     G1 code (eval/graph_retrieval_eval.py) chooses, run live on the same search passages
   4. provenance: every graph passage is a stored chunk past the gate, and every quote
      is in it verbatim, names both ends, and starts its path at a named entity
   5. refusal: when vector retrieval finds nothing, the graph is never consulted
 
 8b - the endpoint and the prompt (app/rag/graph_answer.py, app/routes/graph_chat.py)
-  6. /api/chat is BYTE-IDENTICAL to the Step 7 commit's: the same three-turn session
-     is run through both versions of the code, with embeddings recorded once and
+  6. /api/chat is BYTE-IDENTICAL with and without Step 8's code: the same three-turn
+     session is run through the current code and through a copy with Step 8's three
+     files and its two lines in main.py removed, with embeddings recorded once and
      replayed, and the model replaced by a stub whose answer is a hash of the whole
      request - so identical bytes mean identical retrieval, prompts and sources.
-     Run with the graph flag off, and again with it on.
+     Run with the graph flag off, and again with it on. At the Step 8 merge (c9feb8a)
+     /api/chat was also byte-identical to the Step 7 commit; the close-out fixes (the
+     context budget, the ligature fix) then changed the vector path on purpose, so
+     that comparison is now printed for information.
   7. the endpoint answers 403 when the flag is off, and its status route says which;
      with it on, refusals are still
      the fixed reply, with no sources and no model call
@@ -31,7 +37,8 @@ as a refusal check, never scored).
      sent, for every label that is not already part of the passages' own text, and
      again with every label replaced by a unique sentinel string
   9. prompt and citations: passages are numbered [1..n] in the same order as the
-     sources, search passages first; the context stays within MAX_CONTEXT_CHARS
+     sources - search passages as live retrieval returns them, then graph passages as
+     Step 7's G1 chooses them; the context stays within MAX_CONTEXT_CHARS
  10. a planted instruction in a graph passage stays inside <context>
  11. graph mode keeps its own session history, and its reset clears only that
 
@@ -70,6 +77,7 @@ from app.rag.retrieve import retrieve
 from app.rag.store import store
 from app.routes import chat as chat_route
 from app.routes import graph_chat
+from eval import graph_retrieval_eval as step7_harness
 from eval import linking_recall as step7_linker
 from eval.check_graph_questions import DOCUMENTS
 
@@ -78,16 +86,17 @@ STEP7_DEV_RUN = "eval/graph_runs/dev-20260925-230614.json"
 QUESTIONS = "eval/graph_questions.yaml"
 STANDING_REFUSAL = "What is the capital of France?"      # the project's refusal check since before Step 7
 UNCHANGED = [
-    # the vector path
-    "app/rag/retrieve.py", "app/rag/generate.py", "app/routes/chat.py", "app/rag/embed.py",
-    "app/rag/store.py", "app/rag/sparse.py",
+    # the vector path's retrieval (generate.py and chat.py gained the context budget:
+    # see ONLY_ADDED_TO; sparse.py gained the ligature fix, a deliberate edit)
+    "app/rag/retrieve.py", "app/rag/embed.py", "app/rag/store.py",
     # the frozen graph build
     "app/rag/graph.py", "app/rag/graph_extract.py", "app/rag/graph_aliases.json", "app/routes/documents.py",
     # Step 7
     "eval/graph_questions.yaml", "eval/graph_runs", "eval/graph_retrieval_eval.py",
     "eval/linking_recall.py", "eval/check_graph_questions.py",
 ]
-ONLY_ADDED_TO = ["app/config.py", "app/schemas.py", "app/main.py"]
+ONLY_ADDED_TO = ["app/config.py", "app/schemas.py", "app/main.py", "app/rag/generate.py", "app/routes/chat.py"]
+STEP8_FILES = ["app/routes/graph_chat.py", "app/rag/graph_answer.py", "app/rag/graph_retrieve.py"]
 # sha256 of the Step 5 extraction records for the two corpus documents (214 chunks)
 FROZEN_EXTRACTIONS = "631ac09f437f53de23f314c286a5f1f2a4a727bbce4f0074336dc25b111a03cc"
 CORPUS = tuple(DOCUMENTS.values())
@@ -151,11 +160,11 @@ def model_stub(graph_mode: bool = True):
 def protected_files():
     print("1. PROTECTED FILES")
     changed = git("diff", "--name-only", STEP7_COMMIT, "--", *UNCHANGED).stdout.split()
-    check(f"vector path, graph build and Step 7 files unchanged since {STEP7_COMMIT}", not changed,
+    check(f"graph build, Step 7 files, retrieve, embed and store unchanged since {STEP7_COMMIT}", not changed,
           f"changed: {changed}" if changed else f"{len(UNCHANGED)} paths")
     removed = [line for line in git("diff", "-U0", STEP7_COMMIT, "--", *ONLY_ADDED_TO).stdout.splitlines()
                if line.startswith("-") and not line.startswith("---")]
-    check("config.py, schemas.py and main.py only gained lines", not removed,
+    check("config, schemas, main, generate and chat only gained lines", not removed,
           f"removed or edited: {removed}" if removed else "")
     records = {cid: r for cid, r in graph_store.records.items() if r["filename"] in CORPUS}
     digest = hashlib.sha256(json.dumps(records, sort_keys=True).encode()).hexdigest()
@@ -213,10 +222,12 @@ def provenance_problems(evidence: list[dict], vector: list[dict]) -> list[str]:
     return problems
 
 
-async def same_method_and_provenance(questions) -> list[tuple]:
+async def same_method_and_provenance(questions) -> tuple[list[tuple], dict]:
     print("3. SAME METHOD AS STEP 7 (G1), development half")
-    saved = {q["id"]: q for q in json.load(open(STEP7_DEV_RUN))["questions"]}
     dev = [q for q in questions if q["keep"] and q["split"] == "dev"]
+    graph = graph_store.graph
+    index_of = {(c["doc_id"], c["chunk_index"]): i for i, c in enumerate(store.metadata)}
+    pairs, forms = step7_harness.pair_chunks(graph, index_of), step7_linker.entity_forms(graph)
 
     embed_ms = []
 
@@ -226,7 +237,7 @@ async def same_method_and_provenance(questions) -> list[tuple]:
         embed_ms.append((time.perf_counter() - started) * 1000)
         return vector
 
-    differ, vector_differ, total_ms, step_ms, all_evidence = [], [], [], [], []
+    differ, total_ms, step_ms, all_evidence, expected = [], [], [], [], {}
     G.embed_query = timed_embed
     try:
         for q in dev:
@@ -236,18 +247,26 @@ async def same_method_and_provenance(questions) -> list[tuple]:
             total = (time.perf_counter() - started) * 1000
             total_ms.append(total)
             step_ms.append(total - sum(embed_ms[calls:]))
-            if [label(c) for c in vector] != [label(store.metadata[i]) for i in saved[q["id"]]["contexts"]["A0"]]:
-                vector_differ.append(q["id"])
-            want = [a["chunk"] for a in saved[q["id"]]["added"]["G1"]]
+            # Step 7's own G1 code, run live on the same search passages
+            cosine = store.dense_scores(await real_embed_query(q["question"]))
+            top5 = {index_of[(c["doc_id"], c["chunk_index"])] for c in vector}
+            chosen, _, _ = step7_harness.graph_side("G1", q["question"], forms, graph, pairs, cosine, top5)
+            want = [label(store.metadata[i]) for i in chosen]
             if [label(e) for e in evidence] != want:
                 differ.append((q["id"], [label(e) for e in evidence], want))
+            expected[q["id"]] = ([label(c) for c in vector], want)
             all_evidence.append((q, evidence, vector))
     finally:
         G.embed_query = real_embed_query
-    check("vector top 5 is Step 7's A0 on every development question", not vector_differ,
-          f"differ: {vector_differ}" if vector_differ else f"{len(dev)} questions")
-    check("graph passages are exactly Step 7's G1 additions, in order", not differ,
-          f"differ: {differ}" if differ else f"{sum(len(e) for _, e, _ in all_evidence)} passages")
+    check("graph passages are exactly what Step 7's G1 code chooses, run live on the same search passages",
+          not differ, f"differ: {differ}" if differ else f"{sum(len(e) for _, e, _ in all_evidence)} passages")
+
+    saved = {q["id"]: q for q in json.load(open(STEP7_DEV_RUN))["questions"]}
+    top5_moved = [qid for qid, (a0, _) in expected.items()
+                  if a0 != [label(store.metadata[i]) for i in saved[qid]["contexts"]["A0"]]]
+    g1_moved = [qid for qid, (_, g1) in expected.items() if g1 != [a["chunk"] for a in saved[qid]["added"]["G1"]]]
+    print(f"        vs the saved Step 7 run (information): top 5 differs on {top5_moved or 'none'}, graph passages "
+          f"on {g1_moved or 'none'} - the ligature fix in sparse.py changed some rankings after Step 7")
     print(f"        graph evidence, whole call:       p50 {percentile(total_ms, .5):.0f} ms, p95 {percentile(total_ms, .95):.0f} ms")
     print(f"          of which the 2nd embedding call: p50 {percentile(embed_ms, .5):.0f} ms, p95 {percentile(embed_ms, .95):.0f} ms")
     print(f"          the graph step itself:           p50 {percentile(step_ms, .5):.1f} ms, p95 {percentile(step_ms, .95):.1f} ms")
@@ -270,7 +289,7 @@ async def same_method_and_provenance(questions) -> list[tuple]:
     for p in problems:
         print(f"        {p}")
     print()
-    return all_evidence
+    return all_evidence, expected
 
 
 async def refusal(questions):
@@ -333,16 +352,23 @@ print("PROBE_RESULT " + json.dumps(out))
 
 
 def byte_identical(tc, questions):
-    print(f"6. /api/chat BYTE-IDENTICAL to the Step 7 commit ({STEP7_COMMIT})")
+    print("6. /api/chat BYTE-IDENTICAL WITH AND WITHOUT STEP 8'S CODE")
     turns = [next(q["question"] for q in questions if q["id"] == "Q46"),
              "Does Shield Advanced charge extra for that?", STANDING_REFUSAL]
     with tempfile.TemporaryDirectory(prefix="rag-step8-bytes-") as tmp:
         tmp = Path(tmp)
         for part in ("index", "graph"):                        # read-only copy; the real data/ is not used
             shutil.copytree(Path("data") / part, tmp / "data" / part)
-        before = tmp / "before"
-        before.mkdir()
-        subprocess.run(f"git archive {STEP7_COMMIT} | tar -x -C {before}", shell=True, check=True)
+        # The current code without Step 8: its three files removed, its two lines out of main.py
+        without = tmp / "without-step8"
+        shutil.copytree("app", without / "app", ignore=shutil.ignore_patterns("__pycache__"))
+        for f in STEP8_FILES:
+            (without / f).unlink()
+        main_py = without / "app" / "main.py"
+        main_py.write_text("".join(l for l in main_py.read_text().splitlines(keepends=True) if "graph_chat" not in l))
+        step7 = tmp / "step7"
+        step7.mkdir()
+        subprocess.run(f"git archive {STEP7_COMMIT} | tar -x -C {step7}", shell=True, check=True)
         (tmp / "probe.py").write_text(PROBE)
         (tmp / "turns.json").write_text(json.dumps(turns))
         (tmp / "vectors.json").write_text(json.dumps({t: tc.portal.call(real_embed_query, t).tolist() for t in turns}))
@@ -356,14 +382,15 @@ def byte_identical(tc, questions):
                 raise RuntimeError(f"probe failed ({code}):\n{done.stderr[-1500:]}")
             return json.loads(line[len("PROBE_RESULT "):])
 
-        step7 = run(before, "false")
+        without_step8 = run(without, "false")
         now_off, now_on = run(Path.cwd(), "false"), run(Path.cwd(), "true")
-    check("same session, three turns: every response byte-identical, graph flag OFF", now_off == step7,
-          f"{sum(len(r) for r in step7)} bytes")
-    check("the same, graph flag ON - /api/chat never reads it", now_on == step7)
-    first = json.loads(step7[0])
-    print(f"        turn 1 answer (a hash of the whole request): {first['answer'][:30]}..., "
-          f"{len(first['sources'])} sources; turn 3 answer: {json.loads(step7[2])['answer'][:40]}...")
+        at_step7 = run(step7, "false")
+    check("same session, three turns: every response byte-identical with and without Step 8's code, graph flag OFF",
+          now_off == without_step8, f"{sum(len(r) for r in without_step8)} bytes")
+    check("the same, graph flag ON - /api/chat never reads it", now_on == without_step8)
+    print(f"        vs the Step 7 commit {STEP7_COMMIT} (information): "
+          f"{'identical' if now_off == at_step7 else 'different'} - identical at the Step 8 merge; the close-out "
+          "fixes change the vector path on purpose")
     print()
 
 
@@ -461,9 +488,8 @@ def label_never_reaches_model(runs, all_evidence):
     print()
 
 
-def prompts_and_citations(runs):
+def prompts_and_citations(runs, expected):
     print("9. PROMPT AND CITATIONS (development questions, via the endpoint)")
-    saved = {q["id"]: q for q in json.load(open(STEP7_DEV_RUN))["questions"]}
     misnumbered, wrong_order, over_budget, sizes, dropped, prompted = [], [], [], [], 0, 0
     for q, status, body, requests in runs:
         if not requests:
@@ -481,16 +507,17 @@ def prompts_and_citations(runs):
         kinds = [s["retrieval"] for s in sources]
         vector_labels = [label(s) for s in sources if s["retrieval"] == "vector"]
         graph_labels = [label(s) for s in sources if s["retrieval"] == "graph"]
-        g1 = [a["chunk"] for a in saved[q["id"]]["added"]["G1"]]
+        a0, g1 = expected[q["id"]]
         dropped += len(g1) - len(graph_labels)
         if (kinds != sorted(kinds, key=["vector", "graph"].index)
-                or vector_labels != [label(store.metadata[i]) for i in saved[q["id"]]["contexts"]["A0"]]
+                or vector_labels != a0
                 or graph_labels != [c for c in g1 if c in graph_labels]
                 or any(not s["graph"] or not s["graph"]["links"] for s in sources if s["retrieval"] == "graph")):
             wrong_order.append(q["id"])
     check("passage [n] in the prompt is sources[n-1], for every passage", not misnumbered,
           f"{prompted} prompts" + (f"; misnumbered: {misnumbered}" if misnumbered else ""))
-    check("search passages (Step 7's A0) first, then graph passages (G1) with their provenance", not wrong_order,
+    check("search passages (live retrieval) first, then graph passages (Step 7's G1) with their provenance",
+          not wrong_order,
           f"wrong: {wrong_order}" if wrong_order else "")
     check(f"every context within MAX_CONTEXT_CHARS ({MAX_CONTEXT_CHARS})", not over_budget,
           f"largest {max(sizes)} chars; {dropped} graph passages dropped to fit")
@@ -547,13 +574,13 @@ def main():
     protected_files()
     same_linker(questions)
     with TestClient(app) as tc:                       # one event loop for everything, as under a real server
-        all_evidence = tc.portal.call(same_method_and_provenance, questions)
+        all_evidence, expected = tc.portal.call(same_method_and_provenance, questions)
         tc.portal.call(refusal, questions)
         byte_identical(tc, questions)
         endpoint_basics(tc, questions)
         runs = graph_mode_requests(tc, questions)
         label_never_reaches_model(runs, all_evidence)
-        prompts_and_citations(runs)
+        prompts_and_citations(runs, expected)
         injection_stays_in_context()
         separate_histories(tc, questions)
     print(f"{sum(results)} of {len(results)} checks passed.")

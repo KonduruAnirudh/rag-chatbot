@@ -8,6 +8,7 @@ from app.config import (
     TEMPERATURE,
     REWRITE_TEMPERATURE,
     REASONING_EFFORT,
+    MAX_CONTEXT_CHARS,
 )
 
 
@@ -89,6 +90,26 @@ def build_context(chunks: list[dict]) -> str:
         )
 
     return "\n\n".join(parts)
+
+
+def fit_context(chunks: list[dict]) -> list[dict]:
+    """
+    The leading chunks whose context fits within MAX_CONTEXT_CHARS.
+
+    Call it before building both the prompt and the sources: citations are
+    positional ([n] is sources[n-1]), so the two must drop the same passages.
+    Whole passages are dropped from the end, never cut mid-text - a cut could
+    lose the sentence a citation points at. The first passage is always kept,
+    so a budget set too low cannot turn an answerable question into a refusal.
+    """
+    kept = chunks[:1]
+    for chunk in chunks[1:]:
+        if len(build_context(kept + [chunk])) > MAX_CONTEXT_CHARS:
+            break
+        kept.append(chunk)
+    if len(kept) < len(chunks):
+        print(f"[CONTEXT] kept {len(kept)} of {len(chunks)} passages to stay within MAX_CONTEXT_CHARS")
+    return kept
 
 
 # ================================================================
