@@ -1,0 +1,140 @@
+STEP 8 DEMONSTRATION - for labelling. Not evidence: see eval/step8_demo.py.
+For each: is each answer correct against the documents (correct / partly / wrong / declined)?
+For each cited graph passage: does the text of that passage support the sentence that cites it?
+
+==========================================================================================
+Q06 [on-topic] What are AWS WAF rate-based rules used for?
+  gold chunks: ['AWS:92']
+  answer facts: ['protecting against http request floods by using rate-based rules in aws waf']
+
+  VECTOR (answered): AWS WAF rate-based rules are used to protect applications from HTTP request floods by automatically blocking or challenging requests when traffic exceeds a configured threshold within a sliding window. They can use IP addresses or custom aggregation keys, such as host, URI, query string, and IP, to provide broad and targeted protection against attacks like cache busting. [1]
+  sources: [1] AWS:92 gold CITED, [2] AWS:95, [3] AWS:88, [4] AWS:86, [5] AWS:113
+
+  GRAPH (answered): AWS WAF rate-based rules are used to mitigate HTTP request floods and cache-busting attacks by automatically blocking or challenging clients whose request rates exceed a configured threshold. They can also apply stricter limits to specific traffic patterns, such as particular hosts, URI paths, query strings, IPs, APIs, or fingerprints. [1][3]
+
+They may additionally be scoped to dynamic endpoints that cannot be cached, using lower limits than broadly applied rules. [6]
+  sources: [1] AWS:92 gold CITED, [2] AWS:95, [3] AWS:88 CITED, [4] AWS:86, [5] AWS:113, [6] AWS:80 GRAPH CITED, [7] AWS:103 GRAPH
+
+  graph passage [6] AWS:80 - CITED
+    path: question -> AWS WAF -> rate-based rules   quote: While static content should be aggressively cached, truly dynamic endpoints that can't be cached should be identified early and protected with additional controls such as scoped-down AWS WAF rate-based rules with lower limits than any rate-based rules that are broadly applied.
+    path: question -> rate-based rules -> AWS WAF   quote: While static content should be aggressively cached, truly dynamic endpoints that can't be cached should be identified early and protected with additional controls such as scoped-down AWS WAF rate-based rules with lower limits than any rate-based rules that are broadly applied.
+    text: While static content should be aggressively cached, truly dynamic endpoints that can't be cached should be identiﬁed early and protected with additional controls such as scoped-down AWS WAF rate-based rules with lower limits than any rate-based rules that are broadly applied. • Non-personalized HTML with Cache-Control header directives like no-cache, no-store can be cached on CDN by using a non-zero Minimum TTL in the relevant CloudFront cache behavior. • In a situation where the origin performance has been adversely impacted, consider adding the stale-while-revalidate Cache-Control directive, so that users no longer need to wait for responses from the origin.
+
+  graph passage [7] AWS:103 - not cited
+    path: question -> AWS WAF -> URI paths   quote: Block access to unused URI paths using AWS WAF.
+    text: AWS Best Practices for DDoS Resiliency AWS Whitepaper AWS WAF – Block access to unused URI paths and ﬁle extensions Block access to unused URI paths using AWS WAF. The most obvious example here would be the '/' URI path for an API endpoint, which would typically return an HTTP 404 (Not Found). Likewise consider blocking access to ﬁle extensions that you don't use, for example: if NOT uri_path matches regex .*\.(css|js|png|jpg|svg|woff2|html|json)$ AND uri_path contains '.' Blocking access to such paths prevents sudden high-volume request ﬂoods on non-existent or mutating URLs from overwhelming your target group (for ALB endpoints) or origin (for CloudFront). AWS WAF – Challenge rule action The Challenge rule action provides an eﬀective defense against DDoS botnets, which typically use basic scripts designed to maximize target impact while minimizing operational costs.
+
+  LABEL vector: ______   graph: ______   cited graph passage supports its sentence: ______
+
+==========================================================================================
+Q16 [on-topic] How does AWS Global Accelerator help protect a Network Load Balancer's TCP listeners from SYN floods?
+  gold chunks: ['AWS:50']
+  answer facts: ['global accelerator has an inbuilt syn proxy']
+
+  VECTOR (answered): AWS Global Accelerator protects an NLB’s TCP listeners by providing an inbuilt, stateless SYN proxy. It challenges new connection attempts with SYN cookies, tracks connections through the NLB, and drops spoofed traffic that cannot complete the TCP handshake, helping mitigate SYN floods [1][2].
+  sources: [1] AWS:61 CITED, [2] AWS:50 gold CITED, [3] AWS:62, [4] AWS:38, [5] AWS:49
+
+  GRAPH (answered): AWS Global Accelerator protects TCP listeners on a Network Load Balancer by providing an inbuilt, stateless SYN proxy. It challenges new connection attempts with SYN cookies, tracks connections through the NLB, and drops spoofed traffic that cannot complete the TCP handshake before it reaches the load balancer. [1][2][7]
+  sources: [1] AWS:61 CITED, [2] AWS:50 gold CITED, [3] AWS:62, [4] AWS:38, [5] AWS:49, [6] AWS:48 GRAPH, [7] AWS:27 GRAPH CITED
+
+  graph passage [6] AWS:48 - not cited
+    path: question -> Network Load Balancer -> Amazon EC2 instances   quote: For TCP, UDP, and TLS applications, you can use Network Load Balancer to route traffic to targets (for example, Amazon EC2 instances) at ultra-low latency, as shown in the following diagram.
+    path: question -> Network Load Balancer -> TCP   quote: For TCP, UDP, and TLS applications, you can use Network Load Balancer to route traffic to targets (for example, Amazon EC2 instances) at ultra-low latency, as shown in the following diagram.
+    path: question -> Network Load Balancer -> UDP   quote: For TCP, UDP, and TLS applications, you can use Network Load Balancer to route traffic to targets (for example, Amazon EC2 instances) at ultra-low latency, as shown in the following diagram.
+    path: question -> Network Load Balancer -> targets   quote: For TCP, UDP, and TLS applications, you can use Network Load Balancer to route traffic to targets (for example, Amazon EC2 instances) at ultra-low latency, as shown in the following diagram.
+    path: question -> TCP -> Network Load Balancer   quote: For TCP, UDP, and TLS applications, you can use Network Load Balancer to route traffic to targets (for example, Amazon EC2 instances) at ultra-low latency, as shown in the following diagram.
+    text: AWS Best Practices for DDoS Resiliency AWS Whitepaper Figure 9 – Application Load Balancers provide a ﬂexible feature set for HTTP and HTTPS applications For more information about protecting web applications with Application Load Balancer, see Getting Started with Application Load Balancers. Best practices for TCP and UDP applications For TCP, UDP, and TLS applications, you can use Network Load Balancer to route traﬃc to targets (for example, Amazon EC2 instances) at ultra-low latency, as shown in the following diagram. Choose a network load balancer (NLB) when you need ultra-high performance, TLS oﬄoading at scale, centralized certiﬁcate deployment, support UDP, and static IP address for your applications.
+
+  graph passage [7] AWS:27 - CITED
+    path: question -> Global Accelerator -> CloudFront   quote: Benefits of using Amazon CloudFront, Global Accelerator, and Amazon Route 53 include:
+    text: You can run your application in any AWS Region and use these services to protect your application availability and optimize the performance of your application for legitimate end users. Beneﬁts of using Amazon CloudFront, Global Accelerator, and Amazon Route 53 include: • Access to internet and DDoS mitigation capacity across the AWS Global Edge Network. This is useful in mitigating larger volumetric attacks, which can reach terabits per second (Tbps). • AWS Shield DDoS mitigation systems are integrated with AWS edge services, reducing time-to- mitigate from minutes to sub second. • Stateless SYN Flood mitigation veriﬁes incoming connections using SYN cookies before passing them to the protected service. This is designed to help ensure that only valid connections reach your application while protecting your legitimate end users against false positives drops. • Automatic traﬃc engineering systems that disperse or isolate the impact of large volumetric DDoS attacks.
+
+  LABEL vector: ______   graph: ______   cited graph passage supports its sentence: ______
+
+==========================================================================================
+Q32 [on-topic] How do AWS Shield Advanced findings reach incident response?
+  gold chunks: ['AWS:154', 'AWS:153']
+  answer facts: ['surfaced as a shield advanced finding in security hub cspm', 'security hub cspm automatically integrates with firewall manager']
+
+  VECTOR (answered): AWS Shield Advanced findings reach incident response through:
+
+- **Proactive SRT engagement:** When Shield Advanced detects signs of DDoS and configured health checks show application degradation, the AWS Shield Response Team contacts you directly. This requires configured health checks and always-available operations contact information. [4]
+- **Customer-initiated escalation:** If a DDoS event affects application availability, subscribers with Business Support+, Enterprise Support, or Unified Operations can create an AWS Shield Support case or use the support API to escalate to the SRT. [1]
+- **Detection and mitigation metrics:** Shield Advanced provides event metrics and traffic details, including anomalies and known DDoS signatures, to support investigation and response. [3]
+  sources: [1] AWS:158 CITED, [2] AWS:113, [3] AWS:142 CITED, [4] AWS:114 CITED, [5] AWS:38
+
+  GRAPH (answered): AWS Shield Advanced establishes a traffic baseline for protected resources. When anomalous traffic is detected, it appears as a Shield Advanced finding in Security Hub CSPM, alongside CloudWatch metrics and events [6]. These findings support incident response by providing evidence for the response playbook, which should cover gathering evidence, mitigating, recovering, and post-incident analysis [7].
+  sources: [1] AWS:158, [2] AWS:113, [3] AWS:142, [4] AWS:114, [5] AWS:38, [6] AWS:154 GRAPH gold CITED, [7] AWS:156 GRAPH CITED
+
+  graph passage [6] AWS:154 (gold) - CITED
+    path: question -> Shield Advanced finding -> AWS Shield Advanced   quote: After the resource is protected, Shield Advanced begins establishing a traffic baseline for it, and any subsequently detected anomalous traffic is surfaced as a Shield Advanced finding in Security Hub CSPM, alongside CloudWatch metrics and events.
+    path: question -> Shield Advanced finding -> Security Hub CSPM   quote: After the resource is protected, Shield Advanced begins establishing a traffic baseline for it, and any subsequently detected anomalous traffic is surfaced as a Shield Advanced finding in Security Hub CSPM, alongside CloudWatch metrics and events.
+    text: After the resource is protected, Shield Advanced begins establishing a traﬃc baseline for it, and any subsequently detected anomalous traﬃc is surfaced as a Shield Advanced ﬁnding in Security Hub CSPM, alongside CloudWatch metrics and events. Visibility and protection management across multiple accounts 55
+
+  graph passage [7] AWS:156 - CITED
+    path: question -> AWS -> threat   quote: If you experience an attack, you can also benefit from support from AWS in assessing the threat and reviewing the architecture of your application, or you might want to request other assistance.
+    text: AWS Best Practices for DDoS Resiliency AWS Whitepaper Incident response strategy and runbooks Developing a DDoS attack incident response strategy and building a security incident response process around it is crucial for all organizations. A recommended approach is to model your response playbook based on NIST's suggested steps such as gathering evidence, mitigating, recovering, and conducting post-incident analysis. For example, a response playbook for web application DoS or DDoS attacks is provided as an example. Additional resources are available in the AWS Security Incident Response Guide. Support If you experience an attack, you can also beneﬁt from support from AWS in assessing the threat and reviewing the architecture of your application, or you might want to request other assistance. It is important to create a response plan for DDoS attacks before an actual event.
+
+  LABEL vector: ______   graph: ______   cited graph passage supports its sentence: ______
+
+==========================================================================================
+Q38 [on-topic] What two different purposes does mutual TLS serve in RFC 8935?
+  gold chunks: ['RFC:20', 'RFC:26']
+  answer facts: ['the identity of the set transmitter, perhaps using mutual tls', 'authenticating set transmitters with a mechanism such as mutual tls']
+
+  VECTOR (declined): The uploaded documents do not cover the two purposes mutual TLS serves in RFC 8935.
+  sources: [1] RFC:36, [2] RFC:40, [3] RFC:34, [4] RFC:39, [5] RFC:0
+
+  GRAPH (answered): RFC 8935 describes two purposes for mutual TLS:
+
+1. **Authenticating the SET Transmitter** to the SET Recipient. [6]  
+2. **Determining whether the transmitter is authorized to provide actionable SETs**, based on the transmitter’s identity. [6]
+  sources: [1] RFC:36, [2] RFC:40, [3] RFC:34, [4] RFC:39, [5] RFC:0, [6] RFC:20 GRAPH gold CITED
+
+  graph passage [6] RFC:20 (gold) - CITED
+    path: question -> mutual TLS -> SET Transmitter   quote: Authorization for the eligibility to provide actionable SETs can be determined by using the identity of the SET Issuer, the identity of the SET Transmitter, perhaps using mutual TLS, or via other employed authentication methods.
+    text: Other Error Codes may also be received, as the set of Error Codes is extensible via the IANA "Security Event Token Error Codes" registry established in Section 7.1. Error Code Description invalid_audience The SET Audience does not correspond to the SET Recipient. authentication_failed The SET Recipient could not authenticate the SET Transmitter. access_denied The SET Transmitter is not authorized to transmit the SET to the SET Recipient. Table 1: SET Error Codes 3. Authentication and Authorization The SET delivery method described in this speciﬁcation is based upon HTTP over TLS and standard HTTP authentication and authorization schemes, as per . The TLS server certiﬁcate be validated using DNS-ID and/or DNS-Based Authentication of Named Entities (DANE) . Authorization for the eligibility to provide actionable SETs can be determined by using the identity of the SET Issuer, the identity of the SET Transmitter, perhaps using mutual TLS, or via other employed authentication methods.
+
+  LABEL vector: ______   graph: ______   cited graph passage supports its sentence: ______
+
+==========================================================================================
+Q59 [off-topic, names-entity] How do I register a domain name with Amazon Route 53?
+  gold chunks: -
+  answer facts: -
+
+  VECTOR (partial): The uploaded documents do not cover how to register a domain name with Amazon Route 53. They discuss Route 53’s DNS availability, DDoS resilience, routing, and cost protection. [1][2][3][4][5]
+  sources: [1] AWS:65 CITED, [2] AWS:63 CITED, [3] AWS:64 CITED, [4] AWS:67 CITED, [5] AWS:66 CITED
+
+  GRAPH (declined): The uploaded documents do not cover how to register a domain name with Amazon Route 53.
+  sources: [1] AWS:65, [2] AWS:63, [3] AWS:64, [4] AWS:67, [5] AWS:66, [6] AWS:38 GRAPH, [7] AWS:55 GRAPH
+
+  graph passage [6] AWS:38 - not cited
+    path: question -> Amazon Route 53 -> CloudFront   quote: The service is available globally for CloudFront, Route 53, and Global Accelerator.
+    text: The service is available globally for CloudFront, Route 53, and Global Accelerator. Regionally, you can protect Application Load Balancer and Elastic IP addresses which allows you to protect Network Load Balancer (NLBs) or Amazon EC2 instances. For a complete list of AWS Shield Advanced features and for more information about AWS Shield, see How AWS Shield Advanced works. Best practices for DDoS mitigation In the following sections, each of the recommended best practices for DDoS mitigation is described in more depth. These practices are designed to help you build comprehensive DDoS protection Best practices for DDoS mitigation 16
+
+  graph passage [7] AWS:55 - not cited
+    path: question -> Amazon Route 53 -> AWS Edge locations   quote: AWS edge locations provide an additional layer of network infrastructure that provides these benefits to any application that uses Amazon CloudFront, Global Accelerator and Amazon Route 53.
+    text: AWS Best Practices for DDoS Resiliency AWS Whitepaper Use AWS Edge locations for scale (BP1, BP3) Access to highly scaled, diverse internet connections can signiﬁcantly increase your ability to optimize latency and throughput to users, to absorb DDoS attacks, and to isolate faults while minimizing the impact on your application's availability. AWS edge locations provide an additional layer of network infrastructure that provides these beneﬁts to any application that uses Amazon CloudFront, Global Accelerator and Amazon Route 53. With these services, you can comprehensively protect on the edge your applications running from AWS Regions. Web application delivery at the edge (BP1) You can use Amazon CloudFront to deliver your entire website including static, dynamic, streaming, and interactive content. Persistent connections and variable time-to-live (TTL) settings can be used to oﬄoad traﬃc from your origin, even if you aren't serving cacheable content.
+
+  LABEL vector: ______   graph: ______   cited graph passage supports its sentence: ______
+
+==========================================================================================
+Q60 [off-topic, names-entity] In which AWS Regions is AWS Global Accelerator not available?
+  gold chunks: -
+  answer facts: -
+
+  VECTOR (declined): The uploaded documents do not cover which AWS Regions, if any, AWS Global Accelerator is unavailable in.
+  sources: [1] AWS:61, [2] AWS:59, [3] AWS:62, [4] AWS:63, [5] AWS:38
+
+  GRAPH (partial): The uploaded documents do not cover which AWS Regions AWS Global Accelerator is unavailable in. They state only that it is available globally. [5]
+  sources: [1] AWS:61, [2] AWS:59, [3] AWS:62, [4] AWS:63, [5] AWS:38 CITED, [6] AWS:27 GRAPH, [7] AWS:33 GRAPH
+
+  graph passage [6] AWS:27 - not cited
+    path: question -> Global Accelerator -> CloudFront   quote: Benefits of using Amazon CloudFront, Global Accelerator, and Amazon Route 53 include:
+    text: You can run your application in any AWS Region and use these services to protect your application availability and optimize the performance of your application for legitimate end users. Beneﬁts of using Amazon CloudFront, Global Accelerator, and Amazon Route 53 include: • Access to internet and DDoS mitigation capacity across the AWS Global Edge Network. This is useful in mitigating larger volumetric attacks, which can reach terabits per second (Tbps). • AWS Shield DDoS mitigation systems are integrated with AWS edge services, reducing time-to- mitigate from minutes to sub second. • Stateless SYN Flood mitigation veriﬁes incoming connections using SYN cookies before passing them to the protected service. This is designed to help ensure that only valid connections reach your application while protecting your legitimate end users against false positives drops. • Automatic traﬃc engineering systems that disperse or isolate the impact of large volumetric DDoS attacks.
+
+  graph passage [7] AWS:33 - not cited
+    path: question -> Global Accelerator -> CloudFront   quote: For example, an upcoming section discusses the capabilities provided by Amazon CloudFront and Global Accelerator that includes the best practice indicator BP1.
+    text: AWS has tagged each service with a best practice indicator (BP1, BP2) for easier reference within this document. For example, an upcoming section discusses the capabilities provided by Amazon CloudFront and Global Accelerator that includes the best practice indicator BP1. Table 2 – Summary of best practices AWS Edge AWS Region Using Amazon CloudFront (BP1) with AWS WAF (BP2) Using Global Accelerator (BP1) Using Amazon Route 53 (BP3) Using Applicati on Load Balancer (BP6) with AWS WAF (BP2) Using security groups and network ACLs in Amazon VPC (BP5) Using Amazon Elastic Compute Cloud, Amazon EKS, and Amazon ECS with auto scaling, and Lambda (BP7) Layer 3 (for example, UDP reﬂectio n) attack mitigation ✔ ✔ ✔ ✔ ✔ ✔ Layer 4 (for example, SYN ﬂood) ✔ ✔ ✔ ✔ 14
+
+  LABEL vector: ______   graph: ______   cited graph passage supports its sentence: ______

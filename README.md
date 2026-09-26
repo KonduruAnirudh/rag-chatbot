@@ -52,6 +52,7 @@ Three mechanisms keep answers grounded, applied in layers:
 - Reads scanned PDFs and image files (PNG, JPG) using vision-model OCR
 - Handles mixed documents: pages with a text layer are extracted, image-only pages are OCR'd
 - Answers cite page numbers, and passages read by OCR are marked as such
+- Experimental graph mode, off by default: search passages plus passages found by following the entities a question names, each shown with the path and sentence that reached it. A demonstration, not an improvement (see "Graph answers (Step 8)")
 
 ---
 
@@ -226,7 +227,7 @@ This is why plan-to-feature relationships deliberately have no verb. `supports` 
 
 ### Graph evidence is quoted, not asserted
 
-*Designed for Step 8, which was not built: graph retrieval did not pass its pre-registered test (see "Graph retrieval experiment"). The design stands for any future experiment.*
+*Built in Step 8 as an experimental path (see "Graph answers (Step 8)"), with one change decided then: the relationship label is not given to the model at all. The reason follows the original design below.*
 
 Decided before answer generation uses the graph. Measured edge precision on untuned text is 48%, so a two-hop path is fully right only about a quarter of the time. Every edge, though, carries the sentence it came from, verbatim — and the sentence is right even when the relationship label is not.
 
@@ -235,6 +236,8 @@ Showing the quote alongside the verb is not enough at this precision: a wrong ve
 If this works, the graph's value does not depend on its labels being right: it becomes a way of surfacing sentences that vector search would not have retrieved, reached by following entities from one passage to another. That value survives a wrong verb.
 
 Evidence from a diagram is kept distinct. When vision OCR reads a diagram, it writes its own description ("[Diagram: A user connects to a VPC endpoint …]"). An edge quoting that description rests on machine-written text, not on a transcribed sentence, and is shown as weaker evidence than either a text-layer sentence or an OCR'd one.
+
+**Superseded in Step 8 (owner, 2026-09-26): the label is withheld, not flagged.** Relationship labels are 48% correct, and prompt-only warnings failed every time they were tried in this project — the extraction prompt's rule 3 and its no-substitute rule both. So the model gets the two entity names and the verbatim sentence, the reliable part, and never the label, the unreliable one. This is enforced in code and asserted in `eval/step8_check.py`. The label stays in the API response and the UI, so a person can still see and check it.
 
 ---
 
@@ -250,7 +253,8 @@ rag-chatbot/
 │   │
 │   ├── routes/
 │   │   ├── documents.py     Upload, list, delete
-│   │   └── chat.py          Question answering, session reset
+│   │   ├── chat.py          Question answering, session reset
+│   │   └── graph_chat.py    Graph mode (Step 8, experimental; off by default)
 │   │
 │   ├── rag/
 │   │   ├── extract.py       File bytes → plain text
@@ -259,7 +263,11 @@ rag-chatbot/
 │   │   ├── store.py         Vector matrix + aligned metadata, persisted
 │   │   ├── registry.py      Document metadata, persisted
 │   │   ├── retrieve.py      Question → top-k chunks above threshold
-│   │   └── generate.py      Prompt construction, query rewriting, LLM call
+│   │   ├── generate.py      Prompt construction, query rewriting, LLM call
+│   │   ├── graph_extract.py Chunk → entities and quoted relations (Step 5, frozen)
+│   │   ├── graph.py         Extraction records → the graph; resolution, admission, storage (Step 6)
+│   │   ├── graph_retrieve.py  Question → graph passages: Step 7's G1 method (Step 8)
+│   │   └── graph_answer.py  The graph-mode prompt, without relationship labels (Step 8)
 │   │
 │   └── static/
 │       ├── index.html
@@ -268,7 +276,10 @@ rag-chatbot/
 │
 ├── data/
 │   ├── uploads/             Stored source files (gitignored)
-│   └── index/               vectors.npy, metadata.json, documents.json
+│   ├── index/               vectors.npy, metadata.json, documents.json
+│   └── graph/               extractions.json: the graph's source of truth
+│
+├── eval/                    Evaluation scripts and saved runs (see Testing)
 │
 ├── .env                     Secrets — never committed
 ├── .env.example             Variable names, no values
@@ -316,6 +327,7 @@ Then edit `.env`:
 | `OPENAI_API_KEY` | Yes | — | OpenAI API credential |
 | `CHAT_MODEL` | No | `gpt-5.6-luna` | Model used for generation and query rewriting |
 | `EMBEDDING_MODEL` | No | `text-embedding-3-small` | Model used for all embeddings |
+| `GRAPH_RAG_ENABLED` | No | `false` | Turns on the experimental graph mode (`POST /api/chat/graph` and the UI switch). `/api/chat` never reads it |
 
 The key is loaded once at startup and read by a single module. It never appears in source, in logs, or in an API response — upstream errors are logged server-side and returned to the client as a generic message so SDK exception text can't leak configuration details.
 
@@ -417,6 +429,15 @@ curl -X POST http://127.0.0.1:8000/api/chat \
 ### `POST /api/chat/reset`
 Clears conversation history for a session. Query parameter: `session_id`.
 
+### `POST /api/chat/graph` (experimental)
+The same request as `/api/chat`. Returns `403` unless `GRAPH_RAG_ENABLED=true`. Answers from the search passages plus up to two graph passages. The response adds `retrieval_mode: "vector+graph"`. Each source gains `retrieval` (`"vector"` or `"graph"`), and graph sources gain `graph`: the question's entities that reached the passage, and each link with `reached_from`, `to`, the extracted `relation` (for people; never sent to the model), the verbatim `quote` and the names as written. Sources are in prompt order, so `[n]` in the answer is `sources[n-1]`. Graph mode keeps its own conversation history.
+
+### `POST /api/chat/graph/reset` (experimental)
+Clears graph mode's history for a session. Query parameter: `session_id`.
+
+### `GET /api/chat/graph/status`
+`{"enabled": true | false, "detail": …}`: whether this server has graph mode on, so the UI can say so instead of failing.
+
 ---
 
 ## How the RAG pipeline works
@@ -484,7 +505,8 @@ Set in `app/config.py`:
 | `CHUNK_OVERLAP` | 150 | 15%. Prevents loss of facts spanning a chunk boundary |
 | `TOP_K` | 5 | Raised from 4 after a real question's answer ranked exactly 5th — see findings |
 | `SIMILARITY_THRESHOLD` | 0.20 | Calibrated — see findings below |
-| `MAX_CONTEXT_CHARS` | 8000 | Backstop against `TOP_K` being raised without bound |
+| `MAX_CONTEXT_CHARS` | 8000 | Backstop against `TOP_K` being raised without bound. Enforced only in graph mode, where graph passages are dropped before it is exceeded |
+| `GRAPH_EVIDENCE_MAX` | 2 | Graph passages added after the vector top 5 in graph mode: Step 7's G1 cap, unchanged |
 | `OCR_ENGINE` | vision | Layout-aware. `tesseract` is available for offline use |
 | `OCR_MIN_CHARS` | 100 | Below this, a page has no usable text layer |
 | `OCR_MAX_PAGES` | 20 | Bounds a worst-case upload to ~40s and about 2 cents |
@@ -831,11 +853,94 @@ Each configuration runs as A2 (on every question) and as the ceiling (only on qu
 **Decisions after Step 7 (owner, 2026-09-25).**
 
 - **The graph improved some retrieval-level metrics, not the pre-registered primary one.** It found 1–2 more gold chunks on the held-out half, but did not fully recall more multi-hop questions.
-- **Step 8 is not built.** Graph evidence is not fused into production answers, following the stop rule.
+- **Step 8 is not built.** Graph evidence is not fused into production answers, following the stop rule. *Superseded 2026-09-26: the owner chose to build Step 8 as a separate, experimental demonstration path, leaving the Step 7 result and `/api/chat` unchanged. See "Graph answers (Step 8)".*
 - **The graph code, its stored data and extraction on upload are kept,** so the graph stays current and available for future experiments. The chatbot does not read it when answering.
 - **Steps 9–13** (comparing vector-only with vector-plus-graph retrieval) take this Step 7 evaluation as their primary evidence. Nothing is re-run after the held-out result, and the held-out evaluation is not modified.
 
 **Damaged source text costs an edge; it does not create a false one.** 15 of 3,187 proposed relations (0.5%) quoted text that was not in the chunk. The most common cause (8 of 15) was PDF text damaged in extraction — words split by a stray space ("connectio ns") or a word pypdf moved out of its sentence — which the model silently repaired when quoting. The rest were a quote stitched from a lead-in and a non-adjacent bullet, an abbreviated name, and an added full stop. The quote check rejected all 15, so the damage became a recall loss rather than a precision loss — the right direction to fail in. Nothing was changed.
+
+### Graph answers (Step 8): an experimental demonstration, not evidence
+
+**Step 8 demonstrates graph RAG end to end: question → entity linking → vector retrieval plus graph passages → an answer whose citations reach back to the source sentences. Step 7 measured whether graph retrieval improves retrieval on this corpus, and the answer was no.** The passages the graph adds are the evidence a question needs about one time in twenty: 2 of 24 on the development half, 1 of 29 held out, and 2 of 48 in the demonstration below. Most graph passages are noise. Nothing in this section is evidence that graph RAG helps on this corpus. It was built at the owner's request, overriding the Step 7 stop rule, to show the architecture working.
+
+**How it is built.**
+- **A separate endpoint.** `POST /api/chat/graph` is off unless `GRAPH_RAG_ENABLED=true`, and `/api/chat` is untouched.
+- **Step 7's G1, unchanged.**
+  1. Link the entities the question names.
+  2. Take the chunks one hop away.
+  3. Keep those that pass the production cosine gate and are not already in the vector top 5.
+  4. Add at most 2, after the vector top 5.
+- **Refusal stays structural.** When vector retrieval finds nothing, the graph is never consulted, so it can never be the only evidence.
+- **The model never sees the relationship label.** It gets each graph passage with the two entity names and the verbatim sentence that linked it. Labels are 48% correct, so the label is withheld in code (see "Graph evidence is quoted, not asserted"). The API and the UI still show it, marked "machine-extracted, ~48% accurate on this corpus".
+- **Graph mode keeps its own conversation history,** so neither mode's answers can leak into the other's rewrites.
+- **The UI marks graph mode everywhere.**
+  - The "Graph mode (experimental)" switch is off on every page load.
+  - Every answer is tagged with the endpoint that produced it, read from the response.
+  - Graph passages carry a badge, the path from the question and the linking sentence.
+
+**What the checks prove.** `python -m eval.step8_check` passes 26 of 26. Each key check was also shown to fail on a planted fault.
+- **`/api/chat` is byte-identical to the Step 7 commit.** The same three-turn session runs through both versions of the code, with embeddings replayed and the model replaced by a stub whose answer is a hash of the whole request. It passes with the graph flag off and on. A single added space in the prompt was detected.
+- **The relationship label never reaches the model.** This is asserted on the exact request sent, for every label that is not also a word of the passages or instructions. It is asserted again with every label replaced by a sentinel string: 99 sentinels, and none reached the prompt.
+- **The rest match Step 7 and the refusal rules.**
+  - The graph passages are exactly Step 7's G1 choices on all 20 development questions.
+  - Every quote is verbatim in its passage.
+  - Refusals make no model call and no graph lookup.
+
+**Latency.** The graph step costs one extra embedding call; the traversal itself is cheap.
+
+| Over 36 graph-mode answers | p50 | p95 |
+|---|---|---|
+| Graph step, whole | 288 ms | 422 ms |
+| of which the second embedding call | 284 ms | 418 ms |
+| of which the traversal itself | 3.7 ms | 4.7 ms |
+
+The extra embedding call is an integration choice: it kept `retrieve.py`, and the Step 7 baselines it carries, untouched. An earlier run saw one embedding call take 1,668 ms, above Step 7's 500 ms threshold.
+
+**The demonstration.** `python -m eval.step8_demo`, saved as `eval/step8_runs/demo-20260926-080526.json`.
+- **What was asked.** Both modes answered the 40 questions outside the held-out half, plus the standing refusal question.
+- **"What is the capital of France?" is also held-out Q48.** It is used here only as a refusal check and is excluded from any held-out scoring.
+- **Whose readings.** The readings below are the assistant's, from the saved answers. The owner's labels are pending; the labelling file sits beside the run.
+
+**One gain and one harm, and the harm is the more instructive.** The gain is Q38, described below. The harm is Q32, "How do AWS Shield Advanced findings reach incident response?"
+- **What the answer said.** "These findings support incident response by providing evidence for the response playbook." It cites a graph passage, AWS:156, which gives only the playbook's steps.
+- **Why it is unsupported.** The link from findings to incident response is the unsupported hop recorded in Known limitation 16, now in a live answer. It is stated as fact, with a citation that makes it look sourced.
+- **How the passage arrived.** Through the generic entity "AWS", one of the broad names the linker matches.
+- **The prompt told the model not to do this:** "Never state a connection between two things unless a passage's text states it." By the owner's count, it is the fifth prompt-only rule to fail in this project. This README records two others by name: extraction's "never infer a purpose" and "never substitute a nearby entity".
+
+A citation that looks like evidence is a worse failure than a refusal, and a rule in a prompt did not prevent it.
+
+*Refusal flips: the same mechanism can produce a gain or a failure.*
+
+| Questions | Vector-only declined, graph mode answered | Vector-only answered, graph mode declined |
+|---|---|---|
+| 31 on-topic | 1 (Q38), a gain | 0 |
+| 5 off-topic, naming a corpus entity | 0 (a failure would count here) | 0 |
+| 4 off-topic naming nothing, and "capital of France" | 0: refused without a model call in both modes | 0 |
+
+The automatic reading first counted one flip each way among the entity-naming questions (Q59 and Q60). Reading the answers, both modes declined both questions; one answer also added a sentence of context with a citation. So the count is one gain and no failures, from only 5 entity-naming questions.
+
+*Citations: does the model use the graph passages?*
+
+| Measure | Result |
+|---|---|
+| Answers given at least one graph passage | 32 |
+| Answers citing a graph passage | 4 (12%) |
+| Graph passages cited, of those shown | 5 of 57 (9%), against 39 of 160 search passages (24%) in the same answers |
+| Graph passages that are gold, of those shown to on-topic questions | 2 of 48 (4%) |
+
+- **Mostly ignored.** The model cites a graph passage less than half as often as a search passage, so most of the noise is tolerated rather than used.
+- **Cited and gold: 2.** They are the only two gold graph passages shown, and both were used (Q38 RFC:20, Q32 AWS:154).
+- **Cited and not gold: 3.**
+  - Two support true details: Q06 (rate limits scoped down for dynamic endpoints), and Q16 (SYN cookies at the edge, alongside the search passages).
+  - **One is harm, the headline above.** In Q32, "These findings support incident response by providing evidence for the response playbook" cites AWS:156, which gives only the playbook's steps. The connection from findings to incident response is the model's own inference, the unsupported hop recorded in Known limitation 16. It is stated as fact, with a citation, despite the prompt's rule against stating connections no passage states. AWS:156 was reached through the generic entity "AWS".
+
+**The gain, one question as an illustration rather than a result: Q38.** "What two different purposes does mutual TLS serve in RFC 8935?"
+- **Vector-only declined.** Its top 5 held neither gold chunk.
+- **Graph mode followed "mutual TLS" to RFC:20.** That passage was above the cosine gate (0.33) but ranked 19th by vector search, and it is gold. Graph mode answered with two purposes, both citing it:
+  - authorization based on the transmitter's identity, which RFC:20 states
+  - authenticating the transmitter, a fair reading of RFC:20's "or via other employed authentication methods"
+- **The answer is partly correct.** The labelled second purpose, mitigating denial of service by authenticating transmitters (RFC:26), is missing, because no edge links RFC:26 to mutual TLS.
+- **What it shows.** This is the clearest single picture of what the graph does on this corpus: it promotes evidence that retrieval ranked above the gate but too low to use.
 
 ### Entity resolution: connectivity comes from extraction, not merging
 
@@ -939,6 +1044,8 @@ Run from the project root. The expected results are the current measured values.
 | `python -m eval.check_graph_questions` | The Step 7 question labels: required fields, gold chunks that exist, answer facts found verbatim | `All checks passed.` | Run after any label edit; exits 1 on a problem. No API calls |
 | `python -m eval.linking_recall` | How many of each question's entities the linker finds in the graph | `linking recall: 41/56 = 73%` | No API calls |
 | `python -m eval.graph_retrieval_eval` | The Step 7 graph retrieval arms against A0 and A0@7, on the development half | Every arm fully recalls 2 of 5 multi-hop questions; `-> chosen: G1` | Saves a run to `eval/graph_runs/`. 20 embedding calls |
+| `python -m eval.step8_check` | Step 8 wiring: `/api/chat` byte-identical to the Step 7 commit, the label never reaching the model, refusal, provenance, G1 parity, citation numbering, separate histories | `26 of 26 checks passed.` | The model is stubbed. About 110 embedding calls |
+| `python -m eval.step8_demo` | Step 8 demonstration: both modes answer the 40 questions outside the held-out half; refusal flips, citation of graph passages, latency | Summary tables, then a run and a labelling file saved to `eval/step8_runs/` | A demonstration, not evidence. Real answers, a few cents; answers vary from run to run |
 
 **Not for re-running.** These are records of steps that are closed:
 
@@ -1019,12 +1126,24 @@ Run from the project root. The expected results are the current measured values.
     scores up to 0.70 and reaches the model, which must decline on its own
     instructions. For those questions, refusal is a prompt behaviour, not a
     structural guarantee.
-18. **The graph is built on every upload but no answer uses it.** Graph
-    retrieval did not improve the pre-registered multi-hop metric on the
-    held-out half (4 of 5 questions fully recalled with or without it), so it
-    was not added to the answer path. Extraction still runs in the background
-    after each upload (about $0.0015 per chunk) to keep the graph available for
-    future experiments.
+18. **The graph is built on every upload, but only the experimental endpoint
+    uses it.** Graph retrieval did not improve the pre-registered multi-hop
+    metric on the held-out half (4 of 5 questions fully recalled with or without
+    it), so `/api/chat` does not use it. Only the experimental
+    `POST /api/chat/graph` does (Step 8). Extraction still runs in the
+    background after each upload, about $0.0015 per chunk.
+19. **The frontend's files have no versioning.** `app.js`, `index.html` and
+    `style.css` are served under fixed names, so a browser can keep stale
+    copies after an update. Since Step 8 the files depend on each other: a new
+    `app.js` with an old cached `index.html` stops at its startup check, which
+    requires every element it uses to exist. Until the files are versioned,
+    reload with Cmd+Shift+R (Ctrl+Shift+R) after an update.
+20. **Graph mode can state a connection no document states.** In the Step 8
+    demonstration, one answer (Q32) cited a graph passage for a link between
+    Shield Advanced findings and incident response that the documents never
+    make, despite the prompt's rule against it. Graph passages are gold about
+    5% of the time, and a prompt rule is the only guard against using the rest
+    as a bridge.
 
 ## Future improvements
 

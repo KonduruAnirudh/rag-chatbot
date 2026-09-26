@@ -1,0 +1,5458 @@
+{
+ "summary": {
+  "flips": {
+   "on-topic": {
+    "questions": 31,
+    "vector_declined_graph_answered": [
+     "Q38"
+    ],
+    "vector_answered_graph_declined": [],
+    "both_decline": 0
+   },
+   "off-topic, names-entity": {
+    "questions": 5,
+    "vector_declined_graph_answered": [
+     "Q60"
+    ],
+    "vector_answered_graph_declined": [
+     "Q59"
+    ],
+    "both_decline": 3
+   },
+   "off-topic, names-nothing": {
+    "questions": 4,
+    "vector_declined_graph_answered": [],
+    "vector_answered_graph_declined": [],
+    "both_decline": 4
+   },
+   "standing refusal": {
+    "questions": 1,
+    "vector_declined_graph_answered": [],
+    "vector_answered_graph_declined": [],
+    "both_decline": 1
+   }
+  },
+  "citations": {
+   "answers_with_graph_passages": 32,
+   "answers_citing_a_graph_passage": [
+    "Q06",
+    "Q16",
+    "Q32",
+    "Q38"
+   ],
+   "graph_passages_shown": 57,
+   "graph_passages_cited": 5,
+   "search_passages_shown": 160,
+   "search_passages_cited": 39,
+   "on_topic_graph_shown": 48,
+   "on_topic_graph_gold": 2,
+   "cited_and_gold": [
+    [
+     "Q32",
+     "AWS:154"
+    ],
+    [
+     "Q38",
+     "RFC:20"
+    ]
+   ],
+   "cited_not_gold_on_topic": [
+    [
+     "Q06",
+     "AWS:80"
+    ],
+    [
+     "Q16",
+     "AWS:27"
+    ],
+    [
+     "Q32",
+     "AWS:156"
+    ]
+   ],
+   "cited_off_topic": []
+  },
+  "latency": {
+   "vector_request": [
+    1876.59029200222,
+    3221.834709001996
+   ],
+   "graph_request": [
+    2168.637916998705,
+    3089.937207998446
+   ],
+   "graph step, whole": [
+    288.1731249981385,
+    421.8547920027049
+   ],
+   "2nd embedding call": [
+    284.278417002497,
+    417.662374999054
+   ],
+   "traversal itself": [
+    3.6918330006301403,
+    4.660459002479911
+   ]
+  }
+ },
+ "questions": [
+  {
+   "id": "Q02",
+   "question": "What media type is used when transmitting a SET?",
+   "category": "plain",
+   "off_topic_kind": null,
+   "gold_chunks": [
+    "RFC:11"
+   ],
+   "answer_facts": [
+    "application/secevent+jwt"
+   ],
+   "group": "on-topic",
+   "vector": {
+    "status": 200,
+    "answer": "The media type is `application/secevent+jwt`, specified in the request\u2019s `Content-Type` header. [1]",
+    "reading": "answered",
+    "request_ms": 3512.4267079991114,
+    "graph_ms": null,
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "RFC:11",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "RFC:12",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "RFC:3",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "RFC:6",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "RFC:15",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     }
+    ]
+   },
+   "graph": {
+    "status": 200,
+    "answer": "The media type is `application/secevent+jwt` for the request\u2019s `Content-Type` header. [1]",
+    "reading": "answered",
+    "request_ms": 2408.0123329986236,
+    "graph_ms": [
+     298.50987499958137,
+     273.06700000190176
+    ],
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "RFC:11",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "RFC:12",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "RFC:3",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "RFC:6",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "RFC:15",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 6,
+      "chunk": "RFC:8",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "SET",
+        "to": "SET Recipient",
+        "relation": "receives",
+        "quote": "The SET Recipient may accept or reject (i.e., return an error response such as access_denied) a SET at its own discretion."
+       },
+       {
+        "reached_from": "SET",
+        "to": "SET Transmitter",
+        "relation": "produces",
+        "quote": "SET Transmitters transmit SETs issued by another entity."
+       }
+      ]
+     },
+     {
+      "n": 7,
+      "chunk": "RFC:10",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "SET",
+        "to": "SET Transmitter",
+        "relation": "produces",
+        "quote": "In all other cases, the SET Transmitter retransmit a SET."
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Q03",
+   "question": "Which error code means the SET issuer is not recognised?",
+   "category": "plain",
+   "off_topic_kind": null,
+   "gold_chunks": [
+    "RFC:19"
+   ],
+   "answer_facts": [
+    "invalid_issuer the set issuer is invalid for the set recipient"
+   ],
+   "group": "on-topic",
+   "vector": {
+    "status": 200,
+    "answer": "`invalid_issuer` \u2014 the SET Issuer is invalid or not recognized by the SET Recipient. [1][4]",
+    "reading": "answered",
+    "request_ms": 1773.972209000931,
+    "graph_ms": null,
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "RFC:19",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "RFC:20",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "RFC:18",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "RFC:7",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "RFC:33",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     }
+    ]
+   },
+   "graph": {
+    "status": 200,
+    "answer": "`invalid_issuer` \u2014 it means the SET Issuer is invalid or not recognized by the SET Recipient. [1][4]",
+    "reading": "answered",
+    "request_ms": 50430.26508299954,
+    "graph_ms": [
+     270.5267499986803,
+     267.0529999995779
+    ],
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "RFC:19",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "RFC:20",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "RFC:18",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "RFC:7",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "RFC:33",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 6,
+      "chunk": "RFC:29",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "SET Issuer",
+        "to": "SET Recipient",
+        "relation": "communicates_with",
+        "quote": "SET Issuers and SET Transmitters should consider the ramifications of sharing a particular subject identifier with a SET Recipient (e.g., whether doing so could enable correlation and/or de-anonymization of data) and choose appropriate subject identifiers for their use cases."
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Q05",
+   "question": "Which best practices apply to application layer defense?",
+   "category": "plain",
+   "off_topic_kind": null,
+   "gold_chunks": [
+    "AWS:67",
+    "AWS:68"
+   ],
+   "answer_facts": [
+    "application layer defense (bp1, bp2)",
+    "amazon cloudfront (and its http caching capability), aws waf, and shield advanced automatic application layer protection"
+   ],
+   "group": "on-topic",
+   "vector": {
+    "status": 200,
+    "answer": "The best practices identified for application layer defense are **BP1 and BP2**. They involve:\n\n- Using **Amazon CloudFront, AWS WAF, and Shield Advanced Automatic Application Layer protection** to detect and filter malicious web requests.\n- Using **AWS WAF as the primary filtering layer** and **HTTP caching** to reduce load on the origin infrastructure. [2][3]",
+    "reading": "answered",
+    "request_ms": 2290.220083999884,
+    "graph_ms": null,
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:39",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:68",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:67",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:30",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:99",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     }
+    ]
+   },
+   "graph": {
+    "status": 200,
+    "answer": "The best practices identified for application-layer defense are **BP1 and BP2**. They involve:\n\n- Detecting and filtering malicious web requests using **Amazon CloudFront, AWS WAF, and Shield Advanced Automatic Application Layer Protection**.\n- Using **HTTP caching** to reduce load on infrastructure behind CloudFront.\n- Designing the architecture to detect, absorb through scaling, and block malicious requests. [2][3]",
+    "reading": "answered",
+    "request_ms": 2638.190665998991,
+    "graph_ms": [
+     249.5794999995269,
+     245.9895840001991
+    ],
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:39",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:68",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:67",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:30",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:99",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 6,
+      "chunk": "AWS:159",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "best practices",
+        "to": "application layer attacks",
+        "relation": "mitigates",
+        "quote": "Throughout this whitepaper, AWS outlined a DDoS-resilient reference architecture, explained how infrastructure layer and application layer attacks differ, and mapped the AWS services and best practices that mitigate each."
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Q06",
+   "question": "What are AWS WAF rate-based rules used for?",
+   "category": "plain",
+   "off_topic_kind": null,
+   "gold_chunks": [
+    "AWS:92"
+   ],
+   "answer_facts": [
+    "protecting against http request floods by using rate-based rules in aws waf"
+   ],
+   "group": "on-topic",
+   "vector": {
+    "status": 200,
+    "answer": "AWS WAF rate-based rules are used to protect applications from HTTP request floods by automatically blocking or challenging requests when traffic exceeds a configured threshold within a sliding window. They can use IP addresses or custom aggregation keys, such as host, URI, query string, and IP, to provide broad and targeted protection against attacks like cache busting. [1]",
+    "reading": "answered",
+    "request_ms": 2455.012333997729,
+    "graph_ms": null,
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:92",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:95",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:88",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:86",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:113",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     }
+    ]
+   },
+   "graph": {
+    "status": 200,
+    "answer": "AWS WAF rate-based rules are used to mitigate HTTP request floods and cache-busting attacks by automatically blocking or challenging clients whose request rates exceed a configured threshold. They can also apply stricter limits to specific traffic patterns, such as particular hosts, URI paths, query strings, IPs, APIs, or fingerprints. [1][3]\n\nThey may additionally be scoped to dynamic endpoints that cannot be cached, using lower limits than broadly applied rules. [6]",
+    "reading": "answered",
+    "request_ms": 3089.937207998446,
+    "graph_ms": [
+     303.0729579986655,
+     299.3811249980354
+    ],
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:92",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:95",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:88",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:86",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:113",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 6,
+      "chunk": "AWS:80",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": true,
+      "links": [
+       {
+        "reached_from": "AWS WAF",
+        "to": "rate-based rules",
+        "relation": "uses",
+        "quote": "While static content should be aggressively cached, truly dynamic endpoints that can't be cached should be identified early and protected with additional controls such as scoped-down AWS WAF rate-based rules with lower limits than any rate-based rules that are broadly applied."
+       },
+       {
+        "reached_from": "rate-based rules",
+        "to": "AWS WAF",
+        "relation": "uses",
+        "quote": "While static content should be aggressively cached, truly dynamic endpoints that can't be cached should be identified early and protected with additional controls such as scoped-down AWS WAF rate-based rules with lower limits than any rate-based rules that are broadly applied."
+       }
+      ]
+     },
+     {
+      "n": 7,
+      "chunk": "AWS:103",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "AWS WAF",
+        "to": "URI paths",
+        "relation": "protects",
+        "quote": "Block access to unused URI paths using AWS WAF."
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Q07",
+   "question": "What should a receiver reply if it cannot verify the token's signature?",
+   "category": "plain",
+   "off_topic_kind": null,
+   "gold_chunks": [
+    "RFC:19",
+    "RFC:15"
+   ],
+   "answer_facts": [
+    "invalid_key one or more keys used to encrypt or sign the set is invalid",
+    "http response status code of 400 (bad request)"
+   ],
+   "group": "on-topic",
+   "vector": {
+    "status": 200,
+    "answer": "The receiver should reply with the `invalid_key` error code, which applies when a key used to sign the SET is invalid or otherwise unacceptable. [2]",
+    "reading": "answered",
+    "request_ms": 1817.9416670027422,
+    "graph_ms": null,
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "RFC:18",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "RFC:19",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "RFC:33",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "RFC:29",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "RFC:32",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     }
+    ]
+   },
+   "graph": {
+    "status": 200,
+    "answer": "The receiver should reply with the `invalid_key` error code, which applies when a key used to sign the SET is invalid or otherwise unacceptable. [2]",
+    "reading": "answered",
+    "request_ms": 1843.790374998207,
+    "graph_ms": [
+     262.7904580003815,
+     259.0258330019424
+    ],
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "RFC:18",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "RFC:19",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "RFC:33",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "RFC:29",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "RFC:32",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 6,
+      "chunk": "AWS:105",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "token",
+        "to": "client",
+        "relation": "uses",
+        "quote": "After the token is acquired, it will be presented by the client on subsequent requests for the same domain until the TTL, in the form of cookie expiration, expires."
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Q11",
+   "question": "What is Amazon API Gateway's default throttling limit?",
+   "category": "plain",
+   "off_topic_kind": null,
+   "gold_chunks": [
+    "AWS:45"
+   ],
+   "answer_facts": [
+    "default 10,000 requests per second per region"
+   ],
+   "group": "on-topic",
+   "vector": {
+    "status": 200,
+    "answer": "Amazon API Gateway\u2019s default throttling limit is **10,000 requests per second per AWS Region**. [2]",
+    "reading": "answered",
+    "request_ms": 1723.5970000001544,
+    "graph_ms": null,
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:125",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:45",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:124",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:126",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:127",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     }
+    ]
+   },
+   "graph": {
+    "status": 200,
+    "answer": "Amazon API Gateway\u2019s default throttling limit is **10,000 requests per second per AWS Region**. [2]",
+    "reading": "answered",
+    "request_ms": 1795.5072079967067,
+    "graph_ms": [
+     290.8511669993459,
+     287.3583749969839
+    ],
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:125",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:45",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:124",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:126",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:127",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 6,
+      "chunk": "AWS:118",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "Amazon API Gateway",
+        "to": "origin infrastructure",
+        "relation": "connects_to",
+        "quote": "You can limit direct exposure of your backend resources by placing edge services-such as CloudFront, API Gateway, or load balancers-between your users and your origin infrastructure."
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Q12",
+   "question": "For how long does CloudFront cache 4xx and 5xx error responses from the origin by default?",
+   "category": "plain",
+   "off_topic_kind": null,
+   "gold_chunks": [
+    "AWS:84"
+   ],
+   "answer_facts": [
+    "for a default duration of 10 seconds"
+   ],
+   "group": "on-topic",
+   "vector": {
+    "status": 200,
+    "answer": "CloudFront caches some 4xx and 5xx error responses for **10 seconds by default**. [1]",
+    "reading": "answered",
+    "request_ms": 1822.2783749988594,
+    "graph_ms": null,
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:84",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:80",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:73",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:83",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:82",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     }
+    ]
+   },
+   "graph": {
+    "status": 200,
+    "answer": "CloudFront caches some 4xx and 5xx responses from the origin for **10 seconds by default**. [1]",
+    "reading": "answered",
+    "request_ms": 2140.70654200259,
+    "graph_ms": [
+     299.56941699856543,
+     295.094875000359
+    ],
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:84",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:80",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:73",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:83",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:82",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 6,
+      "chunk": "AWS:57",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "CloudFront",
+        "to": "authenticated requests",
+        "relation": "produces",
+        "quote": "To achieve this, configure CloudFront to send authenticated requests to Amazon S3, and configure Amazon S3 to only allow access to authenticated requests from CloudFront."
+       },
+       {
+        "reached_from": "CloudFront",
+        "to": "origin",
+        "relation": "protects",
+        "quote": "You can use CloudFront to protect an origin on AWS or elsewhere on the internet."
+       },
+       {
+        "reached_from": "origin",
+        "to": "CloudFront",
+        "relation": "protects",
+        "quote": "You can use CloudFront to protect an origin on AWS or elsewhere on the internet."
+       }
+      ]
+     },
+     {
+      "n": 7,
+      "chunk": "AWS:78",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "CloudFront",
+        "to": "HTTP 304 (Not Modified)",
+        "relation": "uses",
+        "quote": "When content hasn't changed, CloudFront responds with an HTTP 304 (Not Modified) status and a zero-byte response body, which optimizes page load times and minimizes Data Transfer Out charges."
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Q13",
+   "question": "What is the minimum TLS version a SET delivery endpoint must support?",
+   "category": "plain",
+   "off_topic_kind": null,
+   "gold_chunks": [
+    "RFC:25"
+   ],
+   "answer_facts": [
+    "support at least tls version 1.2"
+   ],
+   "group": "on-topic",
+   "vector": {
+    "status": 200,
+    "answer": "A SET delivery endpoint must support at least TLS 1.2. [1]",
+    "reading": "answered",
+    "request_ms": 1655.919000000722,
+    "graph_ms": null,
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "RFC:25",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "RFC:4",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "RFC:26",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "RFC:11",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "RFC:0",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     }
+    ]
+   },
+   "graph": {
+    "status": 200,
+    "answer": "A SET delivery endpoint must support at least TLS 1.2. [1]",
+    "reading": "answered",
+    "request_ms": 2024.0034170019499,
+    "graph_ms": [
+     351.6230839995842,
+     347.6862500028801
+    ],
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "RFC:25",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "RFC:4",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "RFC:26",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "RFC:11",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "RFC:0",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 6,
+      "chunk": "RFC:41",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "TLS",
+        "to": "HTTP",
+        "relation": "conforms_to",
+        "quote": "When the working group decided to mandate usage of HTTP over TLS, it also decided to preserve the description of these considerations in this non-normative appendix."
+       }
+      ]
+     },
+     {
+      "n": 7,
+      "chunk": "RFC:24",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "SET delivery",
+        "to": "HTTP",
+        "relation": "conforms_to",
+        "quote": "SET delivery depends on the use of Hypertext Transfer Protocol and is thus subject to the security considerations of HTTP ( ) and its related specifications.Section 9 of [RFC7230]"
+       },
+       {
+        "reached_from": "SET delivery",
+        "to": "Hypertext Transfer Protocol",
+        "relation": "depends_on",
+        "quote": "SET delivery depends on the use of Hypertext Transfer Protocol and is thus subject to the security considerations of HTTP ( ) and its related specifications.Section 9 of [RFC7230]"
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Q15",
+   "question": "Which AWS service has a 100% data plane availability SLA?",
+   "category": "plain",
+   "off_topic_kind": null,
+   "gold_chunks": [
+    "AWS:64"
+   ],
+   "answer_facts": [
+    "it's the only aws service that has a 100% data plane availability sla"
+   ],
+   "group": "on-topic",
+   "vector": {
+    "status": 200,
+    "answer": "Amazon Route 53 has a 100% data plane availability SLA. [1]",
+    "reading": "answered",
+    "request_ms": 1724.3172920025245,
+    "graph_ms": null,
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:64",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:27",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:63",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:55",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:29",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     }
+    ]
+   },
+   "graph": {
+    "status": 200,
+    "answer": "Amazon Route 53 has a 100% data plane availability SLA. [1]",
+    "reading": "answered",
+    "request_ms": 1677.1179999996093,
+    "graph_ms": [
+     287.93962499912595,
+     284.278417002497
+    ],
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:64",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:27",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:63",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:55",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:29",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 6,
+      "chunk": "AWS:1",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "AWS",
+        "to": "prescriptive DDoS guidance",
+        "relation": "produces",
+        "quote": "In this whitepaper, AWS provides you with prescriptive DDoS guidance to improve the resiliency of applications running on AWS."
+       }
+      ]
+     },
+     {
+      "n": 7,
+      "chunk": "AWS:3",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "AWS",
+        "to": "DDoS events",
+        "relation": "mitigates",
+        "quote": "AWS recommends implementing these best practices proactively, as they significantly reduce the likelihood of business impact from DDoS events."
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Q16",
+   "question": "How does AWS Global Accelerator help protect a Network Load Balancer's TCP listeners from SYN floods?",
+   "category": "relationship",
+   "off_topic_kind": null,
+   "gold_chunks": [
+    "AWS:50"
+   ],
+   "answer_facts": [
+    "global accelerator has an inbuilt syn proxy"
+   ],
+   "group": "on-topic",
+   "vector": {
+    "status": 200,
+    "answer": "AWS Global Accelerator protects an NLB\u2019s TCP listeners by providing an inbuilt, stateless SYN proxy. It challenges new connection attempts with SYN cookies, tracks connections through the NLB, and drops spoofed traffic that cannot complete the TCP handshake, helping mitigate SYN floods [1][2].",
+    "reading": "answered",
+    "request_ms": 1876.59029200222,
+    "graph_ms": null,
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:61",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:50",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:62",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:38",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:49",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     }
+    ]
+   },
+   "graph": {
+    "status": 200,
+    "answer": "AWS Global Accelerator protects TCP listeners on a Network Load Balancer by providing an inbuilt, stateless SYN proxy. It challenges new connection attempts with SYN cookies, tracks connections through the NLB, and drops spoofed traffic that cannot complete the TCP handshake before it reaches the load balancer. [1][2][7]",
+    "reading": "answered",
+    "request_ms": 2316.7798750000657,
+    "graph_ms": [
+     265.2777920011431,
+     261.1187910006265
+    ],
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:61",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:50",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:62",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:38",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:49",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 6,
+      "chunk": "AWS:48",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "Network Load Balancer",
+        "to": "Amazon EC2 instances",
+        "relation": "connects_to",
+        "quote": "For TCP, UDP, and TLS applications, you can use Network Load Balancer to route traffic to targets (for example, Amazon EC2 instances) at ultra-low latency, as shown in the following diagram."
+       },
+       {
+        "reached_from": "Network Load Balancer",
+        "to": "TCP",
+        "relation": "uses",
+        "quote": "For TCP, UDP, and TLS applications, you can use Network Load Balancer to route traffic to targets (for example, Amazon EC2 instances) at ultra-low latency, as shown in the following diagram."
+       },
+       {
+        "reached_from": "Network Load Balancer",
+        "to": "UDP",
+        "relation": "uses",
+        "quote": "For TCP, UDP, and TLS applications, you can use Network Load Balancer to route traffic to targets (for example, Amazon EC2 instances) at ultra-low latency, as shown in the following diagram."
+       },
+       {
+        "reached_from": "Network Load Balancer",
+        "to": "targets",
+        "relation": "connects_to",
+        "quote": "For TCP, UDP, and TLS applications, you can use Network Load Balancer to route traffic to targets (for example, Amazon EC2 instances) at ultra-low latency, as shown in the following diagram."
+       },
+       {
+        "reached_from": "TCP",
+        "to": "Network Load Balancer",
+        "relation": "uses",
+        "quote": "For TCP, UDP, and TLS applications, you can use Network Load Balancer to route traffic to targets (for example, Amazon EC2 instances) at ultra-low latency, as shown in the following diagram."
+       }
+      ]
+     },
+     {
+      "n": 7,
+      "chunk": "AWS:27",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": true,
+      "links": [
+       {
+        "reached_from": "Global Accelerator",
+        "to": "CloudFront",
+        "relation": "related_to",
+        "quote": "Benefits of using Amazon CloudFront, Global Accelerator, and Amazon Route 53 include:"
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Q18",
+   "question": "How does CloudFront restrict direct access to content in an Amazon S3 bucket?",
+   "category": "relationship",
+   "off_topic_kind": null,
+   "gold_chunks": [
+    "AWS:57",
+    "AWS:58"
+   ],
+   "answer_facts": [
+    "configure cloudfront to send authenticated requests to amazon s3",
+    "origin access control (oac) and origin access identity (oai)"
+   ],
+   "group": "on-topic",
+   "vector": {
+    "status": 200,
+    "answer": "CloudFront restricts direct access by:\n\n- Configuring CloudFront to send authenticated requests to Amazon S3.\n- Configuring the S3 bucket to allow access only to authenticated requests from the specified CloudFront distribution.\n\nThis prevents users from accessing the content directly through the bucket and supports using Origin Access Control (OAC) or Origin Access Identity (OAI). [1][4]",
+    "reading": "answered",
+    "request_ms": 2304.8185420011578,
+    "graph_ms": null,
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:57",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:126",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:59",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:58",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:123",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     }
+    ]
+   },
+   "graph": {
+    "status": 200,
+    "answer": "CloudFront restricts direct access by configuring it to send authenticated requests to Amazon S3, then configuring the S3 bucket to allow access only from authenticated CloudFront requests. This ensures users can access the content only through the specified CloudFront distribution, not directly from the bucket. [1] AWS identifies Origin Access Control (OAC) and Origin Access Identity (OAI) as the mechanisms for sending these authenticated requests. [4]",
+    "reading": "answered",
+    "request_ms": 2342.631457999232,
+    "graph_ms": [
+     264.9397089990089,
+     260.77775000158
+    ],
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:57",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:126",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:59",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:58",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:123",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 6,
+      "chunk": "AWS:84",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "Amazon S3 bucket",
+        "to": "CloudFront",
+        "relation": "connects_to",
+        "quote": "Storing error pages in an alternate origin, such as an Amazon S3 bucket, so that CloudFront can access them, even when your other origins are returning errors."
+       },
+       {
+        "reached_from": "CloudFront",
+        "to": "4xx and 5xx status codes",
+        "relation": "receives",
+        "quote": "CloudFront caches some 4xx and 5xx status codes returned by your origin for a default duration of 10 seconds."
+       },
+       {
+        "reached_from": "CloudFront",
+        "to": "Amazon S3 bucket",
+        "relation": "connects_to",
+        "quote": "Storing error pages in an alternate origin, such as an Amazon S3 bucket, so that CloudFront can access them, even when your other origins are returning errors."
+       },
+       {
+        "reached_from": "CloudFront",
+        "to": "origin",
+        "relation": "uses",
+        "quote": "CloudFront caches some 4xx and 5xx status codes returned by your origin for a default duration of 10 seconds."
+       }
+      ]
+     },
+     {
+      "n": 7,
+      "chunk": "AWS:69",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "CloudFront",
+        "to": "HTTP",
+        "relation": "protects",
+        "quote": "Amazon CloudFront is a content delivery network (CDN) that helps protect HTTP/S-based applications in the following ways:"
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Q19",
+   "question": "Why is OAC recommended over OAI for Amazon S3 origins?",
+   "category": "relationship",
+   "off_topic_kind": null,
+   "gold_chunks": [
+    "AWS:59"
+   ],
+   "answer_facts": [
+    "all amazon s3 buckets in all aws regions",
+    "amazon s3 server-side encryption with aws kms (sse-kms)",
+    "dynamic requests (put and delete) to amazon s3"
+   ],
+   "group": "on-topic",
+   "vector": {
+    "status": 200,
+    "answer": "OAC is recommended because it supports:\n\n- All Amazon S3 buckets and AWS Regions, including newer opt-in Regions.\n- S3 server-side encryption with AWS KMS (SSE-KMS).\n- Dynamic `PUT` and `DELETE` requests to S3. [1]\n\nThe documents identify OAC and OAI as the two methods for authenticated CloudFront requests to S3, but do not provide further comparison details. [3]",
+    "reading": "partial",
+    "request_ms": 2153.505041002063,
+    "graph_ms": null,
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:59",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:123",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:58",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:57",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:122",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     }
+    ]
+   },
+   "graph": {
+    "status": 200,
+    "answer": "OAC is recommended over OAI because it supports:\n\n- All Amazon S3 buckets in every AWS Region, including opt-in Regions launched after December 2022.\n- Amazon S3 server-side encryption with AWS KMS (SSE-KMS).\n- Dynamic `PUT` and `DELETE` requests to Amazon S3. [1]\n\nBoth OAC and OAI can send authenticated requests to S3 origins. [3]",
+    "reading": "answered",
+    "request_ms": 2538.513833998877,
+    "graph_ms": [
+     312.20487500104355,
+     309.9952500015206
+    ],
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:59",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:123",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:58",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:57",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:122",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 6,
+      "chunk": "AWS:28",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "Amazon S3",
+        "to": "CloudFront",
+        "relation": "connects_to",
+        "quote": "CloudFront origin fetches are free from any AWS origin such as Amazon Simple Storage Service (Amazon S3), Amazon EC2, or Elastic Load Balancers, including origins in private subnets through"
+       }
+      ]
+     },
+     {
+      "n": 7,
+      "chunk": "AWS:81",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "origin",
+        "to": "headers",
+        "relation": "connects_to",
+        "quote": "If you forward all headers to the origin, caching is disabled regardless of other cache settings."
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Q20",
+   "question": "How does the requestId field in AWS WAF logs relate to CloudFront's X-Amz-Cf-Id header?",
+   "category": "relationship",
+   "off_topic_kind": null,
+   "gold_chunks": [
+    "AWS:149"
+   ],
+   "answer_facts": [
+    "the waf includes a requestid field in the waf logs that contains the value of x-amz-cf-id from cloudfront"
+   ],
+   "group": "on-topic",
+   "vector": {
+    "status": 200,
+    "answer": "When CloudFront has an attached WAF web ACL, the AWS WAF `requestId` field contains the same value as CloudFront\u2019s `X-Amz-Cf-Id` header. This enables correlation between CloudFront and WAF logs. [1]",
+    "reading": "answered",
+    "request_ms": 2137.22933399913,
+    "graph_ms": null,
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:149",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:148",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:150",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:91",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:147",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     }
+    ]
+   },
+   "graph": {
+    "status": 200,
+    "answer": "When CloudFront is protected by an AWS WAF web ACL, the WAF logs\u2019 `requestId` field contains the same value as CloudFront\u2019s `X-Amz-Cf-Id` header. This enables correlation between CloudFront and WAF logs. [1]",
+    "reading": "answered",
+    "request_ms": 2941.3378329991247,
+    "graph_ms": [
+     680.7072920018982,
+     676.436375000776
+    ],
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:149",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:148",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:150",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:91",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:147",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 6,
+      "chunk": "AWS:28",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "AWS WAF",
+        "to": "CloudFront",
+        "relation": "uses",
+        "quote": "Application layer defense using CloudFront with AWS WAF, without requiring changes to your existing origin architecture-whether hosted in an AWS Region or on-premises."
+       },
+       {
+        "reached_from": "CloudFront",
+        "to": "AWS WAF",
+        "relation": "uses",
+        "quote": "Application layer defense using CloudFront with AWS WAF, without requiring changes to your existing origin architecture-whether hosted in an AWS Region or on-premises."
+       },
+       {
+        "reached_from": "CloudFront",
+        "to": "Amazon EC2",
+        "relation": "connects_to",
+        "quote": "CloudFront origin fetches are free from any AWS origin such as Amazon Simple Storage Service (Amazon S3), Amazon EC2, or Elastic Load Balancers, including origins in private subnets through"
+       },
+       {
+        "reached_from": "CloudFront",
+        "to": "Amazon S3",
+        "relation": "connects_to",
+        "quote": "CloudFront origin fetches are free from any AWS origin such as Amazon Simple Storage Service (Amazon S3), Amazon EC2, or Elastic Load Balancers, including origins in private subnets through"
+       },
+       {
+        "reached_from": "CloudFront",
+        "to": "Amazon Simple Storage Service",
+        "relation": "connects_to",
+        "quote": "CloudFront origin fetches are free from any AWS origin such as Amazon Simple Storage Service (Amazon S3), Amazon EC2, or Elastic Load Balancers, including origins in private subnets through"
+       },
+       {
+        "reached_from": "CloudFront",
+        "to": "Elastic Load Balancers",
+        "relation": "connects_to",
+        "quote": "CloudFront origin fetches are free from any AWS origin such as Amazon Simple Storage Service (Amazon S3), Amazon EC2, or Elastic Load Balancers, including origins in private subnets through"
+       }
+      ]
+     },
+     {
+      "n": 7,
+      "chunk": "AWS:29",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "AWS WAF",
+        "to": "HTTP requests",
+        "relation": "related_to",
+        "quote": "Additionally, you aren't charged for HTTP requests or data transfer out for requests rejected by CloudFront or AWS WAF."
+       },
+       {
+        "reached_from": "CloudFront",
+        "to": "HTTP requests",
+        "relation": "related_to",
+        "quote": "Additionally, you aren't charged for HTTP requests or data transfer out for requests rejected by CloudFront or AWS WAF."
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Q22",
+   "question": "How can a SET Recipient reduce the impact of a flood of invalid SETs?",
+   "category": "relationship",
+   "off_topic_kind": null,
+   "gold_chunks": [
+    "RFC:26"
+   ],
+   "answer_facts": [
+    "authenticating set transmitters with a mechanism such as mutual tls",
+    "rate-limiting problematic transmitters"
+   ],
+   "group": "on-topic",
+   "vector": {
+    "status": 200,
+    "answer": "A SET Recipient can reduce the impact by:\n\n- Authenticating SET Transmitters, for example with mutual TLS.\n- Rate-limiting transmitters that send problematic requests. [1]",
+    "reading": "answered",
+    "request_ms": 1854.8785829989356,
+    "graph_ms": null,
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "RFC:26",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "RFC:21",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "RFC:24",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "RFC:7",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "RFC:22",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     }
+    ]
+   },
+   "graph": {
+    "status": 200,
+    "answer": "A SET Recipient can mitigate a flood of invalid SETs by:\n\n- Authenticating SET Transmitters, for example using mutual TLS.\n- Rate-limiting problematic transmitters. [1]",
+    "reading": "answered",
+    "request_ms": 2094.2416669968225,
+    "graph_ms": [
+     276.63308400224196,
+     272.65391599939903
+    ],
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "RFC:26",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "RFC:21",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "RFC:24",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "RFC:7",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "RFC:22",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 6,
+      "chunk": "RFC:9",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "SET",
+        "to": "SET Recipient",
+        "relation": "evaluates",
+        "quote": "The SET Recipient perform further processing of the SET beyond the required validation steps prior to sending this response."
+       },
+       {
+        "reached_from": "SET",
+        "to": "SET Transmitter",
+        "relation": "produces",
+        "quote": "The SET Transmitter transmit the same SET to the SET Recipient multiple times, regardless of the response from the SET Recipient."
+       },
+       {
+        "reached_from": "SET Recipient",
+        "to": "SET",
+        "relation": "evaluates",
+        "quote": "The SET Recipient perform further processing of the SET beyond the required validation steps prior to sending this response."
+       },
+       {
+        "reached_from": "SET Recipient",
+        "to": "SET Transmitter",
+        "relation": "connects_to",
+        "quote": "The SET Transmitter transmit the same SET to the SET Recipient multiple times, regardless of the response from the SET Recipient."
+       }
+      ]
+     },
+     {
+      "n": 7,
+      "chunk": "RFC:8",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "SET",
+        "to": "SET Recipient",
+        "relation": "receives",
+        "quote": "The SET Recipient may accept or reject (i.e., return an error response such as access_denied) a SET at its own discretion."
+       },
+       {
+        "reached_from": "SET",
+        "to": "SET Transmitter",
+        "relation": "produces",
+        "quote": "SET Transmitters transmit SETs issued by another entity."
+       },
+       {
+        "reached_from": "SET Recipient",
+        "to": "SET",
+        "relation": "receives",
+        "quote": "The SET Recipient may accept or reject (i.e., return an error response such as access_denied) a SET at its own discretion."
+       },
+       {
+        "reached_from": "SET Recipient",
+        "to": "error response",
+        "relation": "produces",
+        "quote": "The SET Recipient may accept or reject (i.e., return an error response such as access_denied) a SET at its own discretion."
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Q24",
+   "question": "What does the AntiDDoS AMR do to requests for a resource during a detected DDoS event?",
+   "category": "relationship",
+   "off_topic_kind": null,
+   "gold_chunks": [
+    "AWS:110"
+   ],
+   "answer_facts": [
+    "labels all requests to the affected resource with an event-detected label"
+   ],
+   "group": "on-topic",
+   "vector": {
+    "status": 200,
+    "answer": "During a detected DDoS event, AntiDDoS AMR labels all requests to the affected resource as event-detected, identifies requests suspected to be part of the attack, and applies protections independently based on that resource\u2019s baseline. [1]",
+    "reading": "answered",
+    "request_ms": 1819.4314169995778,
+    "graph_ms": null,
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:110",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:111",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:109",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:25",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:142",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     }
+    ]
+   },
+   "graph": {
+    "status": 200,
+    "answer": "During a detected DDoS event, AntiDDoS AMR labels all requests to the affected resource as **event-detected** and identifies requests suspected of being part of the attack. It then applies protections independently based on that resource\u2019s traffic baseline. [1]",
+    "reading": "answered",
+    "request_ms": 2211.7719590023626,
+    "graph_ms": [
+     262.73595900056534,
+     259.3495420005638
+    ],
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:110",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:111",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:109",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:25",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:142",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 6,
+      "chunk": "AWS:133",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "DDoS events",
+        "to": "DDoSDetected",
+        "relation": "produces",
+        "quote": "AWS Shield Advanced DDoSDetected Indicates a DDoS event for a specific Amazon Resource Name (ARN)."
+       }
+      ]
+     },
+     {
+      "n": 7,
+      "chunk": "AWS:3",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "DDoS events",
+        "to": "AWS",
+        "relation": "mitigates",
+        "quote": "AWS recommends implementing these best practices proactively, as they significantly reduce the likelihood of business impact from DDoS events."
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Q25",
+   "question": "Which AWS Shield policies can only be created with AWS Firewall Manager, and for whom?",
+   "category": "relationship",
+   "off_topic_kind": null,
+   "gold_chunks": [
+    "AWS:116"
+   ],
+   "answer_facts": [
+    "aws shield protection policies can be created using aws firewall manager only for shield advanced users"
+   ],
+   "group": "on-topic",
+   "vector": {
+    "status": 200,
+    "answer": "AWS Shield protection policies can only be created using AWS Firewall Manager, and this capability is available only to AWS Shield Advanced users. [1]",
+    "reading": "answered",
+    "request_ms": 1667.4789169992437,
+    "graph_ms": null,
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:116",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:152",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:37",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:155",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:151",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     }
+    ]
+   },
+   "graph": {
+    "status": 200,
+    "answer": "AWS Shield protection policies can only be created using AWS Firewall Manager for AWS Shield Advanced users. [1]",
+    "reading": "answered",
+    "request_ms": 1823.2688329990197,
+    "graph_ms": [
+     277.6018330005172,
+     273.51070800068555
+    ],
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:116",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:152",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:37",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:155",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:151",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 6,
+      "chunk": "AWS:38",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "AWS Shield",
+        "to": "AWS Shield Advanced",
+        "relation": "related_to",
+        "quote": "For a complete list of AWS Shield Advanced features and for more information about AWS Shield, see How AWS Shield Advanced works."
+       }
+      ]
+     },
+     {
+      "n": 7,
+      "chunk": "AWS:166",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "AWS Firewall Manager",
+        "to": "DDoS events",
+        "relation": "evaluates",
+        "quote": "AWS Firewall Manager for centralized monitoring for DDoS events and auto-remediate non-compliant resources."
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Q26",
+   "question": "How does CloudFront request collapsing protect an origin server?",
+   "category": "relationship",
+   "off_topic_kind": null,
+   "gold_chunks": [
+    "AWS:73"
+   ],
+   "answer_facts": [
+    "consolidating multiple simultaneous requests into a single origin request"
+   ],
+   "group": "on-topic",
+   "vector": {
+    "status": 200,
+    "answer": "CloudFront request collapsing consolidates simultaneous requests for the same uncached or expired content into a single request to the origin, briefly pausing the others. Once the origin responds, CloudFront serves that response to all waiting requests, preventing duplicate-request floods from overwhelming the origin. [1][2][4]",
+    "reading": "answered",
+    "request_ms": 2045.9432499992545,
+    "graph_ms": null,
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:73",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:83",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:74",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:82",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:81",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     }
+    ]
+   },
+   "graph": {
+    "status": 200,
+    "answer": "CloudFront request collapsing consolidates multiple simultaneous requests for the same uncached or expired content into a single request to the origin. It briefly pauses the other requests, then serves the origin\u2019s response to all waiting requests, preventing duplicate-request floods and reducing origin load. [1][2][4][5]",
+    "reading": "answered",
+    "request_ms": 2219.4628329998523,
+    "graph_ms": [
+     307.898250001017,
+     304.2710409972642
+    ],
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:73",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:83",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:74",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:82",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:81",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 6,
+      "chunk": "AWS:20",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "origin server",
+        "to": "CDN",
+        "relation": "connects_to",
+        "quote": "Instead of being able to return cached results, the CDN must contact the origin server for every page request, and these origin fetches cause additional strain on the application web server."
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Q27",
+   "question": "Where does the DDoS mitigation system enforce the network ACL of an Elastic IP address registered with Shield Advanced?",
+   "category": "relationship",
+   "off_topic_kind": null,
+   "gold_chunks": [
+    "AWS:121"
+   ],
+   "answer_facts": [
+    "enforces it at the aws network border, rather than at the subnet level"
+   ],
+   "group": "on-topic",
+   "vector": {
+    "status": 200,
+    "answer": "It enforces the network ACL at the AWS network border, rather than at the subnet level. [1]",
+    "reading": "answered",
+    "request_ms": 1507.2076249998645,
+    "graph_ms": null,
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:121",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:36",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:120",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:38",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:50",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     }
+    ]
+   },
+   "graph": {
+    "status": 200,
+    "answer": "It enforces the network ACL at the AWS network border, rather than at the subnet level. [1]",
+    "reading": "answered",
+    "request_ms": 2102.687082999182,
+    "graph_ms": [
+     409.5685409993166,
+     405.14570899904356
+    ],
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:121",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:36",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:120",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:38",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:50",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 6,
+      "chunk": "AWS:151",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "AWS Shield Advanced",
+        "to": "AWS Firewall Manager",
+        "relation": "protects",
+        "quote": "AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall."
+       },
+       {
+        "reached_from": "network ACLs",
+        "to": "AWS Firewall Manager",
+        "relation": "protects",
+        "quote": "AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall."
+       }
+      ]
+     },
+     {
+      "n": 7,
+      "chunk": "AWS:35",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "AWS Shield Advanced",
+        "to": "DDoS attacks",
+        "relation": "mitigates",
+        "quote": "Another way to improve your readiness to respond to and mitigate DDoS attacks is by subscribing to AWS Shield Advanced."
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Q28",
+   "question": "How is a SET represented in the body of a SET Transmission Request?",
+   "category": "relationship",
+   "off_topic_kind": null,
+   "gold_chunks": [
+    "RFC:12"
+   ],
+   "answer_facts": [
+    "the request body consist of the set itself, represented as a",
+    "json web token (jwt)"
+   ],
+   "group": "on-topic",
+   "vector": {
+    "status": 200,
+    "answer": "A SET is represented as a JSON Web Token (JWT) in the request body, with the SET itself contained within the request. [1][2]",
+    "reading": "answered",
+    "request_ms": 1624.3265840021195,
+    "graph_ms": null,
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "RFC:12",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "RFC:6",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "RFC:28",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "RFC:15",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "RFC:21",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     }
+    ]
+   },
+   "graph": {
+    "status": 200,
+    "answer": "The request body consists of the SET itself, represented as a JSON Web Token (JWT). [1]",
+    "reading": "answered",
+    "request_ms": 2168.637916998705,
+    "graph_ms": [
+     254.43658299991512,
+     251.08641599945258
+    ],
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "RFC:12",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "RFC:6",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "RFC:28",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "RFC:15",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "RFC:21",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 6,
+      "chunk": "RFC:8",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "SET",
+        "to": "SET Recipient",
+        "relation": "receives",
+        "quote": "The SET Recipient may accept or reject (i.e., return an error response such as access_denied) a SET at its own discretion."
+       },
+       {
+        "reached_from": "SET",
+        "to": "SET Transmitter",
+        "relation": "produces",
+        "quote": "SET Transmitters transmit SETs issued by another entity."
+       }
+      ]
+     },
+     {
+      "n": 7,
+      "chunk": "RFC:11",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "SET",
+        "to": "SET Transmitter",
+        "relation": "produces",
+        "quote": "To transmit a SET to a SET Recipient, the SET Transmitter makes an HTTP POST request to a TLS-enabled HTTP endpoint provided by the SET Recipient."
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Q29",
+   "question": "Which resources can CloudFront VPC origins serve from private subnets?",
+   "category": "relationship",
+   "off_topic_kind": null,
+   "gold_chunks": [
+    "AWS:122"
+   ],
+   "answer_facts": [
+    "application load balancers (alb), network load balancers (nlb), and ec2 instances"
+   ],
+   "group": "on-topic",
+   "vector": {
+    "status": 200,
+    "answer": "CloudFront VPC origins can serve applications hosted on:\n\n- Application Load Balancers (ALBs)\n- Network Load Balancers (NLBs)\n- EC2 instances\n\nThese resources can remain in VPC private subnets without internet access. [1]",
+    "reading": "answered",
+    "request_ms": 2150.6192090018885,
+    "graph_ms": null,
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:122",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:123",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:28",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:57",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:119",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     }
+    ]
+   },
+   "graph": {
+    "status": 200,
+    "answer": "CloudFront VPC origins can serve applications hosted on:\n\n- Application Load Balancers (ALBs)\n- Network Load Balancers (NLBs)\n- EC2 instances\n\nThese resources can remain in private subnets without internet access. [1]",
+    "reading": "answered",
+    "request_ms": 2142.338917001325,
+    "graph_ms": [
+     274.80404100060696,
+     271.1613749997923
+    ],
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:122",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:123",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:28",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:57",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:119",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     }
+    ]
+   }
+  },
+  {
+   "id": "Q30",
+   "question": "What does the AWSManagedIPDDoSList rule contain, and who curates it?",
+   "category": "relationship",
+   "off_topic_kind": null,
+   "gold_chunks": [
+    "AWS:98"
+   ],
+   "answer_facts": [
+    "curated by the aws perimeter protection team and contains ips that have recently been observed participating in ddos attacks"
+   ],
+   "group": "on-topic",
+   "vector": {
+    "status": 200,
+    "answer": "The AWSManagedIPDDoSList rule contains IP addresses recently observed participating in DDoS attacks against AWS customers. It is curated by the AWS perimeter protection team. [1]",
+    "reading": "answered",
+    "request_ms": 2399.828166999214,
+    "graph_ms": null,
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:98",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:97",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:100",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:101",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:99",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     }
+    ]
+   },
+   "graph": {
+    "status": 200,
+    "answer": "The AWSManagedIPDDoSList rule contains IP addresses recently observed participating in DDoS attacks against AWS customers. It is curated by the AWS perimeter protection team. [1]",
+    "reading": "answered",
+    "request_ms": 2090.862916997139,
+    "graph_ms": [
+     449.7262499971839,
+     448.0428329989081
+    ],
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:98",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:97",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:100",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:101",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:99",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     }
+    ]
+   }
+  },
+  {
+   "id": "Q31",
+   "question": "Which protections can AWS Firewall Manager manage across multiple accounts?",
+   "category": "relationship",
+   "off_topic_kind": null,
+   "gold_chunks": [
+    "AWS:151"
+   ],
+   "answer_facts": [
+    "aws waf, aws shield advanced, amazon vpc security groups and network acls, aws network firewall, and amazon route 53 resolver dns firewall"
+   ],
+   "group": "on-topic",
+   "vector": {
+    "status": 200,
+    "answer": "AWS Firewall Manager can centrally manage:\n\n- AWS WAF\n- AWS Shield Advanced\n- Amazon VPC security groups\n- Network ACLs\n- AWS Network Firewall\n- Amazon Route 53 Resolver DNS Firewall\n\n[1]",
+    "reading": "answered",
+    "request_ms": 1881.0382499978004,
+    "graph_ms": null,
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:151",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:116",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:152",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:115",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:155",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     }
+    ]
+   },
+   "graph": {
+    "status": 200,
+    "answer": "AWS Firewall Manager can centrally manage:\n\n- AWS WAF\n- AWS Shield Advanced\n- Amazon VPC security groups\n- Network ACLs\n- AWS Network Firewall\n- Amazon Route 53 Resolver DNS Firewall\n\n[1]",
+    "reading": "answered",
+    "request_ms": 1986.7586669970478,
+    "graph_ms": [
+     280.50183300001663,
+     276.50733300106367
+    ],
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:151",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:116",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:152",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:115",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:155",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 6,
+      "chunk": "AWS:166",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "AWS Firewall Manager",
+        "to": "DDoS events",
+        "relation": "evaluates",
+        "quote": "AWS Firewall Manager for centralized monitoring for DDoS events and auto-remediate non-compliant resources."
+       }
+      ]
+     },
+     {
+      "n": 7,
+      "chunk": "AWS:153",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "AWS Firewall Manager",
+        "to": "Security Hub CSPM",
+        "relation": "connects_to",
+        "quote": "Security Hub CSPM automatically integrates with Firewall Manager, allowing Shield Advanced customers to view security findings in a single dashboard, alongside other high priority security alerts and compliance statuses."
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Q32",
+   "question": "How do AWS Shield Advanced findings reach incident response?",
+   "category": "multi-hop",
+   "off_topic_kind": null,
+   "gold_chunks": [
+    "AWS:154",
+    "AWS:153"
+   ],
+   "answer_facts": [
+    "surfaced as a shield advanced finding in security hub cspm",
+    "security hub cspm automatically integrates with firewall manager"
+   ],
+   "group": "on-topic",
+   "vector": {
+    "status": 200,
+    "answer": "AWS Shield Advanced findings reach incident response through:\n\n- **Proactive SRT engagement:** When Shield Advanced detects signs of DDoS and configured health checks show application degradation, the AWS Shield Response Team contacts you directly. This requires configured health checks and always-available operations contact information. [4]\n- **Customer-initiated escalation:** If a DDoS event affects application availability, subscribers with Business Support+, Enterprise Support, or Unified Operations can create an AWS Shield Support case or use the support API to escalate to the SRT. [1]\n- **Detection and mitigation metrics:** Shield Advanced provides event metrics and traffic details, including anomalies and known DDoS signatures, to support investigation and response. [3]",
+    "reading": "answered",
+    "request_ms": 3143.5658750015136,
+    "graph_ms": null,
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:158",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:113",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:142",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:114",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:38",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     }
+    ]
+   },
+   "graph": {
+    "status": 200,
+    "answer": "AWS Shield Advanced establishes a traffic baseline for protected resources. When anomalous traffic is detected, it appears as a Shield Advanced finding in Security Hub CSPM, alongside CloudWatch metrics and events [6]. These findings support incident response by providing evidence for the response playbook, which should cover gathering evidence, mitigating, recovering, and post-incident analysis [7].",
+    "reading": "answered",
+    "request_ms": 2467.7559999981895,
+    "graph_ms": [
+     291.29133399692364,
+     287.6038329995936
+    ],
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:158",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:113",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:142",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:114",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:38",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 6,
+      "chunk": "AWS:154",
+      "retrieval": "graph",
+      "gold": true,
+      "cited": true,
+      "links": [
+       {
+        "reached_from": "Shield Advanced finding",
+        "to": "AWS Shield Advanced",
+        "relation": "produces",
+        "quote": "After the resource is protected, Shield Advanced begins establishing a traffic baseline for it, and any subsequently detected anomalous traffic is surfaced as a Shield Advanced finding in Security Hub CSPM, alongside CloudWatch metrics and events."
+       },
+       {
+        "reached_from": "Shield Advanced finding",
+        "to": "Security Hub CSPM",
+        "relation": "receives",
+        "quote": "After the resource is protected, Shield Advanced begins establishing a traffic baseline for it, and any subsequently detected anomalous traffic is surfaced as a Shield Advanced finding in Security Hub CSPM, alongside CloudWatch metrics and events."
+       }
+      ]
+     },
+     {
+      "n": 7,
+      "chunk": "AWS:156",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": true,
+      "links": [
+       {
+        "reached_from": "AWS",
+        "to": "threat",
+        "relation": "evaluates",
+        "quote": "If you experience an attack, you can also benefit from support from AWS in assessing the threat and reviewing the architecture of your application, or you might want to request other assistance."
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Q33",
+   "question": "How do Shield Advanced findings become visible to a central team that monitors multiple accounts?",
+   "category": "multi-hop",
+   "off_topic_kind": null,
+   "gold_chunks": [
+    "AWS:152",
+    "AWS:153",
+    "AWS:154"
+   ],
+   "answer_facts": [
+    "set up centralized monitoring by using aws firewall manager and aws security hub cspm",
+    "view security findings in a single dashboard",
+    "surfaced as a shield advanced finding in security hub cspm"
+   ],
+   "group": "on-topic",
+   "vector": {
+    "status": 200,
+    "answer": "Shield Advanced findings become visible centrally through AWS Security Hub CSPM, which integrates with Firewall Manager and displays findings in a single dashboard alongside other security alerts and compliance statuses. Shield Advanced also provides corresponding CloudWatch metrics and events. [1][2][5]\n\nThere may be a delay of up to 15 minutes before Shield Advanced events appear in the Firewall Manager central account, so it should not be relied on for real-time notifications. [2]",
+    "reading": "answered",
+    "request_ms": 2692.8280840002117,
+    "graph_ms": null,
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:154",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:153",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:155",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:116",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:152",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     }
+    ]
+   },
+   "graph": {
+    "status": 200,
+    "answer": "Shield Advanced findings become visible centrally through AWS Security Hub CSPM, which integrates with Firewall Manager and displays findings in a single dashboard alongside other security alerts and compliance statuses. Shield Advanced establishes a traffic baseline after protection is enabled, and detected anomalous traffic is surfaced as Security Hub findings, along with CloudWatch metrics and events. [1][2] AWS Firewall Manager can also centrally monitor protected resources across multiple accounts. [5]",
+    "reading": "answered",
+    "request_ms": 2708.7914160001674,
+    "graph_ms": [
+     310.5667919990083,
+     307.17249999725027
+    ],
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:154",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:153",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:155",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:116",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:152",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     }
+    ]
+   }
+  },
+  {
+   "id": "Q34",
+   "question": "Which Shield Advanced CloudWatch metric tells me an attack has been detected, and which specialist team can I then engage?",
+   "category": "relationship",
+   "off_topic_kind": null,
+   "gold_chunks": [
+    "AWS:131"
+   ],
+   "answer_facts": [
+    "configure the ddosdetected metric to tell you if an attack has been detected",
+    "decide whether to engage aws srt"
+   ],
+   "group": "on-topic",
+   "vector": {
+    "status": 200,
+    "answer": "The **DDoSDetected** CloudWatch metric indicates that a DDoS attack has been detected. You can then engage the **AWS Shield Response Team (SRT)** for assistance. [1][2][4]",
+    "reading": "answered",
+    "request_ms": 1951.2134579999838,
+    "graph_ms": null,
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:133",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:131",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:154",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:113",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:158",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     }
+    ]
+   },
+   "graph": {
+    "status": 200,
+    "answer": "The **DDoSDetected** CloudWatch metric indicates that an attack has been detected. You can then engage the **AWS Shield Response Team (SRT)**, subject to the stated support-plan requirements. [2][5]",
+    "reading": "answered",
+    "request_ms": 2126.390375000483,
+    "graph_ms": [
+     296.5651250015071,
+     291.96095800216426
+    ],
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:133",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:131",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:154",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:113",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:158",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 6,
+      "chunk": "AWS:132",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "Amazon CloudWatch",
+        "to": "AWS WAF",
+        "relation": "uses",
+        "quote": "If you're using AWS WAF, you can use CloudWatch to monitor and activate alarms on increases in requests that you've set in AWS WAF to be allowed, counted, or blocked."
+       },
+       {
+        "reached_from": "Amazon CloudWatch",
+        "to": "PagerDuty",
+        "relation": "connects_to",
+        "quote": "You can monitor these metrics by integrating CloudWatch with your own tools or by using tools provided by third parties, such as Slack or PagerDuty."
+       },
+       {
+        "reached_from": "Amazon CloudWatch",
+        "to": "Slack",
+        "relation": "connects_to",
+        "quote": "You can monitor these metrics by integrating CloudWatch with your own tools or by using tools provided by third parties, such as Slack or PagerDuty."
+       }
+      ]
+     },
+     {
+      "n": 7,
+      "chunk": "AWS:140",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "Amazon CloudWatch",
+        "to": "DDoS attacks",
+        "relation": "evaluates",
+        "quote": "For more information about using Amazon CloudWatch to detect DDoS attacks on your application, refer to Getting Started with Amazon CloudWatch."
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Q37",
+   "question": "Which SET delivery errors are unlikely to be fixed by retrying, and what does such an error mean?",
+   "category": "relationship",
+   "off_topic_kind": null,
+   "gold_chunks": [
+    "RFC:21"
+   ],
+   "answer_facts": [
+    "invalid_request indicates a structural error in the content of the request body that is likely to remain when retransmitting the same set"
+   ],
+   "group": "on-topic",
+   "vector": {
+    "status": 200,
+    "answer": "The `invalid_request` error is unlikely to be fixed by retrying because it indicates a structural error in the request body that will likely remain when the same SET is retransmitted. [1]",
+    "reading": "answered",
+    "request_ms": 1721.7317919967172,
+    "graph_ms": null,
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "RFC:21",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "RFC:9",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "RFC:22",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "RFC:24",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "RFC:20",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     }
+    ]
+   },
+   "graph": {
+    "status": 200,
+    "answer": "The `invalid_request` error is unlikely to be fixed by retrying because it indicates a structural error in the request body that will likely remain when the same SET is retransmitted. [1]\n\nBy contrast, errors such as `access_denied` may be transient\u2014for example, if expired credentials are refreshed before retrying. [3]",
+    "reading": "answered",
+    "request_ms": 2385.8689590015274,
+    "graph_ms": [
+     304.8368749987276,
+     300.8462079997116
+    ],
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "RFC:21",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "RFC:9",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "RFC:22",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "RFC:24",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "RFC:20",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     }
+    ]
+   }
+  },
+  {
+   "id": "Q38",
+   "question": "What two different purposes does mutual TLS serve in RFC 8935?",
+   "category": "multi-hop",
+   "off_topic_kind": null,
+   "gold_chunks": [
+    "RFC:20",
+    "RFC:26"
+   ],
+   "answer_facts": [
+    "the identity of the set transmitter, perhaps using mutual tls",
+    "authenticating set transmitters with a mechanism such as mutual tls"
+   ],
+   "group": "on-topic",
+   "vector": {
+    "status": 200,
+    "answer": "The uploaded documents do not cover the two purposes mutual TLS serves in RFC 8935.",
+    "reading": "declined",
+    "request_ms": 1636.2276250001742,
+    "graph_ms": null,
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "RFC:36",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "RFC:40",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "RFC:34",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "RFC:39",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "RFC:0",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     }
+    ]
+   },
+   "graph": {
+    "status": 200,
+    "answer": "RFC 8935 describes two purposes for mutual TLS:\n\n1. **Authenticating the SET Transmitter** to the SET Recipient. [6]  \n2. **Determining whether the transmitter is authorized to provide actionable SETs**, based on the transmitter\u2019s identity. [6]",
+    "reading": "answered",
+    "request_ms": 2563.0228340014582,
+    "graph_ms": [
+     283.9020409992372,
+     280.72474999862607
+    ],
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "RFC:36",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "RFC:40",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "RFC:34",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "RFC:39",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "RFC:0",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 6,
+      "chunk": "RFC:20",
+      "retrieval": "graph",
+      "gold": true,
+      "cited": true,
+      "links": [
+       {
+        "reached_from": "mutual TLS",
+        "to": "SET Transmitter",
+        "relation": "uses",
+        "quote": "Authorization for the eligibility to provide actionable SETs can be determined by using the identity of the SET Issuer, the identity of the SET Transmitter, perhaps using mutual TLS, or via other employed authentication methods."
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Q40",
+   "question": "What should sit in front of a Network Load Balancer with TCP listeners, and how does Shield Advanced protect the load balancer's Elastic IP addresses?",
+   "category": "relationship",
+   "off_topic_kind": null,
+   "gold_chunks": [
+    "AWS:50"
+   ],
+   "answer_facts": [
+    "deploy these behind an aws global accelerator",
+    "shield advanced will apply the relevant ddos protections for the nlb traffic"
+   ],
+   "group": "on-topic",
+   "vector": {
+    "status": 200,
+    "answer": "An AWS Global Accelerator should sit in front of a Network Load Balancer with TCP listeners to help protect against SYN floods; it includes a built-in SYN proxy and automatically tracks NLB connections. [1]\n\nShield Advanced protects the NLB by applying relevant DDoS protections to its traffic when an Elastic IP address is assigned to the NLB in each Availability Zone. [1]",
+    "reading": "answered",
+    "request_ms": 2184.2712910001865,
+    "graph_ms": null,
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:50",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:49",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:38",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:36",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:48",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     }
+    ]
+   },
+   "graph": {
+    "status": 200,
+    "answer": "An AWS Global Accelerator should sit in front of a Network Load Balancer with TCP listeners to help protect against SYN floods; it includes a built-in SYN proxy and automatically tracks NLB connections. [1]\n\nShield Advanced protects the NLB when an Elastic IP address is assigned per Availability Zone by applying the relevant DDoS protections to the NLB traffic. [1]",
+    "reading": "answered",
+    "request_ms": 2375.3214589996787,
+    "graph_ms": [
+     246.44904200249584,
+     241.78858300001593
+    ],
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:50",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:49",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:38",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:36",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:48",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 6,
+      "chunk": "AWS:46",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "Network Load Balancer",
+        "to": "Amazon VPC",
+        "relation": "related_to",
+        "quote": "For applications built within an Amazon VPC, there are different types of ELBs to consider, for example: Application Load Balancer (ALB) and Network Load Balancer (NLB)."
+       }
+      ]
+     },
+     {
+      "n": 7,
+      "chunk": "AWS:138",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "Network Load Balancer",
+        "to": "ActiveFlowCount",
+        "relation": "produces",
+        "quote": "Network Load Balancer ActiveFlowCount The total number of concurrent TCP flows (or connections) from clients to targets."
+       },
+       {
+        "reached_from": "Network Load Balancer",
+        "to": "ConsumedLCUs",
+        "relation": "produces",
+        "quote": "Network Load Balancer ConsumedLCUs The number of load balancer capacity units (LCU) used by your load balancer."
+       },
+       {
+        "reached_from": "Network Load Balancer",
+        "to": "NewFlowCount",
+        "relation": "produces",
+        "quote": "Network Load Balancer NewFlowCount The total number of new TCP flows (or connections) established from clients to targets in the time period."
+       },
+       {
+        "reached_from": "Network Load Balancer",
+        "to": "ProcessedBytes",
+        "relation": "produces",
+        "quote": "Network Load Balancer ProcessedBytes The total number of bytes processed by the load"
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Q43",
+   "question": "How can I trace one request through CloudFront, AWS WAF and ALB logs?",
+   "category": "multi-hop",
+   "off_topic_kind": null,
+   "gold_chunks": [
+    "AWS:148",
+    "AWS:149"
+   ],
+   "answer_facts": [
+    "x-amz-cf-id header",
+    "x-amzn-trace-id header",
+    "requestid field in the waf logs"
+   ],
+   "group": "on-topic",
+   "vector": {
+    "status": 200,
+    "answer": "Trace the request using these correlation IDs:\n\n1. **CloudFront:** Find the request\u2019s `x-edge-request-id` in the CloudFront access log. CloudFront also injects this value as the `X-Amz-Cf-Id` header when forwarding the request to the origin. [3]\n2. **AWS WAF attached to CloudFront:** Match the CloudFront `X-Amz-Cf-Id` value to the WAF log\u2019s `requestId` field. [1]\n3. **ALB:** The ALB injects `X-Amzn-Trace-Id` when forwarding the request to its target group; correlate this value with the ALB access log\u2019s `trace_id` field. [1][3]\n4. **Backend:** Use the same `X-Amzn-Trace-Id` in the backend server log to continue tracing the request. [1][2]\n\nIf WAF is attached directly to the ALB, correlate the WAF, ALB, and backend logs using `X-Amzn-Trace-Id`. [2]",
+    "reading": "answered",
+    "request_ms": 3221.834709001996,
+    "graph_ms": null,
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:149",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:150",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:148",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:147",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:91",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     }
+    ]
+   },
+   "graph": {
+    "status": 200,
+    "answer": "Trace the request using these correlation headers:\n\n1. **CloudFront:** Record the `X-Amz-Cf-Id` value, which appears in CloudFront access logs as `x-edge-request-id`. [3]\n2. **AWS WAF attached to CloudFront:** Find the same value in the WAF log\u2019s `requestId` field. [1]\n3. **ALB:** CloudFront\u2019s request ID is also logged as `X-Amz-Cf-Id`; separately, ALB injects `X-Amzn-Trace-Id` when forwarding the request to its target group. [1][3]\n4. **AWS WAF attached to ALB:** Match the WAF log\u2019s `X-Amzn-Trace-Id` with the corresponding ALB log value. [1][2]\n\nThus, use `X-Amz-Cf-Id`/`requestId` to correlate CloudFront with WAF at CloudFront, and `X-Amzn-Trace-Id` to correlate WAF at ALB with ALB logs. These identifiers can also be followed into backend server logs. [1][2]",
+    "reading": "answered",
+    "request_ms": 3751.0910839991993,
+    "graph_ms": [
+     281.33675000208314,
+     277.2232499992242
+    ],
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:149",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:150",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:148",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:147",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:91",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 6,
+      "chunk": "AWS:28",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "AWS WAF",
+        "to": "CloudFront",
+        "relation": "uses",
+        "quote": "Application layer defense using CloudFront with AWS WAF, without requiring changes to your existing origin architecture-whether hosted in an AWS Region or on-premises."
+       },
+       {
+        "reached_from": "CloudFront",
+        "to": "AWS WAF",
+        "relation": "uses",
+        "quote": "Application layer defense using CloudFront with AWS WAF, without requiring changes to your existing origin architecture-whether hosted in an AWS Region or on-premises."
+       },
+       {
+        "reached_from": "CloudFront",
+        "to": "Amazon EC2",
+        "relation": "connects_to",
+        "quote": "CloudFront origin fetches are free from any AWS origin such as Amazon Simple Storage Service (Amazon S3), Amazon EC2, or Elastic Load Balancers, including origins in private subnets through"
+       },
+       {
+        "reached_from": "CloudFront",
+        "to": "Amazon S3",
+        "relation": "connects_to",
+        "quote": "CloudFront origin fetches are free from any AWS origin such as Amazon Simple Storage Service (Amazon S3), Amazon EC2, or Elastic Load Balancers, including origins in private subnets through"
+       },
+       {
+        "reached_from": "CloudFront",
+        "to": "Amazon Simple Storage Service",
+        "relation": "connects_to",
+        "quote": "CloudFront origin fetches are free from any AWS origin such as Amazon Simple Storage Service (Amazon S3), Amazon EC2, or Elastic Load Balancers, including origins in private subnets through"
+       },
+       {
+        "reached_from": "CloudFront",
+        "to": "Elastic Load Balancers",
+        "relation": "connects_to",
+        "quote": "CloudFront origin fetches are free from any AWS origin such as Amazon Simple Storage Service (Amazon S3), Amazon EC2, or Elastic Load Balancers, including origins in private subnets through"
+       }
+      ]
+     },
+     {
+      "n": 7,
+      "chunk": "AWS:94",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "ALB",
+        "to": "JA3",
+        "relation": "uses",
+        "quote": "Rate-based rules with JA3 and JA4 headers are supported in CloudFront and ALB."
+       },
+       {
+        "reached_from": "ALB",
+        "to": "JA4",
+        "relation": "uses",
+        "quote": "Rate-based rules with JA3 and JA4 headers are supported in CloudFront and ALB."
+       },
+       {
+        "reached_from": "CloudFront",
+        "to": "JA3",
+        "relation": "uses",
+        "quote": "Rate-based rules with JA3 and JA4 headers are supported in CloudFront and ALB."
+       },
+       {
+        "reached_from": "CloudFront",
+        "to": "JA4",
+        "relation": "uses",
+        "quote": "Rate-based rules with JA3 and JA4 headers are supported in CloudFront and ALB."
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Q46",
+   "question": "Which service centrally deploys Shield Advanced protections and AWS WAF rules across accounts, and does Shield Advanced charge extra for it?",
+   "category": "multi-hop",
+   "off_topic_kind": null,
+   "gold_chunks": [
+    "AWS:115",
+    "AWS:37"
+   ],
+   "answer_facts": [
+    "use aws firewall manager to centrally configure and manage security rules, such as aws shield advanced protections and aws waf rules",
+    "centralized management of security policies through aws firewall manager at no additional cost"
+   ],
+   "group": "on-topic",
+   "vector": {
+    "status": 200,
+    "answer": "AWS Firewall Manager centrally deploys Shield Advanced protections and AWS WAF rules across accounts. Shield protection policies through Firewall Manager are available only to Shield Advanced users; the documents do not state whether Firewall Manager charges an additional fee. [1]",
+    "reading": "partial",
+    "request_ms": 2103.2212499994785,
+    "graph_ms": null,
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:116",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:113",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:36",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:154",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:38",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     }
+    ]
+   },
+   "graph": {
+    "status": 200,
+    "answer": "AWS Firewall Manager centrally deploys Shield Advanced protections and AWS WAF rules across multiple accounts. Shield Advanced protection policies can be created through Firewall Manager only for Shield Advanced users [1]. The documents do not state whether Shield Advanced charges extra for this capability.",
+    "reading": "partial",
+    "request_ms": 2124.6366250015853,
+    "graph_ms": [
+     272.5837500001944,
+     267.75445800012676
+    ],
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:116",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:113",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:36",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:154",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:38",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 6,
+      "chunk": "AWS:158",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "AWS Shield Advanced",
+        "to": "AWS SRT",
+        "relation": "related_to",
+        "quote": "If you're subscribed to AWS Shield Advanced and are also subscribed to either Business Support +, Enterprise Support, or Unified Operations, you can also escalate to AWS Shield Response Team (SRT) by creating an Support case under AWS Shield using the Support console (sign-in required), or the support API when a DDoS-related event affects your application's availability."
+       }
+      ]
+     },
+     {
+      "n": 7,
+      "chunk": "AWS:151",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "AWS Shield Advanced",
+        "to": "AWS Firewall Manager",
+        "relation": "protects",
+        "quote": "AWS Firewall Manager simplifies your administration and maintenance tasks across multiple accounts and resources for a variety of protections, including AWS WAF, AWS Shield Advanced, Amazon VPC security groups and network ACLs, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall."
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Q47",
+   "question": "Which health checks help detect DDoS events, and what does the Shield Response Team do when they degrade?",
+   "category": "multi-hop",
+   "off_topic_kind": null,
+   "gold_chunks": [
+    "AWS:129",
+    "AWS:114"
+   ],
+   "answer_facts": [
+    "route 53 health checks for the resources to help improve the detection of ddos events",
+    "aws srt will proactively reach out to you"
+   ],
+   "group": "on-topic",
+   "vector": {
+    "status": 200,
+    "answer": "Application and infrastructure monitoring tools can be used to check application availability, with Route 53 health checks configured for application and infrastructure resources to improve DDoS-event detection. [3]\n\nIf Shield Advanced detects signs of a DDoS attack while the application health checks show degradation, the AWS Shield Response Team proactively contacts you and can begin troubleshooting before contact is established. [1]",
+    "reading": "answered",
+    "request_ms": 3553.389500000776,
+    "graph_ms": null,
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:114",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:35",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:129",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:113",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:133",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     }
+    ]
+   },
+   "graph": {
+    "status": 200,
+    "answer": "Application and infrastructure Route 53 health checks associated with your resources can help detect DDoS events [3]. When Shield Advanced detects signs of a DDoS attack and those health checks show degradation, the AWS Shield Response Team proactively contacts you and can begin troubleshooting [1].",
+    "reading": "answered",
+    "request_ms": 2698.845041999448,
+    "graph_ms": [
+     421.8547920027049,
+     417.662374999054
+    ],
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:114",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:35",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:129",
+      "retrieval": "vector",
+      "gold": true,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:113",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:133",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 6,
+      "chunk": "AWS:131",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "AWS SRT",
+        "to": "alarms",
+        "relation": "communicates_with",
+        "quote": "For example, you can configure alarms to notify you when there's a DDoS attack in progress, so you can check your application's health and decide whether to engage AWS SRT."
+       }
+      ]
+     },
+     {
+      "n": 7,
+      "chunk": "AWS:158",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "AWS SRT",
+        "to": "AWS Shield Advanced",
+        "relation": "related_to",
+        "quote": "If you're subscribed to AWS Shield Advanced and are also subscribed to either Business Support +, Enterprise Support, or Unified Operations, you can also escalate to AWS Shield Response Team (SRT) by creating an Support case under AWS Shield using the Support console (sign-in required), or the support API when a DDoS-related event affects your application's availability."
+       },
+       {
+        "reached_from": "AWS SRT",
+        "to": "Support case",
+        "relation": "creates",
+        "quote": "If you're subscribed to AWS Shield Advanced and are also subscribed to either Business Support +, Enterprise Support, or Unified Operations, you can also escalate to AWS Shield Response Team (SRT) by creating an Support case under AWS Shield using the Support console (sign-in required), or the support API when a DDoS-related event affects your application's availability."
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Q49",
+   "question": "How many moons does Jupiter have?",
+   "category": "off-topic",
+   "off_topic_kind": "names-nothing",
+   "gold_chunks": [],
+   "answer_facts": [],
+   "group": "off-topic, names-nothing",
+   "vector": {
+    "status": 200,
+    "answer": "I couldn't find anything in the uploaded documents that answers that. Try rephrasing, or upload a document covering this topic.",
+    "reading": "refused",
+    "request_ms": 288.50937499737483,
+    "graph_ms": null,
+    "sources": []
+   },
+   "graph": {
+    "status": 200,
+    "answer": "I couldn't find anything in the uploaded documents that answers that. Try rephrasing, or upload a document covering this topic.",
+    "reading": "refused",
+    "request_ms": 305.8751249991474,
+    "graph_ms": [
+     0.003125001967418939,
+     0
+    ],
+    "sources": []
+   }
+  },
+  {
+   "id": "Q51",
+   "question": "Who won the 2018 FIFA World Cup?",
+   "category": "off-topic",
+   "off_topic_kind": "names-nothing",
+   "gold_chunks": [],
+   "answer_facts": [],
+   "group": "off-topic, names-nothing",
+   "vector": {
+    "status": 200,
+    "answer": "I couldn't find anything in the uploaded documents that answers that. Try rephrasing, or upload a document covering this topic.",
+    "reading": "refused",
+    "request_ms": 457.6159579992236,
+    "graph_ms": null,
+    "sources": []
+   },
+   "graph": {
+    "status": 200,
+    "answer": "I couldn't find anything in the uploaded documents that answers that. Try rephrasing, or upload a document covering this topic.",
+    "reading": "refused",
+    "request_ms": 362.046874997759,
+    "graph_ms": [
+     0.003458997525740415,
+     0
+    ],
+    "sources": []
+   }
+  },
+  {
+   "id": "Q52",
+   "question": "How do I file a personal income tax return?",
+   "category": "off-topic",
+   "off_topic_kind": "names-nothing",
+   "gold_chunks": [],
+   "answer_facts": [],
+   "group": "off-topic, names-nothing",
+   "vector": {
+    "status": 200,
+    "answer": "I couldn't find anything in the uploaded documents that answers that. Try rephrasing, or upload a document covering this topic.",
+    "reading": "refused",
+    "request_ms": 305.1608749992738,
+    "graph_ms": null,
+    "sources": []
+   },
+   "graph": {
+    "status": 200,
+    "answer": "I couldn't find anything in the uploaded documents that answers that. Try rephrasing, or upload a document covering this topic.",
+    "reading": "refused",
+    "request_ms": 253.03024999811896,
+    "graph_ms": [
+     0.0036669989640358835,
+     0
+    ],
+    "sources": []
+   }
+  },
+  {
+   "id": "Q53",
+   "question": "What is the boiling point of water at sea level in Fahrenheit?",
+   "category": "off-topic",
+   "off_topic_kind": "names-nothing",
+   "gold_chunks": [],
+   "answer_facts": [],
+   "group": "off-topic, names-nothing",
+   "vector": {
+    "status": 200,
+    "answer": "I couldn't find anything in the uploaded documents that answers that. Try rephrasing, or upload a document covering this topic.",
+    "reading": "refused",
+    "request_ms": 272.23579099882045,
+    "graph_ms": null,
+    "sources": []
+   },
+   "graph": {
+    "status": 200,
+    "answer": "I couldn't find anything in the uploaded documents that answers that. Try rephrasing, or upload a document covering this topic.",
+    "reading": "refused",
+    "request_ms": 616.9884170012665,
+    "graph_ms": [
+     0.0033329997677356005,
+     0
+    ],
+    "sources": []
+   }
+  },
+  {
+   "id": "Q54",
+   "question": "What is the monthly price of AWS Shield Advanced?",
+   "category": "off-topic",
+   "off_topic_kind": "names-entity",
+   "gold_chunks": [],
+   "answer_facts": [],
+   "group": "off-topic, names-entity",
+   "vector": {
+    "status": 200,
+    "answer": "The uploaded documents do not cover the monthly price of AWS Shield Advanced.",
+    "reading": "declined",
+    "request_ms": 1636.0019169987936,
+    "graph_ms": null,
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:38",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:116",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:113",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:36",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:142",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     }
+    ]
+   },
+   "graph": {
+    "status": 200,
+    "answer": "The uploaded documents do not cover the monthly price of AWS Shield Advanced.",
+    "reading": "declined",
+    "request_ms": 2027.744833001634,
+    "graph_ms": [
+     272.7096669987077,
+     269.2408330003673
+    ],
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:38",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:116",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:113",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:36",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:142",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 6,
+      "chunk": "AWS:158",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "AWS Shield Advanced",
+        "to": "AWS SRT",
+        "relation": "related_to",
+        "quote": "If you're subscribed to AWS Shield Advanced and are also subscribed to either Business Support +, Enterprise Support, or Unified Operations, you can also escalate to AWS Shield Response Team (SRT) by creating an Support case under AWS Shield using the Support console (sign-in required), or the support API when a DDoS-related event affects your application's availability."
+       }
+      ]
+     },
+     {
+      "n": 7,
+      "chunk": "AWS:154",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "AWS Shield Advanced",
+        "to": "Shield Advanced finding",
+        "relation": "produces",
+        "quote": "After the resource is protected, Shield Advanced begins establishing a traffic baseline for it, and any subsequently detected anomalous traffic is surfaced as a Shield Advanced finding in Security Hub CSPM, alongside CloudWatch metrics and events."
+       },
+       {
+        "reached_from": "AWS Shield Advanced",
+        "to": "traffic baseline",
+        "relation": "creates",
+        "quote": "After the resource is protected, Shield Advanced begins establishing a traffic baseline for it, and any subsequently detected anomalous traffic is surfaced as a Shield Advanced finding in Security Hub CSPM, alongside CloudWatch metrics and events."
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Q57",
+   "question": "In which year was Amazon CloudFront launched?",
+   "category": "off-topic",
+   "off_topic_kind": "names-entity",
+   "gold_chunks": [],
+   "answer_facts": [],
+   "group": "off-topic, names-entity",
+   "vector": {
+    "status": 200,
+    "answer": "The uploaded documents do not cover the year Amazon CloudFront was launched.",
+    "reading": "declined",
+    "request_ms": 1870.8561669991468,
+    "graph_ms": null,
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:59",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:164",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:57",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:69",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:72",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     }
+    ]
+   },
+   "graph": {
+    "status": 200,
+    "answer": "The uploaded documents do not cover the year Amazon CloudFront was launched.",
+    "reading": "declined",
+    "request_ms": 1646.0821250002482,
+    "graph_ms": [
+     288.1731249981385,
+     285.4424580000341
+    ],
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:59",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:164",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:57",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:69",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:72",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 6,
+      "chunk": "AWS:148",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "CloudFront",
+        "to": "X-Amz-Cf-Id header",
+        "relation": "produces",
+        "quote": "When CloudFront forwards an HTTP request to its origin, it automatically injects the X-Amz-Cf-Id header, which contains an opaque string uniquely identifying the request."
+       }
+      ]
+     },
+     {
+      "n": 7,
+      "chunk": "AWS:27",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "CloudFront",
+        "to": "Global Accelerator",
+        "relation": "related_to",
+        "quote": "Benefits of using Amazon CloudFront, Global Accelerator, and Amazon Route 53 include:"
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Q58",
+   "question": "What is the maximum execution timeout of an AWS Lambda function?",
+   "category": "off-topic",
+   "off_topic_kind": "names-entity",
+   "gold_chunks": [],
+   "answer_facts": [],
+   "group": "off-topic, names-entity",
+   "vector": {
+    "status": 200,
+    "answer": "The uploaded documents do not cover the maximum execution timeout of an AWS Lambda function.",
+    "reading": "declined",
+    "request_ms": 1577.3133330003475,
+    "graph_ms": null,
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:44",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:45",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:127",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:124",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:136",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     }
+    ]
+   },
+   "graph": {
+    "status": 200,
+    "answer": "The uploaded documents do not cover the maximum execution timeout of an AWS Lambda function.",
+    "reading": "declined",
+    "request_ms": 2011.847416000819,
+    "graph_ms": [
+     292.89929200240294,
+     289.04591699756566
+    ],
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:44",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:45",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:127",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:124",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:136",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 6,
+      "chunk": "AWS:33",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "AWS Lambda",
+        "to": "Auto Scaling",
+        "relation": "uses",
+        "quote": "Using Amazon Elastic Compute Cloud, Amazon EKS, and Amazon ECS with auto scaling, and Lambda (BP7)"
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Q59",
+   "question": "How do I register a domain name with Amazon Route 53?",
+   "category": "off-topic",
+   "off_topic_kind": "names-entity",
+   "gold_chunks": [],
+   "answer_facts": [],
+   "group": "off-topic, names-entity",
+   "vector": {
+    "status": 200,
+    "answer": "The uploaded documents do not cover how to register a domain name with Amazon Route 53. They discuss Route 53\u2019s DNS availability, DDoS resilience, routing, and cost protection. [1][2][3][4][5]",
+    "reading": "partial",
+    "request_ms": 2096.6746669982967,
+    "graph_ms": null,
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:65",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:63",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:64",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:67",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:66",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": true,
+      "links": []
+     }
+    ]
+   },
+   "graph": {
+    "status": 200,
+    "answer": "The uploaded documents do not cover how to register a domain name with Amazon Route 53.",
+    "reading": "declined",
+    "request_ms": 1915.6796669994947,
+    "graph_ms": [
+     297.12416600159486,
+     293.6507500016887
+    ],
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:65",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:63",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:64",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:67",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:66",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 6,
+      "chunk": "AWS:38",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "Amazon Route 53",
+        "to": "CloudFront",
+        "relation": "related_to",
+        "quote": "The service is available globally for CloudFront, Route 53, and Global Accelerator."
+       }
+      ]
+     },
+     {
+      "n": 7,
+      "chunk": "AWS:55",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "Amazon Route 53",
+        "to": "AWS Edge locations",
+        "relation": "uses",
+        "quote": "AWS edge locations provide an additional layer of network infrastructure that provides these benefits to any application that uses Amazon CloudFront, Global Accelerator and Amazon Route 53."
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "Q60",
+   "question": "In which AWS Regions is AWS Global Accelerator not available?",
+   "category": "off-topic",
+   "off_topic_kind": "names-entity",
+   "gold_chunks": [],
+   "answer_facts": [],
+   "group": "off-topic, names-entity",
+   "vector": {
+    "status": 200,
+    "answer": "The uploaded documents do not cover which AWS Regions, if any, AWS Global Accelerator is unavailable in.",
+    "reading": "declined",
+    "request_ms": 1806.1330420023296,
+    "graph_ms": null,
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:61",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:59",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:62",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:63",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:38",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     }
+    ]
+   },
+   "graph": {
+    "status": 200,
+    "answer": "The uploaded documents do not cover which AWS Regions AWS Global Accelerator is unavailable in. They state only that it is available globally. [5]",
+    "reading": "partial",
+    "request_ms": 2218.0944589999854,
+    "graph_ms": [
+     293.0205829979968,
+     289.50566699859337
+    ],
+    "sources": [
+     {
+      "n": 1,
+      "chunk": "AWS:61",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 2,
+      "chunk": "AWS:59",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 3,
+      "chunk": "AWS:62",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 4,
+      "chunk": "AWS:63",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": false,
+      "links": []
+     },
+     {
+      "n": 5,
+      "chunk": "AWS:38",
+      "retrieval": "vector",
+      "gold": false,
+      "cited": true,
+      "links": []
+     },
+     {
+      "n": 6,
+      "chunk": "AWS:27",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "Global Accelerator",
+        "to": "CloudFront",
+        "relation": "related_to",
+        "quote": "Benefits of using Amazon CloudFront, Global Accelerator, and Amazon Route 53 include:"
+       }
+      ]
+     },
+     {
+      "n": 7,
+      "chunk": "AWS:33",
+      "retrieval": "graph",
+      "gold": false,
+      "cited": false,
+      "links": [
+       {
+        "reached_from": "Global Accelerator",
+        "to": "CloudFront",
+        "relation": "related_to",
+        "quote": "For example, an upcoming section discusses the capabilities provided by Amazon CloudFront and Global Accelerator that includes the best practice indicator BP1."
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "FRANCE",
+   "question": "What is the capital of France?",
+   "category": "off-topic",
+   "off_topic_kind": "names-nothing",
+   "gold_chunks": [],
+   "answer_facts": [],
+   "group": "standing refusal",
+   "vector": {
+    "status": 200,
+    "answer": "I couldn't find anything in the uploaded documents that answers that. Try rephrasing, or upload a document covering this topic.",
+    "reading": "refused",
+    "request_ms": 615.3850830014562,
+    "graph_ms": null,
+    "sources": []
+   },
+   "graph": {
+    "status": 200,
+    "answer": "I couldn't find anything in the uploaded documents that answers that. Try rephrasing, or upload a document covering this topic.",
+    "reading": "refused",
+    "request_ms": 273.4047500016459,
+    "graph_ms": [
+     0.0036249984987080097,
+     0
+    ],
+    "sources": []
+   }
+  }
+ ]
+}
