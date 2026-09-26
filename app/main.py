@@ -6,6 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
 from app.routes import documents, chat
+from app.routes import graph_chat      # Step 8, experimental
 
 app = FastAPI(
     title="RAG Chatbot API",
@@ -22,6 +23,7 @@ app.add_middleware(
 
 app.include_router(documents.router)
 app.include_router(chat.router)
+app.include_router(graph_chat.router)   # Step 8, experimental: 403 unless GRAPH_RAG_ENABLED
 
 
 @app.get("/api/health")

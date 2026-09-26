@@ -34,6 +34,13 @@ GRAPH_PROMPT_VERSION = "v6"   # bump whenever the extraction prompt changes; sto
 # v6 is FROZEN (end of Step 5): 48% edge precision on untuned text. The pilot's
 # holdout has been used, so any change to the prompt or checks needs a fresh one.
 
+# --- Graph answers (Step 8, EXPERIMENTAL) ---
+# Step 7 found graph retrieval does not improve retrieval on this corpus; this path
+# demonstrates the architecture. It uses Step 7's pre-selected method, G1, unchanged.
+GRAPH_EVIDENCE_MAX = 2        # graph passages added after the vector top 5 (G1's cap)
+# Off unless set in .env: POST /api/chat/graph answers 403 until then. /api/chat never reads it.
+GRAPH_RAG_ENABLED = os.getenv("GRAPH_RAG_ENABLED", "false").strip().lower() in ("1", "true", "yes")
+
 # --- OCR settings ---
 OCR_ENABLED = True
 OCR_ENGINE = "vision"    # "vision" (layout-aware, costs tokens) or "tesseract" (local, free)

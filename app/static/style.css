@@ -16,6 +16,9 @@
   --danger:       #a8322a;
   --danger-soft:  #fbeceb;
   --danger-rule:  #f0c9c5;
+  --graph:        #6a4a9e;   /* graph mode (Step 8, experimental) and what it adds */
+  --graph-soft:   #f1ecf9;
+  --graph-rule:   #d9ccee;
 
   --font-ui:   "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-read: "Source Serif 4", Georgia, "Times New Roman", serif;
@@ -493,6 +496,145 @@ p { margin: 0; }
   white-space: nowrap;
 }
 
+/* ================================================================
+   Graph mode (Step 8, experimental)
+   ================================================================ */
+
+/* The toggle in the header */
+.mode-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: auto;
+  padding: 5px 12px 5px 8px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: var(--surface);
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  cursor: pointer;
+  user-select: none;
+}
+.mode-toggle input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.mode-switch {
+  position: relative;
+  flex: none;
+  width: 30px;
+  height: 18px;
+  border-radius: 999px;
+  background: var(--rule);
+  transition: background-color 150ms ease;
+}
+.mode-switch::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--surface);
+  transition: transform 150ms ease;
+}
+.mode-toggle input:checked + .mode-switch { background: var(--graph); }
+.mode-toggle input:checked + .mode-switch::after { transform: translateX(12px); }
+.mode-toggle input:focus-visible + .mode-switch { outline: 2px solid var(--graph); outline-offset: 2px; }
+.mode-toggle:has(input:checked) {
+  border-color: var(--graph);
+  background: var(--graph-soft);
+  color: var(--graph);
+  font-weight: 500;
+}
+.mode-toggle-note { font-size: 12px; font-weight: 400; color: var(--ink-faint); }
+.mode-toggle.is-unavailable { cursor: not-allowed; opacity: 0.7; }
+
+/* Under the composer, and the composer itself, while graph mode is on */
+.mode-hint { font-weight: 500; }
+body.graph-mode .mode-hint { color: var(--graph); }
+body.graph-mode .composer-box { border-color: var(--graph-rule); }
+body.graph-mode .composer-box:focus-within {
+  border-color: var(--graph);
+  box-shadow: 0 0 0 3px var(--graph-soft);
+}
+
+/* On every answer: which mode produced it */
+.mode-tag {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  margin-bottom: 8px;
+  font-size: 12px;
+}
+.mode-tag-name {
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+.mode-tag-vector .mode-tag-name { background: var(--shelf); color: var(--ink-soft); }
+.mode-tag-graph .mode-tag-name  { background: var(--graph); color: #fff; }
+.mode-tag-endpoint { font-family: var(--font-code); font-size: 11.5px; color: var(--ink-faint); }
+
+/* A switch of mode in the middle of a conversation */
+.msg-divider {
+  padding: 8px 12px;
+  border-left: 3px solid var(--rule);
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+.msg-divider-graph { border-left-color: var(--graph); background: var(--graph-soft); }
+
+/* Passages the graph added */
+.source-graph { border-left-color: var(--graph); background: #fcfbfe; }
+.graph-badge {
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: var(--graph);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #fff;
+  white-space: nowrap;
+}
+.graph-links { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+.graph-link {
+  padding: 8px 10px;
+  border: 1px solid var(--graph-rule);
+  border-radius: 6px;
+  background: var(--graph-soft);
+  font-size: 13px;
+}
+.graph-path { display: flex; flex-wrap: wrap; gap: 4px 8px; color: var(--ink); }
+.graph-path-label,
+.graph-relation-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--graph);
+}
+.graph-quote {
+  margin: 6px 0 0;
+  font-family: var(--font-read);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink);
+}
+.graph-weak { font-family: var(--font-ui); font-size: 12px; color: var(--danger); }
+.graph-relation {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 8px;
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px dashed var(--graph-rule);
+  color: var(--ink-soft);
+}
+.graph-relation-note { font-size: 11.5px; font-style: italic; color: var(--ink-faint); }
+
 .source-text {
   margin: 8px 0 0;
   font-family: var(--font-read);
@@ -616,6 +758,7 @@ p { margin: 0; }
   .thread-inner { padding: 24px 16px 16px; }
   .composer { padding: 10px 12px 14px; }
   .msg-user { max-width: 88%; }
+  .mode-toggle:not(.is-unavailable) .mode-toggle-note { display: none; }   /* keep "off on this server" */
 }
 
 /* ================================================================

@@ -55,6 +55,13 @@
             <path d="M3 5h12M3 9h12M3 13h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
           </svg>
         </button>
+        <!-- Step 8, experimental: off on every page load; answers say which mode produced them -->
+        <label class="mode-toggle" id="mode-toggle">
+          <input type="checkbox" role="switch" id="graph-toggle" aria-labelledby="mode-label" aria-describedby="mode-toggle-note">
+          <span class="mode-switch" aria-hidden="true"></span>
+          <span class="mode-label" id="mode-label">Graph mode (experimental)</span>
+          <span class="mode-toggle-note" id="mode-toggle-note">checking…</span>
+        </label>
         <button class="btn-ghost" id="clear-btn" type="button">Clear chat</button>
       </header>
 
@@ -91,7 +98,7 @@
           </button>
         </div>
         <p class="composer-hint">
-          <span>Enter to send, Shift + Enter for a new line</span>
+          <span><span class="mode-hint" id="mode-hint">Vector search</span> · Enter to send, Shift + Enter for a new line</span>
           <span class="char-count" id="char-count" hidden>0 / 2000</span>
         </p>
       </form>
