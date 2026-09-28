@@ -58,6 +58,10 @@ Three mechanisms keep answers grounded, applied in layers:
 
 ## Architecture
 
+Two paths run at ingestion: the vector pipeline, which answers questions, and
+the graph pipeline, which is built and stored but not used by the default
+answer path. See "Graph answers (Step 8)" for why.
+
 ```
                           ┌──────────────────────────┐
                           │   Browser (HTML/CSS/JS)  │
@@ -70,7 +74,8 @@ Three mechanisms keep answers grounded, applied in layers:
                           │         FastAPI          │
                           │   routes/documents.py    │
                           │   routes/chat.py         │
-                          └──────┬────────────┬──────┘
+                          │   routes/graph_chat.py   │  ← experimental,
+                          └──────┬────────────┬──────┘    off by default
                                  │            │
               INGEST PATH        │            │        QUERY PATH
                                  ▼            ▼
@@ -83,7 +88,8 @@ Three mechanisms keep answers grounded, applied in layers:
               │  extract.py                     │     │
               │    text layer (pypdf)           │     │
               │            │                    │     │
-              │    under OCR_MIN_CHARS?         │     │
+              │    under OCR_MIN_CHARS,         │     │
+              │    or OCR_FORCE set?            │     │
               │            │ yes                │     │
               │            ▼                    │     │
               │    render page (pypdfium2)      │     │
@@ -102,48 +108,82 @@ Three mechanisms keep answers grounded, applied in layers:
               │ first separators       │   └──────────┬───────────┘
               │ → page_start/page_end  │              │
               │ → ocr flag             │              │
-              └────────────┬───────────┘              │
-                           ▼                          │
-              ┌────────────────────────┐              │
-              │ embed.py (documents)   │              │
-              │ batched, normalised    │              │
-              └────────────┬───────────┘              │
-                           ▼                          │
-        ┌──────────────────────────────────┐          │
-        │            store.py              │          │
-        │  vectors.npy      dense index    │◄─────────┤
-        │  metadata.json    chunk records  │          │
-        │  BM25             rebuilt in RAM │◄─────────┤
-        │            registry.py           │          │
-        │  documents.json   what exists    │          │
-        └──────────────────────────────────┘          │
-                           │                          │
-                  ┌────────┴────────┐                 │
-                  ▼                 ▼                 │
-          dense ranking       sparse ranking          │
-          (cosine, NumPy)     (BM25 keywords)         │
-                  └────────┬────────┘                 │
-                           ▼                          │
-              Reciprocal Rank Fusion (k=60)  ◄────────┘
-                           │
-                           ▼
-              cosine ≥ SIMILARITY_THRESHOLD, top K
-                           │
-              ┌────────────┴────────────┐
-              ▼                         ▼
-      nothing passes              chunks retrieved
-              │                         │
-              ▼                         ▼
-      fixed refusal            generate.py builds prompt
-      (no LLM call)            rules + <context> + history
-              │                         │
-              │                         ▼
-              │              gpt-5.6-luna, temperature 0.2
-              │                  reasoning disabled
-              └────────────┬────────────┘
-                           ▼
-              answer + sources (filename, page range,
-              similarity score, OCR flag) + search_query
+              └───────┬────────┬───────┘              │
+                      │        │                      │
+        ┌─────────────┘        └──────────┐           │
+        ▼                                 ▼           │
+┌────────────────────────┐   ┌──────────────────────────────┐
+│ embed.py (documents)   │   │ GRAPH PIPELINE               │
+│ batched, normalised    │   │ background task after upload │
+└────────────┬───────────┘   │                              │
+             ▼               │ graph_extract.py             │
+┌──────────────────────────┐ │  each chunk → LLM, prompt v6 │
+│         store.py         │ │  closed list of 14 verbs     │
+│ vectors.npy   dense index│ │  every edge needs its quote  │
+│ metadata.json chunk recs │ │  3 runs, keep 2-of-3         │
+│ BM25          in RAM     │ │            ▼                 │
+│                          │ │  checks: quote verbatim,     │
+│         registry.py      │ │  both ends named, verb       │
+│ documents.json what      │ │  stated, not negated         │
+│               exists     │ │            ▼                 │
+└────────────┬─────────────┘ │  data/graph/extractions.json │
+             │               │  214 records, 545 edges      │
+             │               │            ▼                 │
+             │               │ graph.py                     │
+             │               │  resolve names (3 layers)    │
+             │               │  admit entities (R1–R3)      │
+             │               │  build in memory, never saved│
+             │               │  → 347 entities, 385 edges   │
+             │               └──────────────┬───────────────┘
+             │                              │
+             │                              ▼
+             │               delete_document cascades to both
+             │
+    ┌────────┴────────┐
+    ▼                 ▼
+dense ranking   sparse ranking
+(cosine, NumPy) (BM25 keywords)
+    └────────┬────────┘
+             ▼
+  Reciprocal Rank Fusion (k=60)
+             │
+             ▼
+  cosine ≥ SIMILARITY_THRESHOLD, top K
+             │
+  ┌──────────┴──────────┐
+  ▼                     ▼
+nothing passes    chunks retrieved
+  │                     │
+  │         ┌───────────┴────────────┐
+  │         ▼                        ▼
+  │   /api/chat               /api/chat/graph
+  │   (default)               (403 unless enabled)
+  │         │                        │
+  │         │              link question entities
+  │         │                        ▼
+  │         │              1 hop → chunks those edges quote
+  │         │                        ▼
+  │         │              keep if cosine ≥ threshold
+  │         │              and not already retrieved
+  │         │                        ▼
+  │         │              rank, keep at most 2
+  │         │                        │
+  │         └───────────┬────────────┘
+  │                     ▼
+  │         generate.py builds prompt
+  │         rules + <context> + history
+  │         graph passages appear as [6][7]
+  │         with their linking sentence;
+  │         the relation label is NOT sent
+  │                     │
+  ▼                     ▼
+fixed refusal    gpt-5.6-luna, temperature 0.2
+(no LLM call)        reasoning disabled
+  └──────────┬──────────┘
+             ▼
+  answer + sources (filename, page range, similarity,
+  OCR flag) + search_query
+  graph sources also carry their path and quote
 ```
 
 ### Reading the diagram
@@ -154,29 +194,46 @@ both call the same function. A mismatch is structurally impossible rather than
 a rule someone has to remember.
 
 **OCR is a page-level branch, not a separate pipeline.** A page with a usable
-text layer is extracted; a page without one is rendered to an image and
-transcribed. A 68-page report containing three scans pays for three pages of
-OCR. Both outputs join the same string and are chunked identically.
+text layer is extracted; a page without one is rendered and transcribed. A
+68-page report containing three scans pays for three pages of OCR. `OCR_FORCE`
+overrides the test for documents whose text layer exists but is unreliable.
 
-**Page character spans are what survive the flattening.** Chunking sees one
-long string with no notion of pages, so extraction records where each page
-begins and ends. Chunks are then mapped back to the pages they overlap, which
-is how a source can cite "Pages 12–13".
+**Chunking feeds two consumers.** The same chunks, with the same page metadata,
+become both vector rows and graph extraction input. The graph therefore
+inherits page-level provenance for free: every edge can name the document,
+page and chunk its quote came from.
+
+**Graph extraction runs in the background.** It costs roughly three minutes for
+a corpus this size, far too long to hold an upload open. A new document is
+searchable immediately; its edges arrive shortly after.
+
+**Two stores, neither derived from the other.** Vectors answer "which passage
+resembles this question?"; the graph answers "what connects to what?" Both are
+rebuilt from their own source of truth on load — BM25 from chunk text, the
+graph from `extractions.json` — so a derived copy can never drift from its
+origin.
 
 **Retrieval ranks two ways and gates one way.** Dense search ranks by meaning,
-BM25 by keywords, and Reciprocal Rank Fusion combines their positions — not
-their scores, which are on different scales. The relevance gate stays on cosine
+BM25 by keywords, and Reciprocal Rank Fusion combines their positions, not
+their scores, which sit on different scales. The relevance gate stays on cosine
 similarity, because fused ranks say which chunk is *better*, never whether any
 chunk is *good enough*. That is what makes refusal possible.
 
-**Refusal skips the model entirely.** When nothing clears the threshold, a fixed
-reply is returned with no LLM call: zero tokens, zero latency, and hallucination
-is impossible on that path rather than merely discouraged.
+**The graph can only add, never replace.** On the experimental endpoint,
+passages [1]–[5] are exactly what vector retrieval produced and the graph
+appends at most two more. Its contribution is therefore isolated, measurable
+and removable, and a wrong edge cannot displace a good passage.
 
-`embed.py` appears on both paths deliberately. Documents and questions must be embedded by the identical model for their vectors to be comparable, so both call the same function — making a mismatch structurally impossible rather than a rule someone has to remember.
+**Refusal is structural on both paths.** When nothing clears the threshold, a
+fixed reply is returned with no model call: zero tokens, zero latency, and
+hallucination is impossible rather than merely discouraged. The graph runs only
+after vector retrieval has found something, so it can never turn a refusal into
+an answer on its own.
 
----
-
+**The relation label never reaches the model.** Edge verbs were measured at
+about 48% correct on untuned text, while "this quote names both entities" is
+true by construction. The model sees the two entity names and the verbatim
+sentence; the label is shown to the user, marked as machine-extracted.
 ## Tech stack
 
 | Component | Technology | Rationale |
