@@ -49,8 +49,7 @@ OCR_MAX_PAGES = 20       # bound the worst case on a large scanned document
 OCR_CONCURRENCY = 4      # pages OCR'd in parallel; keep low to respect rate limits
 VISION_DPI = 150         # vision models read this fine; higher just costs more tokens
 TESSERACT_DPI = 300      # classic OCR needs the detail — measured at 88-96% recovery
-
-# --- CORS ---
+OCR_FORCE = os.getenv("OCR_FORCE", "false").lower() == "true"# --- CORS ---
 # Comma-separated origins allowed to call the API from another site.
 # Empty (the default) means same-origin only — correct when FastAPI serves the frontend.
 ALLOWED_ORIGINS = [

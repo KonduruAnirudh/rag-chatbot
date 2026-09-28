@@ -1174,6 +1174,13 @@ Run from the project root. The expected results are the current measured values.
     make, despite the prompt's rule against it. Graph passages are gold about
     5% of the time, and a prompt rule is the only guard against using the rest
     as a bridge.
+21. **Charts and graphs are not data-extractable.** Vision OCR reads axis labels
+    and can describe a chart's structure, but the plotted data itself is geometry
+    rather than text. A line graph of soil temperature transcribes as its axes —
+    "90° 80° 70°…" and "08.00 10.00 12.00…" — with no point-to-point values, so
+    questions like "at what time does it peak" are correctly refused. Tables are
+    different: their values are printed text and transcribe reliably.
+22. **A bad text layer defeats the OCR trigger.** OCR runs when a page yields fewer than 100 characters, on the assumption that a page with text needs no OCR. A scanned document that had already been through poor OCR broke that assumption: it carried a text layer full of errors ("ybu" for "you", "deans" for "means") that read the prose but skipped tables entirely. Every page cleared the threshold, so vision OCR never ran, and the table values were absent from the index while the surrounding prose was present. Re-processing the same document with `OCR_FORCE` produced 35 chunks against 26, and table questions that previously refused — "which car has the highest km/litre" — now answer correctly. The trigger asks whether a page has text, not whether it has all of its content as text.
 
 ## Future improvements
 
