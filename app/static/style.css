@@ -372,6 +372,41 @@ p { margin: 0; }
   font-size: 0.85em;
 }
 
+/* Tables. A wide table scrolls inside its own box, never the page. */
+.table-wrap {
+  max-width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+}
+.msg-body table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-ui);
+  font-size: 14.5px;
+  line-height: 1.5;
+  /* Words wrap at spaces only, so a table too wide for the screen overflows
+     into the scrolling box instead of breaking its words letter by letter. */
+  overflow-wrap: normal;
+}
+.msg-body th,
+.msg-body td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--rule);
+  text-align: left;
+  vertical-align: top;
+}
+.msg-body th + th,
+.msg-body td + td { border-left: 1px solid var(--rule); }
+.msg-body th {
+  background: var(--shelf);
+  font-weight: 600;
+}
+.msg-body tbody tr:last-child td { border-bottom: none; }
+.msg-body .align-left   { text-align: left; }
+.msg-body .align-center { text-align: center; }
+.msg-body .align-right  { text-align: right; }
+
 /* Citation markers */
 .cite {
   display: inline-flex;

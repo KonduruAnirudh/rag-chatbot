@@ -317,7 +317,44 @@ function formatInline(escaped, sourceCount) {
     });
 }
 
-// Paragraphs, headings, bullet lists and numbered lists.
+// A table row's cells. The leading and trailing pipes are optional - models write
+// rows both ways - and "\|" is a literal pipe inside a cell. Runs on escaped text.
+function splitRow(line) {
+  let row = line.trim().replace(/\\\|/g, "\u0000");
+  if (row.startsWith("|")) row = row.slice(1);
+  if (row.endsWith("|")) row = row.slice(0, -1);
+  return row.split("|").map((cell) => cell.replace(/\u0000/g, "|").trim());
+}
+
+// The row under a table's header: a pipe, and one cell per column holding only
+// dashes, with optional colons for alignment. Anything else is not a separator,
+// so a stray pipe in ordinary text never starts a table.
+function tableAlignments(line, columns) {
+  if (!line.includes("|")) return null;
+  const cells = splitRow(line);
+  if (cells.length !== columns || !cells.every((cell) => /^:?-+:?$/.test(cell))) return null;
+  return cells.map((cell) => {
+    if (cell.startsWith(":") && cell.endsWith(":")) return "center";
+    if (cell.endsWith(":")) return "right";
+    return cell.startsWith(":") ? "left" : null;
+  });
+}
+
+// Cells go through formatInline, so bold, code and citations work inside a table.
+// Short rows are padded and extra cells dropped, so every row fits the header.
+function renderTable(header, alignments, rows, sourceCount) {
+  const cell = (tag, text, i) => {
+    const align = alignments[i] ? ` class="align-${alignments[i]}"` : "";
+    return `<${tag}${align}>${formatInline(text, sourceCount)}</${tag}>`;
+  };
+  const head = header.map((text, i) => cell("th", text, i)).join("");
+  const body = rows
+    .map((row) => `<tr>${header.map((_, i) => cell("td", row[i] ?? "", i)).join("")}</tr>`)
+    .join("");
+  return `<div class="table-wrap"><table><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table></div>`;
+}
+
+// Paragraphs, headings, bullet lists, numbered lists and tables.
 function renderMarkdown(text, sourceCount) {
   const lines = escapeHtml(text.trim()).split("\n");
   let html = "";
@@ -337,8 +374,27 @@ function renderMarkdown(text, sourceCount) {
     }
   };
 
-  for (const raw of lines) {
-    const line = raw.trim();
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+
+    // A table: a header row, then a separator row with the same number of cells,
+    // then body rows until a blank line or a line without a pipe.
+    const header = line.includes("|") ? splitRow(line) : null;
+    const alignments = header && i + 1 < lines.length ? tableAlignments(lines[i + 1], header.length) : null;
+    if (alignments) {
+      flushParagraph();
+      closeList();
+      const rows = [];
+      let next = i + 2;
+      while (next < lines.length && lines[next].trim() !== "" && lines[next].includes("|")) {
+        rows.push(splitRow(lines[next]));
+        next += 1;
+      }
+      html += renderTable(header, alignments, rows, sourceCount);
+      i = next - 1;          // the loop's i++ moves on to the first line after the table
+      continue;
+    }
+
     const heading = line.match(/^#{1,6}\s+(.*)/);
     const bullet = line.match(/^[-*]\s+(.*)/);
     const numbered = line.match(/^\d+[.)]\s+(.*)/);
