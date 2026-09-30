@@ -4,6 +4,7 @@ import hashlib
 import asyncio
 import uuid
 from pathlib import Path
+from fastapi.responses import FileResponse
 
 from fastapi import APIRouter, BackgroundTasks, UploadFile, File, HTTPException
 
@@ -232,3 +233,42 @@ async def delete_document(doc_id: str):
         "chunks_removed": removed,
         "graph_chunks_removed": graph_removed,
     }
+
+# Media types we serve inline. Anything else downloads instead, so an
+# unexpected file type can never be rendered as something the browser trusts.
+INLINE_TYPES = {
+    ".pdf":  "application/pdf",
+    ".png":  "image/png",
+    ".jpg":  "image/jpeg",
+    ".jpeg": "image/jpeg",
+    ".webp": "image/webp",
+    ".txt":  "text/plain; charset=utf-8",
+}
+
+
+@router.get("/documents/{doc_id}/file")
+def get_document_file(doc_id: str):
+    """
+    Serve the original uploaded file so the user can read it in the browser.
+
+    The path comes from the registry, never from the request. Files are stored
+    under a generated UUID, so a filename like "../../etc/passwd" cannot reach
+    the filesystem even if someone uploads one.
+    """
+    record = registry.get(doc_id)
+    if record is None:
+        raise HTTPException(status_code=404, detail="Document not found.")
+
+    path = Path(record["path"])
+    if not path.is_file():
+        # Registered but missing from disk: a crash between the two steps, or
+        # a manual deletion. Report it as missing, not as a server error.
+        raise HTTPException(status_code=404, detail="The stored file is missing.")
+
+    return FileResponse(
+        path,
+        media_type=INLINE_TYPES.get(path.suffix.lower(), "application/octet-stream"),
+        # The original filename, so a download is named sensibly rather than
+        # with the UUID. "inline" asks the browser to display it where it can.
+        headers={"Content-Disposition": f'inline; filename="{record["filename"]}"'},
+    )
