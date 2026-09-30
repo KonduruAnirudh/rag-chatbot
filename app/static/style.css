@@ -61,7 +61,7 @@ p {
   margin: 0;
 }
 
-/* The `hidden` attribute must always win over display rules below */
+/* The hidden attribute must always win over display rules below */
 [hidden] {
   display: none !important;
 }
@@ -145,9 +145,7 @@ p {
   color: var(--ink-faint);
 }
 
-/* ================================================================
-   Error banner
-   ================================================================ */
+/* Error banner */
 .banner {
   display: flex;
   align-items: flex-start;
@@ -176,9 +174,7 @@ p {
   cursor: pointer;
 }
 
-/* ================================================================
-   Upload progress
-   ================================================================ */
+/* Upload progress */
 .upload-progress {
   padding: 12px;
   background: var(--surface);
@@ -228,9 +224,7 @@ p {
   color: var(--ink-soft);
 }
 
-/* ================================================================
-   Library
-   ================================================================ */
+/* Library */
 .library {
   display: flex;
   flex-direction: column;
@@ -285,16 +279,9 @@ p {
   color: var(--ink-faint);
 }
 
-/* ================================================================
-   Clickable library filename and source links
-   ================================================================ */
-
-/*
-  The library filename and source page labels link into the original file.
-  They inherit their surrounding style so nothing shifts.
-  The underline appears on hover to show they are clickable.
-*/
-
+/* The library filename and source page labels link into the original file.
+   They inherit their surrounding style so nothing shifts;
+   the underline appears on hover to show they are clickable. */
 a.doc-name,
 a.source-link {
   color: inherit;
@@ -315,16 +302,13 @@ a.source-link:focus-visible {
   border-radius: 3px;
 }
 
-/* Touch screens need a bigger target than a 13px text link */
+/* Touch screens need a bigger target than a 13px text link. */
 @media (hover: none) {
   a.source-link {
     padding: 4px 0;
   }
 }
 
-/* ================================================================
-   Delete button
-   ================================================================ */
 .doc-delete {
   flex-shrink: 0;
   padding: 4px 8px;
@@ -544,10 +528,7 @@ a.source-link:focus-visible {
   font-size: 0.85em;
 }
 
-/* ================================================================
-   Tables
-   ================================================================ */
-
+/* Tables. A wide table scrolls inside its own box, never the page. */
 .table-wrap {
   max-width: 100%;
   overflow-x: auto;
@@ -572,43 +553,232 @@ a.source-link:focus-visible {
   vertical-align: top;
 }
 
+.msg-body th + th,
+.msg-body td + td {
+  border-left: 1px solid var(--rule);
+}
+
 .msg-body th {
   background: var(--shelf);
   font-weight: 600;
 }
 
-.msg-body tr:last-child td {
-  border-bottom: 0;
+.msg-body tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.msg-body .align-left {
+  text-align: left;
+}
+
+.msg-body .align-center {
+  text-align: center;
+}
+
+.msg-body .align-right {
+  text-align: right;
+}
+
+/* Citation markers */
+.cite {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.4em;
+  height: 1.4em;
+  margin: 0 1px;
+  padding: 0 4px;
+  vertical-align: 0.15em;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: var(--surface);
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--accent);
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease;
+}
+
+.cite:hover,
+.cite.is-active {
+  background: var(--highlight);
+  border-color: #e3cf6a;
+  color: var(--ink);
+}
+
+.search-note {
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--ink-faint);
+}
+
+/* Sources */
+.sources {
+  margin-top: 14px;
+}
+
+.sources > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  list-style: none;
+  cursor: pointer;
+}
+
+.sources > summary::-webkit-details-marker {
+  display: none;
+}
+
+.sources > summary::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(-45deg);
+  transition: transform 150ms ease;
+}
+
+.sources[open] > summary::before {
+  transform: rotate(45deg);
+}
+
+.sources > summary:hover {
+  color: var(--ink);
+}
+
+.source-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: source;
+}
+
+.source {
+  counter-increment: source;
+  padding: 12px 14px 12px 16px;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--rule);
+  border-radius: 6px;
+  transition:
+    background-color 200ms ease,
+    border-color 200ms ease;
+}
+
+.source.is-highlighted {
+  background: #fffbe3;
+  border-left-color: #dcbf3c;
+}
+
+.source-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 13px;
+}
+
+.source-head::before {
+  content: counter(source);
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.source-file {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.source-meta {
+  white-space: nowrap;
+  color: var(--ink-faint);
+}
+
+.score {
+  margin-left: auto;
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.score-strong {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.score-moderate {
+  background: var(--shelf);
+  color: var(--ink-soft);
+}
+
+.score-weak {
+  border: 1px solid var(--rule);
+  color: var(--ink-faint);
+}
+
+/* Marks a passage that was read from an image by OCR */
+.ocr-badge {
+  padding: 1px 7px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--ink-faint);
+  white-space: nowrap;
 }
 
 /* ================================================================
-   Mode toggle
+   Graph mode
    ================================================================ */
+
+/* The toggle in the header */
 .mode-toggle {
-  display: flex;
+  position: relative;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
-  min-height: 34px;
-  padding: 5px 10px;
+  margin-right: auto;
+  padding: 5px 12px 5px 8px;
   border: 1px solid var(--rule);
   border-radius: 999px;
   background: var(--surface);
+  font-size: 13.5px;
+  color: var(--ink-soft);
   cursor: pointer;
+  user-select: none;
 }
 
 .mode-toggle input {
   position: absolute;
   opacity: 0;
-  pointer-events: none;
+  width: 1px;
+  height: 1px;
 }
 
 .mode-switch {
   position: relative;
+  flex: none;
   width: 30px;
   height: 18px;
-  flex-shrink: 0;
   border-radius: 999px;
-  background: var(--ink-faint);
+  background: var(--rule);
   transition: background-color 150ms ease;
 }
 
@@ -620,7 +790,7 @@ a.source-link:focus-visible {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: #fff;
+  background: var(--surface);
   transition: transform 150ms ease;
 }
 
@@ -632,108 +802,94 @@ a.source-link:focus-visible {
   transform: translateX(12px);
 }
 
-.mode-label {
-  font-size: 13px;
-  color: var(--ink-soft);
+.mode-toggle input:focus-visible + .mode-switch {
+  outline: 2px solid var(--graph);
+  outline-offset: 2px;
 }
 
-.mode-toggle-note {
-  font-size: 11.5px;
-  color: var(--ink-faint);
-}
-
-.mode-toggle.is-unavailable {
-  opacity: 0.65;
-  cursor: not-allowed;
-}
-
-.mode-toggle.is-unavailable .mode-switch {
-  background: var(--rule);
-}
-
-.mode-hint {
-  color: var(--ink-soft);
-}
-
-.mode-hint-graph {
+.mode-toggle:has(input:checked) {
+  border-color: var(--graph);
+  background: var(--graph-soft);
   color: var(--graph);
   font-weight: 500;
 }
 
-/* ================================================================
-   Source passages
-   ================================================================ */
-.sources {
-  margin-top: 18px;
+.mode-toggle-note {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--ink-faint);
 }
 
-.sources-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 5px 0;
-  border: 0;
-  background: none;
-  color: var(--ink-soft);
-  font-size: 12.5px;
-  cursor: pointer;
+.mode-toggle.is-unavailable {
+  cursor: not-allowed;
+  opacity: 0.7;
 }
 
-.sources-toggle:hover {
-  color: var(--ink);
+/* Under the composer, and the composer itself, while graph mode is on */
+.mode-hint {
+  font-weight: 500;
 }
 
-.sources-toggle svg {
-  transition: transform 150ms ease;
+body.graph-mode .mode-hint {
+  color: var(--graph);
 }
 
-.sources.is-open .sources-toggle svg {
-  transform: rotate(90deg);
+body.graph-mode .composer-box {
+  border-color: var(--graph-rule);
 }
 
-.source-list {
+body.graph-mode .composer-box:focus-within {
+  border-color: var(--graph);
+  box-shadow: 0 0 0 3px var(--graph-soft);
+}
+
+/* On every answer: which mode produced it */
+.mode-tag {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-top: 8px;
-}
-
-.source {
-  padding: 10px 12px;
-  border-left: 3px solid var(--accent);
-  background: var(--surface);
-  border-radius: 0 6px 6px 0;
-}
-
-.source-head {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
   flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  margin-bottom: 8px;
+  font-size: 12px;
 }
 
-.source-file {
-  font-size: 13px;
+.mode-tag-name {
+  padding: 1px 8px;
+  border-radius: 999px;
   font-weight: 600;
+  letter-spacing: 0.01em;
 }
 
-.source-meta {
+.mode-tag-vector .mode-tag-name {
+  background: var(--shelf);
+  color: var(--ink-soft);
+}
+
+.mode-tag-graph .mode-tag-name {
+  background: var(--graph);
+  color: #fff;
+}
+
+.mode-tag-endpoint {
+  font-family: var(--font-code);
   font-size: 11.5px;
   color: var(--ink-faint);
 }
 
-.source-text {
-  margin: 8px 0 0;
-  font-family: var(--font-read);
-  font-size: 14.5px;
-  line-height: 1.6;
+/* A switch of mode in the middle of a conversation */
+.msg-divider {
+  padding: 8px 12px;
+  border-left: 3px solid var(--rule);
+  font-size: 13px;
   color: var(--ink-soft);
 }
 
-/* ================================================================
-   Graph mode source content
-   ================================================================ */
+.msg-divider-graph {
+  border-left-color: var(--graph);
+  background: var(--graph-soft);
+}
 
+/* Passages the graph added */
 .source-graph {
   border-left-color: var(--graph);
   background: #fcfbfe;
@@ -812,44 +968,105 @@ a.source-link:focus-visible {
   color: var(--ink-faint);
 }
 
+.source-text {
+  margin: 8px 0 0;
+  font-family: var(--font-read);
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
 /* ================================================================
-   Graph mode metadata
+   Question jumper
+   Fixed to the middle-right of the viewport.
+
+   IMPORTANT:
+   - It is fixed to the browser viewport, NOT the .thread.
+   - Therefore it stays visible while the conversation scrolls.
+   - app.js controls whether it is hidden.
+   - app.js creates one .jumper-tick per question.
    ================================================================ */
-.graph-meta {
+
+.jumper {
+  position: fixed;
+  top: 50%;
+  right: 16px;
+  z-index: 30;
+
   display: flex;
-  flex-wrap: wrap;
-  gap: 6px 10px;
-  margin-top: 8px;
-  font-size: 12px;
-  color: var(--ink-soft);
-}
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 
-.graph-tag {
-  padding: 2px 7px;
+  transform: translateY(-50%);
+
+  padding: 8px 5px;
+
+  border: 1px solid rgba(216, 222, 228, 0.85);
   border-radius: 999px;
-  background: var(--graph-soft);
-  color: var(--graph);
+
+  background: rgba(255, 255, 255, 0.88);
+
+  box-shadow:
+    0 4px 14px rgba(27, 37, 48, 0.08);
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
-.graph-tag-endpoint {
-  font-family: var(--font-code);
-  font-size: 11.5px;
-  color: var(--ink-faint);
+/*
+   Each question is represented by a small horizontal tick.
+*/
+.jumper-tick {
+  display: block;
+
+  width: 18px;
+  height: 3px;
+
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+
+  background: var(--rule);
+
+  cursor: pointer;
+
+  transition:
+    width 150ms ease,
+    background-color 150ms ease,
+    opacity 150ms ease,
+    transform 150ms ease;
 }
 
-/* ================================================================
-   Mode divider
-   ================================================================ */
-.msg-divider {
-  padding: 8px 12px;
-  border-left: 3px solid var(--rule);
-  font-size: 13px;
-  color: var(--ink-soft);
+.jumper-tick:hover {
+  width: 22px;
+  background: var(--ink-soft);
 }
 
-.msg-divider-graph {
-  border-left-color: var(--graph);
-  background: var(--graph-soft);
+.jumper-tick:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/*
+   The question currently closest to the top of the conversation
+   gets the darker/longer tick.
+*/
+.jumper-tick.is-current {
+  width: 24px;
+  background: var(--ink);
+}
+
+.jumper-tick.is-current:hover {
+  width: 26px;
+}
+
+/*
+   Keep the jumper visually subtle when there are many questions.
+*/
+.jumper-tick:active {
+  transform: scaleX(0.9);
 }
 
 /* ================================================================
@@ -993,7 +1210,7 @@ a.source-link:focus-visible {
 }
 
 /* ================================================================
-   Small screens — library slides in over conversation
+   Small screens — the library slides in over the conversation
    ================================================================ */
 @media (max-width: 768px) {
   .app {
@@ -1039,10 +1256,18 @@ a.source-link:focus-visible {
   .mode-toggle:not(.is-unavailable) .mode-toggle-note {
     display: none;
   }
+
+  /*
+     On phones the right edge is needed for scrolling/touch gestures,
+     so hide the question jumper.
+  */
+  .jumper {
+    display: none !important;
+  }
 }
 
 /* ================================================================
-   Reduced motion
+   Respect users who have asked for less motion
    ================================================================ */
 @media (prefers-reduced-motion: reduce) {
   *,

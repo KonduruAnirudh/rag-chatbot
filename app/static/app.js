@@ -4,6 +4,7 @@
    1. Element references
    Every element the script uses is looked up once, here.
    ================================================================ */
+
 const els = {
   // Library
   sidebar:        document.getElementById("sidebar"),
@@ -30,7 +31,10 @@ const els = {
   charCount:      document.getElementById("char-count"),
   clearBtn:       document.getElementById("clear-btn"),
 
-  // Graph mode
+  // Question jumper
+  jumper:         document.getElementById("jumper"),
+
+  // Graph mode (Step 8, experimental)
   graphToggle:    document.getElementById("graph-toggle"),
   modeToggle:     document.getElementById("mode-toggle"),
   modeToggleNote: document.getElementById("mode-toggle-note"),
@@ -38,10 +42,7 @@ const els = {
 };
 
 
-/* ================================================================
-   2. Validate required DOM elements
-   ================================================================ */
-
+// Fail loudly and clearly if index.html and this file disagree about an id.
 for (const [name, node] of Object.entries(els)) {
   if (!node) {
     throw new Error(
@@ -52,7 +53,7 @@ for (const [name, node] of Object.entries(els)) {
 
 
 /* ================================================================
-   3. State and settings
+   2. State and settings
    ================================================================ */
 
 const state = {
@@ -70,7 +71,7 @@ const state = {
 
 
 /* ================================================================
-   4. API modes
+   3. API modes
    ================================================================ */
 
 const MODES = {
@@ -93,7 +94,7 @@ const RELATION_ACCURACY = "~48%";
 
 
 /* ================================================================
-   5. File settings
+   4. File settings
    ================================================================ */
 
 const ALLOWED_EXTENSIONS = [
@@ -115,7 +116,7 @@ let sessionId = newSessionId();
 
 
 /* ================================================================
-   6. Generic API helper
+   5. Generic API helper
    ================================================================ */
 
 async function api(path, options = {}) {
@@ -134,12 +135,13 @@ async function api(path, options = {}) {
   try {
     data = await response.json();
   } catch {
-    // Response wasn't JSON.
+    // Body wasn't JSON — leave data as null.
   }
 
   if (!response.ok) {
     const detail = data?.detail;
 
+    // FastAPI validation errors return detail as a list.
     const message = Array.isArray(detail)
       ? detail.map((d) => d.msg).join("; ")
       : detail || `Request failed with status ${response.status}.`;
@@ -152,7 +154,7 @@ async function api(path, options = {}) {
 
 
 /* ================================================================
-   7. DOM helpers
+   6. Helpers
    ================================================================ */
 
 function el(tag, className, text) {
@@ -207,13 +209,12 @@ function newSessionId() {
 
 
 /* ================================================================
-   8. Library: load documents
+   7. Library: list
    ================================================================ */
 
 async function loadDocuments() {
   try {
     const data = await api("/api/documents");
-
     renderDocuments(data);
   } catch (err) {
     els.stats.textContent = "Library unavailable";
@@ -225,7 +226,8 @@ async function loadDocuments() {
 function renderDocuments(data) {
   const docs = [...data.documents].sort(
     (a, b) =>
-      new Date(b.uploaded_at) - new Date(a.uploaded_at)
+      new Date(b.uploaded_at) -
+      new Date(a.uploaded_at)
   );
 
   els.docList.replaceChildren(
@@ -248,27 +250,19 @@ function renderDocuments(data) {
 }
 
 
-/* ================================================================
-   9. Library: render document
-   IMPORTANT CHANGE:
-   Filename is now a clickable link to the original file.
-   ================================================================ */
-
 function renderDocument(doc) {
   const item = el("li", "doc");
 
   const info = el("div", "doc-info");
 
-
-  /*
-   * The filename opens the original file in a new tab.
-   *
-   * Backend endpoint:
-   * /api/documents/{doc_id}/file
-   *
-   * encodeURIComponent() protects the ID if needed.
-   */
-  const name = el("a", "doc-name", doc.filename);
+  // The filename opens the original file in a new tab.
+  // rel="noopener" prevents the opened page from reaching
+  // back into this page through window.opener.
+  const name = el(
+    "a",
+    "doc-name",
+    doc.filename
+  );
 
   name.href =
     `/api/documents/${encodeURIComponent(doc.doc_id)}/file`;
@@ -276,7 +270,6 @@ function renderDocument(doc) {
   name.target = "_blank";
   name.rel = "noopener";
   name.title = `Open ${doc.filename}`;
-
 
   const meta = el(
     "p",
@@ -286,16 +279,14 @@ function renderDocument(doc) {
     )}`
   );
 
-
   info.append(name, meta);
 
 
-  /*
-   * Delete remains a button.
-   *
-   * This prevents clicking Delete from navigating to the PDF.
-   */
-  const del = el("button", "doc-delete", "Delete");
+  const del = el(
+    "button",
+    "doc-delete",
+    "Delete"
+  );
 
   del.type = "button";
 
@@ -309,7 +300,6 @@ function renderDocument(doc) {
     () => deleteDocument(doc, del)
   );
 
-
   item.append(info, del);
 
   return item;
@@ -317,11 +307,12 @@ function renderDocument(doc) {
 
 
 /* ================================================================
-   10. Library: upload
+   8. Library: upload
    ================================================================ */
 
 function validateFile(file) {
   const dot = file.name.lastIndexOf(".");
+
   const ext =
     dot === -1
       ? ""
@@ -343,10 +334,8 @@ function validateFile(file) {
 }
 
 
-/*
- * The backend doesn't report upload progress.
- * These are timed status messages.
- */
+// The server doesn't report progress, so these stages are timed
+// estimates that keep a long upload from looking frozen.
 function startStatusMessages() {
   const stages = [
     [0, "Uploading…"],
@@ -361,7 +350,8 @@ function startStatusMessages() {
     }, delay)
   );
 
-  return () => timers.forEach(clearTimeout);
+  return () =>
+    timers.forEach(clearTimeout);
 }
 
 
@@ -381,18 +371,22 @@ async function uploadFile(file) {
 
   const form = new FormData();
 
-  // Backend expects field name "file".
+  // Field name must be exactly "file".
   form.append("file", file);
 
   try {
+    // Do not set Content-Type manually.
+    // The browser adds the multipart boundary.
     await api("/api/documents", {
       method: "POST",
       body: form,
     });
 
     await loadDocuments();
+
   } catch (err) {
     showLibraryError(err.message);
+
   } finally {
     stopStatusMessages();
     els.uploadProgress.hidden = true;
@@ -401,7 +395,10 @@ async function uploadFile(file) {
 
 
 async function uploadFiles(files) {
-  if (state.uploading || files.length === 0) {
+  if (
+    state.uploading ||
+    files.length === 0
+  ) {
     return;
   }
 
@@ -411,21 +408,23 @@ async function uploadFiles(files) {
   els.uploadBtn.disabled = true;
 
   try {
+    // One at a time — backend accepts one file per request.
     for (const file of files) {
       await uploadFile(file);
     }
+
   } finally {
     state.uploading = false;
     els.uploadBtn.disabled = false;
 
-    // Allows selecting the same file again.
+    // Allows the same file to be selected again.
     els.fileInput.value = "";
   }
 }
 
 
 /* ================================================================
-   11. Library: delete
+   9. Library: delete
    ================================================================ */
 
 async function deleteDocument(doc, button) {
@@ -452,6 +451,7 @@ async function deleteDocument(doc, button) {
     );
 
     await loadDocuments();
+
   } catch (err) {
     showLibraryError(err.message);
 
@@ -462,7 +462,7 @@ async function deleteDocument(doc, button) {
 
 
 /* ================================================================
-   12. Library: error banner
+   10. Library: error banner
    ================================================================ */
 
 function showLibraryError(message) {
@@ -477,7 +477,8 @@ function hideLibraryError() {
 
 
 /* ================================================================
-   13. Chat: safe markdown rendering
+   11. Chat: rendering answers safely
+   Rule: escape ALL HTML first, then add the few tags we allow.
    ================================================================ */
 
 function escapeHtml(text) {
@@ -496,28 +497,22 @@ function escapeHtml(text) {
 }
 
 
-/*
- * Runs on text that is ALREADY escaped.
- */
-function formatInline(escaped, sourceCount) {
+// Runs on text that is ALREADY escaped.
+function formatInline(
+  escaped,
+  sourceCount
+) {
   return escaped
-
     .replace(
       /\*\*(.+?)\*\*/g,
       "<strong>$1</strong>"
     )
-
     .replace(
       /`([^`]+)`/g,
       "<code>$1</code>"
     )
-
-    /*
-     * Citations:
-     * [1]
-     * [1][2]
-     * [1, 2]
-     */
+    // Citations: [1], [1][2], and [1, 2].
+    // Only create buttons for real sources.
     .replace(
       /\[(\d+(?:\s*,\s*\d+)*)\]/g,
       (match, group) => {
@@ -546,10 +541,7 @@ function formatInline(escaped, sourceCount) {
 }
 
 
-/* ================================================================
-   14. Markdown table helpers
-   ================================================================ */
-
+// A table row's cells.
 function splitRow(line) {
   let row = line
     .trim()
@@ -565,15 +557,20 @@ function splitRow(line) {
 
   return row
     .split("|")
-    .map((cell) =>
-      cell
-        .replace(/\u0000/g, "|")
-        .trim()
+    .map(
+      (cell) =>
+        cell
+          .replace(/\u0000/g, "|")
+          .trim()
     );
 }
 
 
-function tableAlignments(line, columns) {
+// The row under a table's header.
+function tableAlignments(
+  line,
+  columns
+) {
   if (!line.includes("|")) {
     return null;
   }
@@ -582,8 +579,9 @@ function tableAlignments(line, columns) {
 
   if (
     cells.length !== columns ||
-    !cells.every((cell) =>
-      /^:?-+:?$/.test(cell)
+    !cells.every(
+      (cell) =>
+        /^:?-+:?$/.test(cell)
     )
   ) {
     return null;
@@ -608,13 +606,18 @@ function tableAlignments(line, columns) {
 }
 
 
+// Cells go through formatInline.
 function renderTable(
   header,
   alignments,
   rows,
   sourceCount
 ) {
-  const cell = (tag, text, i) => {
+  const cell = (
+    tag,
+    text,
+    i
+  ) => {
     const align = alignments[i]
       ? ` class="align-${alignments[i]}"`
       : "";
@@ -659,11 +662,12 @@ function renderTable(
 }
 
 
-/* ================================================================
-   15. Markdown renderer
-   ================================================================ */
-
-function renderMarkdown(text, sourceCount) {
+// Paragraphs, headings, bullet lists,
+// numbered lists and tables.
+function renderMarkdown(
+  text,
+  sourceCount
+) {
   const lines =
     escapeHtml(text.trim()).split("\n");
 
@@ -671,18 +675,17 @@ function renderMarkdown(text, sourceCount) {
   let paragraph = [];
   let listType = null;
 
-
   const flushParagraph = () => {
     if (paragraph.length) {
-      html += `<p>${formatInline(
-        paragraph.join(" "),
-        sourceCount
-      )}</p>`;
+      html +=
+        `<p>${formatInline(
+          paragraph.join(" "),
+          sourceCount
+        )}</p>`;
 
       paragraph = [];
     }
   };
-
 
   const closeList = () => {
     if (listType) {
@@ -691,7 +694,6 @@ function renderMarkdown(text, sourceCount) {
     }
   };
 
-
   for (
     let i = 0;
     i < lines.length;
@@ -699,10 +701,7 @@ function renderMarkdown(text, sourceCount) {
   ) {
     const line = lines[i].trim();
 
-
-    /*
-     * Detect tables.
-     */
+    // Table detection.
     const header =
       line.includes("|")
         ? splitRow(line)
@@ -716,7 +715,6 @@ function renderMarkdown(text, sourceCount) {
             header.length
           )
         : null;
-
 
     if (alignments) {
       flushParagraph();
@@ -746,53 +744,36 @@ function renderMarkdown(text, sourceCount) {
       );
 
       i = next - 1;
-
       continue;
     }
 
-
-    /*
-     * Headings.
-     */
     const heading =
       line.match(/^#{1,6}\s+(.*)/);
 
-
-    /*
-     * Bullet lists.
-     */
     const bullet =
       line.match(/^[-*]\s+(.*)/);
 
-
-    /*
-     * Numbered lists.
-     */
     const numbered =
       line.match(/^\d+[.)]\s+(.*)/);
 
-
     const item =
       bullet || numbered;
-
 
     if (heading) {
       flushParagraph();
       closeList();
 
-      html += `<p><strong>${formatInline(
-        heading[1],
-        sourceCount
-      )}</strong></p>`;
-    }
+      html +=
+        `<p><strong>${formatInline(
+          heading[1],
+          sourceCount
+        )}</strong></p>`;
 
-    else if (item) {
+    } else if (item) {
       flushParagraph();
 
       const type =
-        bullet
-          ? "ul"
-          : "ol";
+        bullet ? "ul" : "ol";
 
       if (listType !== type) {
         closeList();
@@ -802,25 +783,22 @@ function renderMarkdown(text, sourceCount) {
         listType = type;
       }
 
-      html += `<li>${formatInline(
-        item[1],
-        sourceCount
-      )}</li>`;
-    }
+      html +=
+        `<li>${formatInline(
+          item[1],
+          sourceCount
+        )}</li>`;
 
-    else {
+    } else {
       closeList();
 
       if (line === "") {
         flushParagraph();
-      }
-
-      else {
+      } else {
         paragraph.push(line);
       }
     }
   }
-
 
   flushParagraph();
   closeList();
@@ -828,10 +806,6 @@ function renderMarkdown(text, sourceCount) {
   return html;
 }
 
-
-/* ================================================================
-   16. Source scoring
-   ================================================================ */
 
 function scoreClass(score) {
   if (score >= 0.45) {
@@ -847,9 +821,11 @@ function scoreClass(score) {
 
 
 /* ================================================================
-   17. Source location
+   12. Source locations
    ================================================================ */
 
+// Where a passage came from.
+// Chunks can span a page boundary.
 function locationLabel(source) {
   const start = source.page_start;
   const end = source.page_end;
@@ -864,19 +840,11 @@ function locationLabel(source) {
 }
 
 
-/* ================================================================
-   18. NEW:
-       Make source location a clickable link
-       to the original document/page.
-   ================================================================ */
-
+// Page label as a link into the original file.
 function locationElement(source) {
-  const label = locationLabel(source);
+  const label =
+    locationLabel(source);
 
-  /*
-   * Older documents may not have doc_id.
-   * In that case, just show the location as text.
-   */
   if (!source.doc_id) {
     return el(
       "span",
@@ -885,50 +853,35 @@ function locationElement(source) {
     );
   }
 
-
   const link = el(
     "a",
     "source-meta source-link",
     label
   );
 
-
-  /*
-   * PDF viewer convention:
-   *
-   * /file#page=5
-   *
-   * Desktop Chrome and Firefox usually
-   * honour this and open the PDF at page 5.
-   */
   const page =
     source.page_start
       ? `#page=${source.page_start}`
       : "";
-
 
   link.href =
     `/api/documents/${encodeURIComponent(
       source.doc_id
     )}/file${page}`;
 
-
   link.target = "_blank";
   link.rel = "noopener";
 
-
-  link.title =
-    source.page_start
-      ? `Open ${source.filename} at page ${source.page_start}`
-      : `Open ${source.filename}`;
-
+  link.title = source.page_start
+    ? `Open ${source.filename} at page ${source.page_start}`
+    : `Open ${source.filename}`;
 
   return link;
 }
 
 
 /* ================================================================
-   19. Graph links
+   13. Graph source links
    ================================================================ */
 
 function renderGraphLinks(graph) {
@@ -939,9 +892,7 @@ function renderGraphLinks(graph) {
 
   const shown = new Set();
 
-
   for (const link of graph.links) {
-
     const key =
       [
         link.reached_from,
@@ -952,25 +903,21 @@ function renderGraphLinks(graph) {
       "\u0000" +
       link.quote;
 
-
     if (shown.has(key)) {
       continue;
     }
 
     shown.add(key);
 
-
     const block = el(
       "div",
       "graph-link"
     );
 
-
     const path = el(
       "p",
       "graph-path"
     );
-
 
     path.append(
       el(
@@ -978,7 +925,6 @@ function renderGraphLinks(graph) {
         "graph-path-label",
         "Path"
       ),
-
       el(
         "span",
         null,
@@ -993,10 +939,8 @@ function renderGraphLinks(graph) {
       `“${link.quote}”`
     );
 
-
     quote.title =
       "The sentence that links this passage to your question, verbatim from the document";
-
 
     if (link.from_diagram) {
       quote.append(
@@ -1014,9 +958,7 @@ function renderGraphLinks(graph) {
       "graph-relation"
     );
 
-
     relation.append(
-
       el(
         "span",
         "graph-relation-label",
@@ -1039,14 +981,10 @@ function renderGraphLinks(graph) {
       )
     );
 
-
     relation.title =
       `Relationship labels were measured at about ${RELATION_ACCURACY.slice(
         1
-      )} correct, so the model is ` +
-      "never given them: it sees only the two entity names and the sentence above. " +
-      "The label is shown here so you can check it yourself.";
-
+      )} correct, so the model is never given them: it sees only the two entity names and the sentence above. The label is shown here so you can check it yourself.`;
 
     block.append(
       path,
@@ -1057,13 +995,12 @@ function renderGraphLinks(graph) {
     box.append(block);
   }
 
-
   return box;
 }
 
 
 /* ================================================================
-   20. Sources
+   14. Chat: sources
    ================================================================ */
 
 function renderSources(sources) {
@@ -1072,13 +1009,10 @@ function renderSources(sources) {
     "sources"
   );
 
-
   const added =
     sources.filter(
-      (s) =>
-        s.retrieval === "graph"
+      (s) => s.retrieval === "graph"
     ).length;
-
 
   details.append(
     el(
@@ -1098,19 +1032,15 @@ function renderSources(sources) {
     )
   );
 
-
   const list = el(
     "ol",
     "source-list"
   );
 
-
   sources.forEach(
     (source, index) => {
-
       const isGraph =
         source.retrieval === "graph";
-
 
       const item = el(
         "li",
@@ -1119,20 +1049,14 @@ function renderSources(sources) {
           : "source"
       );
 
-
       item.dataset.source =
         String(index + 1);
-
 
       const head = el(
         "div",
         "source-head"
       );
 
-
-      /*
-       * Filename.
-       */
       const file = el(
         "span",
         "source-file",
@@ -1142,42 +1066,17 @@ function renderSources(sources) {
       file.title =
         source.filename;
 
-
-      /*
-       * Similarity score.
-       */
       const score = el(
         "span",
         `score ${scoreClass(
           source.score
         )}`,
-        Number(
-          source.score
-        ).toFixed(2)
+        Number(source.score).toFixed(2)
       );
 
       score.title =
         "Similarity to your question";
 
-
-      /*
-       * IMPORTANT CHANGE:
-       *
-       * Instead of:
-       *
-       * head.append(
-       *   file,
-       *   el(
-       *     "span",
-       *     "source-meta",
-       *     locationLabel(source)
-       *   ),
-       *   score
-       * );
-       *
-       * we now use locationElement(source)
-       * so "Page 5" is clickable.
-       */
       head.append(
         file,
         locationElement(source),
@@ -1185,9 +1084,7 @@ function renderSources(sources) {
       );
 
 
-      /*
-       * OCR badge.
-       */
+      // OCR badge.
       if (source.ocr) {
         const badge = el(
           "span",
@@ -1202,9 +1099,7 @@ function renderSources(sources) {
       }
 
 
-      /*
-       * Graph badge.
-       */
+      // Graph badge.
       if (isGraph) {
         const badge = el(
           "span",
@@ -1219,21 +1114,13 @@ function renderSources(sources) {
       }
 
 
-      /*
-       * Source snippet.
-       */
       const snippet =
         (source.snippet || "")
           .replace(/\s+/g, " ")
           .trim();
 
-
       item.append(head);
 
-
-      /*
-       * Graph explanation.
-       */
       if (
         isGraph &&
         source.graph
@@ -1245,7 +1132,6 @@ function renderSources(sources) {
         );
       }
 
-
       item.append(
         el(
           "blockquote",
@@ -1254,11 +1140,9 @@ function renderSources(sources) {
         )
       );
 
-
       list.append(item);
     }
   );
-
 
   details.append(list);
 
@@ -1267,7 +1151,7 @@ function renderSources(sources) {
 
 
 /* ================================================================
-   21. Mode tag
+   15. Answer mode tag
    ================================================================ */
 
 function modeTag(mode) {
@@ -1275,7 +1159,6 @@ function modeTag(mode) {
     "p",
     `mode-tag mode-tag-${mode}`
   );
-
 
   tag.append(
     el(
@@ -1291,13 +1174,12 @@ function modeTag(mode) {
     )
   );
 
-
   return tag;
 }
 
 
 /* ================================================================
-   22. Render answer
+   16. Render answer
    ================================================================ */
 
 function renderAnswer(
@@ -1310,17 +1192,14 @@ function renderAnswer(
       ? data.sources
       : [];
 
-
   const mode =
     data.retrieval_mode ===
     "vector+graph"
       ? "graph"
       : "vector";
 
-
   node.className =
     `msg msg-assistant msg-${mode}`;
-
 
   node.removeAttribute(
     "aria-label"
@@ -1332,13 +1211,11 @@ function renderAnswer(
     "msg-body"
   );
 
-
   body.innerHTML =
     renderMarkdown(
       data.answer || "",
       sources.length
     );
-
 
   node.replaceChildren(
     modeTag(mode),
@@ -1346,22 +1223,16 @@ function renderAnswer(
   );
 
 
-  /*
-   * Show rewritten search query
-   * if it differs from user's question.
-   */
+  // Show rewritten query when different.
   const normalise = (s) =>
     s
       .trim()
       .toLowerCase()
       .replace(/\s+/g, " ");
 
-
   if (
     data.search_query &&
-    normalise(
-      data.search_query
-    ) !==
+    normalise(data.search_query) !==
       normalise(question)
   ) {
     node.append(
@@ -1374,10 +1245,7 @@ function renderAnswer(
   }
 
 
-  /*
-   * Don't show an empty sources box
-   * when there are no sources.
-   */
+  // Don't show empty sources box.
   if (sources.length > 0) {
     node.append(
       renderSources(sources)
@@ -1387,7 +1255,7 @@ function renderAnswer(
 
 
 /* ================================================================
-   23. Chat: messages
+   17. Chat: thread
    ================================================================ */
 
 function addMessage(className) {
@@ -1401,6 +1269,9 @@ function addMessage(className) {
   els.threadInner.append(node);
 
   scrollToBottom();
+
+  // Update question jumper whenever a message is added.
+  updateJumper();
 
   return node;
 }
@@ -1429,7 +1300,7 @@ function loadingDots() {
 
 
 /* ================================================================
-   24. Ask question
+   18. Ask question
    ================================================================ */
 
 async function askQuestion(question) {
@@ -1441,9 +1312,7 @@ async function askQuestion(question) {
     return;
   }
 
-
   state.asking = true;
-
 
   els.question.value = "";
 
@@ -1451,17 +1320,13 @@ async function askQuestion(question) {
   updateComposer();
 
 
-  /*
-   * User message.
-   */
+  // User message.
   addMessage(
     "msg-user"
   ).textContent = question;
 
 
-  /*
-   * Freeze the mode when the question is sent.
-   */
+  // Freeze the mode when the question is sent.
   const mode =
     state.graphMode
       ? "graph"
@@ -1513,7 +1378,6 @@ async function askQuestion(question) {
     );
 
   } catch (err) {
-
     pending.className =
       "msg msg-error";
 
@@ -1521,14 +1385,12 @@ async function askQuestion(question) {
       "aria-label"
     );
 
-
     pending.textContent =
       mode === "graph"
         ? `${MODES.graph.name}: ${err.message}`
         : err.message;
 
   } finally {
-
     state.asking = false;
 
     updateComposer();
@@ -1541,7 +1403,7 @@ async function askQuestion(question) {
 
 
 /* ================================================================
-   25. Citation highlighting
+   19. Citation highlighting
    ================================================================ */
 
 function toggleCitation(cite) {
@@ -1642,7 +1504,7 @@ function toggleCitation(cite) {
 
 
 /* ================================================================
-   26. Composer
+   20. Composer
    ================================================================ */
 
 function autoGrow() {
@@ -1699,13 +1561,12 @@ function updateComposer() {
 
 
 /* ================================================================
-   27. Library event wiring
+   21. Wiring: library events
    ================================================================ */
 
 els.uploadBtn.addEventListener(
   "click",
-  () =>
-    els.fileInput.click()
+  () => els.fileInput.click()
 );
 
 
@@ -1725,7 +1586,7 @@ els.uploadErrorX.addEventListener(
 
 
 /* ================================================================
-   28. Drag and drop
+   22. Drag and drop
    ================================================================ */
 
 let dragDepth = 0;
@@ -1781,26 +1642,21 @@ els.sidebar.addEventListener(
 );
 
 
-/*
- * Prevent files dropped anywhere else
- * from navigating away from the app.
- */
+// Prevent browser from navigating away when
+// files are dropped somewhere else.
 window.addEventListener(
   "dragover",
-  (e) =>
-    e.preventDefault()
+  (e) => e.preventDefault()
 );
-
 
 window.addEventListener(
   "drop",
-  (e) =>
-    e.preventDefault()
+  (e) => e.preventDefault()
 );
 
 
 /* ================================================================
-   29. Mobile sidebar
+   23. Mobile drawer
    ================================================================ */
 
 els.menuBtn.addEventListener(
@@ -1847,23 +1703,15 @@ document.addEventListener(
 
 
 /* ================================================================
-   30. Chat event wiring
+   24. Chat events
    ================================================================ */
 
-
-/*
- * Event delegation handles citations
- * and example buttons created later.
- */
+// Event delegation handles citations and example buttons.
 els.threadInner.addEventListener(
   "click",
   (e) => {
-
     const cite =
-      e.target.closest(
-        ".cite"
-      );
-
+      e.target.closest(".cite");
 
     if (cite) {
       toggleCitation(cite);
@@ -1872,10 +1720,7 @@ els.threadInner.addEventListener(
 
 
     const example =
-      e.target.closest(
-        ".example"
-      );
-
+      e.target.closest(".example");
 
     if (
       example &&
@@ -1905,16 +1750,8 @@ els.question.addEventListener(
 els.question.addEventListener(
   "keydown",
   (e) => {
-
-    /*
-     * Enter sends.
-     *
-     * Shift + Enter creates newline.
-     *
-     * isComposing prevents accidental
-     * sending while typing languages
-     * through an IME.
-     */
+    // Don't send while an input method
+    // is still composing a character.
     if (
       e.key === "Enter" &&
       !e.shiftKey &&
@@ -1943,24 +1780,20 @@ els.composer.addEventListener(
 
 
 /* ================================================================
-   31. Clear chat
+   25. Clear chat
    ================================================================ */
 
 els.clearBtn.addEventListener(
   "click",
   async () => {
-
     if (state.asking) {
       return;
     }
 
 
     try {
-
-      /*
-       * Clear both vector and graph
-       * histories for this session.
-       */
+      // Each mode keeps its own history on the server.
+      // Clearing the chat clears both.
       for (
         const mode of Object.values(MODES)
       ) {
@@ -1975,32 +1808,24 @@ els.clearBtn.addEventListener(
       }
 
     } catch {
-
-      /*
-       * If the server couldn't clear history,
-       * use a new session ID so old context
-       * cannot leak into the next question.
-       */
-      sessionId =
-        newSessionId();
+      // If the server couldn't clear its history,
+      // start a brand-new session.
+      sessionId = newSessionId();
     }
 
 
-    /*
-     * Remove all messages.
-     */
     els.threadInner
-      .querySelectorAll(
-        ".msg"
-      )
+      .querySelectorAll(".msg")
       .forEach(
-        (node) =>
-          node.remove()
+        (node) => node.remove()
       );
 
 
-    els.emptyState.hidden =
-      false;
+    els.emptyState.hidden = false;
+
+
+    // Rebuild/hide the question jumper.
+    updateJumper();
 
 
     if (!els.question.disabled) {
@@ -2011,9 +1836,171 @@ els.clearBtn.addEventListener(
 
 
 /* ================================================================
-   32. Graph mode
+   25b. Jump between questions
+   One tick per question. Appears from the second question, since a
+   single question needs no navigation. Hidden on phones in CSS: the
+   right edge is where thumbs scroll.
    ================================================================ */
 
+const JUMPER_MIN_QUESTIONS = 2;
+
+
+function updateJumper() {
+  const questions = [
+    ...els.threadInner.querySelectorAll(
+      ".msg-user"
+    ),
+  ];
+
+
+  els.jumper.hidden =
+    questions.length <
+    JUMPER_MIN_QUESTIONS;
+
+
+  if (els.jumper.hidden) {
+    els.jumper.replaceChildren();
+    return;
+  }
+
+
+  els.jumper.replaceChildren(
+    ...questions.map(
+      (node, index) => {
+        const tick = el(
+          "button",
+          "jumper-tick"
+        );
+
+        tick.type = "button";
+
+
+        // Accessible label for screen readers.
+        tick.setAttribute(
+          "aria-label",
+          `Question ${index + 1}`
+        );
+
+
+        // Tooltip for sighted users.
+        tick.title =
+          node.textContent.slice(
+            0,
+            60
+          );
+
+
+        tick.addEventListener(
+          "click",
+          () => {
+            node.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        );
+
+
+        return tick;
+      }
+    )
+  );
+
+
+  markCurrentTick();
+}
+
+
+// Highlight the tick for whichever question
+// is nearest the top of the current view.
+function markCurrentTick() {
+  const questions = [
+    ...els.threadInner.querySelectorAll(
+      ".msg-user"
+    ),
+  ];
+
+
+  const ticks = [
+    ...els.jumper.querySelectorAll(
+      ".jumper-tick"
+    ),
+  ];
+
+
+  if (ticks.length === 0) {
+    return;
+  }
+
+
+  const top =
+    els.thread.getBoundingClientRect()
+      .top;
+
+
+  let current = 0;
+
+
+  questions.forEach(
+    (node, index) => {
+      // The last question whose top edge is
+      // at or above the viewport top.
+      if (
+        node.getBoundingClientRect()
+          .top -
+          top <=
+        8
+      ) {
+        current = index;
+      }
+    }
+  );
+
+
+  ticks.forEach(
+    (tick, index) => {
+      tick.classList.toggle(
+        "is-current",
+        index === current
+      );
+    }
+  );
+}
+
+
+// Keep the current tick synchronized with scrolling.
+// requestAnimationFrame keeps work off the critical
+// scroll handler path.
+let jumperFrame = null;
+
+
+els.thread.addEventListener(
+  "scroll",
+  () => {
+    if (jumperFrame) {
+      return;
+    }
+
+
+    jumperFrame =
+      requestAnimationFrame(
+        () => {
+          jumperFrame = null;
+
+          markCurrentTick();
+        }
+      );
+  }
+);
+
+
+/* ================================================================
+   26. Graph mode (Step 8, experimental)
+   ================================================================ */
+
+// The toggle, composer hint, placeholder and
+// composer's colour all say which mode the next
+// question goes to.
 function applyMode() {
   const mode =
     state.graphMode
@@ -2039,6 +2026,9 @@ function applyMode() {
 }
 
 
+// Each mode keeps its own history on the server,
+// so switching mode mid-conversation starts that
+// mode without the other's earlier turns.
 function noteModeSwitch() {
   if (
     !els.threadInner.querySelector(
@@ -2062,26 +2052,18 @@ function noteModeSwitch() {
 }
 
 
-/* ================================================================
-   33. Check graph availability
-   ================================================================ */
-
 async function loadGraphStatus() {
   try {
-
     const status =
       await api(
         "/api/chat/graph/status"
       );
 
-
     state.graphAvailable =
       Boolean(status.enabled);
 
   } catch {
-
-    state.graphAvailable =
-      false;
+    state.graphAvailable = false;
   }
 
 
@@ -2103,26 +2085,17 @@ async function loadGraphStatus() {
 
   els.modeToggle.title =
     state.graphAvailable
-
       ? "Adds up to two passages found by following entities named in your question. Step 7 found this does not improve retrieval on this corpus: it is a demonstration, not an improvement."
-
       : "Graph mode is off on this server. Set GRAPH_RAG_ENABLED=true in .env and restart to try it.";
 }
 
 
-/* ================================================================
-   34. Graph toggle
-   ================================================================ */
-
 els.graphToggle.addEventListener(
   "change",
   () => {
-
-    /*
-     * Don't change mode while a question
-     * is currently being processed.
-     */
     if (state.asking) {
+      // A question in flight keeps the mode
+      // it was sent with.
       els.graphToggle.checked =
         state.graphMode;
 
@@ -2143,7 +2116,7 @@ els.graphToggle.addEventListener(
 
 
 /* ================================================================
-   35. Start application
+   27. Start
    ================================================================ */
 
 applyMode();
